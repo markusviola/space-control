@@ -16,11 +16,20 @@
                     name="message"
                     placeholder="Enter your message"
                     class="form-control">
-                <span class="text-">user is typing...</span>
             </div>
+            <span class="text-">user is typing...</span>
         </div>
         <div class="col-4">
-
+            <div class="card card-default">
+                <div class="card-header">Active Users</div>
+                <div class="card-body">
+                    <ul>
+                        <li class="py-2">
+                            Harish
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </template>
