@@ -15,6 +15,7 @@
                     </ul>
                 </div>
                 <input
+                    @keydown="sendTypingEvent"
                     @keyup.enter="sendMessage"
                     v-model="newMessage"
                     type="text"
@@ -22,7 +23,7 @@
                     placeholder="Enter your message"
                     class="form-control">
             </div>
-            <span class="text-muted pl-2">{{ user.name }} is typing...</span>
+            <span class="text-muted pl-2" v-if="activeUser">{{ activeUser.name }} is typing...</span>
         </div>
         <div class="col-4">
             <div class="card card-default m-0">
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import { clearTimeout } from 'timers';
     export default {
         props: ['user'],
         data() {
@@ -47,6 +49,8 @@
                 messages: [],
                 newMessage: '',
                 users: [],
+                activeUser: false,
+                typingTimer: false,
             }
         },
         mounted() {
@@ -66,7 +70,18 @@
                     this.users = this.users.filter(u => u.id != user.id);
                 })
                 .listen('MessageSent', event => {
+                    this.activeUser = false;
                     this.messages.push(event.message);
+                })
+                .listenForWhisper('typing', user => {
+                    this.activeUser = user;
+
+                    if (this.typingTimer) {
+                        window.clearTimeout(this.typingTimer);
+                    }
+                    this.typingTimer = setTimeout(() => {
+                        this.activeUser = false;
+                    }, 2000);
                 });
         },
         methods: {
@@ -88,7 +103,11 @@
                     }
                     this.newMessage = ''
                 })
-            }
+            },
+            sendTypingEvent() {
+                Echo.join('chat')
+                    .whisper('typing', this.user);
+            },
         }
     }
 </script>

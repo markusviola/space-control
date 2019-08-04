@@ -1838,6 +1838,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1879,13 +1881,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
     return {
       messages: [],
       newMessage: '',
-      users: []
+      users: [],
+      activeUser: false,
+      typingTimer: false
     };
   },
   mounted: function mounted() {
@@ -1904,7 +1910,19 @@ __webpack_require__.r(__webpack_exports__);
         return u.id != user.id;
       });
     }).listen('MessageSent', function (event) {
+      _this.activeUser = false;
+
       _this.messages.push(event.message);
+    }).listenForWhisper('typing', function (user) {
+      _this.activeUser = user;
+
+      if (_this.typingTimer) {
+        window.clearTimeout(_this.typingTimer);
+      }
+
+      _this.typingTimer = setTimeout(function () {
+        _this.activeUser = false;
+      }, 2000);
     });
   },
   methods: {
@@ -1930,6 +1948,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.newMessage = '';
       });
+    },
+    sendTypingEvent: function sendTypingEvent() {
+      Echo.join('chat').whisper('typing', this.user);
     }
   }
 });
@@ -47600,6 +47621,7 @@ var render = function() {
           },
           domProps: { value: _vm.newMessage },
           on: {
+            keydown: _vm.sendTypingEvent,
             keyup: function($event) {
               if (
                 !$event.type.indexOf("key") &&
@@ -47619,9 +47641,11 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("span", { staticClass: "text-muted pl-2" }, [
-        _vm._v(_vm._s(_vm.user.name) + " is typing...")
-      ])
+      _vm.activeUser
+        ? _c("span", { staticClass: "text-muted pl-2" }, [
+            _vm._v(_vm._s(_vm.activeUser.name) + " is typing...")
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-4" }, [
