@@ -1884,7 +1884,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messages: [],
-      newMessage: ''
+      newMessage: '',
+      users: []
     };
   },
   mounted: function mounted() {
@@ -1894,7 +1895,15 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.fetchMessages();
-    Echo.join('chat').listen('MessageSent', function (event) {
+    Echo.join('chat').here(function (users) {
+      _this.users = users;
+    }).joining(function (user) {
+      _this.users.push(user);
+    }).leaving(function (user) {
+      _this.users = _this.users.filter(function (u) {
+        return u.id != user.id;
+      });
+    }).listen('MessageSent', function (event) {
       _this.messages.push(event.message);
     });
   },
@@ -47539,19 +47548,25 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-4" }, [
-      _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card card-default m-0" }, [
         _c("div", { staticClass: "card-header" }, [_vm._v("Active Users")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c("ul", [
-            _c("li", { staticClass: "py-2" }, [
-              _vm._v(
-                "\n                        " +
-                  _vm._s(_vm.user.name) +
-                  "\n                    "
+          _c(
+            "ul",
+            _vm._l(_vm.users, function(user, index) {
+              return _c(
+                "li",
+                { key: index, staticClass: "py-2 text-success" },
+                [
+                  _c("div", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(user.name))
+                  ])
+                ]
               )
-            ])
-          ])
+            }),
+            0
+          )
         ])
       ])
     ])

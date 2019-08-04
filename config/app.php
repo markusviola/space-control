@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Space Control v0.1a'),
 
     /*
     |--------------------------------------------------------------------------

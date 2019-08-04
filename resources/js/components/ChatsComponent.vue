@@ -25,12 +25,12 @@
             <span class="text-muted pl-2">{{ user.name }} is typing...</span>
         </div>
         <div class="col-4">
-            <div class="card card-default">
+            <div class="card card-default m-0">
                 <div class="card-header">Active Users</div>
                 <div class="card-body">
                     <ul>
-                        <li class="py-2">
-                            {{ user.name }}
+                        <li class="py-2 text-success" v-for="(user, index) in users" :key="index">
+                            <div class="text-muted">{{ user.name }}</div>
                         </li>
                     </ul>
                 </div>
@@ -46,6 +46,7 @@
             return {
                 messages: [],
                 newMessage: '',
+                users: [],
             }
         },
         mounted() {
@@ -55,6 +56,15 @@
             this.fetchMessages();
 
             Echo.join('chat')
+                .here(users => {
+                    this.users = users;
+                })
+                .joining(user => {
+                    this.users.push(user);
+                })
+                .leaving(user => {
+                    this.users = this.users.filter(u => u.id != user.id);
+                })
                 .listen('MessageSent', event => {
                     this.messages.push(event.message);
                 });
