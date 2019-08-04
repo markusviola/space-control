@@ -5,9 +5,12 @@
                 <div class="card-header">Messages</div>
                 <div class="card-body p-0">
                     <ul class="list-unstyled" style="height: 300px; overflow-y: scroll">
-                        <li class="p-2">
-                            <strong>Markus</strong>
-                            message text
+                        <li class="p-2"
+                            v-for="(message, index) in messages"
+                            :key="index"
+                        >
+                            <strong>{{ message.user.name }}</strong>
+                            {{ message.message }}
                         </li>
                     </ul>
                 </div>
@@ -36,8 +39,23 @@
 
 <script>
     export default {
+        data() {
+            return {
+                messages: '',
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Chat component running successfully.');
+        },
+        created() {
+            this.fetchMessages();
+        },
+        methods: {
+            fetchMessages() {
+                axios.get('messages').then(response => {
+                    this.messages = response.data;
+                })
+            }
         }
     }
 </script>
