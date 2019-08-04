@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
+use App\Events\MessageSent;
 
 class ChatsController extends Controller
 {
@@ -25,9 +26,13 @@ class ChatsController extends Controller
     public function sendMessage(Request $request)
     {
         $newMessage = $request->message;
-        auth()->user()->messages()->create([
+        $createdMessage = auth()->user()->messages()->create([
             'message' => $newMessage
         ]);
+        broadcast(new MessageSent(
+            $createdMessage->load('user')
+        ))->toOthers();
+
         return response()->json([
             'success' => true,
             'message' => $newMessage

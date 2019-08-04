@@ -1891,30 +1891,35 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Chat component running successfully.');
   },
   created: function created() {
+    var _this = this;
+
     this.fetchMessages();
+    Echo.join('chat').listen('MessageSent', function (event) {
+      _this.messages.push(event.message);
+    });
   },
   methods: {
     fetchMessages: function fetchMessages() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('messages').then(function (response) {
-        _this.messages = response.data;
+        _this2.messages = response.data;
       });
     },
     sendMessage: function sendMessage() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('messages', {
         message: this.newMessage
       }).then(function (res) {
         if (res.data.success) {
-          _this2.messages.push({
-            user: _this2.user,
+          _this3.messages.push({
+            user: _this3.user,
             message: res.data.message
           });
         }
 
-        _this2.newMessage = '';
+        _this3.newMessage = '';
       });
     }
   }
