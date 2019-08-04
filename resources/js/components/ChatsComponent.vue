@@ -15,12 +15,14 @@
                     </ul>
                 </div>
                 <input
+                    @keyup.enter="sendMessage"
+                    v-model="newMessage"
                     type="text"
                     name="message"
                     placeholder="Enter your message"
                     class="form-control">
             </div>
-            <span class="text-muted pl-2">user is typing...</span>
+            <span class="text-muted pl-2">{{ user.name }} is typing...</span>
         </div>
         <div class="col-4">
             <div class="card card-default">
@@ -28,7 +30,7 @@
                 <div class="card-body">
                     <ul>
                         <li class="py-2">
-                            Markus
+                            {{ user.name }}
                         </li>
                     </ul>
                 </div>
@@ -39,9 +41,11 @@
 
 <script>
     export default {
+        props: ['user'],
         data() {
             return {
-                messages: '',
+                messages: [],
+                newMessage: '',
             }
         },
         mounted() {
@@ -54,6 +58,20 @@
             fetchMessages() {
                 axios.get('messages').then(response => {
                     this.messages = response.data;
+                })
+            },
+            sendMessage() {
+                axios.post('messages', {
+                    message: this.newMessage,
+                })
+                .then(res => {
+                    if(res.data.success) {
+                        this.messages.push({
+                            user: this.user,
+                            message: res.data.message
+                        });
+                    }
+                    this.newMessage = ''
                 })
             }
         }

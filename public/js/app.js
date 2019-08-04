@@ -1877,10 +1877,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
   data: function data() {
     return {
-      messages: ''
+      messages: [],
+      newMessage: ''
     };
   },
   mounted: function mounted() {
@@ -1895,6 +1899,22 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('messages').then(function (response) {
         _this.messages = response.data;
+      });
+    },
+    sendMessage: function sendMessage() {
+      var _this2 = this;
+
+      axios.post('messages', {
+        message: this.newMessage
+      }).then(function (res) {
+        if (res.data.success) {
+          _this2.messages.push({
+            user: _this2.user,
+            message: res.data.message
+          });
+        }
+
+        _this2.newMessage = '';
       });
     }
   }
@@ -47473,43 +47493,66 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newMessage,
+              expression: "newMessage"
+            }
+          ],
           staticClass: "form-control",
           attrs: {
             type: "text",
             name: "message",
             placeholder: "Enter your message"
+          },
+          domProps: { value: _vm.newMessage },
+          on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.sendMessage($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.newMessage = $event.target.value
+            }
           }
         })
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "text-muted pl-2" }, [
-        _vm._v("user is typing...")
+        _vm._v(_vm._s(_vm.user.name) + " is typing...")
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4" }, [
+    _c("div", { staticClass: "col-4" }, [
       _c("div", { staticClass: "card card-default" }, [
         _c("div", { staticClass: "card-header" }, [_vm._v("Active Users")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c("ul", [
             _c("li", { staticClass: "py-2" }, [
-              _vm._v("\n                        Markus\n                    ")
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.user.name) +
+                  "\n                    "
+              )
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
