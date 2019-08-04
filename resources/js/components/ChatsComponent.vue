@@ -6,7 +6,7 @@
                 <div class="card-body p-0">
                     <ul class="list-unstyled" style="height: 300px; overflow-y: scroll">
                         <li class="p-2">
-                            <strong>Harish</strong>
+                            <strong>Markus</strong>
                             message text
                         </li>
                     </ul>
@@ -17,7 +17,7 @@
                     placeholder="Enter your message"
                     class="form-control">
             </div>
-            <span class="text-">user is typing...</span>
+            <span class="text-muted pl-2">user is typing...</span>
         </div>
         <div class="col-4">
             <div class="card card-default">
@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <ul>
                         <li class="py-2">
-                            Harish
+                            Markus
                         </li>
                     </ul>
                 </div>
