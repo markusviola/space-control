@@ -59917,7 +59917,7 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "anyKey",
+  key: "8cdee6e092f7493bcfab",
   // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
   // encrypted: true,
   wsHost: window.location.hostname,
@@ -59926,7 +59926,13 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 window.Echo.channel('DemoChannel').listen('WebsocketDemoEvent', function (e) {
   console.log(e);
-});
+}); // Actual Pusher API
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
 
 /***/ }),
 

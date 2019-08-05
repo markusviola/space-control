@@ -61,3 +61,11 @@ window.Echo.channel('DemoChannel')
 .listen('WebsocketDemoEvent', (e) => {
     console.log(e);
 });
+
+// Actual Pusher API
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
