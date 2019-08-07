@@ -17,7 +17,7 @@ Vue.use(VueChatScroll)
 
 // Use v-calendar & v-date-picker components
 Vue.use(VCalendar, {
-  componentPrefix: 'vc'
+  componentPrefix: 'v'
 });
 
 /**
@@ -32,7 +32,7 @@ Vue.use(VCalendar, {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('chats', require('./components/ChatsComponent.vue').default);
-
+Vue.component('jp-date-picker', require('./components/JPDatePicker.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
