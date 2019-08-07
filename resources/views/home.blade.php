@@ -8,13 +8,13 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
+
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                        You are logged in!
+                    @else
+                        Register to get started...
                     @endif
 
-                    You are logged in!
                 </div>
             </div>
         </div>
