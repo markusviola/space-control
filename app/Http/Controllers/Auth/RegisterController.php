@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use DateTime;
 
 class RegisterController extends Controller
 {
@@ -54,6 +55,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $data['birthday'] = $this->phpDateConverter($data['birthday']);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -62,7 +64,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'alpha_num', 'max:25'],
             'gender' => ['required', 'boolean'],
             'address' => ['required', 'string'],
-            'birthday' => ['required'],
+            'birthday' => ['required', 'date'],
         ]);
     }
 
@@ -74,7 +76,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data);
+        $jsBirthday = DateTime::createFromFormat('D M d Y H:i:s T +', $data['birthday']);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -82,8 +84,15 @@ class RegisterController extends Controller
             'furigana' => $data['furigana'],
             'username' => $data['username'],
             'gender' => $data['gender'],
-            'birthday' => $data['birthday'],
+            'birthday' => $jsBirthday,
             'address' => $data['address'],
         ]);
+    }
+
+    public function phpDateConverter(string $jsString) {
+        return DateTime::createFromFormat(
+            'D M d Y H:i:s T +',
+            $jsString
+        );
     }
 }
