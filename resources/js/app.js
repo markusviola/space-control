@@ -8,9 +8,17 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+import VCalendar from 'v-calendar';
+import VueChatScroll from 'vue-chat-scroll';
+
 // vue-chat-scroll
-import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
+
+// Use v-calendar & v-date-picker components
+Vue.use(VCalendar, {
+  componentPrefix: 'vc'
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,4 +41,8 @@ Vue.component('chats', require('./components/ChatsComponent.vue').default);
 
 const app = new Vue({
     el: '#app',
+});
+
+$( "#birthday" ).change(function(val) {
+    console.log(val);
 });
