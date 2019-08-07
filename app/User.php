@@ -17,7 +17,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'furigana',
+        'username',
+        'password',
+        'gender',
+        'birthday',
+        'address',
+        'email',
     ];
 
     /**
@@ -41,5 +48,13 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function genderOptions() {
+
+        return [
+            0 => '男',
+            1 => '女',
+        ];
     }
 }
