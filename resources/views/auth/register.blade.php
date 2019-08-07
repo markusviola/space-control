@@ -5,10 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <div class="text-center">
+                        <h4 class="alt-neutral">{{ __('Join Us!') }}</h4>
+                        <span class="text-muted">For a more convenient reservation experience!</span>
+                    </div>
+                    <hr>
+                    <form class="jp-body" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -125,7 +128,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-anti-neutral text-white">
                                     {{ __('提出する') }}
                                 </button>
                             </div>

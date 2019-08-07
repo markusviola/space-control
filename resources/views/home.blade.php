@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    @if (session('status'))
+                    @if (Auth::check())
                         You are logged in!
                     @else
                         Register to get started...

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Poppins&display=swap);@import url(https://fonts.googleapis.com/css?family=Kosugi&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10642,5 +10642,67 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.en-body {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.jp-body {
+  font-family: "Kosugi", sans-serif !important;
+}
+
+.anti-neutral {
+  color: #4674a8 !important;
+}
+
+.anti-neutral:hover {
+  text-decoration: none;
+  color: #2b4562 !important;
+}
+
+.alt-anti-neutral {
+  color: #416894 !important;
+}
+
+.neutral {
+  color: #1aa17c !important;
+}
+
+.neutral:hover {
+  text-decoration: none;
+  color: #117458 !important;
+}
+
+.alt-neutral {
+  color: #1aa17c !important;
+}
+
+.btn-anti-neutral {
+  background: #4973a3 !important;
+  border-color: #4973a3 !important;
+  transition-property: background;
+}
+
+.btn-anti-neutral:hover {
+  background: #355477 !important;
+}
+
+.btn-neutral {
+  background: #1aa17c !important;
+  border-color: #1aa17c !important;
+  transition-property: background;
+}
+
+.btn-neutral:hover {
+  background: #117458 !important;
+}
+
+.neutral-round {
+  border-radius: 10px !important;
 }
 
