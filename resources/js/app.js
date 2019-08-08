@@ -10,15 +10,19 @@ window.Vue = require('vue');
 
 
 import VCalendar from 'v-calendar';
+import DropdownDatepicker from 'vue-dropdown-datepicker';
 import VueChatScroll from 'vue-chat-scroll';
 
-// vue-chat-scroll
-Vue.use(VueChatScroll)
+// vue-chat-scroll option
+Vue.use(VueChatScroll);
 
 // Use v-calendar & v-date-picker components
 Vue.use(VCalendar, {
   componentPrefix: 'v'
 });
+
+// Use v-dropdown datepicker component
+Vue.use(DropdownDatepicker);
 
 /**
  * The following block of code may be used to automatically register your
