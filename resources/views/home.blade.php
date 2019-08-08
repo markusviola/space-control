@@ -8,7 +8,6 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-
                     @if (Auth::check())
                         You are logged in!
                     @else

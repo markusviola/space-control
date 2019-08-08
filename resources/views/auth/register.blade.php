@@ -94,9 +94,10 @@
                         <div class="form-group row">
                             <label for="birthday" class="col-md-4 col-form-label text-md-right"><strong>{{ __('生年月日') }}</strong></label>
                             <div class="col-md-6">
-                                <jp-date-picker></jp-date-picker>
+
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('住所') }}</label>

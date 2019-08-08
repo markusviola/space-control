@@ -10,7 +10,6 @@ window.Vue = require('vue');
 
 
 import VCalendar from 'v-calendar';
-import DropdownDatepicker from 'vue-dropdown-datepicker';
 import VueChatScroll from 'vue-chat-scroll';
 
 // vue-chat-scroll option
@@ -37,6 +36,7 @@ Vue.use(DropdownDatepicker);
 
 Vue.component('chats', require('./components/ChatsComponent.vue').default);
 Vue.component('jp-date-picker', require('./components/JPDatePicker.vue').default);
+Vue.component('dd-date-picker', require('./components/DropdownDatePicker.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

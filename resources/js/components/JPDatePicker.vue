@@ -14,7 +14,6 @@
         >
         </v-date-picker>
     </div>
-
 </template>
 
 <script>
@@ -23,9 +22,6 @@
             return {
                 date: new Date(),
             }
-        },
-        mounted() {
-            console.log('DatePicker (JP) component running successfully.');
         },
     }
 </script>
