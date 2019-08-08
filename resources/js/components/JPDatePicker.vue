@@ -2,12 +2,12 @@
     <div>
         <input
             type="hidden"
-            name="birthday"
-            :value="birthday"
+            name="chosenDate"
+            :value="date"
         >
         <v-date-picker
             locale="ja"
-            v-model="birthday"
+            v-model="date"
             :input-props='{
                 readonly: true,
             }'
@@ -21,8 +21,7 @@
     export default {
         data() {
             return {
-                birthday: new Date(),
-                isDisabled: true,
+                date: new Date(),
             }
         },
         mounted() {
