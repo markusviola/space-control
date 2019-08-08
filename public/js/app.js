@@ -1988,8 +1988,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      birthday: new Date(),
-      isDisabled: true
+      date: new Date()
     };
   },
   mounted: function mounted() {
@@ -47778,8 +47777,8 @@ var render = function() {
     "div",
     [
       _c("input", {
-        attrs: { type: "hidden", name: "birthday" },
-        domProps: { value: _vm.birthday }
+        attrs: { type: "hidden", name: "chosenDate" },
+        domProps: { value: _vm.date }
       }),
       _vm._v(" "),
       _c("v-date-picker", {
@@ -47790,11 +47789,11 @@ var render = function() {
           }
         },
         model: {
-          value: _vm.birthday,
+          value: _vm.date,
           callback: function($$v) {
-            _vm.birthday = $$v
+            _vm.date = $$v
           },
-          expression: "birthday"
+          expression: "date"
         }
       })
     ],
@@ -59994,9 +59993,6 @@ Vue.component('jp-date-picker', __webpack_require__(/*! ./components/JPDatePicke
 var app = new Vue({
   el: '#app'
 });
-$("#birthday").change(function (val) {
-  console.log(val);
-});
 
 /***/ }),
 
@@ -60053,7 +60049,14 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // Actual Pusher API
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
+
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "8cdee6e092f7493bcfab",
@@ -60065,13 +60068,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 window.Echo.channel('DemoChannel').listen('WebsocketDemoEvent', function (e) {
   console.log(e);
-}); // Actual Pusher API
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+});
 
 /***/ }),
 

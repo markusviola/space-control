@@ -43,6 +43,3 @@ const app = new Vue({
     el: '#app',
 });
 
-$( "#birthday" ).change(function(val) {
-    console.log(val);
-});
