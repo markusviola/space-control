@@ -55,7 +55,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $data['birthday'] = $this->phpDateConverter($data['birthday']);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -75,22 +74,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $jsBirthday = DateTime::createFromFormat('D M d Y H:i:s T +', $data['birthday']);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'furigana' => $data['furigana'],
             'gender' => $data['gender'],
-            'birthday' => $jsBirthday,
+            'birthday' => $data['birthday'],
             'address' => $data['address'],
         ]);
     }
 
-    public function phpDateConverter(string $jsString) {
-        return DateTime::createFromFormat(
-            'D M d Y H:i:s T +',
-            $jsString
-        );
-    }
 }
