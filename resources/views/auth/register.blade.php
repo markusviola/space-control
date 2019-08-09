@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right"><strong>{{ __('性別') }}</strong></label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('性別') }}</label>
 
                             <div class="col-md-6">
                                 <select id="gender" class="form-control" name="gender">
@@ -92,9 +92,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="birthday" class="col-md-4 col-form-label text-md-right"><strong>{{ __('生年月日') }}</strong></label>
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('生年月日') }}</label>
                             <div class="col-md-6">
-
+                                <div class="container p-0">
+                                    <dd-date-picker></dd-date-picker>
+                                </div>
                             </div>
                         </div>
 
