@@ -82,12 +82,18 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('性別') }}</label>
 
                             <div class="col-md-6">
-                                <select id="gender" class="form-control" name="gender">
-                                    <option value="" disabled>選択肢</option>
+                                <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender">
+                                    <option disabled>選択肢</option>
                                     @foreach ($user->genderOptions() as $optionKey => $optionValue)
                                         <option value="{{ $optionKey }}" {{ $user->gender == $optionValue ? 'selected' : '' }}>{{ $optionValue }}</option>
                                     @endforeach
                                 </select>
+
+                                @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
