@@ -15,7 +15,21 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('user_id')->default(0);
+            $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('bulk_rental_id')->nullable();
+            $table->string('name');
+            $table->string('furigana');
+            $table->boolean('gender');
+            $table->date('birthday');
+            $table->string('address');
+            $table->string('email');
+            $table->boolean('will_stay');
+            $table->longText('reason');
+            $table->integer('user_count')->default(1);
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 
