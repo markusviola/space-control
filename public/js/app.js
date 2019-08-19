@@ -60333,22 +60333,22 @@ if (token) {
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // Actual Pusher API
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "8cdee6e092f7493bcfab",
-  // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-  // encrypted: true,
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  disableStats: true
-});
+  cluster: "ap3",
+  forceTLS: true
+}); // window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     // encrypted: true,
+//     wsHost: window.location.hostname,
+//     wsPort: 6001,
+//     disableStats: true,
+// });
+
 window.Echo.channel('DemoChannel').listen('WebsocketDemoEvent', function (e) {
   console.log(e);
 });
@@ -60580,8 +60580,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programming\Learning Grounds\PHP\space-control\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programming\Learning Grounds\PHP\space-control\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/oseiryth/Programming/learning_grounds/space-control/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/oseiryth/Programming/learning_grounds/space-control/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
