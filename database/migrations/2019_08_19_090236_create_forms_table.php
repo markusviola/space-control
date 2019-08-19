@@ -16,8 +16,6 @@ class CreateFormsTable extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id')->default(0);
-            $table->unsignedInteger('schedule_id');
-            $table->unsignedInteger('bulk_rental_id')->nullable();
             $table->string('name');
             $table->string('furigana');
             $table->boolean('gender');
