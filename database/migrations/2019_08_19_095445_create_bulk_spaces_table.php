@@ -15,6 +15,8 @@ class CreateBulkSpacesTable extends Migration
     {
         Schema::create('bulk_spaces', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('space_id');
+            $table->unsignedInteger('form_id');
             $table->timestamps();
         });
     }
