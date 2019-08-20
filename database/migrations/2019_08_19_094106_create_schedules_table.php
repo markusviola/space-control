@@ -19,6 +19,8 @@ class CreateSchedulesTable extends Migration
             $table->datetime('startTime');
             $table->datetime('endTime');
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 

@@ -15,8 +15,10 @@ class CreateSpacesTable extends Migration
     {
         Schema::create('spaces', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->sting('name');
+            $table->string('name');
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 

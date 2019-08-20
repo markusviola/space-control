@@ -18,6 +18,8 @@ class CreateBulkSpacesTable extends Migration
             $table->unsignedInteger('space_id');
             $table->unsignedInteger('form_id');
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 
