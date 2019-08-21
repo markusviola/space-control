@@ -58,11 +58,10 @@
         </div>
         <hr>
         <span>Date and Time:</span>
-        <input type="hidden" name="datesLength" :value="dateTimes.length">
+        <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
         <div v-for="i in dateIncrement" v-bind:key="i">
             <div class="container">
                 <div class="row mt-3">
-                    <input type="hidden" :name="`date${i}`" :value="dateTimes[i - 1]">
                     <div class="col-md-10 p-0">
                         <schedule-picker
                             @onDateTimeChosen="changeDateTime"

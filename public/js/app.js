@@ -2281,7 +2281,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types'],
   data: function data() {
@@ -48649,19 +48648,14 @@ var render = function() {
       _c("span", [_vm._v("Date and Time:")]),
       _vm._v(" "),
       _c("input", {
-        attrs: { type: "hidden", name: "datesLength" },
-        domProps: { value: _vm.dateTimes.length }
+        attrs: { type: "hidden", name: "dates" },
+        domProps: { value: JSON.stringify(_vm.dateTimes) }
       }),
       _vm._v(" "),
       _vm._l(_vm.dateIncrement, function(i) {
         return _c("div", { key: i }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row mt-3" }, [
-              _c("input", {
-                attrs: { type: "hidden", name: "date" + i },
-                domProps: { value: _vm.dateTimes[i - 1] }
-              }),
-              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "col-md-10 p-0" },

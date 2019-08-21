@@ -36,7 +36,7 @@ class FormsController extends Controller
     public function store(Request $request)
     {
         // dd(request()->name);
-        dd(json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', request()->date1), true)['id']);
+        dd(json_decode(request()->dates, true));
     }
 
     /**
