@@ -21,3 +21,5 @@ Route::get('/chats', 'ChatsController@index');
 Route::get('/messages', 'ChatsController@fetchMessages');
 
 Route::post('/messages', 'ChatsController@sendMessage');
+
+Route::resource('forms', 'FormsController');
