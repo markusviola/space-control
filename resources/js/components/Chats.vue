@@ -54,7 +54,7 @@ import { clearTimeout } from 'timers';
             }
         },
         mounted() {
-            console.log('Chat component running successfully.');
+            console.log('Chat component mounted successfully.');
         },
         created() {
             this.fetchMessages();

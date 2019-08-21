@@ -7,6 +7,7 @@
         >
         <v-date-picker
             locale="ja"
+            @input="onDateClicked"
             v-model="date"
             :input-props='{
                 readonly: true,
@@ -18,10 +19,22 @@
 
 <script>
     export default {
+        props: ['dateTimeId'],
         data() {
             return {
                 date: new Date(),
             }
         },
+        mounted() {
+            console.log('Date Picker mounted successfully.');
+        },
+        methods: {
+            onDateClicked() {
+                this.$emit('onDateChosen', {
+                    id: this.dateTimeId,
+                    date: this.date
+                });
+            }
+        }
     }
 </script>
