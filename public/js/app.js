@@ -2281,16 +2281,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['types'],
+  props: ['types', 'spaces'],
   data: function data() {
     return {
       dateIncrement: 1,
       dateTimes: [],
       isCoworking: true,
+      isRental: false,
       chosenNumOfPeople: 1,
       chosenType: 1,
-      willStay: false,
       currentDate: null,
       currentTime: null
     };
@@ -2302,10 +2320,22 @@ __webpack_require__.r(__webpack_exports__);
     onTypeChanged: function onTypeChanged() {
       this.chosenType;
 
-      if (this.chosenType == 1) {
-        this.chosenNumOfPeople = 1;
-        this.isCoworking = true;
-      } else this.isCoworking = false;
+      switch (this.chosenType) {
+        case 1:
+          this.chosenNumOfPeople = 1;
+          this.isCoworking = true;
+          this.isRental = false;
+          break;
+
+        case 2:
+          this.isRental = true;
+          this.isCoworking = false;
+          break;
+
+        default:
+          this.isCoworking = false;
+          this.isRental = false;
+      }
     },
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
@@ -48594,45 +48624,51 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
+      _vm.isRental
+        ? _c("div", [
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.spaces, function(space) {
+                return _c("div", { key: space, staticClass: "col-md-3" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between form-group form-check"
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "form-check-input",
+                        attrs: {
+                          name: "space_" + space.id,
+                          type: "checkbox",
+                          id: "space" + space.id
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "space" + space.id }
+                        },
+                        [_vm._v(_vm._s(space.name))]
+                      )
+                    ]
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _vm.isCoworking
         ? _c("div", { staticClass: "form-group form-check" }, [
             _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.willStay,
-                  expression: "willStay"
-                }
-              ],
               staticClass: "form-check-input",
-              attrs: { name: "will_stay", type: "checkbox", id: "willStay" },
-              domProps: {
-                checked: Array.isArray(_vm.willStay)
-                  ? _vm._i(_vm.willStay, null) > -1
-                  : _vm.willStay
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.willStay,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.willStay = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.willStay = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.willStay = $$c
-                  }
-                }
-              }
+              attrs: { name: "will_stay", type: "checkbox", id: "willStay" }
             }),
             _vm._v(" "),
             _c(

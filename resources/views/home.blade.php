@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <div class="card">
+            <div class="card shadow neutral-round">
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="alt-neutral">Reservation Form</h5>
@@ -22,7 +22,10 @@
                         @else
                             @include('form.guest')
                         @endif
-                        <space-form :types="{{ $types }}"></space-form>
+                        <space-form
+                            :types="{{ $types }}"
+                            :spaces="{{ $spaces }}"
+                        ></space-form>
                     </form>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use App\User;
 
 class Message extends Model
 {
-    protected $unguarded = [];
+    protected $guarded = [];
 
     public function user()
     {

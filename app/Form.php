@@ -10,7 +10,7 @@ use App\BulkSpace;
 
 class Form extends Model
 {
-    protected $unguarded = [];
+    protected $guarded = [];
 
     public function user()
     {

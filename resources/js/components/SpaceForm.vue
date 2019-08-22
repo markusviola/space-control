@@ -43,13 +43,31 @@
             ></textarea>
         </div>
 
+        <div v-if="isRental">
+            <div class="row">
+                <div v-for="space in spaces" v-bind:key="space" class="col-md-3">
+                    <div class="d-flex justify-content-between form-group form-check">
+                        <input
+                            :name="`space_${space.id}`"
+                            type="checkbox"
+                            class="form-check-input"
+                            :id="`space${space.id}`"
+                        >
+                        <label
+                            class="form-check-label"
+                            :for="`space${space.id}`"
+                        >{{ space.name }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div v-if="isCoworking" class="form-group form-check">
             <input
                 name="will_stay"
                 type="checkbox"
                 class="form-check-input"
                 id="willStay"
-                v-model="willStay"
             >
             <label
                 class="form-check-label"
@@ -84,15 +102,15 @@
 
 <script>
     export default {
-        props: ['types'],
+        props: ['types', 'spaces'],
         data() {
             return {
                 dateIncrement: 1,
                 dateTimes: [],
                 isCoworking: true,
+                isRental: false,
                 chosenNumOfPeople: 1,
                 chosenType: 1,
-                willStay: false,
                 currentDate: null,
                 currentTime: null,
             }
@@ -103,10 +121,20 @@
         methods: {
             onTypeChanged() {
                 this.chosenType;
-                if (this.chosenType == 1) {
-                    this.chosenNumOfPeople = 1;
-                    this.isCoworking = true;
-                } else this.isCoworking = false;
+                switch(this.chosenType) {
+                    case 1:
+                        this.chosenNumOfPeople = 1;
+                        this.isCoworking = true;
+                        this.isRental = false;
+                        break;
+                    case 2:
+                        this.isRental = true;
+                        this.isCoworking = false;
+                        break;
+                    default:
+                        this.isCoworking = false;
+                        this.isRental = false;
+                }
             },
             changeDateTime(input) {
                 let existingKey = false;

@@ -7,7 +7,7 @@ use App\Form;
 
 class Schedule extends Model
 {
-    protected $unguarded = [];
+    protected $guarded = [];
 
     public function form()
     {
