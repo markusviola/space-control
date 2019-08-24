@@ -138,7 +138,18 @@
             },
             changeDateTime(input) {
                 let existingKey = false;
+                let existingDuplicate = false;
 
+                if (this.dateTimes.length > 1) {
+                    for (let i = 0; i < this.dateTimes.length; i+=1) {
+                        let existDate = new Date(this.dateTimes[i].startDateTime);
+                        let inputDate = new Date(input.startDateTime);
+                        if (existDate.toDateString() == inputDate.toDateString()) {
+                            existingDuplicate = true;
+                            break;
+                        }
+                    }
+                }
                 for (let i = 0; i < this.dateTimes.length; i+=1) {
                     if (this.dateTimes[i].id == input.id) {
                         this.dateTimes[i].startDateTime = input.startDateTime;
@@ -149,6 +160,9 @@
                 }
                 if(!existingKey) {
                     this.dateTimes.push(input)
+                    if (existingDuplicate) {
+                        notifyUser("Duplicate dates detected. Please check your dates again!")
+                    }
                 }
                 console.log(this.dateTimes);
             },

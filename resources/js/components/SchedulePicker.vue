@@ -99,11 +99,34 @@
                 startDateTime.setHours(this.chosenStartHour, this.chosenStartMin);
                 endDateTime.setHours(this.chosenEndHour, this.chosenEndMin);
 
+                // Fixes Timezone problem when JSON parsing
+                startDateTime = new Date(Date.UTC(
+                    startDateTime.getFullYear(),
+                    startDateTime.getMonth(),
+                    startDateTime.getDate(),
+                    startDateTime.getHours(),
+                    startDateTime.getMinutes()
+                ));
+                endDateTime = new Date(Date.UTC(
+                    endDateTime.getFullYear(),
+                    endDateTime.getMonth(),
+                    endDateTime.getDate(),
+                    endDateTime.getHours(),
+                    endDateTime.getMinutes()
+                ));
+
                 this.$emit('onDateTimeChosen', {
                     id: this.dateTimeId,
                     startDateTime,
                     endDateTime,
                 });
+            },
+            resetDateTime() {
+                this.date = new Date(),
+                this.chosenStartHour = 0;
+                this.chosenStartMin = 0;
+                this.chosenEndHour = 0;
+                this.chosenEndMin = 0;
             }
         }
     }

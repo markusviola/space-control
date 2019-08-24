@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./notification');
 
 window.Vue = require('vue');
 
@@ -44,7 +45,9 @@ Vue.component('dd-date-picker', require('./components/DropdownDatePicker.vue').d
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+$(() => {
+    var app = new Vue({
+        el: '#app',
+    });
+    initNotifications();
 });
-

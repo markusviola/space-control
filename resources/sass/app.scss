@@ -69,3 +69,11 @@ body {
 .neutral-round {
     border-radius: 10px !important;
 }
+
+.notify-layout {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    min-width: 350px;
+    z-index: 4;
+}

@@ -2176,12 +2176,21 @@ __webpack_require__.r(__webpack_exports__);
       var startDateTime = new Date(this.date);
       var endDateTime = new Date(this.date);
       startDateTime.setHours(this.chosenStartHour, this.chosenStartMin);
-      endDateTime.setHours(this.chosenEndHour, this.chosenEndMin);
+      endDateTime.setHours(this.chosenEndHour, this.chosenEndMin); // Fixes Timezone problem when JSON parsing
+
+      startDateTime = new Date(Date.UTC(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate(), startDateTime.getHours(), startDateTime.getMinutes()));
+      endDateTime = new Date(Date.UTC(endDateTime.getFullYear(), endDateTime.getMonth(), endDateTime.getDate(), endDateTime.getHours(), endDateTime.getMinutes()));
       this.$emit('onDateTimeChosen', {
         id: this.dateTimeId,
         startDateTime: startDateTime,
         endDateTime: endDateTime
       });
+    },
+    resetDateTime: function resetDateTime() {
+      this.date = new Date(), this.chosenStartHour = 0;
+      this.chosenStartMin = 0;
+      this.chosenEndHour = 0;
+      this.chosenEndMin = 0;
     }
   }
 });
@@ -2339,11 +2348,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
+      var existingDuplicate = false;
 
-      for (var i = 0; i < this.dateTimes.length; i += 1) {
-        if (this.dateTimes[i].id == input.id) {
-          this.dateTimes[i].startDateTime = input.startDateTime;
-          this.dateTimes[i].endDateTime = input.endDateTime;
+      if (this.dateTimes.length > 1) {
+        for (var i = 0; i < this.dateTimes.length; i += 1) {
+          var existDate = new Date(this.dateTimes[i].startDateTime);
+          var inputDate = new Date(input.startDateTime);
+
+          if (existDate.toDateString() == inputDate.toDateString()) {
+            existingDuplicate = true;
+            break;
+          }
+        }
+      }
+
+      for (var _i = 0; _i < this.dateTimes.length; _i += 1) {
+        if (this.dateTimes[_i].id == input.id) {
+          this.dateTimes[_i].startDateTime = input.startDateTime;
+          this.dateTimes[_i].endDateTime = input.endDateTime;
           existingKey = true;
           break;
         }
@@ -2351,6 +2373,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!existingKey) {
         this.dateTimes.push(input);
+
+        if (existingDuplicate) {
+          notifyUser("Duplicate dates detected. Please check your dates again!");
+        }
       }
 
       console.log(this.dateTimes);
@@ -60919,6 +60945,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./notification */ "./resources/js/notification.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
  // vue-chat-scroll option
@@ -60950,8 +60978,11 @@ Vue.component('dd-date-picker', __webpack_require__(/*! ./components/DropdownDat
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#app'
+$(function () {
+  var app = new Vue({
+    el: '#app'
+  });
+  initNotifications();
 });
 
 /***/ }),
@@ -61303,6 +61334,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceForm_vue_vue_type_template_id_3273a40f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/notification.js":
+/*!**************************************!*\
+  !*** ./resources/js/notification.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+initNotifications = function initNotifications() {
+  switch (window.location.hash) {
+    case "#active-only":
+      notifyUser("This account cannot be accessed!");
+      break;
+
+    case "#unauth-access":
+      notifyUser("Please log in to your account!");
+      break;
+
+    case "#admin-only":
+      notifyUser("You need administrative privileges!");
+      break;
+
+    case "#regular-only":
+      notifyUser("Limited to regular users only!");
+      break;
+
+    case "#guest-only":
+      notifyUser("Limited to guest users only!");
+      break;
+
+    case "#non-admin-only":
+      notifyUser("This feature is for non-admin users only!");
+      break;
+
+    case "#deleted-post":
+      notifyUser("Article deleted!");
+      break;
+
+    case "#temp-unhandled":
+      notifyUser("Something went wrong.");
+
+    case "#unavailable":
+      notifyUser("Temporarily unavailable.");
+
+    default:
+      console.log("Space Control - Reservation Manager");
+  }
+};
+
+notifyUser = function notifyUser(message) {
+  $('#notify-message').text(message);
+  $('#notify-toast').toast('show');
+};
 
 /***/ }),
 
