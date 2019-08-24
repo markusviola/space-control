@@ -77,19 +77,24 @@
         <hr>
         <span>Date and Time:</span>
         <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
-        <div v-for="i in dateIncrement" v-bind:key="i">
-            <div class="container">
-                <div class="row mt-3">
-                    <div class="col-md-10 p-0">
-                        <schedule-picker
-                            @onDateTimeChosen="changeDateTime"
-                            :dateTimeId="i"
-                        ></schedule-picker>
+        <div v-if="chosenType == 1">
+            <check-in-out></check-in-out>
+        </div>
+        <div v-else>
+            <div v-for="i in dateIncrement" v-bind:key="i">
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col-md-10 p-0">
+                            <schedule-picker
+                                @onDateTimeChosen="changeDateTime"
+                                :dateTimeId="i"
+                            ></schedule-picker>
+                        </div>
+                        <div v-if="i == dateIncrement"
+                            v-on:click="addClicked"
+                            class="col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center"
+                        >Add</div>
                     </div>
-                    <div v-if="i == dateIncrement"
-                        v-on:click="addClicked"
-                        class="col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center"
-                    >Add</div>
                 </div>
             </div>
         </div>
@@ -138,7 +143,6 @@
             },
             changeDateTime(input) {
                 let existingKey = false;
-                let existingDuplicate = false;
 
                 if (this.dateTimes.length > 1) {
                     for (let i = 0; i < this.dateTimes.length; i+=1) {
@@ -148,20 +152,6 @@
                             existingDuplicate = true;
                             break;
                         }
-                    }
-                }
-                for (let i = 0; i < this.dateTimes.length; i+=1) {
-                    if (this.dateTimes[i].id == input.id) {
-                        this.dateTimes[i].startDateTime = input.startDateTime;
-                        this.dateTimes[i].endDateTime = input.endDateTime;
-                        existingKey = true;
-                        break;
-                    }
-                }
-                if(!existingKey) {
-                    this.dateTimes.push(input)
-                    if (existingDuplicate) {
-                        notifyUser("Duplicate dates detected. Please check your dates again!")
                     }
                 }
                 console.log(this.dateTimes);

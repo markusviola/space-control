@@ -1957,6 +1957,155 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CheckInOut.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CheckInOut.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['dateTimeId'],
+  data: function data() {
+    return {
+      startDate: new Date(),
+      endDate: new Date(),
+      startHour: 0,
+      startMin: 0,
+      endHour: 23,
+      endMin: 59,
+      chosenStartHour: 0,
+      chosenStartMin: 0,
+      chosenEndHour: 0,
+      chosenEndMin: 0
+    };
+  },
+  mounted: function mounted() {
+    console.log('Date Picker mounted successfully.');
+  },
+  methods: {
+    range: function range(start, end) {
+      return Array(end - start + 1).fill().map(function (_, idx) {
+        return start + idx;
+      });
+    },
+    onDateTimeUpdated: function onDateTimeUpdated() {
+      var startDateTime = new Date(this.startDate);
+      var endDateTime = new Date(this.endDate);
+      startDateTime.setHours(this.chosenStartHour, this.chosenStartMin);
+      endDateTime.setHours(this.chosenEndHour, this.chosenEndMin); // Fixes Timezone problem when JSON parsing
+
+      startDateTime = new Date(Date.UTC(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate(), startDateTime.getHours(), startDateTime.getMinutes()));
+      endDateTime = new Date(Date.UTC(endDateTime.getFullYear(), endDateTime.getMonth(), endDateTime.getDate(), endDateTime.getHours(), endDateTime.getMinutes()));
+      this.$emit('onCheckInOutChosen', {
+        id: this.dateTimeId,
+        startDateTime: startDateTime,
+        endDateTime: endDateTime
+      });
+    },
+    resetDateTime: function resetDateTime() {
+      this.date = new Date(), this.chosenStartHour = 0;
+      this.chosenStartMin = 0;
+      this.chosenEndHour = 0;
+      this.chosenEndMin = 0;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DropdownDatePicker.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DropdownDatePicker.vue?vue&type=script&lang=js& ***!
@@ -2308,6 +2457,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -2348,7 +2502,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
-      var existingDuplicate = false;
 
       if (this.dateTimes.length > 1) {
         for (var i = 0; i < this.dateTimes.length; i += 1) {
@@ -2359,23 +2512,6 @@ __webpack_require__.r(__webpack_exports__);
             existingDuplicate = true;
             break;
           }
-        }
-      }
-
-      for (var _i = 0; _i < this.dateTimes.length; _i += 1) {
-        if (this.dateTimes[_i].id == input.id) {
-          this.dateTimes[_i].startDateTime = input.startDateTime;
-          this.dateTimes[_i].endDateTime = input.endDateTime;
-          existingKey = true;
-          break;
-        }
-      }
-
-      if (!existingKey) {
-        this.dateTimes.push(input);
-
-        if (existingDuplicate) {
-          notifyUser("Duplicate dates detected. Please check your dates again!");
         }
       }
 
@@ -48149,6 +48285,268 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4 " },
+        [
+          _c("v-date-picker", {
+            attrs: {
+              locale: "ja",
+              "input-props": {
+                readonly: true
+              }
+            },
+            on: { input: _vm.onDateTimeUpdated },
+            model: {
+              value: _vm.startDate,
+              callback: function($$v) {
+                _vm.startDate = $$v
+              },
+              expression: "startDate"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.chosenStartHour,
+              expression: "chosenStartHour"
+            }
+          ],
+          staticClass: "col-md-2 form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.chosenStartHour = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.onDateTimeUpdated
+            ]
+          }
+        },
+        _vm._l(_vm.range(_vm.startHour, _vm.endHour), function(hour, index) {
+          return _c("option", { key: index, domProps: { value: hour } }, [
+            _vm._v(_vm._s(("" + hour).length == 1 ? "0" + hour : hour))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.chosenStartMin,
+              expression: "chosenStartMin"
+            }
+          ],
+          staticClass: "col-md-2 form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.chosenStartMin = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.onDateTimeUpdated
+            ]
+          }
+        },
+        _vm._l(_vm.range(_vm.startMin, _vm.endMin), function(minute, index) {
+          return _c("option", { key: index, domProps: { value: minute } }, [
+            _vm._v(_vm._s(("" + minute).length == 1 ? "0" + minute : minute))
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4" },
+        [
+          _c("v-date-picker", {
+            attrs: {
+              locale: "ja",
+              "input-props": {
+                readonly: true
+              }
+            },
+            on: { input: _vm.onDateTimeUpdated },
+            model: {
+              value: _vm.endDate,
+              callback: function($$v) {
+                _vm.endDate = $$v
+              },
+              expression: "endDate"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.chosenEndHour,
+              expression: "chosenEndHour"
+            }
+          ],
+          staticClass: "col-md-2 form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.chosenEndHour = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.onDateTimeUpdated
+            ]
+          }
+        },
+        _vm._l(_vm.range(_vm.startHour, _vm.endHour), function(hour, index) {
+          return _c("option", { key: index, domProps: { value: hour } }, [
+            _vm._v(_vm._s(("" + hour).length == 1 ? "0" + hour : hour))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.chosenEndMin,
+              expression: "chosenEndMin"
+            }
+          ],
+          staticClass: "col-md-2 form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.chosenEndMin = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.onDateTimeUpdated
+            ]
+          }
+        },
+        _vm._l(_vm.range(_vm.startMin, _vm.endMin), function(minute, index) {
+          return _c("option", { key: index, domProps: { value: minute } }, [
+            _vm._v(_vm._s(("" + minute).length == 1 ? "0" + minute : minute))
+          ])
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass:
+          "col-md-1  d-flex align-items-center justify-content-center"
+      },
+      [_c("strong", [_vm._v("IN")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "col-md-1 d-flex align-items-center justify-content-center"
+      },
+      [_c("strong", [_vm._v("OUT")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DropdownDatePicker.vue?vue&type=template&id=164aa3f8&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DropdownDatePicker.vue?vue&type=template&id=164aa3f8& ***!
@@ -48561,197 +48959,195 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-9 form-group" }, [
-          _c("label", { attrs: { for: "type" } }, [
-            _vm._v("Type of Reservation")
-          ]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.chosenType,
-                  expression: "chosenType"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "type", name: "type_id" },
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.chosenType = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  _vm.onTypeChanged
-                ]
-              }
-            },
-            _vm._l(_vm.types, function(type, index) {
-              return _c(
-                "option",
-                { key: index, domProps: { value: type.id } },
-                [_vm._v(_vm._s(type.name))]
-              )
-            }),
-            0
-          )
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-9 form-group" }, [
+        _c("label", { attrs: { for: "type" } }, [
+          _vm._v("Type of Reservation")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 form-group" }, [
-          _c("label", { attrs: { for: "userCount" } }, [
-            _vm._v("No. of People")
-          ]),
-          _vm._v(" "),
-          _c("input", {
+        _c(
+          "select",
+          {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.chosenNumOfPeople,
-                expression: "chosenNumOfPeople"
+                value: _vm.chosenType,
+                expression: "chosenType"
               }
             ],
             staticClass: "form-control",
-            attrs: {
-              name: "user_count",
-              type: "number",
-              id: "userCount",
-              disabled: _vm.isCoworking,
-              required: ""
-            },
-            domProps: { value: _vm.chosenNumOfPeople },
+            attrs: { id: "type", name: "type_id" },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.chosenNumOfPeople = $event.target.value
-              }
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.chosenType = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.onTypeChanged
+              ]
             }
-          })
-        ])
+          },
+          _vm._l(_vm.types, function(type, index) {
+            return _c("option", { key: index, domProps: { value: type.id } }, [
+              _vm._v(_vm._s(type.name))
+            ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm.isRental
-        ? _c("div", [
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.spaces, function(space) {
-                return _c("div", { key: space, staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "col-md-3 form-group" }, [
+        _c("label", { attrs: { for: "userCount" } }, [_vm._v("No. of People")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.chosenNumOfPeople,
+              expression: "chosenNumOfPeople"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            name: "user_count",
+            type: "number",
+            id: "userCount",
+            disabled: _vm.isCoworking,
+            required: ""
+          },
+          domProps: { value: _vm.chosenNumOfPeople },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.chosenNumOfPeople = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.isRental
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.spaces, function(space) {
+              return _c("div", { key: space, staticClass: "col-md-3" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex justify-content-between form-group form-check"
+                  },
+                  [
+                    _c("input", {
+                      staticClass: "form-check-input",
+                      attrs: {
+                        name: "space_" + space.id,
+                        type: "checkbox",
+                        id: "space" + space.id
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-check-label",
+                        attrs: { for: "space" + space.id }
+                      },
+                      [_vm._v(_vm._s(space.name))]
+                    )
+                  ]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isCoworking
+      ? _c("div", { staticClass: "form-group form-check" }, [
+          _c("input", {
+            staticClass: "form-check-input",
+            attrs: { name: "will_stay", type: "checkbox", id: "willStay" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "willStay" } },
+            [_vm._v("Will you stay over?")]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("span", [_vm._v("Date and Time:")]),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", name: "dates" },
+      domProps: { value: JSON.stringify(_vm.dateTimes) }
+    }),
+    _vm._v(" "),
+    _vm.chosenType == 1
+      ? _c("div", [_c("check-in-out")], 1)
+      : _c(
+          "div",
+          _vm._l(_vm.dateIncrement, function(i) {
+            return _c("div", { key: i }, [
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "row mt-3" }, [
                   _c(
                     "div",
-                    {
-                      staticClass:
-                        "d-flex justify-content-between form-group form-check"
-                    },
+                    { staticClass: "col-md-10 p-0" },
                     [
-                      _c("input", {
-                        staticClass: "form-check-input",
-                        attrs: {
-                          name: "space_" + space.id,
-                          type: "checkbox",
-                          id: "space" + space.id
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
+                      _c("schedule-picker", {
+                        attrs: { dateTimeId: i },
+                        on: { onDateTimeChosen: _vm.changeDateTime }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  i == _vm.dateIncrement
+                    ? _c(
+                        "div",
                         {
-                          staticClass: "form-check-label",
-                          attrs: { for: "space" + space.id }
+                          staticClass:
+                            "col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center",
+                          on: { click: _vm.addClicked }
                         },
-                        [_vm._v(_vm._s(space.name))]
+                        [_vm._v("Add")]
                       )
-                    ]
-                  )
+                    : _vm._e()
                 ])
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isCoworking
-        ? _c("div", { staticClass: "form-group form-check" }, [
-            _c("input", {
-              staticClass: "form-check-input",
-              attrs: { name: "will_stay", type: "checkbox", id: "willStay" }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "willStay" } },
-              [_vm._v("Will you stay over?")]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("span", [_vm._v("Date and Time:")]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "dates" },
-        domProps: { value: JSON.stringify(_vm.dateTimes) }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.dateIncrement, function(i) {
-        return _c("div", { key: i }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row mt-3" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-10 p-0" },
-                [
-                  _c("schedule-picker", {
-                    attrs: { dateTimeId: i },
-                    on: { onDateTimeChosen: _vm.changeDateTime }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              i == _vm.dateIncrement
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center",
-                      on: { click: _vm.addClicked }
-                    },
-                    [_vm._v("Add")]
-                  )
-                : _vm._e()
+              ])
             ])
-          ])
-        ])
-      }),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _vm._m(1)
-    ],
-    2
-  )
+          }),
+          0
+        ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -60965,10 +61361,9 @@ Vue.use(v_calendar__WEBPACK_IMPORTED_MODULE_0___default.a, {
  */
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-// Vue.component('clock-time', require('./components/ClockTime.vue').default);
-// Vue.component('jp-date-picker', require('./components/JPDatePicker.vue').default);
 
 Vue.component('schedule-picker', __webpack_require__(/*! ./components/SchedulePicker.vue */ "./resources/js/components/SchedulePicker.vue")["default"]);
+Vue.component('check-in-out', __webpack_require__(/*! ./components/CheckInOut.vue */ "./resources/js/components/CheckInOut.vue")["default"]);
 Vue.component('chats', __webpack_require__(/*! ./components/Chats.vue */ "./resources/js/components/Chats.vue")["default"]);
 Vue.component('space-form', __webpack_require__(/*! ./components/SpaceForm.vue */ "./resources/js/components/SpaceForm.vue")["default"]);
 Vue.component('dd-date-picker', __webpack_require__(/*! ./components/DropdownDatePicker.vue */ "./resources/js/components/DropdownDatePicker.vue")["default"]);
@@ -61125,6 +61520,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chats_vue_vue_type_template_id_33f2cb40___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Chats_vue_vue_type_template_id_33f2cb40___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/CheckInOut.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/CheckInOut.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckInOut.vue?vue&type=template&id=e5446028& */ "./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028&");
+/* harmony import */ var _CheckInOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckInOut.vue?vue&type=script&lang=js& */ "./resources/js/components/CheckInOut.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckInOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CheckInOut.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CheckInOut.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/CheckInOut.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CheckInOut.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CheckInOut.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInOut_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CheckInOut.vue?vue&type=template&id=e5446028& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CheckInOut.vue?vue&type=template&id=e5446028&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckInOut_vue_vue_type_template_id_e5446028___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -32,9 +32,8 @@ Vue.use(VCalendar, {
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// Vue.component('clock-time', require('./components/ClockTime.vue').default);
-// Vue.component('jp-date-picker', require('./components/JPDatePicker.vue').default);
 Vue.component('schedule-picker',require('./components/SchedulePicker.vue').default);
+Vue.component('check-in-out',require('./components/CheckInOut.vue').default);
 Vue.component('chats', require('./components/Chats.vue').default);
 Vue.component('space-form', require('./components/SpaceForm.vue').default);
 Vue.component('dd-date-picker', require('./components/DropdownDatePicker.vue').default);

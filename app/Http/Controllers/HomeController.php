@@ -30,6 +30,7 @@ class HomeController extends Controller
         $types = Type::all();
         $spaces = Space::all();
 
-        return view('home', compact('user', 'types', 'spaces'));
+        return view('home',
+            compact('user', 'types', 'spaces'));
     }
 }
