@@ -10,7 +10,7 @@
     <title>Space Control v0.1alpha</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -71,10 +71,18 @@
                 </div>
             </div>
         </nav>
-
+        @include('tools.toast')
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+<script type="application/javascript">
+    document.addEventListener("DOMContentLoaded", (event) => {
+        let checkSession = '{!! session()->has("notify") !!}';
+        if (checkSession) {
+            notifyUser('{{ session()->get("notify") }}');
+        }
+    });
+</script>
 </body>
 </html>
