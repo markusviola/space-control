@@ -12,7 +12,7 @@ class SpaceTableSeeder extends Seeder
      */
     public function run()
     {
-        $spaces = ['教室', '音楽室', '屋上', '昇降口'];
+        $spaces = ['教室 A', '教室 B', '音楽室', '屋上', '昇降口'];
         foreach($spaces as $space) {
             Space::create([
                 'name' => $space,
