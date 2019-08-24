@@ -90,7 +90,6 @@
 
 <script>
     export default {
-        props: ['dateTimeId'],
         data() {
             return {
                 startDate: new Date(),
@@ -137,7 +136,7 @@
                 );
 
                 this.$emit('onCheckInOutChosen', {
-                    id: this.dateTimeId,
+                    id: 1,
                     startDateTime,
                     endDateTime,
                 });

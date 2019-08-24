@@ -2057,7 +2057,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['dateTimeId'],
   data: function data() {
     return {
       startDate: new Date(),
@@ -2090,7 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
       startDateTime = new Date(Date.UTC(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate(), startDateTime.getHours(), startDateTime.getMinutes()));
       endDateTime = new Date(Date.UTC(endDateTime.getFullYear(), endDateTime.getMonth(), endDateTime.getDate(), endDateTime.getHours(), endDateTime.getMinutes()));
       this.$emit('onCheckInOutChosen', {
-        id: this.dateTimeId,
+        id: 1,
         startDateTime: startDateTime,
         endDateTime: endDateTime
       });
@@ -2471,7 +2470,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -2523,7 +2521,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (!existingKey) this.dateTimes.push(input);
-      console.log(this.dateTimes);
     },
     addClicked: function addClicked() {
       this.dateIncrement += 1;
@@ -49058,8 +49055,8 @@ var render = function() {
           _c(
             "div",
             { staticClass: "row" },
-            _vm._l(_vm.spaces, function(space) {
-              return _c("div", { key: space, staticClass: "col-md-3" }, [
+            _vm._l(_vm.spaces, function(space, index) {
+              return _c("div", { key: index, staticClass: "col-md-auto" }, [
                 _c(
                   "div",
                   {
@@ -49124,7 +49121,6 @@ var render = function() {
             { staticClass: "mt-3 p-0" },
             [
               _c("check-in-out", {
-                attrs: { dateTimeId: 1 },
                 on: { onCheckInOutChosen: _vm.changeDateTime }
               })
             ],
@@ -49152,7 +49148,7 @@ var render = function() {
                   i == _vm.dateIncrement
                     ? _c("i", {
                         staticClass:
-                          "col-md-1 p-0 fas fa-plus fa-lg anti-neutral d-flex align-items-center justify-content-center",
+                          "col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center",
                         on: { click: _vm.addClicked }
                       })
                     : _vm._e(),
@@ -49160,7 +49156,7 @@ var render = function() {
                   i == _vm.dateIncrement
                     ? _c("i", {
                         staticClass:
-                          "col-md-1 p-0 fas fa-minus-circle fa-lg text-danger d-flex align-items-center justify-content-center",
+                          "col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center",
                         on: { click: _vm.removeClicked }
                       })
                     : _vm._e()

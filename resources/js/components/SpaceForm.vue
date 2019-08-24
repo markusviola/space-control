@@ -44,7 +44,7 @@
 
         <div v-if="isRental">
             <div class="row">
-                <div v-for="space in spaces" v-bind:key="space" class="col-md-3">
+                <div v-for="(space, index) in spaces" v-bind:key="index" class="col-md-auto">
                     <div class="d-flex justify-content-between form-group form-check">
                         <input
                             :name="`space_${space.id}`"
@@ -79,7 +79,6 @@
         <div v-if="chosenType == 1">
             <div class="mt-3 p-0">
                 <check-in-out
-                    :dateTimeId="1"
                     @onCheckInOutChosen="changeDateTime"
                 ></check-in-out>
             </div>
@@ -97,12 +96,12 @@
                         <i
                             v-if="i == dateIncrement"
                             v-on:click="addClicked"
-                            class="col-md-1 p-0 fas fa-plus fa-lg anti-neutral d-flex align-items-center justify-content-center"
+                            class="col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center"
                         ></i>
                         <i
                             v-if="i == dateIncrement"
                             v-on:click="removeClicked"
-                            class="col-md-1 p-0 fas fa-minus-circle fa-lg text-danger d-flex align-items-center justify-content-center"
+                            class="col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center"
                         ></i>
                     </div>
                 </div>
@@ -162,7 +161,6 @@
                     }
                 }
                 if(!existingKey) this.dateTimes.push(input);
-                console.log(this.dateTimes);
             },
             addClicked() {
                 this.dateIncrement+=1;
