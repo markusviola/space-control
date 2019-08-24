@@ -43,8 +43,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $userCount = User::all()->count();
         $user = new User();
-        return view('auth.register', compact('user'));
+        return view('auth.register',
+            compact('user', 'userCount'));
     }
 
     /**
@@ -63,6 +65,7 @@ class RegisterController extends Controller
             'gender' => ['required', 'boolean'],
             'address' => ['required', 'string'],
             'birthday' => ['required', 'date'],
+            'is_admin' => ['required'],
         ]);
     }
 
@@ -74,6 +77,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $isAdmin = $data['is_admin'] == "1" ? 1 : 0;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -82,6 +86,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'birthday' => $data['birthday'],
             'address' => $data['address'],
+            'is_admin' => $isAdmin,
         ]);
     }
 

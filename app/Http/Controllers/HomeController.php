@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Form;
 use App\Space;
 use App\Type;
 use App\User;
@@ -29,8 +30,9 @@ class HomeController extends Controller
         $user = new User();
         $types = Type::all();
         $spaces = Space::all();
+        $forms = Form::all();
 
         return view('home',
-            compact('user', 'types', 'spaces'));
+            compact('user', 'types', 'spaces', 'forms'));
     }
 }

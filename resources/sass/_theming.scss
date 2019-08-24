@@ -40,9 +40,18 @@
     }
 }
 
-.alt-delete {
+.text-hightlight {
     color: $light !important;
     transition-property: color;
+    &:hover {
+        color: $dark !important;
+    }
+}
+
+.element-hightlight {
+    background: $light !important;
+    background-clip: $light !important;
+    transition-property: background;
     &:hover {
         color: $dark !important;
     }

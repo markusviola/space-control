@@ -63,6 +63,7 @@
 
         <div v-if="isCoworking" class="form-group form-check">
             <input
+                v-model="willStay"
                 name="will_stay"
                 type="checkbox"
                 class="form-check-input"
@@ -76,7 +77,7 @@
         <hr>
         <span>Date and Time:</span>
         <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
-        <div v-if="chosenType == 1">
+        <div v-if="willStay">
             <div class="mt-3 p-0">
                 <check-in-out
                     @onCheckInOutChosen="changeDateTime"
@@ -125,6 +126,7 @@
                 isRental: false,
                 chosenNumOfPeople: 1,
                 chosenType: 1,
+                willStay: false,
                 currentDate: null,
                 currentTime: null,
             }

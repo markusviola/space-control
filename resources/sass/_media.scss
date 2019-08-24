@@ -1,0 +1,12 @@
+@media(min-width: 960px) {
+
+    .side-wrapper {
+        position: fixed;
+        width: 20vw;
+        min-height: 60vh;
+        left: 4rem;
+        top: 9rem;
+        z-index: 3;
+    }
+
+}

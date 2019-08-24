@@ -2470,6 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -2480,6 +2481,7 @@ __webpack_require__.r(__webpack_exports__);
       isRental: false,
       chosenNumOfPeople: 1,
       chosenType: 1,
+      willStay: false,
       currentDate: null,
       currentTime: null
     };
@@ -49093,8 +49095,42 @@ var render = function() {
     _vm.isCoworking
       ? _c("div", { staticClass: "form-group form-check" }, [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.willStay,
+                expression: "willStay"
+              }
+            ],
             staticClass: "form-check-input",
-            attrs: { name: "will_stay", type: "checkbox", id: "willStay" }
+            attrs: { name: "will_stay", type: "checkbox", id: "willStay" },
+            domProps: {
+              checked: Array.isArray(_vm.willStay)
+                ? _vm._i(_vm.willStay, null) > -1
+                : _vm.willStay
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.willStay,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.willStay = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.willStay = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.willStay = $$c
+                }
+              }
+            }
           }),
           _vm._v(" "),
           _c(
@@ -49114,7 +49150,7 @@ var render = function() {
       domProps: { value: JSON.stringify(_vm.dateTimes) }
     }),
     _vm._v(" "),
-    _vm.chosenType == 1
+    _vm.willStay
       ? _c("div", [
           _c(
             "div",

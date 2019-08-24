@@ -6,14 +6,20 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <div class="text-center">
-                        <h4 class="alt-neutral">{{ __('Join Us!') }}</h4>
-                        <span class="text-muted">For a more convenient reservation experience!</span>
-                    </div>
-                    <hr>
                     <form class="jp-body" method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        <div class="text-center">
+                            @if ($userCount)
+                                <h4 class="alt-neutral">{{ __('Join Us!') }}</h4>
+                                <span class="text-muted">For a more convenient reservation experience!</span>
+                                <input type="hidden" name="is_admin" value="0">
+                            @else
+                                <h4 class="alt-neutral">{{ __('Administrator') }}</h4>
+                                <span class="text-muted">Negotiate with clients and manage reservations!</span>
+                                <input type="hidden" name="is_admin" value="1">
+                            @endif
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('名前') }}</label>
 
