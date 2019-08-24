@@ -8,7 +8,7 @@ use App\Form;
 
 class BulkSpace extends Model
 {
-    protected $unguarded = [];
+    protected $guarded = [];
 
     public function space()
     {
