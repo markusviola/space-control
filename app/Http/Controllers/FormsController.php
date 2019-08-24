@@ -82,6 +82,28 @@ class FormsController extends Controller
         $form->type_id = request()->type_id;
         $form->save();
 
+        $formId = $form->id;
+
+        if (request()->type_id == 2) {
+            $spaces = Space::all();
+            foreach($spaces as $space) {
+                if ($request['space_'.$space->id]) {
+                    BulkSpace::create([
+                        'space_id' => $space->id,
+                        'form_id' => $formId
+                    ]);
+                }
+            }
+        }
+
+        for ($i = 0; $i < sizeof($startDates); $i++) {
+            Schedule::create([
+                'form_id' => $formId,
+                'start_time' => $startDates[$i],
+                'end_time' => $endDates[$i],
+            ]);
+        }
+
         return redirect()->route('home');
     }
 
