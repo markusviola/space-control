@@ -1,73 +1,21 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Kosugi&display=swap');
+// Icons
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
 
 // Variables
 @import 'variables';
+@import 'theming';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-.en-body {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: $en-font !important;
 }
 
 .jp-body {
-    font-family: 'Kosugi', sans-serif !important;
-}
-
-.anti-neutral {
-    color: rgb(70, 116, 168) !important;
-}
-
-.anti-neutral:hover {
-    text-decoration: none;
-    color: rgb(43, 69, 98) !important;
-}
-
-.alt-anti-neutral {
-    color: rgb(65, 104, 148) !important;
-}
-
-.neutral {
-    color: #1aa17c !important;
-}
-
-.neutral:hover {
-    text-decoration: none;
-    color: #117458 !important;
-}
-
-.alt-neutral {
-    color: #1aa17c !important;
-}
-
-.btn-anti-neutral {
-    background: rgb(73, 115, 163) !important;
-    border-color: rgb(73, 115, 163) !important;
-    transition-property: background;
-}
-
-.btn-anti-neutral:hover {
-    background: rgb(53, 84, 119) !important;
-}
-
-.btn-neutral {
-    background: #1aa17c !important;
-    border-color: #1aa17c !important;
-    transition-property: background;
-}
-
-.btn-neutral:hover {
-    background: #117458 !important;
-}
-
-.neutral-round {
-    border-radius: 10px !important;
+    font-family: $jp-font !important;
 }
 
 .notify-layout {
