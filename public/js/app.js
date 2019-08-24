@@ -2462,6 +2462,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -2503,22 +2513,23 @@ __webpack_require__.r(__webpack_exports__);
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
 
-      if (this.dateTimes.length > 1) {
-        for (var i = 0; i < this.dateTimes.length; i += 1) {
-          var existDate = new Date(this.dateTimes[i].startDateTime);
-          var inputDate = new Date(input.startDateTime);
-
-          if (existDate.toDateString() == inputDate.toDateString()) {
-            existingDuplicate = true;
-            break;
-          }
+      for (var i = 0; i < this.dateTimes.length; i += 1) {
+        if (this.dateTimes[i].id == input.id) {
+          this.dateTimes[i].startDateTime = input.startDateTime;
+          this.dateTimes[i].endDateTime = input.endDateTime;
+          existingKey = true;
+          break;
         }
       }
 
+      if (!existingKey) this.dateTimes.push(input);
       console.log(this.dateTimes);
     },
     addClicked: function addClicked() {
       this.dateIncrement += 1;
+    },
+    removeClicked: function removeClicked() {
+      this.dateIncrement -= 1;
     }
   }
 });
@@ -48304,7 +48315,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-md-4 " },
+        { staticClass: "col-md-4 p-0" },
         [
           _c("v-date-picker", {
             attrs: {
@@ -48410,7 +48421,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-md-4" },
+        { staticClass: "col-md-4 p-0" },
         [
           _c("v-date-picker", {
             attrs: {
@@ -49107,7 +49118,19 @@ var render = function() {
     }),
     _vm._v(" "),
     _vm.chosenType == 1
-      ? _c("div", [_c("check-in-out")], 1)
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "mt-3 p-0" },
+            [
+              _c("check-in-out", {
+                attrs: { dateTimeId: 1 },
+                on: { onCheckInOutChosen: _vm.changeDateTime }
+              })
+            ],
+            1
+          )
+        ])
       : _c(
           "div",
           _vm._l(_vm.dateIncrement, function(i) {
@@ -49127,15 +49150,19 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   i == _vm.dateIncrement
-                    ? _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center",
-                          on: { click: _vm.addClicked }
-                        },
-                        [_vm._v("Add")]
-                      )
+                    ? _c("i", {
+                        staticClass:
+                          "col-md-1 p-0 fas fa-plus fa-lg anti-neutral d-flex align-items-center justify-content-center",
+                        on: { click: _vm.addClicked }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  i == _vm.dateIncrement
+                    ? _c("i", {
+                        staticClass:
+                          "col-md-1 p-0 fas fa-minus-circle fa-lg text-danger d-flex align-items-center justify-content-center",
+                        on: { click: _vm.removeClicked }
+                      })
                     : _vm._e()
                 ])
               ])

@@ -19,7 +19,6 @@
             </div>
             <div class="col-md-3 form-group">
                 <label for="userCount">No. of People</label>
-
                 <input
                     name="user_count"
                     type="number"
@@ -78,7 +77,12 @@
         <span>Date and Time:</span>
         <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
         <div v-if="chosenType == 1">
-            <check-in-out></check-in-out>
+            <div class="mt-3 p-0">
+                <check-in-out
+                    :dateTimeId="1"
+                    @onCheckInOutChosen="changeDateTime"
+                ></check-in-out>
+            </div>
         </div>
         <div v-else>
             <div v-for="i in dateIncrement" v-bind:key="i">
@@ -90,10 +94,16 @@
                                 :dateTimeId="i"
                             ></schedule-picker>
                         </div>
-                        <div v-if="i == dateIncrement"
+                        <i
+                            v-if="i == dateIncrement"
                             v-on:click="addClicked"
-                            class="col-md-1 p-0 offset-md-1 btn btn-anti-neutral text-white d-flex align-items-center justify-content-center"
-                        >Add</div>
+                            class="col-md-1 p-0 fas fa-plus fa-lg anti-neutral d-flex align-items-center justify-content-center"
+                        ></i>
+                        <i
+                            v-if="i == dateIncrement"
+                            v-on:click="removeClicked"
+                            class="col-md-1 p-0 fas fa-minus-circle fa-lg text-danger d-flex align-items-center justify-content-center"
+                        ></i>
                     </div>
                 </div>
             </div>
@@ -143,21 +153,22 @@
             },
             changeDateTime(input) {
                 let existingKey = false;
-
-                if (this.dateTimes.length > 1) {
-                    for (let i = 0; i < this.dateTimes.length; i+=1) {
-                        let existDate = new Date(this.dateTimes[i].startDateTime);
-                        let inputDate = new Date(input.startDateTime);
-                        if (existDate.toDateString() == inputDate.toDateString()) {
-                            existingDuplicate = true;
-                            break;
-                        }
+                for (let i = 0; i < this.dateTimes.length; i+=1) {
+                    if (this.dateTimes[i].id == input.id) {
+                        this.dateTimes[i].startDateTime = input.startDateTime;
+                        this.dateTimes[i].endDateTime = input.endDateTime;
+                        existingKey = true;
+                        break;
                     }
                 }
+                if(!existingKey) this.dateTimes.push(input);
                 console.log(this.dateTimes);
             },
             addClicked() {
                 this.dateIncrement+=1;
+            },
+            removeClicked() {
+                this.dateIncrement-=1;
             }
         }
     }
