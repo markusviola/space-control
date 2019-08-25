@@ -35,6 +35,13 @@ class Form extends Model
     public function getCreatedAtAttribute($attribute){
 
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
-        return $date->format('F d, Y');
+        return $date->format('Y年 m月 d日');
     }
+
+    public function getBirthdayAttribute($attribute)
+    {
+        $date = \DateTime::createFromFormat('Y-m-d', $attribute);
+        return $date->format('Y年 m月 d日');
+    }
+
 }
