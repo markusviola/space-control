@@ -9,12 +9,17 @@
 </div>
 
 <div class="form-group">
-    <label for="name">Email</label>
+    <label for="email">Email</label>
     <input type="email" class="form-control" name="email" id="email" required>
 </div>
 
 <div class="form-group">
-    <label for="name">Gender</label>
+    <label for="phone">Phone No.</label>
+    <input type="text" class="form-control" name="phone" id="phone" required>
+</div>
+
+<div class="form-group">
+    <label for="gender">Gender</label>
     <select id="gender" class="form-control" name="gender" id="gender">
         <option disabled>選択肢</option>
         @foreach ($user->genderOptions() as $optionKey => $optionValue)
@@ -24,8 +29,8 @@
 </div>
 
 <div class="form-group">
-    <label for="name">Birthday</label>
-    <dd-date-picker id="gender"></dd-date-picker>
+    <label for="birthday">Birthday</label>
+    <dd-date-picker id="birthday"></dd-date-picker>
 </div>
 
 <div class="form-group">
