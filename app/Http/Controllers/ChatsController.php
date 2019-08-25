@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 use App\Events\MessageSent;
+use App\Form;
 
 class ChatsController extends Controller
 {
@@ -13,29 +14,67 @@ class ChatsController extends Controller
         $this->middleware('auth');
     }
 
+    // Render base template
     public function index()
     {
         return view('chats');
     }
 
-    public function fetchMessages()
+    // Forms
+    public function fetchForms() {
+        if (!auth()->user()->is_admin) {
+            $forms = Form::with('type')
+                ->where('user_id', auth()->id())->get();
+        } else {
+            $forms = Form::with('type')->get();
+        }
+
+        // get collection of messages containing the form id and count of
+        // unread messages based authorized user request.
+        $unreadIds = Message::select(\DB::raw('`to` as form_id, count(`to`) as messages_count'))
+            ->where('from', '!=', auth()->user()->id)
+            ->where('read', false)
+            ->groupBy('to')
+            ->get();
+
+        // add an unread key to each form with the count of unread messages
+        $forms = $forms->map(function($form) use ($unreadIds) {
+            $unreadForm = $unreadIds->where('form_id', $form->id)->first();
+            $form->unread_count = $unreadForm ? $unreadForm->messages_count : 0;
+            return $form;
+        });
+
+        return response()->json($forms);
+    }
+    // Messages
+    public function fetchMessages($id)
     {
-        return Message::with('user')->get();
+        // mark all messages with the selected contact as read
+        Message::where('to', $id)
+            ->where('from', '!=', auth()->id())
+            ->update(['read' => true]);
+
+        $messages = Message::with(['fromUser','toForm'])
+            ->where('to', $id)->get();
+
+
+        return response()->json($messages);
     }
 
+    // Message Send
     public function sendMessage(Request $request)
     {
-        $newMessage = $request->message;
-        $createdMessage = auth()->user()->messages()->create([
-            'message' => $newMessage
+        $newMessage = Message::create([
+            'from' => auth()->id(),
+            'to' => $request->to,
+            'message' => $request->message
         ]);
+        $newMessage->load(['fromUser','toForm']);
+
         broadcast(new MessageSent(
-            $createdMessage->load('user')
+            $newMessage
         ))->toOthers();
 
-        return response()->json([
-            'success' => true,
-            'message' => $newMessage
-        ]);
+        return response()->json($newMessage);
     }
 }
