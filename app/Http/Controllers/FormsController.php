@@ -33,6 +33,13 @@ class FormsController extends Controller
         //
     }
 
+    public function getFormDates($id) {
+
+        $schedules = Schedule::where('form_id', $id)->get();
+
+        return response()->json($schedules);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -63,6 +70,8 @@ class FormsController extends Controller
             $form->birthday = $user->birthday;
             $form->address = $user->address;
             $form->email = $user->email;
+            $form->phone = request()->phone;
+
         } else {
             $form->name = request()->name;
             $form->furigana = request()->furigana;
@@ -70,6 +79,7 @@ class FormsController extends Controller
             $form->birthday = request()->birthday;
             $form->address = request()->address;
             $form->email = request()->email;
+            $form->phone = request()->phone;
         }
 
         $form->will_stay = false;
