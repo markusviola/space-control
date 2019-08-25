@@ -22,6 +22,7 @@ class CreateFormsTable extends Migration
             $table->boolean('gender');
             $table->date('birthday');
             $table->string('address');
+            $table->string('phone');
             $table->string('email');
             $table->boolean('will_stay');
             $table->longText('reason');
