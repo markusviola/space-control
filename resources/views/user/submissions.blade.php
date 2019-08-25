@@ -5,9 +5,10 @@
             <div class="text-muted">Talk with the person-in-charge!</div>
             <hr>
         </div>
-        @foreach ($forms as $form)
-            @if ($form->user_id == auth()->user()->id)
-                <div class="container">
+        <div class="container">
+        @if (sizeof($formsByUser) > 0)
+            @foreach ($formsByUser as $form)
+                @if ($form->user_id == auth()->user()->id)
                     <a class="anti-neutral" href="">
                         <h6>
                         <strong>{{ $form->type->name }} Space</strong>
@@ -17,8 +18,13 @@
                         Submitted on {{ $form->created_at }}
                     </div>
                     <hr>
-                </div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+        @else
+            <div class="text-muted text-center mt-3 mb-4">
+                No reservations submitted yet.
+            </div>
+        @endif
+        </div>
     </div>
 </div>
