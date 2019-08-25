@@ -62,6 +62,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'furigana' => ['required', 'string'],
+            'phone' => ['required', 'string'],
             'gender' => ['required', 'boolean'],
             'address' => ['required', 'string'],
             'birthday' => ['required', 'date'],
@@ -78,6 +79,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $isAdmin = $data['is_admin'] == "1" ? 1 : 0;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -86,6 +88,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'birthday' => $data['birthday'],
             'address' => $data['address'],
+            'phone' => $data['phone'],
             'is_admin' => $isAdmin,
         ]);
     }
