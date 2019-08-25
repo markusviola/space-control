@@ -32,6 +32,16 @@
     border-color: $primary !important;
 }
 
+.plus-neutral {
+    background: $primaryLight !important;
+    border-color: $primaryLight !important;
+}
+
+.plus-anti-neutral {
+    background: $secondaryLight !important;
+    border-color: $secondaryLight !important;
+}
+
 .delete {
     color: $deleteLight !important;
     transition-property: color;
@@ -48,13 +58,8 @@
     }
 }
 
-.element-hightlight {
-    background: $light !important;
-    background-clip: $light !important;
-    transition-property: background;
-    &:hover {
-        color: $dark !important;
-    }
+.panel-highlight:hover {
+    background: rgba(201, 201, 201, 0.315);
 }
 
 .edit {

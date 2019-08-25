@@ -1,113 +1,81 @@
 <template>
-    <div class="row">
-        <div class="col-8">
-            <div class="card card-default">
-                <div class="card-header">Messages</div>
-                <div class="card-body p-0">
-                    <ul class="list-unstyled" style="height: 300px; overflow-y: scroll" v-chat-scroll>
-                        <li class="p-2"
-                            v-for="(message, index) in messages"
-                            :key="index"
-                        >
-                            <strong>{{ message.user.name }}</strong>
-                            {{ message.message }}
-                        </li>
-                    </ul>
-                </div>
-                <input
-                    @keydown="sendTypingEvent"
-                    @keyup.enter="sendMessage"
-                    v-model="newMessage"
-                    type="text"
-                    name="message"
-                    placeholder="Enter your message"
-                    class="form-control">
+    <div class="container shadow border neutral-round bg-white">
+        <div class="row">
+            <div class="col-md-4 m-0 p-0 border-right">
+                <form-list :user="user" :forms="forms" @selected="fetchMessages"/>
             </div>
-            <span class="text-muted pl-2" v-if="activeUser">{{ activeUser.name }} is typing...</span>
-        </div>
-        <div class="col-4">
-            <div class="card card-default m-0">
-                <div class="card-header">Active Users</div>
-                <div class="card-body">
-                    <ul>
-                        <li class="py-2 text-success" v-for="(user, index) in users" :key="index">
-                            <div class="text-muted">{{ user.name }}</div>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-md-8">
+                <conversation
+                    :user="user"
+                    :form="selectedForm"
+                    :messages="messages"
+                    @newMessage="pushNewMessage"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { clearTimeout } from 'timers';
     export default {
-        props: ['user'],
+        props: {
+            user: {
+                type: Object,
+                required: true,
+            },
+        },
         data() {
             return {
+                forms: [],
                 messages: [],
-                newMessage: '',
-                users: [],
-                activeUser: false,
-                typingTimer: false,
+                selectedForm: null,
             }
         },
         mounted() {
-            console.log('Chat component mounted successfully.');
-        },
-        created() {
-            this.fetchMessages();
-
-            Echo.join('chat')
-                .here(users => {
-                    this.users = users;
-                })
-                .joining(user => {
-                    this.users.push(user);
-                })
-                .leaving(user => {
-                    this.users = this.users.filter(u => u.id != user.id);
-                })
-                .listen('MessageSent', event => {
-                    this.activeUser = false;
-                    this.messages.push(event.message);
-                })
-                .listenForWhisper('typing', user => {
-                    this.activeUser = user;
-
-                    if (this.typingTimer) {
-                        window.clearTimeout(this.typingTimer);
-                    }
-                    this.typingTimer = setTimeout(() => {
-                        this.activeUser = false;
-                    }, 2000);
-                });
+            this.fetchForms()
         },
         methods: {
-            fetchMessages() {
-                axios.get('messages').then(response => {
+            fetchForms() {
+                axios.get('chats/forms')
+                .then(response => {
+                    this.forms = response.data;
+                    this.forms.forEach(form => {
+                        Echo.private(`chat.${form.id}`)
+                            .listen('MessageSent', event => {
+                                this.handleMessage(event.message);
+                            });
+                    });
+                })
+            },
+            fetchMessages(form) {
+                this.updateReadState(form, true);
+                axios.get(`messages/${form.id}`)
+                .then(response => {
                     this.messages = response.data;
+                    this.selectedForm = form;
                 })
             },
-            sendMessage() {
-                axios.post('messages', {
-                    message: this.newMessage,
-                })
-                .then(res => {
-                    if(res.data.success) {
-                        this.messages.push({
-                            user: this.user,
-                            message: res.data.message
-                        });
-                    }
-                    this.newMessage = ''
-                })
+            pushNewMessage(message) {
+                this.messages.push(message);
             },
-            sendTypingEvent() {
-                Echo.join('chat')
-                    .whisper('typing', this.user);
+            handleMessage(message) {
+                if (this.selectedForm && message.to == this.selectedForm.id) {
+                    this.pushNewMessage(message);
+                    return;
+                }
+                this.updateReadState(message.to_form, false);
             },
+            updateReadState(form, reset) {
+                this.forms = this.forms.map((currForm) => {
+                    if (currForm.id !== form.id)
+                        return currForm;
+                    if (reset)
+                        currForm.unread_count = 0;
+                    else
+                        currForm.unread_count += 1;
+                    return currForm;
+                })
+            }
         }
     }
 </script>

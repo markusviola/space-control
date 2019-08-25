@@ -5865,6 +5865,16 @@ readers do not read off random characters that represent icons */
   border-color: #1aa17c !important;
 }
 
+.plus-neutral {
+  background: #55c085 !important;
+  border-color: #55c085 !important;
+}
+
+.plus-anti-neutral {
+  background: #6d99ca !important;
+  border-color: #6d99ca !important;
+}
+
 .delete {
   color: #ED6A5A !important;
   transition-property: color;
@@ -5883,14 +5893,8 @@ readers do not read off random characters that represent icons */
   color: #949393 !important;
 }
 
-.element-hightlight {
-  background: #d6d5d5 !important;
-  background-clip: #d6d5d5 !important;
-  transition-property: background;
-}
-
-.element-hightlight:hover {
-  color: #949393 !important;
+.panel-highlight:hover {
+  background: rgba(201, 201, 201, 0.315);
 }
 
 .edit {
@@ -16643,5 +16647,13 @@ a {
 .side-card {
   width: 100%;
   height: 100%;
+}
+
+.long-text {
+  overflow-wrap: break-word;
+}
+
+.half-size {
+  max-width: 50%;
 }
 
