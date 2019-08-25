@@ -15,6 +15,12 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chat', function ($user) {
-    return $user;
+Broadcast::channel('chat.{id}', function ($user, $id) {
+    if (auth()->user()->is_admin) return true;
+    foreach($user->forms as $form) {
+        if ($form->id === (int) $id) {
+            return true;
+        }
+    }
+    return false;
 });
