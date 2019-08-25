@@ -7,6 +7,7 @@ use App\Space;
 use App\Type;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -31,8 +32,17 @@ class HomeController extends Controller
         $types = Type::all();
         $spaces = Space::all();
         $forms = Form::all();
+        $formsByUser = collect();
+
+        if (Auth::check()) {
+            $formsByUser = $forms->filter(function ($form) {
+                if ($form->user_id == Auth::user()->id) {
+                    return true;
+                }
+            });
+        }
 
         return view('home',
-            compact('user', 'types', 'spaces', 'forms'));
+            compact('user', 'types', 'spaces', 'forms', 'formsByUser'));
     }
 }
