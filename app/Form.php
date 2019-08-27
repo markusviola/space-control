@@ -32,6 +32,12 @@ class Form extends Model
         return $this->hasMany(BulkSpace::class);
     }
 
+    public function toggleIsApproved()
+    {
+        $this->is_approved= !$this->is_approved;
+        return $this;
+    }
+
     public function getCreatedAtAttribute($attribute){
 
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
