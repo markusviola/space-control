@@ -1,7 +1,7 @@
 <div class="side-wrapper mb-2">
     <div class="card shadow-sm side-card neutral-round">
         <div class="text-center mt-3">
-            <h5 class="alt-neutral">Submission Chat List</h5>
+            <h5 class="alt-neutral">Submission List</h5>
             <div class="text-muted">Talk with the person-in-charge!</div>
             <hr>
         </div>

@@ -127,7 +127,14 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-trans text-admin" data-dismiss="modal" data-toggle="modal" data-target="#confirmFormModal">
+                        <button
+                            v-if="user.is_admin && !form.is_approved"
+                            type="button"
+                            class="btn-trans text-admin"
+                            data-dismiss="modal"
+                            data-toggle="modal"
+                            data-target="#confirmFormModal"
+                        >
                             <strong>Approve</strong>
                         </button>
                         <button type="button" class="btn-trans text-muted" data-dismiss="modal">
@@ -174,6 +181,10 @@
             form: {
                 type: Object,
                 required: true,
+            },
+            user: {
+                type: Object,
+                required: true,
             }
         },
         data() {
@@ -204,7 +215,10 @@
             approveForm() {
                 axios.patch(`/forms/${this.form.id}/approve`)
                 .then(response => {
-                    console.log(response.data);
+                    if (response.data) {
+                        notifyUser("Reservation approved! ");
+                        this.$emit('onFormApproval', response.data);
+                    } else notifyUser("Something went wrong.");
                 })
             }
         },

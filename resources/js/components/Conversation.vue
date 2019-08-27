@@ -4,6 +4,7 @@
             <div class="text-left">
                 <h5 class="alt-neutral">
                     <strong>
+                        <i v-if="form.is_approved" class="text-primary fas fa-check fa-lg"></i>
                         {{ form ? form.type.name : `Select a ${(user.is_admin ? 'Request' : 'Form')}` }}
                     </strong>
                 </h5>
@@ -19,7 +20,7 @@
                         }}
                     </div>
                     <div v-if="form">
-                        <form-info :form="form"></form-info>
+                    <form-info :form="form"  :user="user" @onFormApproval="formApproved"></form-info>
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">
                             <strong>View Form</strong>
                         </button>
@@ -104,6 +105,9 @@ export default {
                 this.$emit('newMessage', response.data);
                 this.message = '';
             });
+        },
+        formApproved($updatedForm) {
+            this.$emit('onFormApproved', $updatedForm);
         }
     },
 }

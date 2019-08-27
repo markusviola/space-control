@@ -10,6 +10,7 @@
                     :form="selectedForm"
                     :messages="messages"
                     @newMessage="pushNewMessage"
+                    @onFormApproved="changeFormStatus"
                 />
             </div>
         </div>
@@ -33,6 +34,7 @@
                 forms: [],
                 messages: [],
                 selectedForm: null,
+                updatePhase: false,
             }
         },
         mounted() {
@@ -48,8 +50,9 @@
                             .listen('MessageSent', event => {
                                 this.handleMessage(event.message);
                             });
-                        if (this.choice) {
+                        if (this.choice && !this.updatePhase) {
                             this.fetchMessages(this.choice);
+                            this.updatePhase = true;
                         }
                     });
                 })
@@ -61,6 +64,11 @@
                     this.messages = response.data;
                     this.selectedForm = form;
                 })
+            },
+            changeFormStatus($updatedForm) {
+                this.updatePhase = false;
+                this.fetchForms();
+                this.selectedForm = $updatedForm;
             },
             pushNewMessage(message) {
                 this.messages.push(message);

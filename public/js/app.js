@@ -1856,6 +1856,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -1871,7 +1872,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       forms: [],
       messages: [],
-      selectedForm: null
+      selectedForm: null,
+      updatePhase: false
     };
   },
   mounted: function mounted() {
@@ -1889,8 +1891,10 @@ __webpack_require__.r(__webpack_exports__);
             _this.handleMessage(event.message);
           });
 
-          if (_this.choice) {
+          if (_this.choice && !_this.updatePhase) {
             _this.fetchMessages(_this.choice);
+
+            _this.updatePhase = true;
           }
         });
       });
@@ -1903,6 +1907,11 @@ __webpack_require__.r(__webpack_exports__);
         _this2.messages = response.data;
         _this2.selectedForm = form;
       });
+    },
+    changeFormStatus: function changeFormStatus($updatedForm) {
+      this.updatePhase = false;
+      this.fetchForms();
+      this.selectedForm = $updatedForm;
     },
     pushNewMessage: function pushNewMessage(message) {
       this.messages.push(message);
@@ -2153,6 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2191,6 +2201,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.message = '';
       });
+    },
+    formApproved: function formApproved($updatedForm) {
+      this.$emit('onFormApproved', $updatedForm);
     }
   }
 });
@@ -2487,9 +2500,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
+      type: Object,
+      required: true
+    },
+    user: {
       type: Object,
       required: true
     }
@@ -2517,8 +2541,14 @@ __webpack_require__.r(__webpack_exports__);
       this.formDates = currDates;
     },
     approveForm: function approveForm() {
+      var _this = this;
+
       axios.patch("/forms/".concat(this.form.id, "/approve")).then(function (response) {
-        console.log(response.data);
+        if (response.data) {
+          notifyUser("Reservation approved! ");
+
+          _this.$emit('onFormApproval', response.data);
+        } else notifyUser("Something went wrong.");
       });
     }
   },
@@ -2526,10 +2556,10 @@ __webpack_require__.r(__webpack_exports__);
     form: {
       immediate: true,
       handler: function handler(newForm, oldForm) {
-        var _this = this;
+        var _this2 = this;
 
         axios.get("/forms/".concat(newForm.id, "/dates")).then(function (response) {
-          _this.arrangeDates(response.data);
+          _this2.arrangeDates(response.data);
         });
       }
     }
@@ -2547,6 +2577,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -48653,7 +48686,10 @@ var render = function() {
                 form: _vm.selectedForm,
                 messages: _vm.messages
               },
-              on: { newMessage: _vm.pushNewMessage }
+              on: {
+                newMessage: _vm.pushNewMessage,
+                onFormApproved: _vm.changeFormStatus
+              }
             })
           ],
           1
@@ -48954,6 +48990,9 @@ var render = function() {
         _c("div", { staticClass: "text-left" }, [
           _c("h5", { staticClass: "alt-neutral" }, [
             _c("strong", [
+              _vm.form.is_approved
+                ? _c("i", { staticClass: "text-primary fas fa-check fa-lg" })
+                : _vm._e(),
               _vm._v(
                 "\n                    " +
                   _vm._s(
@@ -48990,7 +49029,10 @@ var render = function() {
               ? _c(
                   "div",
                   [
-                    _c("form-info", { attrs: { form: _vm.form } }),
+                    _c("form-info", {
+                      attrs: { form: _vm.form, user: _vm.user },
+                      on: { onFormApproval: _vm.formApproved }
+                    }),
                     _vm._v(" "),
                     _vm._m(0)
                   ],
@@ -49533,7 +49575,25 @@ var render = function() {
                     )
               ]),
               _vm._v(" "),
-              _vm._m(14)
+              _c("div", { staticClass: "modal-footer" }, [
+                _vm.user.is_admin && !_vm.form.is_approved
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn-trans text-admin",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "modal",
+                          "data-toggle": "modal",
+                          "data-target": "#confirmFormModal"
+                        }
+                      },
+                      [_c("strong", [_vm._v("Approve")])]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._m(14)
+              ])
             ])
           ]
         )
@@ -49726,30 +49786,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn-trans text-admin",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "data-toggle": "modal",
-            "data-target": "#confirmFormModal"
-          }
-        },
-        [_c("strong", [_vm._v("Approve")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn-trans text-muted",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_c("strong", [_vm._v("Close")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "btn-trans text-muted",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("strong", [_vm._v("Close")])]
+    )
   },
   function() {
     var _vm = this
@@ -49866,7 +49910,19 @@ var render = function() {
                             { staticClass: "d-flex justify-content-between" },
                             [
                               _c("h6", [
-                                _c("strong", [_vm._v(_vm._s(form.type.name))])
+                                _c("strong", [
+                                  form.is_approved
+                                    ? _c("i", {
+                                        staticClass:
+                                          "text-primary fas fa-check-circle fa-lg"
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(form.type.name) +
+                                      "\n                                "
+                                  )
+                                ])
                               ]),
                               _vm._v(" "),
                               form.unread_count
