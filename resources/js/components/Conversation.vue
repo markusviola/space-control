@@ -19,6 +19,7 @@
                     </div>
                 </div>
             </div>
+
             <hr class="mb-3">
             <ul class="border list-unstyled bg-white message-box" v-chat-scroll>
                 <li class="p-2 pl-3"
