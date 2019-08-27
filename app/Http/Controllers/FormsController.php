@@ -70,7 +70,7 @@ class FormsController extends Controller
             $form->birthday = $user->birthday;
             $form->address = $user->address;
             $form->email = $user->email;
-            $form->phone = request()->phone;
+            $form->phone = $user->phone;
 
         } else {
             $form->name = request()->name;
