@@ -2445,6 +2445,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -49258,227 +49290,236 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "modal fade",
-      attrs: {
-        id: "form-info",
-        tabindex: "-1",
-        role: "dialog",
-        "aria-labelledby": "scrollableForm",
-        "aria-hidden": "true"
-      }
-    },
-    [
-      _c(
-        "div",
-        {
-          staticClass: "modal-dialog modal-dialog-scrollable",
-          attrs: { role: "document" }
-        },
-        [
-          _c("div", { staticClass: "modal-content" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c("h5", { staticClass: "text-dark mb-3" }, [
-                _vm._v("Client Information")
-              ]),
+  return _c("div", [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "form-info",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "scrollableForm",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-scrollable",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
               _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(1),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("h5", { staticClass: "text-dark mb-3" }, [
+                  _vm._v("Client Information")
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.furigana))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(3),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.email))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(4),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.phone))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(5),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.gender ? "女" : "男"))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(6),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.birthday))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(7),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.address))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("h5", { staticClass: "text-dark mb-3" }, [
-                _vm._v("Reservation")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(8),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.type.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.form.type_id > 1
-                ? _c("div", { staticClass: "row mb-3" }, [
-                    _vm._m(9),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _vm._v(_vm._s(_vm.form.user_count))
-                    ])
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.name))
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-3" }, [
-                _vm._m(10),
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-8" }, [
-                  _vm._v(_vm._s(_vm.form.reason))
-                ])
-              ]),
-              _vm._v(" "),
-              _vm.form.type_id == 1
-                ? _c("div", { staticClass: "row mb-3" }, [
-                    _vm._m(11),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _vm._v(_vm._s(_vm.form.will_stay ? "Yes" : "No"))
-                    ])
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.furigana))
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("h5", { staticClass: "text-dark mb-3" }, [
-                _vm._v("Date & Time")
-              ]),
-              _vm._v(" "),
-              _vm.form.will_stay && _vm.formDates.length > 0
-                ? _c("div", [
-                    _c("div", { staticClass: "row mb-3" }, [
-                      _vm._m(12),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.email))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.phone))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.gender ? "女" : "男"))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.birthday))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.address))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("h5", { staticClass: "text-dark mb-3" }, [
+                  _vm._v("Reservation")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.type.name))
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm.form.type_id > 1
+                  ? _c("div", { staticClass: "row mb-3" }, [
+                      _vm._m(9),
                       _vm._v(" "),
-                      _c("strong", { staticClass: "col-md-6 d-flex" }, [
-                        _c("div", { staticClass: "mr-2" }, [
-                          _vm._v(_vm._s(_vm.formDates[0].sDate) + " |")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.formDates[0].sHour +
-                                ":" +
-                                _vm.formDates[0].sMinute
-                            )
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row mb-3" }, [
-                      _vm._m(13),
-                      _vm._v(" "),
-                      _c("strong", { staticClass: "col-md-6 d-flex" }, [
-                        _c("div", { staticClass: "mr-2" }, [
-                          _vm._v(_vm._s(_vm.formDates[0].eDate) + " |")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.formDates[0].eHour +
-                                ":" +
-                                _vm.formDates[0].eMinute
-                            )
-                          )
-                        ])
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _vm._v(_vm._s(_vm.form.user_count))
                       ])
                     ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _vm._v(_vm._s(_vm.form.reason))
                   ])
-                : _c(
-                    "div",
-                    _vm._l(_vm.formDates, function(currDate, index) {
-                      return _c("div", { key: index }, [
-                        _c("div", { staticClass: "row mb-3" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-md-4 text-md-right border-right"
-                            },
-                            [
-                              _c("strong", { staticClass: "text-muted" }, [
-                                _vm._v(_vm._s(index + 1))
-                              ])
-                            ]
-                          ),
+                ]),
+                _vm._v(" "),
+                _vm.form.type_id == 1
+                  ? _c("div", { staticClass: "row mb-3" }, [
+                      _vm._m(11),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _vm._v(_vm._s(_vm.form.will_stay ? "Yes" : "No"))
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("h5", { staticClass: "text-dark mb-3" }, [
+                  _vm._v("Date & Time")
+                ]),
+                _vm._v(" "),
+                _vm.form.will_stay && _vm.formDates.length > 0
+                  ? _c("div", [
+                      _c("div", { staticClass: "row mb-3" }, [
+                        _vm._m(12),
+                        _vm._v(" "),
+                        _c("strong", { staticClass: "col-md-6 d-flex" }, [
+                          _c("div", { staticClass: "mr-2" }, [
+                            _vm._v(_vm._s(_vm.formDates[0].sDate) + " |")
+                          ]),
                           _vm._v(" "),
-                          _c("strong", { staticClass: "col-md-8 d-flex" }, [
-                            _c("div", { staticClass: "mr-2" }, [
-                              _vm._v(_vm._s(currDate.sDate))
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "mr-2" }, [
-                              _vm._v(
-                                _vm._s(currDate.sHour + ":" + currDate.sMinute)
+                          _c("div", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.formDates[0].sHour +
+                                  ":" +
+                                  _vm.formDates[0].sMinute
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", [
-                              _vm._v(
-                                _vm._s(currDate.eHour + ":" + currDate.eMinute)
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row mb-3" }, [
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _c("strong", { staticClass: "col-md-6 d-flex" }, [
+                          _c("div", { staticClass: "mr-2" }, [
+                            _vm._v(_vm._s(_vm.formDates[0].eDate) + " |")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.formDates[0].eHour +
+                                  ":" +
+                                  _vm.formDates[0].eMinute
                               )
-                            ])
+                            )
                           ])
                         ])
                       ])
-                    }),
-                    0
-                  )
-            ]),
-            _vm._v(" "),
-            _vm._m(14)
-          ])
-        ]
-      )
-    ]
-  )
+                    ])
+                  : _c(
+                      "div",
+                      _vm._l(_vm.formDates, function(currDate, index) {
+                        return _c("div", { key: index }, [
+                          _c("div", { staticClass: "row mb-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-md-4 text-md-right border-right"
+                              },
+                              [
+                                _c("strong", { staticClass: "text-muted" }, [
+                                  _vm._v(_vm._s(index + 1))
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("strong", { staticClass: "col-md-8 d-flex" }, [
+                              _c("div", { staticClass: "mr-2" }, [
+                                _vm._v(_vm._s(currDate.sDate))
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "mr-2" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    currDate.sHour + ":" + currDate.sMinute
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", [
+                                _vm._v(
+                                  _vm._s(
+                                    currDate.eHour + ":" + currDate.eMinute
+                                  )
+                                )
+                              ])
+                            ])
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+              ]),
+              _vm._v(" "),
+              _vm._m(14)
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(15)
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -49487,12 +49528,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "h5",
+        "h4",
         {
           staticClass: "modal-title text-primary",
           attrs: { id: "scrollableForm" }
         },
-        [_vm._v("Form Details")]
+        [_c("strong", [_vm._v("Form Details")])]
       ),
       _vm._v(" "),
       _c(
@@ -49621,12 +49662,110 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn-trans anti-neutral",
+          staticClass: "btn-trans text-admin",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "data-toggle": "modal",
+            "data-target": "#exampleModalCenter"
+          }
+        },
+        [_c("strong", [_vm._v("Accept")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn-trans text-muted",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
         [_c("strong", [_vm._v("Close")])]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModalCenter",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title text-admin",
+                    attrs: { id: "exampleModalCenterTitle" }
+                  },
+                  [_c("strong", [_vm._v("Confirmation")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body text-muted" }, [
+                _vm._v(
+                  "\n                Do you really intend to accept this form?\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-trans text-admin",
+                    attrs: { type: "button" }
+                  },
+                  [_c("strong", [_vm._v("YES")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-trans text-admin",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_c("strong", [_vm._v("NO")])]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
