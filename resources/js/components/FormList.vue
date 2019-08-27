@@ -9,11 +9,10 @@
             </div>
         </div>
         <hr class="m-0 p-0">
-        <div v-if="forms.length > 0">
+        <div class="formlist-column" v-if="forms.length > 0">
             <div
                 v-for="form in forms"
                 :key="form.id"
-                :class="{ 'selected': form == selected }"
             >
                 <div class="panel-highlight" @click="selectForm(form)">
                     <div class="px-3 py-3" v-if="user.is_admin">
@@ -62,6 +61,7 @@
                 No reservation {{ user.is_admin ? 'requests' : 'submissions' }} yet.
             </div>
         </div>
+        <hr class="mt-0">
     </div>
 </template>
 

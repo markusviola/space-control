@@ -5,9 +5,9 @@
             <div class="text-muted">Talk with the person-in-charge!</div>
             <hr>
         </div>
-        <div class="container mb-3">
-            @if (sizeof($formsByUser) > 0)
-                @foreach ($formsByUser as $form)
+        <div class="container mb-0 side-list">
+            @if (sizeof($forms) > 0)
+                @foreach ($forms as $form)
                     @if ($form->user_id == auth()->user()->id)
                         <a class="anti-neutral" href="{{ route('messenger', $form->id)}}">
                             <h6>
@@ -26,5 +26,6 @@
                 </div>
             @endif
         </div>
+        <hr class="mt-0">
     </div>
 </div>

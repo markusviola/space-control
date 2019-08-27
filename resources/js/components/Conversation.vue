@@ -9,7 +9,7 @@
                 </h5>
                 <div class="d-flex justify-content-between">
                     <div class="text-muted">{{
-                        form ? (user.is_admin ? `Submitted on ${form.created_at}` : form.name ) : 'Choose from the list to start chatting!'
+                        form ? (user.is_admin ? form.name : `Submitted on ${form.created_at}`) : 'Choose from the list to start chatting!'
                     }}</div>
                     <div v-if="form">
                         <form-info :form="form"></form-info>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <hr class="mb-3">
-            <ul class="border list-unstyled bg-white" style="height: 25.5rem; overflow-y: scroll" v-chat-scroll>
+            <ul class="border list-unstyled bg-white message-box" v-chat-scroll>
                 <li class="p-2 pl-3"
                     v-for="message in messages"
                     :key="message.id"
@@ -97,19 +97,5 @@ export default {
             });
         }
     },
-    // watch: {
-    //     form: {
-    //         immediate: true,
-    //         handler(newForm, oldForm) {
-    //             if (newForm) {
-    //                 Echo.private(`chat.${newForm.id}`)
-    //                 .listen('MessageSent', event => {
-    //                     this.$emit('echoMessage', event.message);
-    //                 });
-    //             }
-    //         }
-    //     }
-    // }
-
 }
 </script>

@@ -2183,20 +2183,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.message = '';
       });
     }
-  } // watch: {
-  //     form: {
-  //         immediate: true,
-  //         handler(newForm, oldForm) {
-  //             if (newForm) {
-  //                 Echo.private(`chat.${newForm.id}`)
-  //                 .listen('MessageSent', event => {
-  //                     this.$emit('echoMessage', event.message);
-  //                 });
-  //             }
-  //         }
-  //     }
-  // }
-
+  }
 });
 
 /***/ }),
@@ -48930,8 +48917,8 @@ var render = function() {
                 _vm._s(
                   _vm.form
                     ? _vm.user.is_admin
-                      ? "Submitted on " + _vm.form.created_at
-                      : _vm.form.name
+                      ? _vm.form.name
+                      : "Submitted on " + _vm.form.created_at
                     : "Choose from the list to start chatting!"
                 )
               )
@@ -48957,8 +48944,7 @@ var render = function() {
           "ul",
           {
             directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
-            staticClass: "border list-unstyled bg-white",
-            staticStyle: { height: "25.5rem", "overflow-y": "scroll" }
+            staticClass: "border list-unstyled bg-white message-box"
           },
           _vm._l(_vm.messages, function(message) {
             return _c("li", { key: message.id, staticClass: "p-2 pl-3" }, [
@@ -49682,25 +49668,80 @@ var render = function() {
     _vm.forms.length > 0
       ? _c(
           "div",
+          { staticClass: "formlist-column" },
           _vm._l(_vm.forms, function(form) {
-            return _c(
-              "div",
-              { key: form.id, class: { selected: form == _vm.selected } },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "panel-highlight",
-                    on: {
-                      click: function($event) {
-                        return _vm.selectForm(form)
-                      }
+            return _c("div", { key: form.id }, [
+              _c(
+                "div",
+                {
+                  staticClass: "panel-highlight",
+                  on: {
+                    click: function($event) {
+                      return _vm.selectForm(form)
                     }
-                  },
-                  [
-                    _vm.user.is_admin
-                      ? _c("div", { staticClass: "px-3 py-3" }, [
-                          _c("div", { staticClass: "alt-anti-neutral" }, [
+                  }
+                },
+                [
+                  _vm.user.is_admin
+                    ? _c("div", { staticClass: "px-3 py-3" }, [
+                        _c("div", { staticClass: "alt-anti-neutral" }, [
+                          _c(
+                            "div",
+                            { staticClass: "d-flex justify-content-between" },
+                            [
+                              _c("h6", [
+                                _c("strong", [_vm._v(_vm._s(form.type.name))])
+                              ]),
+                              _vm._v(" "),
+                              form.unread_count
+                                ? _c("h6", [
+                                    _c(
+                                      "strong",
+                                      {
+                                        staticClass:
+                                          "alt-neutral d-flex align-items-center"
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-envelope fa-sm"
+                                        }),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "ml-2" }, [
+                                          _vm._v(_vm._s(form.unread_count))
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex justify-content-between text-muted"
+                          },
+                          [
+                            _c("div", [_vm._v(_vm._s(form.name))]),
+                            _vm._v(" "),
+                            _c("div", [_vm._v(_vm._s(form.created_at))])
+                          ]
+                        )
+                      ])
+                    : _c("div", { staticClass: "px-3 py-3" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "alt-anti-neutral",
+                            on: {
+                              click: function($event) {
+                                return _vm.selectForm(form)
+                              }
+                            }
+                          },
+                          [
                             _c(
                               "div",
                               { staticClass: "d-flex justify-content-between" },
@@ -49731,85 +49772,22 @@ var render = function() {
                                   : _vm._e()
                               ]
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "d-flex justify-content-between text-muted"
-                            },
-                            [
-                              _c("div", [_vm._v(_vm._s(form.name))]),
-                              _vm._v(" "),
-                              _c("div", [_vm._v(_vm._s(form.created_at))])
-                            ]
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-muted text-left" }, [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(form.created_at) +
+                              "\n                    "
                           )
                         ])
-                      : _c("div", { staticClass: "px-3 py-3" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "alt-anti-neutral",
-                              on: {
-                                click: function($event) {
-                                  return _vm.selectForm(form)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "d-flex justify-content-between"
-                                },
-                                [
-                                  _c("h6", [
-                                    _c("strong", [
-                                      _vm._v(_vm._s(form.type.name))
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  form.unread_count
-                                    ? _c("h6", [
-                                        _c(
-                                          "strong",
-                                          {
-                                            staticClass:
-                                              "alt-neutral d-flex align-items-center"
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "fas fa-envelope fa-sm"
-                                            }),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "ml-2" }, [
-                                              _vm._v(_vm._s(form.unread_count))
-                                            ])
-                                          ]
-                                        )
-                                      ])
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "text-muted text-left" }, [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(form.created_at) +
-                                "\n                    "
-                            )
-                          ])
-                        ]),
-                    _vm._v(" "),
-                    _c("hr", { staticClass: "p-0 m-0" })
-                  ]
-                )
-              ]
-            )
+                      ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "p-0 m-0" })
+                ]
+              )
+            ])
           }),
           0
         )
@@ -49821,7 +49799,9 @@ var render = function() {
                 " yet.\n        "
             )
           ])
-        ])
+        ]),
+    _vm._v(" "),
+    _c("hr", { staticClass: "mt-0" })
   ])
 }
 var staticRenderFns = []

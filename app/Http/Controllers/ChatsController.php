@@ -33,9 +33,13 @@ class ChatsController extends Controller
     public function fetchForms() {
         if (!auth()->user()->is_admin) {
             $forms = Form::with('type')
-                ->where('user_id', auth()->id())->get();
+                ->where('user_id', auth()->id())
+                ->latest()
+                ->get();
         } else {
-            $forms = Form::with('type')->get();
+            $forms = Form::with('type')
+                ->latest()
+                ->get();
         }
 
         // get collection of messages containing the form id and count of

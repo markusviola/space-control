@@ -23,11 +23,11 @@
                             <div class="text-muted">Guest Mode</div>
                         @endif
                     </div>
-                    <hr class="pb-3">
+                    <hr class="mb-0">
                     @if (Auth::check() && Auth::user()->is_admin)
                         @include('admin.requests')
                     @else
-                        <form action="{{ route('forms.store') }}" method="POST">
+                        <form class="pt-4" action="{{ route('forms.store') }}" method="POST">
                             @csrf
                             @if (Auth::check())
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
