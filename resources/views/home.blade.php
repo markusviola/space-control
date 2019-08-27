@@ -23,7 +23,7 @@
                             <div class="text-muted">Guest Mode</div>
                         @endif
                     </div>
-                    <hr>
+                    <hr class="pb-3">
                     @if (Auth::check() && Auth::user()->is_admin)
                         @include('admin.requests')
                     @else

@@ -9,50 +9,57 @@
             </div>
         </div>
         <hr class="m-0 p-0">
-        <div
-            v-for="form in forms"
-            :key="form.id"
-            :class="{ 'selected': form == selected }"
-        >
-            <div class="panel-highlight" @click="selectForm(form)">
-                <div class="px-3 py-3" v-if="user.is_admin">
-                    <div class="alt-anti-neutral">
-                        <div class="d-flex justify-content-between">
-                            <h6>
-                                <strong>{{ form.type.name }}</strong>
-                            </h6>
-                            <h6 v-if="form.unread_count">
-                                <strong class="alt-neutral d-flex align-items-center">
-                                    <i class="fas fa-envelope fa-sm"></i>
-                                    <div class="ml-2">{{ form.unread_count }}</div>
-                                </strong>
-                            </h6>
+        <div v-if="forms.length > 0">
+            <div
+                v-for="form in forms"
+                :key="form.id"
+                :class="{ 'selected': form == selected }"
+            >
+                <div class="panel-highlight" @click="selectForm(form)">
+                    <div class="px-3 py-3" v-if="user.is_admin">
+                        <div class="alt-anti-neutral">
+                            <div class="d-flex justify-content-between">
+                                <h6>
+                                    <strong>{{ form.type.name }}</strong>
+                                </h6>
+                                <h6 v-if="form.unread_count">
+                                    <strong class="alt-neutral d-flex align-items-center">
+                                        <i class="fas fa-envelope fa-sm"></i>
+                                        <div class="ml-2">{{ form.unread_count }}</div>
+                                    </strong>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between text-muted">
+                            <div>{{ form.name }}</div>
+                            <div>{{ form.created_at }}</div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between text-muted">
-                        <div>{{ form.name }}</div>
-                        <div>{{ form.created_at }}</div>
-                    </div>
-                </div>
-                <div class="px-3 py-3" v-else>
-                    <div class="alt-anti-neutral" @click="selectForm(form)">
-                        <div class="d-flex justify-content-between">
-                            <h6>
-                                <strong>{{ form.type.name }}</strong>
-                            </h6>
-                            <h6 v-if="form.unread_count">
-                                <strong class="alt-neutral d-flex align-items-center">
-                                    <i class="fas fa-envelope fa-sm"></i>
-                                    <div class="ml-2">{{ form.unread_count }}</div>
-                                </strong>
-                            </h6>
+                    <div class="px-3 py-3" v-else>
+                        <div class="alt-anti-neutral" @click="selectForm(form)">
+                            <div class="d-flex justify-content-between">
+                                <h6>
+                                    <strong>{{ form.type.name }}</strong>
+                                </h6>
+                                <h6 v-if="form.unread_count">
+                                    <strong class="alt-neutral d-flex align-items-center">
+                                        <i class="fas fa-envelope fa-sm"></i>
+                                        <div class="ml-2">{{ form.unread_count }}</div>
+                                    </strong>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="text-muted text-left">
+                            {{ form.created_at }}
                         </div>
                     </div>
-                    <div class="text-muted text-left">
-                        {{ form.created_at }}
-                    </div>
+                    <hr class="p-0 m-0">
                 </div>
-                <hr class="p-0 m-0">
+            </div>
+        </div>
+        <div v-else>
+            <div class="text-muted text-center mt-4 mb-4">
+                No reservation {{ user.is_admin ? 'requests' : 'submissions' }} yet.
             </div>
         </div>
     </div>

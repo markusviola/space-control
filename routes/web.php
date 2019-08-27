@@ -16,7 +16,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/chats', 'ChatsController@index');
+Route::get('/chats', 'ChatsController@index')->name('messenger');
 
 Route::get('/chats/forms', 'ChatsController@fetchForms');
 
