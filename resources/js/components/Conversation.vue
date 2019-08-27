@@ -8,9 +8,16 @@
                     </strong>
                 </h5>
                 <div class="d-flex justify-content-between">
-                    <div class="text-muted">{{
-                        form ? (user.is_admin ? form.name : `Submitted on ${form.created_at}`) : 'Choose from the list to start chatting!'
-                    }}</div>
+                    <div class="text-muted">
+                        <span
+                            class="text-muted"
+                        >
+                            <strong>{{ form.user_id ? 'User •' : 'Guest •' }}</strong>
+                        </span>
+                        {{
+                            form ? (user.is_admin ? ` ${form.name}` : `Submitted on ${form.created_at}`) : 'Choose from the list to start chatting!'
+                        }}
+                    </div>
                     <div v-if="form">
                         <form-info :form="form"></form-info>
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">

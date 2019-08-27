@@ -33,9 +33,17 @@ class FormsController extends Controller
         //
     }
 
+    public function approveForm($id) {
+
+        $form = Form::whereId($id)->first();
+        $form->triggerIsApproved()->save();
+
+        return $form;
+    }
+
     public function getFormDates($id) {
 
-        $schedules = Schedule::where('form_id', $id)->get();
+        $schedules = Schedule::whereFormId($id)->get();
 
         return response()->json($schedules);
     }

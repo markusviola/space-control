@@ -127,8 +127,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-trans text-admin" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter">
-                            <strong>Accept</strong>
+                        <button type="button" class="btn-trans text-admin" data-dismiss="modal" data-toggle="modal" data-target="#confirmFormModal">
+                            <strong>Approve</strong>
                         </button>
                         <button type="button" class="btn-trans text-muted" data-dismiss="modal">
                             <strong>Close</strong>
@@ -137,27 +137,30 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="confirmFormModal" tabindex="-1" role="dialog" aria-labelledby="confirmFormModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-admin" id="exampleModalCenterTitle"><strong>Confirmation</strong></h5>
+                    <h5 class="modal-title text-admin" id="confirmFormModal"><strong>Confirmation</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-muted">
-                    Do you really intend to accept this form?
+                    Do you really intend to approve this reservation?
                 </div>
                     <div class="modal-footer">
-
-                        <button type="button" class="btn-trans text-admin">
+                        <button
+                            @click="approveForm"
+                            type="button"
+                            class="btn-trans text-admin"
+                            data-dismiss="modal"
+                        >
                             <strong>YES</strong>
                         </button>
                         <button type="button" class="btn-trans text-admin" data-dismiss="modal">
                             <strong>NO</strong>
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -197,6 +200,12 @@
                 });
 
                 this.formDates = currDates;
+            },
+            approveForm() {
+                axios.patch(`/forms/${this.form.id}/approve`)
+                .then(response => {
+                    console.log(response.data);
+                })
             }
         },
         watch: {

@@ -32,9 +32,9 @@ class Form extends Model
         return $this->hasMany(BulkSpace::class);
     }
 
-    public function toggleIsApproved()
+    public function triggerIsApproved()
     {
-        $this->is_approved= !$this->is_approved;
+        $this->is_approved= true;
         return $this;
     }
 

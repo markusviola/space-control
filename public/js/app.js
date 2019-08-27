@@ -2146,6 +2146,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2477,6 +2484,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2505,6 +2515,11 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
       this.formDates = currDates;
+    },
+    approveForm: function approveForm() {
+      axios.patch("/forms/".concat(this.form.id, "/approve")).then(function (response) {
+        console.log(response.data);
+      });
     }
   },
   watch: {
@@ -48953,14 +48968,21 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "d-flex justify-content-between" }, [
             _c("div", { staticClass: "text-muted" }, [
+              _c("span", { staticClass: "text-muted" }, [
+                _c("strong", [
+                  _vm._v(_vm._s(_vm.form.user_id ? "User •" : "Guest •"))
+                ])
+              ]),
               _vm._v(
-                _vm._s(
-                  _vm.form
-                    ? _vm.user.is_admin
-                      ? _vm.form.name
-                      : "Submitted on " + _vm.form.created_at
-                    : "Choose from the list to start chatting!"
-                )
+                "\n                    " +
+                  _vm._s(
+                    _vm.form
+                      ? _vm.user.is_admin
+                        ? " " + _vm.form.name
+                        : "Submitted on " + _vm.form.created_at
+                      : "Choose from the list to start chatting!"
+                  ) +
+                  "\n                "
               )
             ]),
             _vm._v(" "),
@@ -49518,7 +49540,53 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(15)
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "confirmFormModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "confirmFormModalTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(15),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body text-muted" }, [
+                _vm._v(
+                  "\n                Do you really intend to approve this reservation?\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-trans text-admin",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.approveForm }
+                  },
+                  [_c("strong", [_vm._v("YES")])]
+                ),
+                _vm._v(" "),
+                _vm._m(16)
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -49667,10 +49735,10 @@ var staticRenderFns = [
             type: "button",
             "data-dismiss": "modal",
             "data-toggle": "modal",
-            "data-target": "#exampleModalCenter"
+            "data-target": "#confirmFormModal"
           }
         },
-        [_c("strong", [_vm._v("Accept")])]
+        [_c("strong", [_vm._v("Approve")])]
       ),
       _vm._v(" "),
       _c(
@@ -49687,84 +49755,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-admin",
+          attrs: { id: "confirmFormModal" }
+        },
+        [_c("strong", [_vm._v("Confirmation")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
-        staticClass: "modal fade",
-        attrs: {
-          id: "exampleModalCenter",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalCenterTitle",
-          "aria-hidden": "true"
-        }
+        staticClass: "btn-trans text-admin",
+        attrs: { type: "button", "data-dismiss": "modal" }
       },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title text-admin",
-                    attrs: { id: "exampleModalCenterTitle" }
-                  },
-                  [_c("strong", [_vm._v("Confirmation")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body text-muted" }, [
-                _vm._v(
-                  "\n                Do you really intend to accept this form?\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn-trans text-admin",
-                    attrs: { type: "button" }
-                  },
-                  [_c("strong", [_vm._v("YES")])]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn-trans text-admin",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_c("strong", [_vm._v("NO")])]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
+      [_c("strong", [_vm._v("NO")])]
     )
   }
 ]
@@ -49876,25 +49901,17 @@ var render = function() {
                           },
                           [
                             _c("div", [
-                              _c(
-                                "span",
-                                {
-                                  class:
-                                    "text-" +
-                                    (form.user_id ? "primary" : "danger")
-                                },
-                                [
+                              _c("span", { staticClass: "text-primary" }, [
+                                _c("strong", [
                                   _vm._v(
-                                    "\n                                " +
-                                      _vm._s(form.user_id ? "User" : "Guest") +
-                                      "\n                            "
+                                    _vm._s(
+                                      form.user_id ? "User • " : "Guest • "
+                                    )
                                   )
-                                ]
-                              ),
+                                ])
+                              ]),
                               _vm._v(
-                                " | " +
-                                  _vm._s(form.name) +
-                                  "\n                        "
+                                _vm._s(form.name) + "\n                        "
                               )
                             ]),
                             _vm._v(" "),
