@@ -171,7 +171,7 @@
             form: {
                 immediate: true,
                 handler(newForm, oldForm) {
-                    axios.get(`forms/${newForm.id}/dates`)
+                    axios.get(`/forms/${newForm.id}/dates`)
                     .then(response => {
                         this.arrangeDates(response.data);
                     })

@@ -1862,9 +1862,9 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: true
     },
-    chosenForm: {
-      type: Object,
-      "default": null
+    choice: {
+      type: [Object, Number],
+      required: true
     }
   },
   data: function data() {
@@ -1888,7 +1888,10 @@ __webpack_require__.r(__webpack_exports__);
           Echo["private"]("chat.".concat(form.id)).listen('MessageSent', function (event) {
             _this.handleMessage(event.message);
           });
-          _this.selectedForm = _this.chosenForm;
+
+          if (_this.choice) {
+            _this.fetchMessages(_this.choice);
+          }
         });
       });
     },
@@ -1896,7 +1899,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.updateReadState(form, true);
-      axios.get("messages/".concat(form.id)).then(function (response) {
+      axios.get("/chats/messages/".concat(form.id)).then(function (response) {
         _this2.messages = response.data;
         _this2.selectedForm = form;
       });
@@ -2489,7 +2492,7 @@ __webpack_require__.r(__webpack_exports__);
       handler: function handler(newForm, oldForm) {
         var _this = this;
 
-        axios.get("forms/".concat(newForm.id, "/dates")).then(function (response) {
+        axios.get("/forms/".concat(newForm.id, "/dates")).then(function (response) {
           _this.arrangeDates(response.data);
         });
       }

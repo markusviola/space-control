@@ -18,10 +18,12 @@ class ChatsController extends Controller
     public function index($id)
     {
         if (!auth()->user()->is_admin) {
-            $chosenForm = Form::where('id', $id)
+            $chosenForm = Form::with('type')
+                ->where('id', $id)
                 ->where('user_id', auth()->user()->id)
                 ->first();
-        } else $chosenForm = Form::where('id', $id)
+        } else $chosenForm = Form::with('type')
+                ->where('id', $id)
                 ->first();
 
         return view('chats', compact('chosenForm'));

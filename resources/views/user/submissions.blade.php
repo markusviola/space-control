@@ -9,7 +9,7 @@
             @if (sizeof($formsByUser) > 0)
                 @foreach ($formsByUser as $form)
                     @if ($form->user_id == auth()->user()->id)
-                        <a class="anti-neutral" href="">
+                        <a class="anti-neutral" href="{{ route('messenger', $form->id)}}">
                             <h6>
                             <strong>{{ $form->type->name }} Space</strong>
                             </h6>

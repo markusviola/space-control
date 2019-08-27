@@ -2,7 +2,7 @@
     @foreach ($forms as $form)
         <div class="container py-0">
             <div class="row">
-                <a class="col-md-8 anti-neutral" href="">
+                <a class="col-md-8 anti-neutral" href="{{ route('messenger', $form->id)}}">
                     <h4>
                        <strong>Pending > </strong>
                        {{ $form->type->name }} Space
@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+        <hr>
     @endforeach
 @else
     <div class="text-muted text-center mt-4 mb-4">

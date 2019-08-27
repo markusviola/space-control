@@ -23,9 +23,9 @@
                 type: Object,
                 required: true,
             },
-            chosenForm: {
-                type: Object,
-                default: null,
+            choice: {
+                type: [Object, Number],
+                required: true,
             }
         },
         data() {
@@ -48,13 +48,15 @@
                             .listen('MessageSent', event => {
                                 this.handleMessage(event.message);
                             });
-                        this.selectedForm = this.chosenForm;
+                        if (this.choice) {
+                            this.fetchMessages(this.choice);
+                        }
                     });
                 })
             },
             fetchMessages(form) {
                 this.updateReadState(form, true);
-                axios.get(`messages/${form.id}`)
+                axios.get(`/chats/messages/${form.id}`)
                 .then(response => {
                     this.messages = response.data;
                     this.selectedForm = form;

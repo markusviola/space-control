@@ -18,11 +18,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/chats/forms', 'ChatsController@fetchForms');
 
+Route::post('/chats/messages', 'ChatsController@sendMessage');
+
 Route::get('/chats/{id}', 'ChatsController@index')->name('messenger');
 
-Route::get('/messages/{id}', 'ChatsController@fetchMessages');
-
-Route::post('/messages', 'ChatsController@sendMessage');
+Route::get('/chats/messages/{id}', 'ChatsController@fetchMessages');
 
 Route::get('/forms/{id}/dates', 'FormsController@getFormDates');
 
