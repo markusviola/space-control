@@ -2144,6 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2498,6 +2499,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49010,7 +49017,11 @@ var render = function() {
               }
             ],
             staticClass: "w-100 form-control",
-            attrs: { placeholder: "Write your thoughts here...", rows: "2" },
+            attrs: {
+              placeholder: "Write your thoughts here...",
+              rows: "2",
+              disabled: _vm.form && !_vm.form.user_id
+            },
             domProps: { value: _vm.message },
             on: {
               keydown: function($event) {
@@ -49724,7 +49735,28 @@ var render = function() {
                               "d-flex justify-content-between text-muted"
                           },
                           [
-                            _c("div", [_vm._v(_vm._s(form.name))]),
+                            _c("div", [
+                              _c(
+                                "span",
+                                {
+                                  class:
+                                    "text-" +
+                                    (form.user_id ? "primary" : "danger")
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(form.user_id ? "User" : "Guest") +
+                                      "\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(
+                                " | " +
+                                  _vm._s(form.name) +
+                                  "\n                        "
+                              )
+                            ]),
                             _vm._v(" "),
                             _c("div", [_vm._v(_vm._s(form.created_at))])
                           ]

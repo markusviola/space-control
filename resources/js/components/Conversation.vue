@@ -52,6 +52,7 @@
                     placeholder="Write your thoughts here..."
                     @keydown.enter="sendMessage"
                     rows="2"
+                    :disabled="form && !form.user_id"
                 ></textarea>
             </div>
         </div>
