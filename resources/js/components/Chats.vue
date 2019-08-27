@@ -23,6 +23,10 @@
                 type: Object,
                 required: true,
             },
+            chosenForm: {
+                type: Object,
+                default: null,
+            }
         },
         data() {
             return {
@@ -32,11 +36,11 @@
             }
         },
         mounted() {
-            this.fetchForms()
+            this.fetchForms();
         },
         methods: {
             fetchForms() {
-                axios.get('chats/forms')
+                axios.get('/chats/forms')
                 .then(response => {
                     this.forms = response.data;
                     this.forms.forEach(form => {
@@ -44,6 +48,7 @@
                             .listen('MessageSent', event => {
                                 this.handleMessage(event.message);
                             });
+                        this.selectedForm = this.chosenForm;
                     });
                 })
             },

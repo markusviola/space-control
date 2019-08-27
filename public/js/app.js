@@ -1861,6 +1861,10 @@ __webpack_require__.r(__webpack_exports__);
     user: {
       type: Object,
       required: true
+    },
+    chosenForm: {
+      type: Object,
+      "default": null
     }
   },
   data: function data() {
@@ -1877,13 +1881,14 @@ __webpack_require__.r(__webpack_exports__);
     fetchForms: function fetchForms() {
       var _this = this;
 
-      axios.get('chats/forms').then(function (response) {
+      axios.get('/chats/forms').then(function (response) {
         _this.forms = response.data;
 
         _this.forms.forEach(function (form) {
           Echo["private"]("chat.".concat(form.id)).listen('MessageSent', function (event) {
             _this.handleMessage(event.message);
           });
+          _this.selectedForm = _this.chosenForm;
         });
       });
     },

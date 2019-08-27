@@ -15,9 +15,16 @@ class ChatsController extends Controller
     }
 
     // Render base template
-    public function index()
+    public function index($id)
     {
-        return view('chats');
+        if (!auth()->user()->is_admin) {
+            $chosenForm = Form::where('id', $id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+        } else $chosenForm = Form::where('id', $id)
+                ->first();
+
+        return view('chats', compact('chosenForm'));
     }
 
     // Forms
