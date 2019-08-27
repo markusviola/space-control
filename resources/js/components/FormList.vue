@@ -34,11 +34,13 @@
                         </div>
                         <div class="d-flex justify-content-between text-muted">
                             <div>
-                                <span
-                                    class="text-primary"
-                                >
-                                    <strong>{{ form.user_id ? 'User • ' : 'Guest • ' }}</strong>
-                                </span>{{ form.name }}
+                                <strong>
+                                    <span
+                                        :class="`text-${form.user_id ? 'primary' : 'admin'}`"
+                                    >
+                                        {{ form.user_id ? 'User' : 'Guest ' }}
+                                    </span> •
+                                </strong>{{ form.name }}
                             </div>
                             <div>{{ form.created_at }}</div>
                         </div>

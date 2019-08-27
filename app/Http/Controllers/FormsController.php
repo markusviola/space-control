@@ -123,7 +123,7 @@ class FormsController extends Controller
             if (request()->will_stay) break;
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home', '#created-form');
     }
 
     /**

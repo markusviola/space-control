@@ -2653,6 +2653,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     forms: {
@@ -49957,14 +49959,25 @@ var render = function() {
                           },
                           [
                             _c("div", [
-                              _c("span", { staticClass: "text-primary" }, [
-                                _c("strong", [
-                                  _vm._v(
-                                    _vm._s(
-                                      form.user_id ? "User • " : "Guest • "
+                              _c("strong", [
+                                _c(
+                                  "span",
+                                  {
+                                    class:
+                                      "text-" +
+                                      (form.user_id ? "primary" : "admin")
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(
+                                          form.user_id ? "User" : "Guest "
+                                        ) +
+                                        "\n                                "
                                     )
-                                  )
-                                ])
+                                  ]
+                                ),
+                                _vm._v(" •\n                            ")
                               ]),
                               _vm._v(
                                 _vm._s(form.name) + "\n                        "
@@ -63423,8 +63436,8 @@ initNotifications = function initNotifications() {
       notifyUser("This feature is for non-admin users only!");
       break;
 
-    case "#deleted-post":
-      notifyUser("Article deleted!");
+    case "#created-form":
+      notifyUser("Reservation request submitted!");
       break;
 
     case "#temp-unhandled":

@@ -18,8 +18,8 @@ initNotifications = () => {
         case "#non-admin-only":
                 notifyUser("This feature is for non-admin users only!");
             break;
-        case "#deleted-post":
-                notifyUser("Article deleted!");
+        case "#created-form":
+                notifyUser("Reservation request submitted!");
             break;
         case "#temp-unhandled":
                 notifyUser("Something went wrong.");
