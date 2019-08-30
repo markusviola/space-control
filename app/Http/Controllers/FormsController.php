@@ -37,7 +37,7 @@ class FormsController extends Controller
 
         $form = Form::whereId($id)->first();
         $form->triggerIsApproved()->save();
-        $form->load('type');
+        $form->load(['type','bulkSpaces']);
 
         return $form;
     }
