@@ -2656,6 +2656,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     forms: {
@@ -50008,7 +50011,19 @@ var render = function() {
                               { staticClass: "d-flex justify-content-between" },
                               [
                                 _c("h6", [
-                                  _c("strong", [_vm._v(_vm._s(form.type.name))])
+                                  _c("strong", [
+                                    form.is_approved
+                                      ? _c("i", {
+                                          staticClass:
+                                            "text-primary fas fa-check-circle fa-lg"
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(form.type.name) +
+                                        "\n                                "
+                                    )
+                                  ])
                                 ]),
                                 _vm._v(" "),
                                 form.unread_count

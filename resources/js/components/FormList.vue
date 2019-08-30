@@ -49,7 +49,10 @@
                         <div class="alt-anti-neutral" @click="selectForm(form)">
                             <div class="d-flex justify-content-between">
                                 <h6>
-                                    <strong>{{ form.type.name }}</strong>
+                                    <strong>
+                                        <i v-if="form.is_approved" class="text-primary fas fa-check-circle fa-lg"></i>
+                                        {{ form.type.name }}
+                                    </strong>
                                 </h6>
                                 <h6 v-if="form.unread_count">
                                     <strong class="alt-neutral d-flex align-items-center">
