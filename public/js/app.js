@@ -1857,6 +1857,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -1865,6 +1866,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     choice: {
       type: [Object, Number],
+      required: true
+    },
+    spaces: {
+      type: Array,
       required: true
     }
   },
@@ -2164,6 +2169,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2177,6 +2187,10 @@ __webpack_require__.r(__webpack_exports__);
     messages: {
       type: Array,
       "default": []
+    },
+    spaces: {
+      type: Array,
+      "default": null
     }
   },
   data: function data() {
@@ -2508,6 +2522,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2517,6 +2545,10 @@ __webpack_require__.r(__webpack_exports__);
     user: {
       type: Object,
       required: true
+    },
+    spaces: {
+      type: Array,
+      "default": null
     }
   },
   data: function data() {
@@ -48690,6 +48722,7 @@ var render = function() {
               attrs: {
                 user: _vm.user,
                 form: _vm.selectedForm,
+                spaces: _vm.spaces,
                 messages: _vm.messages
               },
               on: {
@@ -49038,7 +49071,11 @@ var render = function() {
                   "div",
                   [
                     _c("form-info", {
-                      attrs: { form: _vm.form, user: _vm.user },
+                      attrs: {
+                        form: _vm.form,
+                        user: _vm.user,
+                        spaces: _vm.spaces
+                      },
                       on: { onFormApproval: _vm.formApproved }
                     }),
                     _vm._v(" "),
@@ -49489,6 +49526,44 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _vm.form.type_id == 2
+                  ? _c(
+                      "div",
+                      [
+                        _c("hr"),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "text-dark mb-3" }, [
+                          _vm._v("Rooms")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.spaces, function(space, i) {
+                          return _c(
+                            "div",
+                            { key: i },
+                            _vm._l(_vm.form.bulk_spaces, function(
+                              bulk_space,
+                              j
+                            ) {
+                              return _c("div", { key: j }, [
+                                space.id == bulk_space.space_id
+                                  ? _c("div", { staticClass: "row mb-3" }, [
+                                      _vm._m(12, true),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-md-8" }, [
+                                        _vm._v(_vm._s(space.name))
+                                      ])
+                                    ])
+                                  : _vm._e()
+                              ])
+                            }),
+                            0
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("hr"),
                 _vm._v(" "),
                 _c("h5", { staticClass: "text-dark mb-3" }, [
@@ -49498,7 +49573,7 @@ var render = function() {
                 _vm.form.will_stay && _vm.formDates.length > 0
                   ? _c("div", [
                       _c("div", { staticClass: "row mb-3" }, [
-                        _vm._m(12),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c("strong", { staticClass: "col-md-6 d-flex" }, [
                           _c("div", { staticClass: "mr-2" }, [
@@ -49518,7 +49593,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row mb-3" }, [
-                        _vm._m(13),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c("strong", { staticClass: "col-md-6 d-flex" }, [
                           _c("div", { staticClass: "mr-2" }, [
@@ -49600,7 +49675,7 @@ var render = function() {
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(14)
+                _vm._m(15)
               ])
             ])
           ]
@@ -49629,7 +49704,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(15),
+              _vm._m(16),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
@@ -49648,7 +49723,7 @@ var render = function() {
                   [_c("strong", [_vm._v("YES")])]
                 ),
                 _vm._v(" "),
-                _vm._m(16)
+                _vm._m(17)
               ])
             ])
           ]
@@ -49772,6 +49847,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Stay")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("i", { staticClass: "text-secondary fas fa-check fa-sm" })
     ])
   },
   function() {

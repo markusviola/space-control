@@ -21,7 +21,12 @@
                         }}
                     </div>
                     <div v-if="form">
-                    <form-info :form="form"  :user="user" @onFormApproval="formApproved"></form-info>
+                    <form-info
+                        :form="form"
+                        :user="user"
+                        :spaces="spaces"
+                        @onFormApproval="formApproved"
+                    ></form-info>
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">
                             <strong>View Form</strong>
                         </button>
@@ -83,6 +88,10 @@ export default {
         messages: {
             type: Array,
             default: [],
+        },
+        spaces: {
+            type: Array,
+            default: null,
         }
     },
     data() {

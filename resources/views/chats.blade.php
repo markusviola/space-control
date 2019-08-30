@@ -5,7 +5,7 @@
     <chats
         :user="{{ auth()->user() }}"
         :choice="{{ $chosenForm ?? 0 }}"
-        :spaces={{ $spaces }}
+        :spaces="{{ $spaces }}"
     ></chats>
 </div>
 @endsection

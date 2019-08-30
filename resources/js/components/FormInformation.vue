@@ -22,43 +22,43 @@
                         <h5 class="text-dark mb-3">Client Information</h5>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">名前</strong>
+                                <strong class="text-muted">名前</strong>
                             </div>
                             <div class="col-md-8">{{ form.name }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">ふりがな</strong>
+                                <strong class="text-muted">ふりがな</strong>
                             </div>
                             <div class="col-md-8">{{ form.furigana }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">メールアドレス</strong>
+                                <strong class="text-muted">メールアドレス</strong>
                             </div>
                             <div class="col-md-8">{{ form.email }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">電話番号</strong>
+                                <strong class="text-muted">電話番号</strong>
                             </div>
                             <div class="col-md-8">{{ form.phone }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">性別</strong>
+                                <strong class="text-muted">性別</strong>
                             </div>
                             <div class="col-md-8">{{ form.gender ? '女' : '男' }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">生年月日</strong>
+                                <strong class="text-muted">生年月日</strong>
                             </div>
                             <div class="col-md-8">{{ form.birthday }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">住所</strong>
+                                <strong class="text-muted">住所</strong>
                             </div>
                             <div class="col-md-8">{{ form.address }}</div>
                         </div>
@@ -66,27 +66,41 @@
                         <h5 class="text-dark mb-3">Reservation</h5>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">Type</strong>
+                                <strong class="text-muted">Type</strong>
                             </div>
                             <div class="col-md-8">{{ form.type.name }}</div>
                         </div>
                         <div v-if="form.type_id > 1" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">No. of People</strong>
+                                <strong class="text-muted">No. of People</strong>
                             </div>
                             <div class="col-md-8">{{ form.user_count }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">Reason</strong>
+                                <strong class="text-muted">Reason</strong>
                             </div>
                             <div class="col-md-8">{{ form.reason }}</div>
                         </div>
                         <div v-if="form.type_id == 1" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                            <strong class="text-muted">Stay</strong>
+                                <strong class="text-muted">Stay</strong>
                             </div>
                             <div class="col-md-8">{{ form.will_stay ? 'Yes': 'No' }}</div>
+                        </div>
+                        <div v-if="form.type_id == 2">
+                            <hr>
+                            <h5 class="text-dark mb-3">Rooms</h5>
+                            <div v-for="(space, i) in spaces" :key="i">
+                                <div v-for="(bulk_space, j) in form.bulk_spaces" :key="j">
+                                    <div v-if="space.id == bulk_space.space_id" class="row mb-3">
+                                        <div class="col-md-4 text-md-right border-right">
+                                            <i class="text-secondary fas fa-check fa-sm"></i>
+                                        </div>
+                                        <div class="col-md-8">{{ space.name }}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
                         <h5 class="text-dark mb-3">Date &amp; Time</h5>
@@ -185,6 +199,10 @@
             user: {
                 type: Object,
                 required: true,
+            },
+            spaces: {
+                type: Array,
+                default: null,
             }
         },
         data() {
