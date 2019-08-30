@@ -8,6 +8,7 @@
                 <conversation
                     :user="user"
                     :form="selectedForm"
+                    :spaces="spaces"
                     :messages="messages"
                     @newMessage="pushNewMessage"
                     @onFormApproved="changeFormStatus"
@@ -26,6 +27,10 @@
             },
             choice: {
                 type: [Object, Number],
+                required: true,
+            },
+            spaces: {
+                type: Array,
                 required: true,
             }
         },
