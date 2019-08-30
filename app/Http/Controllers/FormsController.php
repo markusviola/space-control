@@ -37,6 +37,7 @@ class FormsController extends Controller
 
         $form = Form::whereId($id)->first();
         $form->triggerIsApproved()->save();
+        $form->load('type');
 
         return $form;
     }
