@@ -4,13 +4,14 @@
             <div class="text-left">
                 <h5 class="alt-neutral">
                     <strong>
-                        <i v-if="form.is_approved" class="text-primary fas fa-check fa-lg"></i>
+                        <i v-if="form && form.is_approved" class="text-primary fas fa-check fa-lg"></i>
                         {{ form ? form.type.name : `Select a ${(user.is_admin ? 'Request' : 'Form')}` }}
                     </strong>
                 </h5>
                 <div class="d-flex justify-content-between">
                     <div class="text-muted">
                         <span
+                            v-if="form"
                             class="text-muted"
                         >
                             <strong>{{ form.user_id ? 'User •' : 'Guest •' }}</strong>

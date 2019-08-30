@@ -2163,6 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -48992,7 +48993,7 @@ var render = function() {
         _c("div", { staticClass: "text-left" }, [
           _c("h5", { staticClass: "alt-neutral" }, [
             _c("strong", [
-              _vm.form.is_approved
+              _vm.form && _vm.form.is_approved
                 ? _c("i", { staticClass: "text-primary fas fa-check fa-lg" })
                 : _vm._e(),
               _vm._v(
@@ -49009,11 +49010,13 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "d-flex justify-content-between" }, [
             _c("div", { staticClass: "text-muted" }, [
-              _c("span", { staticClass: "text-muted" }, [
-                _c("strong", [
-                  _vm._v(_vm._s(_vm.form.user_id ? "User •" : "Guest •"))
-                ])
-              ]),
+              _vm.form
+                ? _c("span", { staticClass: "text-muted" }, [
+                    _c("strong", [
+                      _vm._v(_vm._s(_vm.form.user_id ? "User •" : "Guest •"))
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(
                 "\n                    " +
                   _vm._s(
