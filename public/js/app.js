@@ -49424,7 +49424,29 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h4",
+                  {
+                    staticClass: "modal-title text-primary",
+                    attrs: { id: "scrollableForm" }
+                  },
+                  [
+                    _c("strong", [
+                      _vm.form.is_approved
+                        ? _c("i", {
+                            staticClass: "text-primary fas fa-check fa-lg mr-1"
+                          })
+                        : _vm._e(),
+                      _vm._v(
+                        "\n                        Form Details\n                    "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("h5", { staticClass: "text-dark mb-3" }, [
@@ -49740,36 +49762,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h4",
-        {
-          staticClass: "modal-title text-primary",
-          attrs: { id: "scrollableForm" }
-        },
-        [
-          _c("strong", [
-            _c("i", { staticClass: "text-primary fas fa-check fa-lg mr-1" }),
-            _vm._v(
-              "\n                        Form Details\n                    "
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this

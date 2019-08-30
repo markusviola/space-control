@@ -13,7 +13,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title text-primary" id="scrollableForm">
                         <strong>
-                            <i class="text-primary fas fa-check fa-lg mr-1"></i>
+                            <i v-if="form.is_approved" class="text-primary fas fa-check fa-lg mr-1"></i>
                             Form Details
                         </strong>
                         </h4>
