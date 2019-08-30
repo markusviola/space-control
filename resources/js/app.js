@@ -52,4 +52,5 @@ $(() => {
         el: '#app',
     });
     initNotifications();
+    initForm();
 });

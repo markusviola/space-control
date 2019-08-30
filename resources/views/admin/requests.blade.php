@@ -1,12 +1,16 @@
-<div class="pt-3" style="height: 60vh; overflow-y: scroll;">
+<div class="formlist-column">
     @if (sizeof($forms) > 0)
         @foreach ($forms as $form)
-            <div class="container py-0">
+            <div class="container py-3 panel-highlight">
                 <div class="row">
                     <a class="col-md-8 anti-neutral" href="{{ route('messenger', $form->id)}}">
                         <h4>
-                           <strong>Pending > </strong>
-                           {{ $form->type->name }} Space
+                            @if ($form->is_approved)
+                                <strong class="text-admin">Approved ></strong>
+                            @else
+                                <strong>Pending ></strong>
+                            @endif
+                           {{ $form->type->name }}
                         </h4>
                     </a>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
@@ -17,11 +21,11 @@
                     <div class="col-md-6 ">
                         @if ($form->user_id == 0)
                            <div class="text-danger">
-                               <strong>Guest User</strong>
+                               <strong>Guest</strong>
                             </div>
                         @else
                             <div class="text-primary">
-                                <strong>Registered User</strong>
+                                <strong>Registered</strong>
                             </div>
                         @endif
                     </div>
@@ -30,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr class="m-0 p-0">
         @endforeach
     @else
         <div class="text-muted text-center mt-4 mb-4">

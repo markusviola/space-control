@@ -62780,6 +62780,7 @@ $(function () {
     el: '#app'
   });
   initNotifications();
+  initForm();
 });
 
 /***/ }),
