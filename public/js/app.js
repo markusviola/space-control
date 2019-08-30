@@ -62742,6 +62742,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./notification */ "./resources/js/notification.js");
 
+__webpack_require__(/*! ./form */ "./resources/js/form.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
  // vue-chat-scroll option
@@ -63404,6 +63406,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceForm_vue_vue_type_template_id_3273a40f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/form.js":
+/*!******************************!*\
+  !*** ./resources/js/form.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+initForm = function initForm() {
+  toMessenger = function toMessenger(id) {
+    window.location.href = "/chats/".concat(id);
+  };
+};
 
 /***/ }),
 

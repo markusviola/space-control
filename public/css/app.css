@@ -5895,6 +5895,7 @@ readers do not read off random characters that represent icons */
 
 .panel-highlight:hover {
   background: rgba(201, 201, 201, 0.315);
+  cursor: pointer;
 }
 
 .edit {

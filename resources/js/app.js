@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 require('./notification');
+require('./form');
 
 window.Vue = require('vue');
 
