@@ -2536,6 +2536,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -49744,7 +49747,14 @@ var staticRenderFns = [
           staticClass: "modal-title text-primary",
           attrs: { id: "scrollableForm" }
         },
-        [_c("strong", [_vm._v("Form Details")])]
+        [
+          _c("strong", [
+            _c("i", { staticClass: "text-primary fas fa-check fa-lg mr-1" }),
+            _vm._v(
+              "\n                        Form Details\n                    "
+            )
+          ])
+        ]
       ),
       _vm._v(" "),
       _c(
