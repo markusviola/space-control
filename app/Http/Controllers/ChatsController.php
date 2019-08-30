@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\Events\MessageSent;
 use App\Form;
+use App\Space;
 
 class ChatsController extends Controller
 {
@@ -26,18 +27,20 @@ class ChatsController extends Controller
                 ->where('id', $id)
                 ->first();
 
-        return view('chats', compact('chosenForm'));
+        $spaces = Space::all();
+
+        return view('chats', compact('chosenForm', 'spaces'));
     }
 
     // Forms
     public function fetchForms() {
         if (!auth()->user()->is_admin) {
-            $forms = Form::with('type')
+            $forms = Form::with(['type', 'bulkSpaces'])
                 ->where('user_id', auth()->id())
                 ->latest()
                 ->get();
         } else {
-            $forms = Form::with('type')
+            $forms = Form::with(['type', 'bulkSpaces'])
                 ->latest()
                 ->get();
         }
