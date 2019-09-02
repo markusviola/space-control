@@ -32,6 +32,11 @@ class Form extends Model
         return $this->hasMany(BulkSpace::class);
     }
 
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class);
+    }
+
     public function triggerIsApproved()
     {
         $this->is_approved= true;
