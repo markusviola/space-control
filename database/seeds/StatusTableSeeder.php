@@ -12,8 +12,8 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        $status = ['問い合わせ', '仮予約', '本予約', 'キャンセル'];
-        foreach($status as $status) {
+        $statuses = ['問い合わせ', '仮予約', '本予約', 'キャンセル'];
+        foreach($statuses as $status) {
             Status::create([
                 'name' => $status,
             ]);
