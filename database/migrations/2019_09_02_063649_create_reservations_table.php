@@ -19,6 +19,8 @@ class CreateReservationsTable extends Migration
             $table->unsignedInteger('status_id');
             $table->unsignedInteger('route_id');
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_bin';
         });
     }
 
