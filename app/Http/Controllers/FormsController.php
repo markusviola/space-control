@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\BulkSpace;
 use Illuminate\Http\Request;
 use App\Form;
+use App\Reservation;
 use App\Schedule;
 use App\Space;
 use App\User;
@@ -37,7 +38,12 @@ class FormsController extends Controller
 
         $form = Form::whereId($id)->first();
         $form->triggerIsApproved()->save();
-        $form->load(['type','bulkSpaces']);
+        $form->load(['type', 'bulkSpaces']);
+        if ($form) {
+            Reservation::create([
+                'form_id' => $id
+            ]);
+        }
 
         return $form;
     }
