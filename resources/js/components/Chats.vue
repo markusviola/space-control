@@ -38,8 +38,8 @@
             return {
                 forms: [],
                 messages: [],
+                changedForm: null,
                 selectedForm: null,
-                updatePhase: false,
             }
         },
         mounted() {
@@ -50,16 +50,18 @@
                 axios.get('/chats/forms')
                 .then(response => {
                     this.forms = response.data;
-                    this.forms.forEach(form => {
-                        Echo.private(`chat.${form.id}`)
+                    if (this.choice && !this.changedForm) {
+                        this.forms.forEach(form => {
+                            Echo.private(`chat.${form.id}`)
                             .listen('MessageSent', event => {
                                 this.handleMessage(event.message);
                             });
-                        if (this.choice && !this.updatePhase) {
-                            this.fetchMessages(this.choice);
-                            this.updatePhase = true;
-                        }
-                    });
+                        });
+                        this.fetchMessages(this.choice);
+                    } else {
+                        this.selectedForm = Object.assign({}, this.changedForm);
+                        this.changedForm = null;
+                    }
                 })
             },
             fetchMessages(form) {
@@ -70,10 +72,9 @@
                     this.selectedForm = form;
                 })
             },
-            changeFormStatus($updatedForm) {
-                this.updatePhase = false;
+            changeFormStatus(updatedForm) {
+                this.changedForm = updatedForm;
                 this.fetchForms();
-                this.selectedForm = $updatedForm;
             },
             pushNewMessage(message) {
                 this.messages.push(message);

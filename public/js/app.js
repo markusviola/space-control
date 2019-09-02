@@ -1877,8 +1877,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       forms: [],
       messages: [],
-      selectedForm: null,
-      updatePhase: false
+      changedForm: null,
+      selectedForm: null
     };
   },
   mounted: function mounted() {
@@ -1891,17 +1891,18 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/chats/forms').then(function (response) {
         _this.forms = response.data;
 
-        _this.forms.forEach(function (form) {
-          Echo["private"]("chat.".concat(form.id)).listen('MessageSent', function (event) {
-            _this.handleMessage(event.message);
+        if (_this.choice && !_this.changedForm) {
+          _this.forms.forEach(function (form) {
+            Echo["private"]("chat.".concat(form.id)).listen('MessageSent', function (event) {
+              _this.handleMessage(event.message);
+            });
           });
 
-          if (_this.choice && !_this.updatePhase) {
-            _this.fetchMessages(_this.choice);
-
-            _this.updatePhase = true;
-          }
-        });
+          _this.fetchMessages(_this.choice);
+        } else {
+          _this.selectedForm = Object.assign({}, _this.changedForm);
+          _this.changedForm = null;
+        }
       });
     },
     fetchMessages: function fetchMessages(form) {
@@ -1913,10 +1914,9 @@ __webpack_require__.r(__webpack_exports__);
         _this2.selectedForm = form;
       });
     },
-    changeFormStatus: function changeFormStatus($updatedForm) {
-      this.updatePhase = false;
+    changeFormStatus: function changeFormStatus(updatedForm) {
+      this.changedForm = updatedForm;
       this.fetchForms();
-      this.selectedForm = $updatedForm;
     },
     pushNewMessage: function pushNewMessage(message) {
       this.messages.push(message);

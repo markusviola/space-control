@@ -29,3 +29,5 @@ Route::get('/forms/{id}/dates', 'FormsController@getFormDates');
 Route::patch('/forms/{id}/approve', 'FormsController@approveForm');
 
 Route::resource('forms', 'FormsController');
+
+Route::patch('/reservations/{id}/edit', 'FormsController@update');

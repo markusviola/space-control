@@ -27,6 +27,7 @@ class CreateFormsTable extends Migration
             $table->boolean('will_stay');
             $table->longText('reason');
             $table->integer('user_count')->default(1);
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
