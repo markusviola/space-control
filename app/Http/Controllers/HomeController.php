@@ -28,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = new User();
         $types = Type::all();
         $spaces = Space::all();
         $isReserveList = false;
