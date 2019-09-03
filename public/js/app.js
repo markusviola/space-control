@@ -2857,6 +2857,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2885,7 +2902,8 @@ __webpack_require__.r(__webpack_exports__);
       status_id: null,
       discovery_id: null,
       is_independent: null,
-      corporate_name: null
+      corporate_name: null,
+      visitDate: null
     };
   },
   created: function created() {
@@ -2893,6 +2911,9 @@ __webpack_require__.r(__webpack_exports__);
     this.discovery_id = this.form.reservation.discovery.id;
     this.is_independent = this.form.reservation.is_independent ? true : false;
     this.corporate_name = this.form.reservation.corporate_name;
+  },
+  methods: {
+    onVisitPicked: function onVisitPicked() {}
   }
 });
 
@@ -50599,7 +50620,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mb-3" }, [
+                _c("div", { staticClass: "row mb-2" }, [
                   _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
@@ -50612,6 +50633,7 @@ var render = function() {
                           expression: "corporate_name"
                         }
                       ],
+                      staticClass: "form-control",
                       attrs: { type: "text" },
                       domProps: { value: _vm.corporate_name },
                       on: {
@@ -50624,10 +50646,38 @@ var render = function() {
                       }
                     })
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8 z-index-3" },
+                    [
+                      _c("v-date-picker", {
+                        attrs: {
+                          locale: "ja",
+                          "input-props": {
+                            readonly: true
+                          }
+                        },
+                        on: { input: _vm.onVisitPicked },
+                        model: {
+                          value: _vm.visitDate,
+                          callback: function($$v) {
+                            _vm.visitDate = $$v
+                          },
+                          expression: "visitDate"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(7)
             ])
           ]
         )
@@ -50699,7 +50749,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Usage Category")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Usage")])
     ])
   },
   function() {
@@ -50708,6 +50758,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Corporate Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Visit Date")])
     ])
   },
   function() {

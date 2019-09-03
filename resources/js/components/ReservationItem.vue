@@ -70,7 +70,7 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Usage Category</strong>
+                                <strong class="text-muted">Usage</strong>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check">
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Corporate Name</strong>
                             </div>
@@ -106,7 +106,24 @@
                                 <input
                                     v-model="corporate_name"
                                     type="text"
+                                    class="form-control"
                                 >
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Visit Date</strong>
+                            </div>
+                            <div class="col-md-8 z-index-3">
+                                <v-date-picker
+                                    locale="ja"
+                                    @input="onVisitPicked"
+                                    v-model="visitDate"
+                                    :input-props='{
+                                        readonly: true,
+                                    }'
+                                >
+                                </v-date-picker>
                             </div>
                         </div>
 
@@ -152,6 +169,7 @@ export default {
             discovery_id: null,
             is_independent: null,
             corporate_name: null,
+            visitDate: null,
         }
     },
     created() {
@@ -159,6 +177,11 @@ export default {
         this.discovery_id = this.form.reservation.discovery.id;
         this.is_independent = this.form.reservation.is_independent ? true : false;
         this.corporate_name = this.form.reservation.corporate_name;
+    },
+    methods: {
+        onVisitPicked() {
+
+        }
     }
 }
 </script>
