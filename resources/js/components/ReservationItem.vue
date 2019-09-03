@@ -205,6 +205,32 @@
                                 >
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Payment Cost</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="payment_cost"
+                                    type="number"
+                                    step="0.01"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Discounted Cost</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="discounted_cost"
+                                    type="number"
+                                    step="0.01"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -254,6 +280,8 @@ export default {
             remarks: null,
             cancel_reason: null,
             actual_hours: null,
+            payment_cost: null,
+            discounted_cost: null,
         }
     },
     created() {
@@ -268,6 +296,8 @@ export default {
         this.remarks = this.form.reservation.remarks;
         this.cancel_reason = this.form.reservation.cancel_reason;
         this.actual_hours = this.form.reservation.actual_hours;
+        this.payment_cost = this.form.reservation.payment_cost;
+        this.discounted_cost = this.form.reservation.discounted_cost;
     },
     methods: {
         onVisitPicked() {

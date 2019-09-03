@@ -2953,6 +2953,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2987,7 +3013,9 @@ __webpack_require__.r(__webpack_exports__);
       will_noise: null,
       remarks: null,
       cancel_reason: null,
-      actual_hours: null
+      actual_hours: null,
+      payment_cost: null,
+      discounted_cost: null
     };
   },
   created: function created() {
@@ -3001,6 +3029,8 @@ __webpack_require__.r(__webpack_exports__);
     this.remarks = this.form.reservation.remarks;
     this.cancel_reason = this.form.reservation.cancel_reason;
     this.actual_hours = this.form.reservation.actual_hours;
+    this.payment_cost = this.form.reservation.payment_cost;
+    this.discounted_cost = this.form.reservation.discounted_cost;
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
@@ -50955,10 +50985,66 @@ var render = function() {
                       }
                     })
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(12),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.payment_cost,
+                          expression: "payment_cost"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number", step: "0.01" },
+                      domProps: { value: _vm.payment_cost },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.payment_cost = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(13),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.discounted_cost,
+                          expression: "discounted_cost"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number", step: "0.01" },
+                      domProps: { value: _vm.discounted_cost },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.discounted_cost = $event.target.value
+                        }
+                      }
+                    })
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(12)
+              _vm._m(14)
             ])
           ]
         )
@@ -51089,6 +51175,22 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Actual Hours")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Payment Cost")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Discounted Cost")])
     ])
   },
   function() {
