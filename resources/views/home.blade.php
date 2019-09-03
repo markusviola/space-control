@@ -28,10 +28,16 @@
                     @if (Auth::check() && Auth::user()->is_admin)
                         <ul class="nav nav-tabs mt-3">
                             <li class="nav-item">
-                                <a class="nav-link {{ !$isReserveList ? 'active' : '' }}" href="{{ route('home') }}">Requests</a>
+                                <a
+                                    class="nav-link {{ !$isReserveList ? 'active' : '' }}"
+                                    href="{{ route('home') }}"
+                                >Requests</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ $isReserveList ? 'active' : '' }}" href="{{ route('manager') }}">Reservations</a>
+                                <a
+                                    class="nav-link {{ $isReserveList ? 'active' : '' }}"
+                                    href="{{ route('manager', ['type' => '1']) }}"
+                                >Reservations</a>
                             </li>
                         </ul>
                         @if ($isReserveList)
