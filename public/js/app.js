@@ -2874,6 +2874,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2903,7 +2916,8 @@ __webpack_require__.r(__webpack_exports__);
       discovery_id: null,
       is_independent: null,
       corporate_name: null,
-      visitDate: null
+      visitDate: null,
+      visit_place: null
     };
   },
   created: function created() {
@@ -2911,9 +2925,16 @@ __webpack_require__.r(__webpack_exports__);
     this.discovery_id = this.form.reservation.discovery.id;
     this.is_independent = this.form.reservation.is_independent ? true : false;
     this.corporate_name = this.form.reservation.corporate_name;
+    this.visitDate = this.form.reservation.visitDate ? new Date(this.form.reservation.visitDate) : null;
+    this.visit_place = this.form.reservation.visit_place;
   },
   methods: {
-    onVisitPicked: function onVisitPicked() {}
+    onVisitPicked: function onVisitPicked() {},
+    range: function range(start, end) {
+      return Array(end - start + 1).fill().map(function (_, idx) {
+        return start + idx;
+      });
+    }
   }
 });
 
@@ -50620,7 +50641,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mb-2" }, [
+                _c("div", { staticClass: "row mb-3" }, [
                   _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
@@ -50648,7 +50669,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mb-2" }, [
+                _c("div", { staticClass: "row mb-3" }, [
                   _vm._m(6),
                   _vm._v(" "),
                   _c(
@@ -50674,10 +50695,38 @@ var render = function() {
                     ],
                     1
                   )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.visit_place,
+                          expression: "visit_place"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.visit_place },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.visit_place = $event.target.value
+                        }
+                      }
+                    })
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(7)
+              _vm._m(8)
             ])
           ]
         )
@@ -50766,6 +50815,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Visit Date")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Place to Check")])
     ])
   },
   function() {

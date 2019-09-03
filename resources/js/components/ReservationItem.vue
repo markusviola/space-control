@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Corporate Name</strong>
                             </div>
@@ -110,7 +110,7 @@
                                 >
                             </div>
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Visit Date</strong>
                             </div>
@@ -126,6 +126,19 @@
                                 </v-date-picker>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Place to Check</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="visit_place"
+                                    type="text"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -170,6 +183,7 @@ export default {
             is_independent: null,
             corporate_name: null,
             visitDate: null,
+            visit_place: null,
         }
     },
     created() {
@@ -177,11 +191,18 @@ export default {
         this.discovery_id = this.form.reservation.discovery.id;
         this.is_independent = this.form.reservation.is_independent ? true : false;
         this.corporate_name = this.form.reservation.corporate_name;
+        this.visitDate = this.form.reservation.visitDate ?
+            new Date(this.form.reservation.visitDate) : null;
+        this.visit_place = this.form.reservation.visit_place;
     },
     methods: {
         onVisitPicked() {
 
-        }
+        },
+        range(start, end) {
+            return Array(end - start + 1)
+                .fill().map((_, idx) => start + idx)
+        },
     }
 }
 </script>
