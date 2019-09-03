@@ -2917,6 +2917,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2948,7 +2984,10 @@ __webpack_require__.r(__webpack_exports__);
       corporate_name: null,
       visitDate: null,
       visit_place: null,
-      will_noise: null
+      will_noise: null,
+      remarks: null,
+      cancel_reason: null,
+      actual_hours: null
     };
   },
   created: function created() {
@@ -2958,7 +2997,10 @@ __webpack_require__.r(__webpack_exports__);
     this.corporate_name = this.form.reservation.corporate_name;
     this.visitDate = this.form.reservation.visitDate ? new Date(this.form.reservation.visitDate) : null;
     this.visit_place = this.form.reservation.visit_place;
-    this.will_noise = this.form.reservation.will_noise;
+    this.will_noise = this.form.reservation.will_noise ? true : false;
+    this.remarks = this.form.reservation.remarks;
+    this.cancel_reason = this.form.reservation.cancel_reason;
+    this.actual_hours = this.form.reservation.actual_hours;
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
@@ -50829,10 +50871,94 @@ var render = function() {
                       )
                     ])
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(9),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.remarks,
+                          expression: "remarks"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.remarks },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.remarks = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(10),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cancel_reason,
+                          expression: "cancel_reason"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.cancel_reason },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.cancel_reason = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(11),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.actual_hours,
+                          expression: "actual_hours"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.actual_hours },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.actual_hours = $event.target.value
+                        }
+                      }
+                    })
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(9)
+              _vm._m(12)
             ])
           ]
         )
@@ -50937,6 +51063,32 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Loud Activities?")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Remarks")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [
+        _vm._v("Cancellation Reason")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Actual Hours")])
     ])
   },
   function() {

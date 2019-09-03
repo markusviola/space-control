@@ -169,6 +169,42 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Remarks</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="remarks"
+                                    type="text"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Cancellation Reason</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="cancel_reason"
+                                    type="text"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Actual Hours</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <input
+                                    v-model="actual_hours"
+                                    type="number"
+                                    class="form-control"
+                                >
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -215,6 +251,9 @@ export default {
             visitDate: null,
             visit_place: null,
             will_noise: null,
+            remarks: null,
+            cancel_reason: null,
+            actual_hours: null,
         }
     },
     created() {
@@ -225,7 +264,10 @@ export default {
         this.visitDate = this.form.reservation.visitDate ?
             new Date(this.form.reservation.visitDate) : null;
         this.visit_place = this.form.reservation.visit_place;
-        this.will_noise = this.form.reservation.will_noise;
+        this.will_noise = this.form.reservation.will_noise ? true : false;
+        this.remarks = this.form.reservation.remarks;
+        this.cancel_reason = this.form.reservation.cancel_reason;
+        this.actual_hours = this.form.reservation.actual_hours;
     },
     methods: {
         onVisitPicked() {
