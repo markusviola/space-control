@@ -231,6 +231,37 @@
                                 >
                             </div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Invoiced?</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <input
+                                        v-model="invoice"
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="has_invoice"
+                                        value="true"
+                                    >
+                                    <label class="form-check-label" for="has_invoice">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        v-model="invoice"
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="no_invoice"
+                                        value="false"
+                                    >
+                                    <label class="form-check-label" for="no_invoice">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -282,6 +313,7 @@ export default {
             actual_hours: null,
             payment_cost: null,
             discounted_cost: null,
+            invoice: null,
         }
     },
     created() {
@@ -298,6 +330,7 @@ export default {
         this.actual_hours = this.form.reservation.actual_hours;
         this.payment_cost = this.form.reservation.payment_cost;
         this.discounted_cost = this.form.reservation.discounted_cost;
+        this.invoice = this.form.reservation.invoice ? true : false;
     },
     methods: {
         onVisitPicked() {

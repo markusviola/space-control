@@ -2979,6 +2979,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3015,7 +3046,8 @@ __webpack_require__.r(__webpack_exports__);
       cancel_reason: null,
       actual_hours: null,
       payment_cost: null,
-      discounted_cost: null
+      discounted_cost: null,
+      invoice: null
     };
   },
   created: function created() {
@@ -3031,6 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
     this.actual_hours = this.form.reservation.actual_hours;
     this.payment_cost = this.form.reservation.payment_cost;
     this.discounted_cost = this.form.reservation.discounted_cost;
+    this.invoice = this.form.reservation.invoice ? true : false;
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
@@ -51041,10 +51074,92 @@ var render = function() {
                       }
                     })
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.invoice,
+                            expression: "invoice"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          id: "has_invoice",
+                          value: "true"
+                        },
+                        domProps: { checked: _vm._q(_vm.invoice, "true") },
+                        on: {
+                          change: function($event) {
+                            _vm.invoice = "true"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "has_invoice" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Yes\n                                "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.invoice,
+                            expression: "invoice"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          id: "no_invoice",
+                          value: "false"
+                        },
+                        domProps: { checked: _vm._q(_vm.invoice, "false") },
+                        on: {
+                          change: function($event) {
+                            _vm.invoice = "false"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "no_invoice" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    No\n                                "
+                          )
+                        ]
+                      )
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(14)
+              _vm._m(15)
             ])
           ]
         )
@@ -51191,6 +51306,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Discounted Cost")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Invoiced?")])
     ])
   },
   function() {
