@@ -102,11 +102,9 @@ export default {
     methods: {
         sendMessage(event) {
             event.preventDefault();
-
             if (this.message == '' || !this.form) {
                 return;
             }
-
             axios.post('messages', {
                 to: this.form.id,
                 message: this.message

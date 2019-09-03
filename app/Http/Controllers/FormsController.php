@@ -9,7 +9,6 @@ use App\Reservation;
 use App\Schedule;
 use App\Space;
 use App\User;
-use DateTime;
 
 class FormsController extends Controller
 {

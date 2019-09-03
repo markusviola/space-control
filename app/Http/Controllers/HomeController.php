@@ -28,9 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = new User();
         $types = Type::all();
         $spaces = Space::all();
+        $isReserveList = false;
 
         if (auth()->check() && !auth()->user()->is_admin) {
             $forms = Form::with('type')
@@ -44,6 +44,6 @@ class HomeController extends Controller
         }
 
         return view('home',
-            compact('user', 'types', 'spaces', 'forms'));
+            compact('user', 'types', 'spaces', 'forms', 'isReserveList'));
     }
 }

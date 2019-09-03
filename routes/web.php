@@ -30,4 +30,6 @@ Route::patch('/forms/{id}/approve', 'FormsController@approveForm');
 
 Route::resource('forms', 'FormsController');
 
-Route::patch('/reservations/{id}/edit', 'FormsController@update');
+Route::get('/reservations', 'ReservationsController@index')->name('manager');
+
+Route::patch('/reservations/{id}/edit', 'ReservationsController@update');
