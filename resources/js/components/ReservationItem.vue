@@ -138,7 +138,37 @@
                                 >
                             </div>
                         </div>
-
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Loud Activities?</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <input
+                                        v-model="will_noise"
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="yes"
+                                        value="true"
+                                    >
+                                    <label class="form-check-label" for="yes">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        v-model="will_noise"
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="no"
+                                        value="false"
+                                    >
+                                    <label class="form-check-label" for="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -184,6 +214,7 @@ export default {
             corporate_name: null,
             visitDate: null,
             visit_place: null,
+            will_noise: null,
         }
     },
     created() {
@@ -194,6 +225,7 @@ export default {
         this.visitDate = this.form.reservation.visitDate ?
             new Date(this.form.reservation.visitDate) : null;
         this.visit_place = this.form.reservation.visit_place;
+        this.will_noise = this.form.reservation.will_noise;
     },
     methods: {
         onVisitPicked() {

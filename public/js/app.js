@@ -2887,6 +2887,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2917,7 +2947,8 @@ __webpack_require__.r(__webpack_exports__);
       is_independent: null,
       corporate_name: null,
       visitDate: null,
-      visit_place: null
+      visit_place: null,
+      will_noise: null
     };
   },
   created: function created() {
@@ -2927,6 +2958,7 @@ __webpack_require__.r(__webpack_exports__);
     this.corporate_name = this.form.reservation.corporate_name;
     this.visitDate = this.form.reservation.visitDate ? new Date(this.form.reservation.visitDate) : null;
     this.visit_place = this.form.reservation.visit_place;
+    this.will_noise = this.form.reservation.will_noise;
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
@@ -50723,10 +50755,84 @@ var render = function() {
                       }
                     })
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-2" }, [
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.will_noise,
+                            expression: "will_noise"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: { type: "radio", id: "yes", value: "true" },
+                        domProps: { checked: _vm._q(_vm.will_noise, "true") },
+                        on: {
+                          change: function($event) {
+                            _vm.will_noise = "true"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "yes" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Yes\n                                "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.will_noise,
+                            expression: "will_noise"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: { type: "radio", id: "no", value: "false" },
+                        domProps: { checked: _vm._q(_vm.will_noise, "false") },
+                        on: {
+                          change: function($event) {
+                            _vm.will_noise = "false"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: "no" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    No\n                                "
+                          )
+                        ]
+                      )
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(8)
+              _vm._m(9)
             ])
           ]
         )
@@ -50823,6 +50929,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Place to Check")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Loud Activities?")])
     ])
   },
   function() {
