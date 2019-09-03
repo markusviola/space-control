@@ -12,7 +12,14 @@
 <div class="formlist-column">
     @if (sizeof($approvedForms) > 0)
         @foreach ($approvedForms as $form)
-            <div class="container py-3 panel-highlight">
+            <reservation-item
+                :form="{{ $form }}"
+                :types="{{ $types }}"
+                :spaces="{{ $spaces }}"
+                :discoveries="{{ $discoveries }}"
+                :statuses="{{ $statuses }}"
+            ></reservation-item>
+            <div class="container py-3 panel-highlight" data-toggle="modal" data-target="#reservation-item">
                 <div class="row">
                     <div class="col-md-8 alt-neutral">
                         <h5>
