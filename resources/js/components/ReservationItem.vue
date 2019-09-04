@@ -123,7 +123,6 @@
                             <div class="col-md-8">
                                 <v-date-picker
                                     locale="ja"
-                                    @input="onVisitPicked"
                                     v-model="visit_date"
                                     :input-props='{
                                         readonly: true,
@@ -215,7 +214,7 @@
                                 >
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div v-if="status_id == 4" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Cancellation Reason</strong>
                             </div>
@@ -303,7 +302,6 @@
                             <div class="col-md-8">
                                 <v-date-picker
                                     locale="ja"
-                                    @input="onPaydatePicked(true)"
                                     v-model="paydate"
                                     :input-props='{
                                         readonly: true,
@@ -319,7 +317,6 @@
                             <div class="col-md-8">
                                 <v-date-picker
                                     locale="ja"
-                                    @input="onPaydatePicked(false)"
                                     v-model="actual_paydate"
                                     :input-props='{
                                         readonly: true,
@@ -411,42 +408,33 @@ export default {
         this.actual_paydate = this.form.reservation.actual_paydate ?
             new Date(this.form.reservation.actual_paydate) : null;
 
-        for (let i = 0; i < this.spaces.length; i+=1) {
-            let hasMatch = false;
-            for (let j = 0; j < this.form.bulk_spaces.length; j+=1) {
-                if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
-                    hasMatch = !hasMatch;
+        if (this.typeid == 2) {
+            for (let i = 0; i < this.spaces.length; i+=1) {
+                let hasMatch = false;
+                for (let j = 0; j < this.form.bulk_spaces.length; j+=1) {
+                    if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
+                        hasMatch = !hasMatch;
+                        this.checkSpaces.push({
+                            id: this.spaces[i].id,
+                            is_selected: hasMatch
+                        });
+                        break;
+                    }
+                }
+                if (!hasMatch) {
                     this.checkSpaces.push({
                         id: this.spaces[i].id,
-                        is_selected: hasMatch
+                        is_selected: false,
                     });
-                    break;
                 }
             }
-            if (!hasMatch) {
-                this.checkSpaces.push({
-                    id: this.spaces[i].id,
-                    is_selected: false,
-                });
-            }
         }
-
-        console.log(this.checkSpaces);
     },
     methods: {
-        onVisitPicked() {
-
-        },
-        onSpacesChanged() {
-            console.log(this.checkSpaces);
-        },
         range(start, end) {
             return Array(end - start + 1)
                 .fill().map((_, idx) => start + idx)
         },
-        onPayDatePicked(isActual) {
-            console.log(isActual);
-        }
     }
 }
 </script>

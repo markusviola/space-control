@@ -3073,9 +3073,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3140,42 +3137,35 @@ __webpack_require__.r(__webpack_exports__);
     this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
     this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
 
-    for (var i = 0; i < this.spaces.length; i += 1) {
-      var hasMatch = false;
+    if (this.typeid == 2) {
+      for (var i = 0; i < this.spaces.length; i += 1) {
+        var hasMatch = false;
 
-      for (var j = 0; j < this.form.bulk_spaces.length; j += 1) {
-        if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
-          hasMatch = !hasMatch;
+        for (var j = 0; j < this.form.bulk_spaces.length; j += 1) {
+          if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
+            hasMatch = !hasMatch;
+            this.checkSpaces.push({
+              id: this.spaces[i].id,
+              is_selected: hasMatch
+            });
+            break;
+          }
+        }
+
+        if (!hasMatch) {
           this.checkSpaces.push({
             id: this.spaces[i].id,
-            is_selected: hasMatch
+            is_selected: false
           });
-          break;
         }
       }
-
-      if (!hasMatch) {
-        this.checkSpaces.push({
-          id: this.spaces[i].id,
-          is_selected: false
-        });
-      }
     }
-
-    console.log(this.checkSpaces);
   },
   methods: {
-    onVisitPicked: function onVisitPicked() {},
-    onSpacesChanged: function onSpacesChanged() {
-      console.log(this.checkSpaces);
-    },
     range: function range(start, end) {
       return Array(end - start + 1).fill().map(function (_, idx) {
         return start + idx;
       });
-    },
-    onPayDatePicked: function onPayDatePicked(isActual) {
-      console.log(isActual);
     }
   }
 });
@@ -50935,7 +50925,6 @@ var render = function() {
                             readonly: true
                           }
                         },
-                        on: { input: _vm.onVisitPicked },
                         model: {
                           value: _vm.visit_date,
                           callback: function($$v) {
@@ -51181,33 +51170,35 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(12),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.cancel_reason,
-                          expression: "cancel_reason"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.cancel_reason },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                _vm.status_id == 4
+                  ? _c("div", { staticClass: "row mb-3" }, [
+                      _vm._m(12),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.cancel_reason,
+                              expression: "cancel_reason"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.cancel_reason },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.cancel_reason = $event.target.value
+                            }
                           }
-                          _vm.cancel_reason = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ]),
+                        })
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
                   _vm._m(13),
@@ -51389,11 +51380,6 @@ var render = function() {
                             readonly: true
                           }
                         },
-                        on: {
-                          input: function($event) {
-                            return _vm.onPaydatePicked(true)
-                          }
-                        },
                         model: {
                           value: _vm.paydate,
                           callback: function($$v) {
@@ -51419,11 +51405,6 @@ var render = function() {
                           locale: "ja",
                           "input-props": {
                             readonly: true
-                          }
-                        },
-                        on: {
-                          input: function($event) {
-                            return _vm.onPaydatePicked(false)
                           }
                         },
                         model: {
