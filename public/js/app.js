@@ -3010,6 +3010,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3039,7 +3071,7 @@ __webpack_require__.r(__webpack_exports__);
       discovery_id: null,
       is_independent: null,
       corporate_name: null,
-      visitDate: null,
+      visit_date: null,
       visit_place: null,
       will_noise: null,
       remarks: null,
@@ -3047,7 +3079,9 @@ __webpack_require__.r(__webpack_exports__);
       actual_hours: null,
       payment_cost: null,
       discounted_cost: null,
-      invoice: null
+      invoice: null,
+      paydate: null,
+      actual_paydate: null
     };
   },
   created: function created() {
@@ -3055,7 +3089,7 @@ __webpack_require__.r(__webpack_exports__);
     this.discovery_id = this.form.reservation.discovery.id;
     this.is_independent = this.form.reservation.is_independent ? true : false;
     this.corporate_name = this.form.reservation.corporate_name;
-    this.visitDate = this.form.reservation.visitDate ? new Date(this.form.reservation.visitDate) : null;
+    this.visit_date = this.form.reservation.visit_date ? new Date(this.form.reservation.visit_date) : null;
     this.visit_place = this.form.reservation.visit_place;
     this.will_noise = this.form.reservation.will_noise ? true : false;
     this.remarks = this.form.reservation.remarks;
@@ -3064,6 +3098,8 @@ __webpack_require__.r(__webpack_exports__);
     this.payment_cost = this.form.reservation.payment_cost;
     this.discounted_cost = this.form.reservation.discounted_cost;
     this.invoice = this.form.reservation.invoice ? true : false;
+    this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
+    this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
@@ -3071,6 +3107,9 @@ __webpack_require__.r(__webpack_exports__);
       return Array(end - start + 1).fill().map(function (_, idx) {
         return start + idx;
       });
+    },
+    onPayDatePicked: function onPayDatePicked(isActual) {
+      console.log(isActual);
     }
   }
 });
@@ -50811,7 +50850,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-md-8 z-index-3" },
+                    { staticClass: "col-md-8" },
                     [
                       _c("v-date-picker", {
                         attrs: {
@@ -50822,11 +50861,11 @@ var render = function() {
                         },
                         on: { input: _vm.onVisitPicked },
                         model: {
-                          value: _vm.visitDate,
+                          value: _vm.visit_date,
                           callback: function($$v) {
-                            _vm.visitDate = $$v
+                            _vm.visit_date = $$v
                           },
-                          expression: "visitDate"
+                          expression: "visit_date"
                         }
                       })
                     ],
@@ -51156,10 +51195,74 @@ var render = function() {
                       )
                     ])
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(15),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8" },
+                    [
+                      _c("v-date-picker", {
+                        attrs: {
+                          locale: "ja",
+                          "input-props": {
+                            readonly: true
+                          }
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.onPaydatePicked(true)
+                          }
+                        },
+                        model: {
+                          value: _vm.paydate,
+                          callback: function($$v) {
+                            _vm.paydate = $$v
+                          },
+                          expression: "paydate"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mb-3" }, [
+                  _vm._m(16),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8" },
+                    [
+                      _c("v-date-picker", {
+                        attrs: {
+                          locale: "ja",
+                          "input-props": {
+                            readonly: true
+                          }
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.onPaydatePicked(false)
+                          }
+                        },
+                        model: {
+                          value: _vm.actual_paydate,
+                          callback: function($$v) {
+                            _vm.actual_paydate = $$v
+                          },
+                          expression: "actual_paydate"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(15)
+              _vm._m(17)
             ])
           ]
         )
@@ -51314,6 +51417,22 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Invoiced?")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Paydate")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Actual Paydate")])
     ])
   },
   function() {

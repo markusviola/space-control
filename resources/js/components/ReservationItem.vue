@@ -114,11 +114,11 @@
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Visit Date</strong>
                             </div>
-                            <div class="col-md-8 z-index-3">
+                            <div class="col-md-8">
                                 <v-date-picker
                                     locale="ja"
                                     @input="onVisitPicked"
-                                    v-model="visitDate"
+                                    v-model="visit_date"
                                     :input-props='{
                                         readonly: true,
                                     }'
@@ -262,6 +262,38 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Paydate</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <v-date-picker
+                                    locale="ja"
+                                    @input="onPaydatePicked(true)"
+                                    v-model="paydate"
+                                    :input-props='{
+                                        readonly: true,
+                                    }'
+                                >
+                                </v-date-picker>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Actual Paydate</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <v-date-picker
+                                    locale="ja"
+                                    @input="onPaydatePicked(false)"
+                                    v-model="actual_paydate"
+                                    :input-props='{
+                                        readonly: true,
+                                    }'
+                                >
+                                </v-date-picker>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -305,7 +337,7 @@ export default {
             discovery_id: null,
             is_independent: null,
             corporate_name: null,
-            visitDate: null,
+            visit_date: null,
             visit_place: null,
             will_noise: null,
             remarks: null,
@@ -314,6 +346,8 @@ export default {
             payment_cost: null,
             discounted_cost: null,
             invoice: null,
+            paydate: null,
+            actual_paydate: null,
         }
     },
     created() {
@@ -321,8 +355,8 @@ export default {
         this.discovery_id = this.form.reservation.discovery.id;
         this.is_independent = this.form.reservation.is_independent ? true : false;
         this.corporate_name = this.form.reservation.corporate_name;
-        this.visitDate = this.form.reservation.visitDate ?
-            new Date(this.form.reservation.visitDate) : null;
+        this.visit_date = this.form.reservation.visit_date ?
+            new Date(this.form.reservation.visit_date) : null;
         this.visit_place = this.form.reservation.visit_place;
         this.will_noise = this.form.reservation.will_noise ? true : false;
         this.remarks = this.form.reservation.remarks;
@@ -331,6 +365,11 @@ export default {
         this.payment_cost = this.form.reservation.payment_cost;
         this.discounted_cost = this.form.reservation.discounted_cost;
         this.invoice = this.form.reservation.invoice ? true : false;
+        this.paydate = this.form.reservation.paydate ?
+            new Date(this.form.reservation.paydate) : null;
+        this.actual_paydate = this.form.reservation.actual_paydate ?
+            new Date(this.form.reservation.actual_paydate) : null;
+
     },
     methods: {
         onVisitPicked() {
@@ -340,6 +379,9 @@ export default {
             return Array(end - start + 1)
                 .fill().map((_, idx) => start + idx)
         },
+        onPayDatePicked(isActual) {
+            console.log(isActual);
+        }
     }
 }
 </script>
