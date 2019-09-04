@@ -21,378 +21,468 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Type</strong>
-                            </div>
-                            <div class="col-md-8 font-weight-bold text-secondary">{{ form.type.name }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Inquiry Date</strong>
-                            </div>
-                            <div class="col-md-8">{{ form.created_at }}</div>
-                        </div>
-                        <hr>
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Status</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <select
-                                        v-model="status_id"
-                                        class="form-control"
-                                    >
-                                        <option
-                                            v-for="(status, index) in statuses"
-                                            :key="index"
-                                            :value="status.id"
-                                            :selected="status.id == form.reservation.status.id"
-                                        >{{ status.name }}</option>
-                                    </select>
+                        <ul class="nav nav-tabs mb-4">
+                            <li class="nav-item">
+                                <div
+                                    @click="onArrangement = !onArrangement"
+                                    :class="`nav-link anti-neutral clickable ${onArrangement ? 'active' : ''}`"
+                                >Arrangement</div>
+                            </li>
+                            <li class="nav-item">
+                                <div
+                                    @click="onArrangement = !onArrangement"
+                                    :class="`nav-link anti-neutral clickable ${!onArrangement ? 'active' : ''}`"
+                                >Client Information</div>
+                            </li>
+                        </ul>
+                        <div v-if="onArrangement">
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Type</strong>
                                 </div>
+                                <div class="col-md-8 font-weight-bold text-secondary">{{ form.type.name }}</div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Route</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <select
-                                        v-model="discovery_id"
-                                        class="form-control"
-                                    >
-                                        <option
-                                            v-for="(discovery, index) in discoveries"
-                                            :key="index"
-                                            :value="discovery.id"
-                                            :selected="discovery.id == discovery_id"
-                                        >{{ discovery.name }}</option>
-                                    </select>
+                            <div class="row mb-4">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Inquiry Date</strong>
                                 </div>
+                                <div class="col-md-8">{{ form.created_at }}</div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Usage</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <input
-                                        v-model="is_independent"
-                                        class="form-check-input"
-                                        type="radio" id="individual"
-                                        :value="one"
-                                    >
-                                    <label class="form-check-label" for="individual">
-                                        Individual
-                                    </label>
+                            <div class="row">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Reason</strong>
                                 </div>
-                                <div class="form-check">
-                                    <input
-                                        v-model="is_independent"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="corporate"
-                                        :value="zero"
-                                    >
-                                    <label class="form-check-label" for="corporate">
-                                        Corporate
-                                    </label>
+                                <div class="col-md-8">{{ form.reason }}</div>
+                            </div>
+                            <hr>
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Status</strong>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Corporate Name</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="corporate_name"
-                                    type="text"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Visit Date</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <v-date-picker
-                                    locale="ja"
-                                    v-model="visit_date"
-                                    :input-props='{
-                                        readonly: true,
-                                    }'
-                                >
-                                </v-date-picker>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Visit Place</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="visit_place"
-                                    type="text"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div v-if="type_id == 2" class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Rooms</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="container">
-                                    <div class="row">
-                                        <div
-                                            v-for="(space, index) in spaces"
-                                            :key="index"
-                                            class="form-check col-6"
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <select
+                                            v-model="status_id"
+                                            class="form-control"
                                         >
-                                            <input
-                                                v-model="check_spaces[index].is_selected"
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                :id="space.name"
+                                            <option
+                                                v-for="(status, index) in statuses"
+                                                :key="index"
+                                                :value="status.id"
+                                                :selected="status.id == form.reservation.status.id"
+                                            >{{ status.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Route</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <select
+                                            v-model="discovery_id"
+                                            class="form-control"
+                                        >
+                                            <option
+                                                v-for="(discovery, index) in discoveries"
+                                                :key="index"
+                                                :value="discovery.id"
+                                                :selected="discovery.id == discovery_id"
+                                            >{{ discovery.name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Usage</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-check">
+                                        <input
+                                            v-model="is_independent"
+                                            class="form-check-input"
+                                            type="radio" id="individual"
+                                            :value="one"
+                                        >
+                                        <label class="form-check-label" for="individual">
+                                            Individual
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            v-model="is_independent"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="corporate"
+                                            :value="zero"
+                                        >
+                                        <label class="form-check-label" for="corporate">
+                                            Corporate
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Corporate Name</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="corporate_name"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div v-if="type_id != 1" class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">No. of People</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="user_count"
+                                        type="number"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Visit Date</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <v-date-picker
+                                        locale="ja"
+                                        v-model="visit_date"
+                                        :input-props='{
+                                            readonly: true,
+                                        }'
+                                    >
+                                    </v-date-picker>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Visit Place</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="visit_place"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div v-if="type_id == 2" class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Rooms</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div
+                                                v-for="(space, index) in spaces"
+                                                :key="index"
+                                                class="form-check col-6"
                                             >
-                                            <label class="form-check-label" :for="space.name">
-                                                {{ space.name }}
-                                            </label>
+                                                <input
+                                                    v-model="check_spaces[index].is_selected"
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                    :id="space.name"
+                                                >
+                                                <label class="form-check-label" :for="space.name">
+                                                    {{ space.name }}
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div v-if="type_id == 1" class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Stay Over?</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <input
-                                        v-model="will_stay"
-                                        class="form-check-input"
-                                        type="radio" id="willStay"
-                                        :value="one"
-                                    >
-                                    <label class="form-check-label" for="willStay">
-                                        Yes
-                                    </label>
+                            <div v-if="type_id == 1" class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Stay Over?</strong>
                                 </div>
-                                <div class="form-check">
-                                    <input
-                                        v-model="will_stay"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="wontStay"
-                                        :value="zero"
-                                    >
-                                    <label class="form-check-label" for="wontStay">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="text-center">
-                            <strong class="text-muted">Schedules</strong>
-                        </div>
-                        <div v-if="will_stay">
-                            <div class="container mt-3 p-0 px-4">
-                                <check-in-out
-                                    :setDate="date_times[0]"
-                                    @onCheckInOutChosen="changeDateTime"
-                                ></check-in-out>
-                            </div>
-                        </div>
-                        <div v-else>
-                            <div v-for="i in dateIncrement" v-bind:key="i">
-                                <div class="container">
-                                    <div class="row mt-3">
-                                        <div class="col-md-12 p-0">
-                                            <schedule-picker
-                                                @onDateTimeChosen="changeDateTime"
-                                                :dateTimeId="i"
-                                                :setDate="date_times[i-1]"
-                                            ></schedule-picker>
-                                        </div>
-                                        <div
-                                            v-if="i == dateIncrement"
-                                            class="col-md-12 p-0 d-flex justify-content-end px-1"
+                                <div class="col-md-8">
+                                    <div class="form-check">
+                                        <input
+                                            v-model="will_stay"
+                                            class="form-check-input"
+                                            type="radio" id="willStay"
+                                            :value="one"
                                         >
-                                            <i
-                                                v-on:click="addClicked"
-                                                class="fas fa-plus fa-lg edit mt-3"
-                                            ></i>
-                                            <i
-                                                v-if="i != 1"
-                                                v-on:click="removeClicked"
-                                                class="fas fa-minus-circle fa-lg delete pl-3 mt-3"
-                                            ></i>
+                                        <label class="form-check-label" for="willStay">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            v-model="will_stay"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="wontStay"
+                                            :value="zero"
+                                        >
+                                        <label class="form-check-label" for="wontStay">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <strong class="text-muted">Schedules</strong>
+                            </div>
+                            <div v-if="will_stay">
+                                <div class="container mt-3 p-0 px-4">
+                                    <check-in-out
+                                        :setDate="date_times[0]"
+                                        @onCheckInOutChosen="changeDateTime"
+                                    ></check-in-out>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div v-for="i in dateIncrement" v-bind:key="i">
+                                    <div class="container">
+                                        <div class="row mt-3">
+                                            <div class="col-md-12 p-0">
+                                                <schedule-picker
+                                                    @onDateTimeChosen="changeDateTime"
+                                                    :dateTimeId="i"
+                                                    :setDate="date_times[i-1]"
+                                                ></schedule-picker>
+                                            </div>
+                                            <div
+                                                v-if="i == dateIncrement"
+                                                class="col-md-12 p-0 d-flex justify-content-end px-1"
+                                            >
+                                                <i
+                                                    v-on:click="addClicked"
+                                                    class="fas fa-plus fa-lg edit mt-3"
+                                                ></i>
+                                                <i
+                                                    v-if="i != 1"
+                                                    v-on:click="removeClicked"
+                                                    class="fas fa-minus-circle fa-lg delete pl-3 mt-3"
+                                                ></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Loud Activities?</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <input
-                                        v-model="will_noise"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="yes"
-                                        :value="one"
-                                    >
-                                    <label class="form-check-label" for="yes">
-                                        Yes
-                                    </label>
+                            <hr>
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Loud Activities?</strong>
                                 </div>
-                                <div class="form-check">
-                                    <input
-                                        v-model="will_noise"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="no"
-                                        :value="zero"
-                                    >
-                                    <label class="form-check-label" for="no">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Remarks</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="remarks"
-                                    type="text"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div v-if="status_id == 4" class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Cancellation Reason</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="cancel_reason"
-                                    type="text"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Actual Hours</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="actual_hours"
-                                    type="number"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Payment Cost</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="payment_cost"
-                                    type="number"
-                                    step="0.01"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Discounted Cost</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <input
-                                    v-model="discounted_cost"
-                                    type="number"
-                                    step="0.01"
-                                    class="form-control"
-                                >
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Invoiced?</strong>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check">
-                                    <input
-                                        v-model="invoice"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="has_invoice"
-                                        :value="one"
-                                    >
-                                    <label class="form-check-label" for="has_invoice">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input
-                                        v-model="invoice"
-                                        class="form-check-input"
-                                        type="radio"
-                                        id="no_invoice"
-                                        :value="zero"
-                                    >
-                                    <label class="form-check-label" for="no_invoice">
-                                        No
-                                    </label>
+                                <div class="col-md-8">
+                                    <div class="form-check">
+                                        <input
+                                            v-model="will_noise"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="yes"
+                                            :value="one"
+                                        >
+                                        <label class="form-check-label" for="yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            v-model="will_noise"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="no"
+                                            :value="zero"
+                                        >
+                                        <label class="form-check-label" for="no">
+                                            No
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Remarks</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="remarks"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div v-if="status_id == 4" class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Cancellation Reason</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="cancel_reason"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Actual Hours</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="actual_hours"
+                                        type="number"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Payment Cost</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="payment_cost"
+                                        type="number"
+                                        step="0.01"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Discounted Cost</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="discounted_cost"
+                                        type="number"
+                                        step="0.01"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Invoiced?</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-check">
+                                        <input
+                                            v-model="invoice"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="has_invoice"
+                                            :value="one"
+                                        >
+                                        <label class="form-check-label" for="has_invoice">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            v-model="invoice"
+                                            class="form-check-input"
+                                            type="radio"
+                                            id="no_invoice"
+                                            :value="zero"
+                                        >
+                                        <label class="form-check-label" for="no_invoice">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Paydate</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <v-date-picker
+                                        locale="ja"
+                                        v-model="paydate"
+                                        :input-props='{
+                                            readonly: true,
+                                        }'
+                                    >
+                                    </v-date-picker>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">Actual Paydate</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <v-date-picker
+                                        locale="ja"
+                                        v-model="actual_paydate"
+                                        :input-props='{
+                                            readonly: true,
+                                        }'
+                                    >
+                                    </v-date-picker>
+                                </div>
+                            </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Paydate</strong>
+                        <div class="mt-2" v-else>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">名前</strong>
+                                </div>
+                                <div class="col-md-8">{{ form.name }}</div>
                             </div>
-                            <div class="col-md-8">
-                                <v-date-picker
-                                    locale="ja"
-                                    v-model="paydate"
-                                    :input-props='{
-                                        readonly: true,
-                                    }'
-                                >
-                                </v-date-picker>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">ふりがな</strong>
+                                </div>
+                                <div class="col-md-8">{{ form.furigana }}</div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Actual Paydate</strong>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">性別</strong>
+                                </div>
+                                <div class="col-md-8">{{ form.gender ? '女' : '男' }}</div>
                             </div>
-                            <div class="col-md-8">
-                                <v-date-picker
-                                    locale="ja"
-                                    v-model="actual_paydate"
-                                    :input-props='{
-                                        readonly: true,
-                                    }'
-                                >
-                                </v-date-picker>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">生年月日</strong>
+                                </div>
+                                <div class="col-md-8">{{ form.birthday }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">住所</strong>
+                                </div>
+                                <div class="col-md-8">{{ form.address }}</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">メールアドレス</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="email"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4 text-md-right border-right">
+                                    <strong class="text-muted">電話番号</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <input
+                                        v-model="phone"
+                                        type="text"
+                                        class="form-control"
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -474,6 +564,7 @@ export default {
     },
     data() {
         return {
+            onArrangement: true,
             dateIncrement: 0,
             status_id: null,
             discovery_id: null,
@@ -493,6 +584,9 @@ export default {
             actual_paydate: null,
             check_spaces: [],
             date_times: [],
+            email: null,
+            phone: null,
+            user_count: null,
             one: true,
             zero: false,
         }
@@ -507,6 +601,9 @@ export default {
         this.actual_hours = this.form.reservation.actual_hours;
         this.payment_cost = this.form.reservation.payment_cost;
         this.discounted_cost = this.form.reservation.discounted_cost;
+        this.phone = this.form.phone;
+        this.email = this.form.email;
+        this.user_count = this.form.user_count;
 
         this.invoice = this.form.reservation.invoice ? true : false;
         this.will_noise = this.form.reservation.will_noise ? true : false;
@@ -567,19 +664,22 @@ export default {
                 visit_place: this.visit_place,
                 will_noise: this.will_noise,
                 will_stay: this.will_stay,
+                email: this.email,
+                phone: this.phone,
                 remarks: this.remarks,
+                invoice: this.invoice,
+                paydate: this.paydate,
+                actual_paydate: this.actual_paydate,
                 cancel_reason: this.cancel_reason,
                 actual_hours: parseInt(this.actual_hours),
                 payment_cost: parseFloat(this.payment_cost),
                 discounted_cost: parseFloat(this.discounted_cost),
-                invoice: this.invoice,
-                paydate: this.paydate,
-                actual_paydate: this.actual_paydate,
+                user_count: parseInt(this.user_count),
                 check_spaces: JSON.stringify(this.check_spaces),
                 date_times: JSON.stringify(this.date_times),
             })
             .then(() => {
-                location.reload(); 
+                location.reload();
             });
         },
         changeDateTime(input) {

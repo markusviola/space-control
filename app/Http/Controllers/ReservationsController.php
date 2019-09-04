@@ -65,9 +65,9 @@ class ReservationsController extends Controller
         }
 
         // Converting dates to epoch
-        $visitDate = strtotime(request()->visit_date);
-        $payDate = strtotime(request()->paydate);
-        $actualPayDate = strtotime(request()->actual_paydate);
+        $visitDate = strtotime(request()->visit_date.' +1 day');
+        $payDate = strtotime(request()->paydate.' +1 day');
+        $actualPayDate = strtotime(request()->actual_paydate.' +1 day');
 
         // Reservation field updates
         $reservation = Reservation::where('id', $id)->first();
@@ -87,20 +87,22 @@ class ReservationsController extends Controller
         if (request()->status_id == 4) {
             $reservation->cancel_reason = request()->cancel_reason;
         } else $reservation->cancel_reason = null;
-        
+
         // Updates date related fields
-        $reservation->paydate = $this->phpDateConverter($visitDate);
-        $reservation->actual_paydate = $this->phpDateConverter($payDate);
-        $reservation->visit_date = $this->phpDateConverter($actualPayDate);
+        $reservation->paydate = $this->phpDateConverter($payDate);
+        $reservation->actual_paydate = $this->phpDateConverter($actualPayDate);
+        $reservation->visit_date = $this->phpDateConverter($visitDate);
         $reservation->save();
 
         $form = Form::where('id', $reservation->form->id)->first();
         $formId = $form->id;
-        
-        if ($typeId == 1) {
-            $form->will_stay = request()->will_stay;
-            $form->save();
-        }
+
+        $form->will_stay = request()->will_stay;
+        $form->email = request()->email;
+        $form->phone = request()->phone;
+        $form->user_count = request()->user_count ?? 1;
+
+        $form->save();
 
         // For room rentals, updates room reservations
         if ($typeId == 2) {
@@ -114,7 +116,7 @@ class ReservationsController extends Controller
                 }
             }
         }
-        
+
         // Updating reservation schedules
         Schedule::where('form_id', $formId)->delete();
         for ($i = 0; $i < sizeof($startDates); $i++) {
