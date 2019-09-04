@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-4 p-0">
+            <span class="col-md-1  d-flex align-items-center justify-content-center">
+                <strong class="text-muted">IN</strong>
+            </span>
+
+            <div class="col-md-4 p-0 offset-md-1">
                 <v-date-picker
                     locale="ja"
                     @input="onDateTimeUpdated"
@@ -14,14 +18,10 @@
                 </v-date-picker>
             </div>
 
-            <span class="col-md-1  d-flex align-items-center justify-content-center">
-                <strong>IN</strong>
-            </span>
-
             <select
                 v-on:change="onDateTimeUpdated"
                 v-model="chosenStartHour"
-                class="col-md-2 form-control"
+                class="col-md-2 form-control offset-md-1"
             >
                 <option
                     v-for="(hour, index) in range(startHour, endHour)"
@@ -45,7 +45,11 @@
         </div>
         <div class="row">
 
-            <div class="col-md-4 p-0">
+            <span class="col-md-1 d-flex align-items-center justify-content-center">
+                <strong class="text-muted">OUT</strong>
+            </span>
+
+            <div class="col-md-4 p-0 offset-md-1">
                 <v-date-picker
                     locale="ja"
                     @input="onDateTimeUpdated"
@@ -57,14 +61,10 @@
                 </v-date-picker>
             </div>
 
-            <span class="col-md-1 d-flex align-items-center justify-content-center">
-                <strong>OUT</strong>
-            </span>
-
             <select
                 v-on:change="onDateTimeUpdated"
                 v-model="chosenEndHour"
-                class="col-md-2 form-control"
+                class="col-md-2 form-control offset-md-1"
             >
                 <option
                     v-for="(hour, index) in range(startHour, endHour)"
@@ -90,6 +90,12 @@
 
 <script>
     export default {
+        props: {
+            setDate: {
+                type: Object,
+                required: null,
+            }
+        },
         data() {
             return {
                 startDate: new Date(),
@@ -106,6 +112,14 @@
         },
         mounted() {
             console.log('Date Picker mounted successfully.');
+            if (this.setDate) {
+                this.startDate = this.setDate.startDateTime;
+                this.endDate = this.setDate.endDateTime;
+                this.chosenStartHour = this.setDate.startDateTime.getHours();
+                this.chosenEndHour = this.setDate.endDateTime.getHours();
+                this.chosenStartMin = this.setDate.startDateTime.getMinutes();
+                this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+            }
         },
         methods: {
             range(start, end) {

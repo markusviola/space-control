@@ -84,7 +84,7 @@
                                         v-model="is_independent"
                                         class="form-check-input"
                                         type="radio" id="individual"
-                                        value="true"
+                                        :value="one"
                                     >
                                     <label class="form-check-label" for="individual">
                                         Individual
@@ -96,7 +96,7 @@
                                         class="form-check-input"
                                         type="radio"
                                         id="corporate"
-                                        value="false"
+                                        :value="zero"
                                     >
                                     <label class="form-check-label" for="corporate">
                                         Corporate
@@ -169,29 +169,74 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="typeid == 1" class="row mb-2">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Stay Over?</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check">
+                                    <input
+                                        v-model="will_stay"
+                                        class="form-check-input"
+                                        type="radio" id="willStay"
+                                        :value="one"
+                                    >
+                                    <label class="form-check-label" for="willStay">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input
+                                        v-model="will_stay"
+                                        class="form-check-input"
+                                        type="radio"
+                                        id="wontStay"
+                                        :value="zero"
+                                    >
+                                    <label class="form-check-label" for="wontStay">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
                         <div class="text-center">
                             <strong class="text-muted">Schedules</strong>
                         </div>
-                        <div v-for="i in dateIncrement" v-bind:key="i">
-                            <div class="container">
-                                <div class="row mt-3">
-                                    <div class="col-md-10 p-0">
-                                        <schedule-picker
-                                            @onDateTimeChosen="changeDateTime"
-                                            :dateTimeId="i"
-                                        ></schedule-picker>
+                        <div v-if="will_stay">
+                            <div class="container mt-3 p-0 px-4">
+                                <check-in-out
+                                    :setDate="dateTimes[0]"
+                                    @onCheckInOutChosen="changeDateTime"
+                                ></check-in-out>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div v-for="i in dateIncrement" v-bind:key="i">
+                                <div class="container">
+                                    <div class="row mt-3">
+                                        <div class="col-md-12 p-0">
+                                            <schedule-picker
+                                                @onDateTimeChosen="changeDateTime"
+                                                :dateTimeId="i"
+                                                :setDate="dateTimes[i-1]"
+                                            ></schedule-picker>
+                                        </div>
+                                        <div
+                                            v-if="i == dateIncrement"
+                                            class="col-md-12 p-0 d-flex justify-content-end px-1"
+                                        >
+                                            <i
+                                                v-on:click="addClicked"
+                                                class="fas fa-plus fa-lg edit mt-3"
+                                            ></i>
+                                            <i
+                                                v-if="i != 1"
+                                                v-on:click="removeClicked"
+                                                class="fas fa-minus-circle fa-lg delete pl-3 mt-3"
+                                            ></i>
+                                        </div>
                                     </div>
-                                    <i
-                                        v-if="i == dateIncrement"
-                                        v-on:click="addClicked"
-                                        class="col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center"
-                                    ></i>
-                                    <i
-                                        v-if="i == dateIncrement && i != 1"
-                                        v-on:click="removeClicked"
-                                        class="col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center"
-                                    ></i>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +252,7 @@
                                         class="form-check-input"
                                         type="radio"
                                         id="yes"
-                                        value="true"
+                                        :value="one"
                                     >
                                     <label class="form-check-label" for="yes">
                                         Yes
@@ -219,7 +264,7 @@
                                         class="form-check-input"
                                         type="radio"
                                         id="no"
-                                        value="false"
+                                        :value="zero"
                                     >
                                     <label class="form-check-label" for="no">
                                         No
@@ -300,7 +345,7 @@
                                         class="form-check-input"
                                         type="radio"
                                         id="has_invoice"
-                                        value="true"
+                                        :value="one"
                                     >
                                     <label class="form-check-label" for="has_invoice">
                                         Yes
@@ -312,7 +357,7 @@
                                         class="form-check-input"
                                         type="radio"
                                         id="no_invoice"
-                                        value="false"
+                                        :value="zero"
                                     >
                                     <label class="form-check-label" for="no_invoice">
                                         No
@@ -401,6 +446,7 @@ export default {
             visit_date: null,
             visit_place: null,
             will_noise: null,
+            will_stay: null,
             remarks: null,
             cancel_reason: null,
             actual_hours: null,
@@ -411,6 +457,8 @@ export default {
             actual_paydate: null,
             checkSpaces: [],
             dateTimes: [],
+            one: true,
+            zero: false,
         }
     },
     created() {
@@ -426,6 +474,7 @@ export default {
 
         this.invoice = this.form.reservation.invoice ? true : false;
         this.will_noise = this.form.reservation.will_noise ? true : false;
+        this.will_stay = this.form.will_stay ? true : false;
         this.is_independent = this.form.reservation.is_independent ? true : false;
 
         this.visit_date = this.form.reservation.visit_date ?
@@ -457,32 +506,35 @@ export default {
             }
         }
 
-        this.loadReservationDates();
+        this.initReservationDates();
     },
     methods: {
-        loadReservationDates() {
+        something() {
+            console.log(this.will_stay);
+        },
+        initReservationDates() {
             if (this.form.schedules.length > 0) {
                 this.form.schedules.forEach(schedule => {
                     this.dateTimes.push({
                         id: ++this.dateIncrement,
                         startDateTime: new Date(schedule.start_time),
-                        endDateTIme: new Date(schedule.end_time),
+                        endDateTime: new Date(schedule.end_time),
                     })
                 });
-                console.log(this.dateTimes);
             }
         },
         changeDateTime(input) {
-            // let existingKey = false;
-            // for (let i = 0; i < this.dateTimes.length; i+=1) {
-            //     if (this.dateTimes[i].id == input.id) {
-            //         this.dateTimes[i].startDateTime = input.startDateTime;
-            //         this.dateTimes[i].endDateTime = input.endDateTime;
-            //         existingKey = true;
-            //         break;
-            //     }
-            // }
-            // if(!existingKey) this.dateTimes.push(input);
+            let existingKey = false;
+            for (let i = 0; i < this.dateTimes.length; i+=1) {
+                if (this.dateTimes[i].id == input.id) {
+                    this.dateTimes[i].startDateTime = input.startDateTime;
+                    this.dateTimes[i].endDateTime = input.endDateTime;
+                    existingKey = true;
+                    break;
+                }
+            }
+            if(!existingKey) this.dateTimes.push(input);
+            console.log(this.dateTimes);
         },
         addClicked() {
             this.dateIncrement+=1;

@@ -75,6 +75,10 @@
             dateTimeId: {
                 type: Number,
                 required: true,
+            },
+            setDate: {
+                type: Object,
+                required: null,
             }
         },
         data() {
@@ -92,6 +96,13 @@
         },
         mounted() {
             console.log('Date Picker mounted successfully.');
+            if (this.setDate) {
+                this.date = this.setDate.startDateTime;
+                this.chosenStartHour = this.setDate.startDateTime.getHours();
+                this.chosenEndHour = this.setDate.endDateTime.getHours();
+                this.chosenStartMin = this.setDate.startDateTime.getMinutes();
+                this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+            }
         },
         methods: {
             range(start, end) {
