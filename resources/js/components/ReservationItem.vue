@@ -393,7 +393,7 @@ export default {
     },
     data() {
         return {
-            dateIncrement: 1,
+            dateIncrement: 0,
             status_id: null,
             discovery_id: null,
             is_independent: null,
@@ -410,6 +410,7 @@ export default {
             paydate: null,
             actual_paydate: null,
             checkSpaces: [],
+            dateTimes: [],
         }
     },
     created() {
@@ -455,22 +456,44 @@ export default {
                 }
             }
         }
+
+        this.loadReservationDates();
     },
     methods: {
-        range(start, end) {
-            return Array(end - start + 1)
-                .fill().map((_, idx) => start + idx)
+        loadReservationDates() {
+            if (this.form.schedules.length > 0) {
+                this.form.schedules.forEach(schedule => {
+                    this.dateTimes.push({
+                        id: ++this.dateIncrement,
+                        startDateTime: new Date(schedule.start_time),
+                        endDateTIme: new Date(schedule.end_time),
+                    })
+                });
+                console.log(this.dateTimes);
+            }
         },
         changeDateTime(input) {
-            console.log(input);
+            // let existingKey = false;
+            // for (let i = 0; i < this.dateTimes.length; i+=1) {
+            //     if (this.dateTimes[i].id == input.id) {
+            //         this.dateTimes[i].startDateTime = input.startDateTime;
+            //         this.dateTimes[i].endDateTime = input.endDateTime;
+            //         existingKey = true;
+            //         break;
+            //     }
+            // }
+            // if(!existingKey) this.dateTimes.push(input);
         },
         addClicked() {
             this.dateIncrement+=1;
         },
         removeClicked() {
             this.dateIncrement-=1;
-        }
-
+        },
+        range(start, end) {
+            return Array(end - start + 1)
+                .fill().map((_, idx) => start + idx)
+        },
     }
 }
 </script>

@@ -22,6 +22,7 @@ class ReservationsController extends Controller
 
         $approvedForms = Form::with([
                 'type',
+                'schedules',
                 'bulkSpaces',
                 'reservation',
                 'reservation.status',

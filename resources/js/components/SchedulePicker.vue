@@ -71,7 +71,12 @@
 
 <script>
     export default {
-        props: ['dateTimeId'],
+        props: {
+            dateTimeId: {
+                type: Number,
+                required: true,
+            }
+        },
         data() {
             return {
                 date: new Date(),

@@ -3127,7 +3127,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      dateIncrement: 1,
+      dateIncrement: 0,
       status_id: null,
       discovery_id: null,
       is_independent: null,
@@ -3143,7 +3143,8 @@ __webpack_require__.r(__webpack_exports__);
       invoice: null,
       paydate: null,
       actual_paydate: null,
-      checkSpaces: []
+      checkSpaces: [],
+      dateTimes: []
     };
   },
   created: function created() {
@@ -3186,21 +3187,45 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     }
+
+    this.loadReservationDates();
   },
   methods: {
-    range: function range(start, end) {
-      return Array(end - start + 1).fill().map(function (_, idx) {
-        return start + idx;
-      });
+    loadReservationDates: function loadReservationDates() {
+      var _this = this;
+
+      if (this.form.schedules.length > 0) {
+        this.form.schedules.forEach(function (schedule) {
+          _this.dateTimes.push({
+            id: ++_this.dateIncrement,
+            startDateTime: new Date(schedule.start_time),
+            endDateTIme: new Date(schedule.end_time)
+          });
+        });
+        console.log(this.dateTimes);
+      }
     },
-    changeDateTime: function changeDateTime(input) {
-      console.log(input);
+    changeDateTime: function changeDateTime(input) {// let existingKey = false;
+      // for (let i = 0; i < this.dateTimes.length; i+=1) {
+      //     if (this.dateTimes[i].id == input.id) {
+      //         this.dateTimes[i].startDateTime = input.startDateTime;
+      //         this.dateTimes[i].endDateTime = input.endDateTime;
+      //         existingKey = true;
+      //         break;
+      //     }
+      // }
+      // if(!existingKey) this.dateTimes.push(input);
     },
     addClicked: function addClicked() {
       this.dateIncrement += 1;
     },
     removeClicked: function removeClicked() {
       this.dateIncrement -= 1;
+    },
+    range: function range(start, end) {
+      return Array(end - start + 1).fill().map(function (_, idx) {
+        return start + idx;
+      });
     }
   }
 });
@@ -3288,7 +3313,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['dateTimeId'],
+  props: {
+    dateTimeId: {
+      type: Number,
+      required: true
+    }
+  },
   data: function data() {
     return {
       date: new Date(),
