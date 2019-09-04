@@ -133,7 +133,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Place to Check</strong>
+                                <strong class="text-muted">Visit Place</strong>
                             </div>
                             <div class="col-md-8">
                                 <input
@@ -156,7 +156,6 @@
                                             class="form-check col-6"
                                         >
                                             <input
-                                                v-on:change="onSpacesChanged"
                                                 v-model="checkSpaces[index].is_selected"
                                                 class="form-check-input"
                                                 type="checkbox"
@@ -170,7 +169,33 @@
                                 </div>
                             </div>
                         </div>
-
+                        <hr>
+                        <div class="text-center">
+                            <strong class="text-muted">Schedules</strong>
+                        </div>
+                        <div v-for="i in dateIncrement" v-bind:key="i">
+                            <div class="container">
+                                <div class="row mt-3">
+                                    <div class="col-md-10 p-0">
+                                        <schedule-picker
+                                            @onDateTimeChosen="changeDateTime"
+                                            :dateTimeId="i"
+                                        ></schedule-picker>
+                                    </div>
+                                    <i
+                                        v-if="i == dateIncrement"
+                                        v-on:click="addClicked"
+                                        class="col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center"
+                                    ></i>
+                                    <i
+                                        v-if="i == dateIncrement && i != 1"
+                                        v-on:click="removeClicked"
+                                        class="col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center"
+                                    ></i>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row mb-2">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Loud Activities?</strong>
@@ -368,6 +393,7 @@ export default {
     },
     data() {
         return {
+            dateIncrement: 1,
             status_id: null,
             discovery_id: null,
             is_independent: null,
@@ -435,6 +461,16 @@ export default {
             return Array(end - start + 1)
                 .fill().map((_, idx) => start + idx)
         },
+        changeDateTime(input) {
+            console.log(input);
+        },
+        addClicked() {
+            this.dateIncrement+=1;
+        },
+        removeClicked() {
+            this.dateIncrement-=1;
+        }
+
     }
 }
 </script>
