@@ -3042,6 +3042,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3063,6 +3091,10 @@ __webpack_require__.r(__webpack_exports__);
     statuses: {
       type: Array,
       required: true
+    },
+    typeid: {
+      type: Number,
+      required: true
     }
   },
   data: function data() {
@@ -3081,28 +3113,56 @@ __webpack_require__.r(__webpack_exports__);
       discounted_cost: null,
       invoice: null,
       paydate: null,
-      actual_paydate: null
+      actual_paydate: null,
+      checkSpaces: []
     };
   },
   created: function created() {
     this.status_id = this.form.reservation.status.id;
     this.discovery_id = this.form.reservation.discovery.id;
-    this.is_independent = this.form.reservation.is_independent ? true : false;
     this.corporate_name = this.form.reservation.corporate_name;
-    this.visit_date = this.form.reservation.visit_date ? new Date(this.form.reservation.visit_date) : null;
     this.visit_place = this.form.reservation.visit_place;
-    this.will_noise = this.form.reservation.will_noise ? true : false;
     this.remarks = this.form.reservation.remarks;
     this.cancel_reason = this.form.reservation.cancel_reason;
     this.actual_hours = this.form.reservation.actual_hours;
     this.payment_cost = this.form.reservation.payment_cost;
     this.discounted_cost = this.form.reservation.discounted_cost;
     this.invoice = this.form.reservation.invoice ? true : false;
+    this.will_noise = this.form.reservation.will_noise ? true : false;
+    this.is_independent = this.form.reservation.is_independent ? true : false;
+    this.visit_date = this.form.reservation.visit_date ? new Date(this.form.reservation.visit_date) : null;
     this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
     this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
+
+    for (var i = 0; i < this.spaces.length; i += 1) {
+      var hasMatch = false;
+
+      for (var j = 0; j < this.form.bulk_spaces.length; j += 1) {
+        if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
+          hasMatch = !hasMatch;
+          this.checkSpaces.push({
+            id: this.spaces[i].id,
+            is_selected: hasMatch
+          });
+          break;
+        }
+      }
+
+      if (!hasMatch) {
+        this.checkSpaces.push({
+          id: this.spaces[i].id,
+          is_selected: false
+        });
+      }
+    }
+
+    console.log(this.checkSpaces);
   },
   methods: {
     onVisitPicked: function onVisitPicked() {},
+    onSpacesChanged: function onSpacesChanged() {
+      console.log(this.checkSpaces);
+    },
     range: function range(start, end) {
       return Array(end - start + 1).fill().map(function (_, idx) {
         return start + idx;
@@ -50901,8 +50961,110 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _vm.typeid == 2
+                  ? _c("div", { staticClass: "row mb-3" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("div", { staticClass: "container" }, [
+                          _c(
+                            "div",
+                            { staticClass: "row" },
+                            _vm._l(_vm.spaces, function(space, index) {
+                              return _c(
+                                "div",
+                                { key: index, staticClass: "form-check col-6" },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          _vm.checkSpaces[index].is_selected,
+                                        expression:
+                                          "checkSpaces[index].is_selected"
+                                      }
+                                    ],
+                                    staticClass: "form-check-input",
+                                    attrs: { type: "checkbox", id: space.name },
+                                    domProps: {
+                                      checked: Array.isArray(
+                                        _vm.checkSpaces[index].is_selected
+                                      )
+                                        ? _vm._i(
+                                            _vm.checkSpaces[index].is_selected,
+                                            null
+                                          ) > -1
+                                        : _vm.checkSpaces[index].is_selected
+                                    },
+                                    on: {
+                                      change: [
+                                        function($event) {
+                                          var $$a =
+                                              _vm.checkSpaces[index]
+                                                .is_selected,
+                                            $$el = $event.target,
+                                            $$c = $$el.checked ? true : false
+                                          if (Array.isArray($$a)) {
+                                            var $$v = null,
+                                              $$i = _vm._i($$a, $$v)
+                                            if ($$el.checked) {
+                                              $$i < 0 &&
+                                                _vm.$set(
+                                                  _vm.checkSpaces[index],
+                                                  "is_selected",
+                                                  $$a.concat([$$v])
+                                                )
+                                            } else {
+                                              $$i > -1 &&
+                                                _vm.$set(
+                                                  _vm.checkSpaces[index],
+                                                  "is_selected",
+                                                  $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1))
+                                                )
+                                            }
+                                          } else {
+                                            _vm.$set(
+                                              _vm.checkSpaces[index],
+                                              "is_selected",
+                                              $$c
+                                            )
+                                          }
+                                        },
+                                        _vm.onSpacesChanged
+                                      ]
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "form-check-label",
+                                      attrs: { for: space.name }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(space.name) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ])
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(8),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-check" }, [
@@ -50976,7 +51138,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(9),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51004,7 +51166,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(10),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51032,7 +51194,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(11),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51060,7 +51222,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(12),
+                  _vm._m(13),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51088,7 +51250,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(13),
+                  _vm._m(14),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51116,7 +51278,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(14),
+                  _vm._m(15),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-check" }, [
@@ -51198,7 +51360,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(15),
+                  _vm._m(16),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -51230,7 +51392,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(16),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -51262,7 +51424,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(17)
+              _vm._m(18)
             ])
           ]
         )
@@ -51359,6 +51521,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("Place to Check")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Rooms")])
     ])
   },
   function() {

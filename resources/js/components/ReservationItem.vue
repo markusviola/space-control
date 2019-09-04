@@ -138,6 +138,34 @@
                                 >
                             </div>
                         </div>
+                        <div v-if="typeid == 2" class="row mb-3">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Rooms</strong>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="container">
+                                    <div class="row">
+                                        <div
+                                            v-for="(space, index) in spaces"
+                                            :key="index"
+                                            class="form-check col-6"
+                                        >
+                                            <input
+                                                v-on:change="onSpacesChanged"
+                                                v-model="checkSpaces[index].is_selected"
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                :id="space.name"
+                                            >
+                                            <label class="form-check-label" :for="space.name">
+                                                {{ space.name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row mb-2">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Loud Activities?</strong>
@@ -329,6 +357,10 @@ export default {
         statuses: {
             type: Array,
             required: true,
+        },
+        typeid: {
+            type: Number,
+            required: true,
         }
     },
     data() {
@@ -348,32 +380,59 @@ export default {
             invoice: null,
             paydate: null,
             actual_paydate: null,
+            checkSpaces: [],
         }
     },
     created() {
         this.status_id = this.form.reservation.status.id;
         this.discovery_id = this.form.reservation.discovery.id;
-        this.is_independent = this.form.reservation.is_independent ? true : false;
         this.corporate_name = this.form.reservation.corporate_name;
-        this.visit_date = this.form.reservation.visit_date ?
-            new Date(this.form.reservation.visit_date) : null;
         this.visit_place = this.form.reservation.visit_place;
-        this.will_noise = this.form.reservation.will_noise ? true : false;
         this.remarks = this.form.reservation.remarks;
         this.cancel_reason = this.form.reservation.cancel_reason;
         this.actual_hours = this.form.reservation.actual_hours;
         this.payment_cost = this.form.reservation.payment_cost;
         this.discounted_cost = this.form.reservation.discounted_cost;
+
         this.invoice = this.form.reservation.invoice ? true : false;
+        this.will_noise = this.form.reservation.will_noise ? true : false;
+        this.is_independent = this.form.reservation.is_independent ? true : false;
+
+        this.visit_date = this.form.reservation.visit_date ?
+            new Date(this.form.reservation.visit_date) : null;
         this.paydate = this.form.reservation.paydate ?
             new Date(this.form.reservation.paydate) : null;
         this.actual_paydate = this.form.reservation.actual_paydate ?
             new Date(this.form.reservation.actual_paydate) : null;
 
+        for (let i = 0; i < this.spaces.length; i+=1) {
+            let hasMatch = false;
+            for (let j = 0; j < this.form.bulk_spaces.length; j+=1) {
+                if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
+                    hasMatch = !hasMatch;
+                    this.checkSpaces.push({
+                        id: this.spaces[i].id,
+                        is_selected: hasMatch
+                    });
+                    break;
+                }
+            }
+            if (!hasMatch) {
+                this.checkSpaces.push({
+                    id: this.spaces[i].id,
+                    is_selected: false,
+                });
+            }
+        }
+
+        console.log(this.checkSpaces);
     },
     methods: {
         onVisitPicked() {
 
+        },
+        onSpacesChanged() {
+            console.log(this.checkSpaces);
         },
         range(start, end) {
             return Array(end - start + 1)

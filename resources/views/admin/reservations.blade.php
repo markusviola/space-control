@@ -13,6 +13,7 @@
     @if (sizeof($approvedForms) > 0)
         @foreach ($approvedForms as $form)
             <reservation-item
+                :typeid="{{ $typeId }}"
                 :form="{{ $form }}"
                 :types="{{ $types }}"
                 :spaces="{{ $spaces }}"

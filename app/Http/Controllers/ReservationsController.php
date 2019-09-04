@@ -21,6 +21,7 @@ class ReservationsController extends Controller
         $statuses = Status::all();
 
         $approvedForms = Form::with([
+                'bulkSpaces',
                 'reservation',
                 'reservation.status',
                 'reservation.discovery',
