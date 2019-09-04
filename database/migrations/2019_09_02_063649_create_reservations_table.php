@@ -21,9 +21,7 @@ class CreateReservationsTable extends Migration
             $table->boolean('is_independent')->default(true);
             $table->string('corporate_name')->nullable();
             $table->datetime('visit_date')->nullable();
-            $table->integer('month_of_use')->default(1);
-            $table->integer('year_of_use')->default(2000);
-            $table->integer('visit_place')->nullable();
+            $table->string('visit_place')->nullable();
             $table->boolean('will_noise')->default(false);
             $table->string('remarks')->nullable();
             $table->string('cancel_reason')->nullable();

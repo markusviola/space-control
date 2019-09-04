@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\BulkSpace;
+
 use Illuminate\Http\Request;
 use App\Form;
 use App\Reservation;
 use App\Schedule;
 use App\Space;
 use App\User;
+use App\BulkSpace;
 
 class FormsController extends Controller
 {
@@ -176,7 +177,7 @@ class FormsController extends Controller
     {
         //
     }
-    // 2019-08-15T07:00:00.000Z
+
     public function phpDateConverter($time) {
         return date(
             'Y-m-d H:i:s',

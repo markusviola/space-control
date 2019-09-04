@@ -3317,19 +3317,16 @@ __webpack_require__.r(__webpack_exports__);
         will_stay: this.will_stay,
         remarks: this.remarks,
         cancel_reason: this.cancel_reason,
-        actual_hours: this.actual_hours,
-        payment_cost: this.payment_cost,
-        discounted_cost: this.discounted_cost,
+        actual_hours: parseInt(this.actual_hours),
+        payment_cost: parseFloat(this.payment_cost),
+        discounted_cost: parseFloat(this.discounted_cost),
         invoice: this.invoice,
         paydate: this.paydate,
         actual_paydate: this.actual_paydate,
         check_spaces: JSON.stringify(this.check_spaces),
         date_times: JSON.stringify(this.date_times)
-      }).then(function (response) {
-        console.log(response.data); // if (response.data) {
-        //     notifyUser("Reservation approved! ");
-        //     this.$emit('onFormApproval', response.data);
-        // } else notifyUser("Something went wrong.");
+      }).then(function () {
+        location.reload();
       });
     },
     changeDateTime: function changeDateTime(input) {
@@ -3352,6 +3349,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeClicked: function removeClicked() {
       this.dateIncrement -= 1;
+      this.date_times.pop();
     },
     range: function range(start, end) {
       return Array(end - start + 1).fill().map(function (_, idx) {
@@ -3693,6 +3691,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeClicked: function removeClicked() {
       this.dateIncrement -= 1;
+      this.dateTimes.pop();
     }
   }
 });
@@ -52564,7 +52563,7 @@ var render = function() {
                       })
                     : _vm._e(),
                   _vm._v(" "),
-                  i == _vm.dateIncrement
+                  i == _vm.dateIncrement && i != 1
                     ? _c("i", {
                         staticClass:
                           "col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center",

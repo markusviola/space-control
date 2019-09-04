@@ -100,7 +100,7 @@
                             class="col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center"
                         ></i>
                         <i
-                            v-if="i == dateIncrement"
+                            v-if="i == dateIncrement && i != 1"
                             v-on:click="removeClicked"
                             class="col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center"
                         ></i>
@@ -169,6 +169,7 @@
             },
             removeClicked() {
                 this.dateIncrement-=1;
+                this.dateTimes.pop();
             }
         }
     }

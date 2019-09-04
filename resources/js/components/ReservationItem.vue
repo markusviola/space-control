@@ -569,22 +569,18 @@ export default {
                 will_stay: this.will_stay,
                 remarks: this.remarks,
                 cancel_reason: this.cancel_reason,
-                actual_hours: this.actual_hours,
-                payment_cost: this.payment_cost,
-                discounted_cost: this.discounted_cost,
+                actual_hours: parseInt(this.actual_hours),
+                payment_cost: parseFloat(this.payment_cost),
+                discounted_cost: parseFloat(this.discounted_cost),
                 invoice: this.invoice,
                 paydate: this.paydate,
                 actual_paydate: this.actual_paydate,
                 check_spaces: JSON.stringify(this.check_spaces),
                 date_times: JSON.stringify(this.date_times),
             })
-            .then(response => {
-                console.log(response.data);
-                // if (response.data) {
-                //     notifyUser("Reservation approved! ");
-                //     this.$emit('onFormApproval', response.data);
-                // } else notifyUser("Something went wrong.");
-            })
+            .then(() => {
+                location.reload(); 
+            });
         },
         changeDateTime(input) {
             let existingKey = false;
@@ -604,6 +600,7 @@ export default {
         },
         removeClicked() {
             this.dateIncrement-=1;
+            this.date_times.pop();
         },
         range(start, end) {
             return Array(end - start + 1)
