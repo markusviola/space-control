@@ -21,6 +21,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-md-right border-right">
+                                <strong class="text-muted">Type</strong>
+                            </div>
+                            <div class="col-md-8 font-weight-bold text-secondary">{{ form.type.name }}</div>
+                        </div>
                         <div class="row">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Inquiry Date</strong>

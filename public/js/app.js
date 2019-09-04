@@ -3070,6 +3070,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -50676,8 +50682,18 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "row mb-2" }, [
                   _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8 font-weight-bold text-secondary" },
+                    [_vm._v(_vm._s(_vm.form.type.name))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _vm._v(_vm._s(_vm.form.created_at))
@@ -50687,7 +50703,7 @@ var render = function() {
                 _c("hr"),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(2),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-group" }, [
@@ -50740,7 +50756,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-group" }, [
@@ -50792,7 +50808,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-check" }, [
@@ -50878,7 +50894,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(5),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -50906,7 +50922,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(6),
+                  _vm._m(7),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -50934,7 +50950,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(7),
+                  _vm._m(8),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -50963,7 +50979,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm.typeid == 2
                   ? _c("div", { staticClass: "row mb-3" }, [
-                      _vm._m(8),
+                      _vm._m(9),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-8" }, [
                         _c("div", { staticClass: "container" }, [
@@ -51064,7 +51080,7 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(9),
+                  _vm._m(10),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-check" }, [
@@ -51138,7 +51154,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(10),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51166,7 +51182,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(11),
+                  _vm._m(12),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51194,7 +51210,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(12),
+                  _vm._m(13),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51222,7 +51238,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(13),
+                  _vm._m(14),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51250,7 +51266,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(14),
+                  _vm._m(15),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("input", {
@@ -51278,7 +51294,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-2" }, [
-                  _vm._m(15),
+                  _vm._m(16),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _c("div", { staticClass: "form-check" }, [
@@ -51360,7 +51376,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(16),
+                  _vm._m(17),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -51392,7 +51408,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(17),
+                  _vm._m(18),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -51424,7 +51440,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(18)
+              _vm._m(19)
             ])
           ]
         )
@@ -51465,6 +51481,14 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Type")])
     ])
   },
   function() {
