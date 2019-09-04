@@ -3158,6 +3158,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3180,7 +3216,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       required: true
     },
-    typeid: {
+    type_id: {
       type: Number,
       required: true
     }
@@ -3204,8 +3240,8 @@ __webpack_require__.r(__webpack_exports__);
       invoice: null,
       paydate: null,
       actual_paydate: null,
-      checkSpaces: [],
-      dateTimes: [],
+      check_spaces: [],
+      date_times: [],
       one: true,
       zero: false
     };
@@ -3228,14 +3264,14 @@ __webpack_require__.r(__webpack_exports__);
     this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
     this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
 
-    if (this.typeid == 2) {
+    if (this.type_id == 2) {
       for (var i = 0; i < this.spaces.length; i += 1) {
         var hasMatch = false;
 
         for (var j = 0; j < this.form.bulk_spaces.length; j += 1) {
           if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
             hasMatch = !hasMatch;
-            this.checkSpaces.push({
+            this.check_spaces.push({
               id: this.spaces[i].id,
               is_selected: hasMatch
             });
@@ -3244,7 +3280,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         if (!hasMatch) {
-          this.checkSpaces.push({
+          this.check_spaces.push({
             id: this.spaces[i].id,
             is_selected: false
           });
@@ -3255,15 +3291,12 @@ __webpack_require__.r(__webpack_exports__);
     this.initReservationDates();
   },
   methods: {
-    something: function something() {
-      console.log(this.will_stay);
-    },
     initReservationDates: function initReservationDates() {
       var _this = this;
 
       if (this.form.schedules.length > 0) {
         this.form.schedules.forEach(function (schedule) {
-          _this.dateTimes.push({
+          _this.date_times.push({
             id: ++_this.dateIncrement,
             startDateTime: new Date(schedule.start_time),
             endDateTime: new Date(schedule.end_time)
@@ -3271,20 +3304,48 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    updateReservation: function updateReservation() {
+      axios.patch("/reservations/".concat(this.form.reservation.id, "/edit"), {
+        type_id: this.type_id,
+        status_id: this.status_id,
+        discovery_id: this.discovery_id,
+        is_independent: this.is_independent,
+        corporate_name: this.corporate_name,
+        visit_date: this.visit_date,
+        visit_place: this.visit_place,
+        will_noise: this.will_noise,
+        will_stay: this.will_stay,
+        remarks: this.remarks,
+        cancel_reason: this.cancel_reason,
+        actual_hours: this.actual_hours,
+        payment_cost: this.payment_cost,
+        discounted_cost: this.discounted_cost,
+        invoice: this.invoice,
+        paydate: this.paydate,
+        actual_paydate: this.actual_paydate,
+        check_spaces: JSON.stringify(this.check_spaces),
+        date_times: JSON.stringify(this.date_times)
+      }).then(function (response) {
+        console.log(response.data); // if (response.data) {
+        //     notifyUser("Reservation approved! ");
+        //     this.$emit('onFormApproval', response.data);
+        // } else notifyUser("Something went wrong.");
+      });
+    },
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
 
-      for (var i = 0; i < this.dateTimes.length; i += 1) {
-        if (this.dateTimes[i].id == input.id) {
-          this.dateTimes[i].startDateTime = input.startDateTime;
-          this.dateTimes[i].endDateTime = input.endDateTime;
+      for (var i = 0; i < this.date_times.length; i += 1) {
+        if (this.date_times[i].id == input.id) {
+          this.date_times[i].startDateTime = input.startDateTime;
+          this.date_times[i].endDateTime = input.endDateTime;
           existingKey = true;
           break;
         }
       }
 
-      if (!existingKey) this.dateTimes.push(input);
-      console.log(this.dateTimes);
+      if (!existingKey) this.date_times.push(input);
+      console.log(this.date_times);
     },
     addClicked: function addClicked() {
       this.dateIncrement += 1;
@@ -51107,7 +51168,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm.typeid == 2
+                _vm.type_id == 2
                   ? _c("div", { staticClass: "row mb-3" }, [
                       _vm._m(9),
                       _vm._v(" "),
@@ -51127,27 +51188,27 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value:
-                                          _vm.checkSpaces[index].is_selected,
+                                          _vm.check_spaces[index].is_selected,
                                         expression:
-                                          "checkSpaces[index].is_selected"
+                                          "check_spaces[index].is_selected"
                                       }
                                     ],
                                     staticClass: "form-check-input",
                                     attrs: { type: "checkbox", id: space.name },
                                     domProps: {
                                       checked: Array.isArray(
-                                        _vm.checkSpaces[index].is_selected
+                                        _vm.check_spaces[index].is_selected
                                       )
                                         ? _vm._i(
-                                            _vm.checkSpaces[index].is_selected,
+                                            _vm.check_spaces[index].is_selected,
                                             null
                                           ) > -1
-                                        : _vm.checkSpaces[index].is_selected
+                                        : _vm.check_spaces[index].is_selected
                                     },
                                     on: {
                                       change: function($event) {
                                         var $$a =
-                                            _vm.checkSpaces[index].is_selected,
+                                            _vm.check_spaces[index].is_selected,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -51156,14 +51217,14 @@ var render = function() {
                                           if ($$el.checked) {
                                             $$i < 0 &&
                                               _vm.$set(
-                                                _vm.checkSpaces[index],
+                                                _vm.check_spaces[index],
                                                 "is_selected",
                                                 $$a.concat([$$v])
                                               )
                                           } else {
                                             $$i > -1 &&
                                               _vm.$set(
-                                                _vm.checkSpaces[index],
+                                                _vm.check_spaces[index],
                                                 "is_selected",
                                                 $$a
                                                   .slice(0, $$i)
@@ -51172,7 +51233,7 @@ var render = function() {
                                           }
                                         } else {
                                           _vm.$set(
-                                            _vm.checkSpaces[index],
+                                            _vm.check_spaces[index],
                                             "is_selected",
                                             $$c
                                           )
@@ -51205,7 +51266,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.typeid == 1
+                _vm.type_id == 1
                   ? _c("div", { staticClass: "row mb-2" }, [
                       _vm._m(10),
                       _vm._v(" "),
@@ -51298,7 +51359,7 @@ var render = function() {
                         { staticClass: "container mt-3 p-0 px-4" },
                         [
                           _c("check-in-out", {
-                            attrs: { setDate: _vm.dateTimes[0] },
+                            attrs: { setDate: _vm.date_times[0] },
                             on: { onCheckInOutChosen: _vm.changeDateTime }
                           })
                         ],
@@ -51318,7 +51379,7 @@ var render = function() {
                                   _c("schedule-picker", {
                                     attrs: {
                                       dateTimeId: i,
-                                      setDate: _vm.dateTimes[i - 1]
+                                      setDate: _vm.date_times[i - 1]
                                     },
                                     on: { onDateTimeChosen: _vm.changeDateTime }
                                   })
@@ -51721,6 +51782,54 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "updateFormModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "updateFormModalTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(22),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body text-muted" }, [
+                _vm._v(
+                  "\n                Do you really intend to update this reservation?\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-trans text-admin",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.updateReservation }
+                  },
+                  [_c("strong", [_vm._v("YES")])]
+                ),
+                _vm._v(" "),
+                _vm._m(23)
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -51929,12 +52038,67 @@ var staticRenderFns = [
       _c(
         "button",
         {
+          staticClass: "btn-trans text-secondary",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "data-toggle": "modal",
+            "data-target": "#updateFormModal"
+          }
+        },
+        [_c("strong", [_vm._v("Update")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
           staticClass: "btn-trans text-muted",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
         [_c("strong", [_vm._v("Close")])]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-admin",
+          attrs: { id: "updateFormModal" }
+        },
+        [_c("strong", [_vm._v("Confirmation")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn-trans text-admin",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("strong", [_vm._v("NO")])]
+    )
   }
 ]
 render._withStripped = true

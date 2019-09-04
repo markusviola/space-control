@@ -143,7 +143,7 @@
                                 >
                             </div>
                         </div>
-                        <div v-if="typeid == 2" class="row mb-3">
+                        <div v-if="type_id == 2" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Rooms</strong>
                             </div>
@@ -156,7 +156,7 @@
                                             class="form-check col-6"
                                         >
                                             <input
-                                                v-model="checkSpaces[index].is_selected"
+                                                v-model="check_spaces[index].is_selected"
                                                 class="form-check-input"
                                                 type="checkbox"
                                                 :id="space.name"
@@ -169,7 +169,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="typeid == 1" class="row mb-2">
+                        <div v-if="type_id == 1" class="row mb-2">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">Stay Over?</strong>
                             </div>
@@ -206,7 +206,7 @@
                         <div v-if="will_stay">
                             <div class="container mt-3 p-0 px-4">
                                 <check-in-out
-                                    :setDate="dateTimes[0]"
+                                    :setDate="date_times[0]"
                                     @onCheckInOutChosen="changeDateTime"
                                 ></check-in-out>
                             </div>
@@ -219,7 +219,7 @@
                                             <schedule-picker
                                                 @onDateTimeChosen="changeDateTime"
                                                 :dateTimeId="i"
-                                                :setDate="dateTimes[i-1]"
+                                                :setDate="date_times[i-1]"
                                             ></schedule-picker>
                                         </div>
                                         <div
@@ -395,11 +395,47 @@
                                 </v-date-picker>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn-trans text-secondary"
+                            data-dismiss="modal"
+                            data-toggle="modal"
+                            data-target="#updateFormModal"
+                        >
+                            <strong>Update</strong>
+                        </button>
                         <button type="button" class="btn-trans text-muted" data-dismiss="modal">
                             <strong>Close</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="updateFormModal" tabindex="-1" role="dialog" aria-labelledby="updateFormModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-admin" id="updateFormModal"><strong>Confirmation</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-muted">
+                    Do you really intend to update this reservation?
+                </div>
+                    <div class="modal-footer">
+                        <button
+                            @click="updateReservation"
+                            type="button"
+                            class="btn-trans text-admin"
+                            data-dismiss="modal"
+                        >
+                            <strong>YES</strong>
+                        </button>
+                        <button type="button" class="btn-trans text-admin" data-dismiss="modal">
+                            <strong>NO</strong>
                         </button>
                     </div>
                 </div>
@@ -431,7 +467,7 @@ export default {
             type: Array,
             required: true,
         },
-        typeid: {
+        type_id: {
             type: Number,
             required: true,
         }
@@ -455,8 +491,8 @@ export default {
             invoice: null,
             paydate: null,
             actual_paydate: null,
-            checkSpaces: [],
-            dateTimes: [],
+            check_spaces: [],
+            date_times: [],
             one: true,
             zero: false,
         }
@@ -484,13 +520,13 @@ export default {
         this.actual_paydate = this.form.reservation.actual_paydate ?
             new Date(this.form.reservation.actual_paydate) : null;
 
-        if (this.typeid == 2) {
+        if (this.type_id == 2) {
             for (let i = 0; i < this.spaces.length; i+=1) {
                 let hasMatch = false;
                 for (let j = 0; j < this.form.bulk_spaces.length; j+=1) {
                     if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
                         hasMatch = !hasMatch;
-                        this.checkSpaces.push({
+                        this.check_spaces.push({
                             id: this.spaces[i].id,
                             is_selected: hasMatch
                         });
@@ -498,7 +534,7 @@ export default {
                     }
                 }
                 if (!hasMatch) {
-                    this.checkSpaces.push({
+                    this.check_spaces.push({
                         id: this.spaces[i].id,
                         is_selected: false,
                     });
@@ -509,13 +545,10 @@ export default {
         this.initReservationDates();
     },
     methods: {
-        something() {
-            console.log(this.will_stay);
-        },
         initReservationDates() {
             if (this.form.schedules.length > 0) {
                 this.form.schedules.forEach(schedule => {
-                    this.dateTimes.push({
+                    this.date_times.push({
                         id: ++this.dateIncrement,
                         startDateTime: new Date(schedule.start_time),
                         endDateTime: new Date(schedule.end_time),
@@ -523,18 +556,48 @@ export default {
                 });
             }
         },
+        updateReservation() {
+            axios.patch(`/reservations/${this.form.reservation.id}/edit`, {
+                type_id: this.type_id,
+                status_id: this.status_id,
+                discovery_id: this.discovery_id,
+                is_independent: this.is_independent,
+                corporate_name: this.corporate_name,
+                visit_date: this.visit_date,
+                visit_place: this.visit_place,
+                will_noise: this.will_noise,
+                will_stay: this.will_stay,
+                remarks: this.remarks,
+                cancel_reason: this.cancel_reason,
+                actual_hours: this.actual_hours,
+                payment_cost: this.payment_cost,
+                discounted_cost: this.discounted_cost,
+                invoice: this.invoice,
+                paydate: this.paydate,
+                actual_paydate: this.actual_paydate,
+                check_spaces: JSON.stringify(this.check_spaces),
+                date_times: JSON.stringify(this.date_times),
+            })
+            .then(response => {
+                console.log(response.data);
+                // if (response.data) {
+                //     notifyUser("Reservation approved! ");
+                //     this.$emit('onFormApproval', response.data);
+                // } else notifyUser("Something went wrong.");
+            })
+        },
         changeDateTime(input) {
             let existingKey = false;
-            for (let i = 0; i < this.dateTimes.length; i+=1) {
-                if (this.dateTimes[i].id == input.id) {
-                    this.dateTimes[i].startDateTime = input.startDateTime;
-                    this.dateTimes[i].endDateTime = input.endDateTime;
+            for (let i = 0; i < this.date_times.length; i+=1) {
+                if (this.date_times[i].id == input.id) {
+                    this.date_times[i].startDateTime = input.startDateTime;
+                    this.date_times[i].endDateTime = input.endDateTime;
                     existingKey = true;
                     break;
                 }
             }
-            if(!existingKey) this.dateTimes.push(input);
-            console.log(this.dateTimes);
+            if(!existingKey) this.date_times.push(input);
+            console.log(this.date_times);
         },
         addClicked() {
             this.dateIncrement+=1;

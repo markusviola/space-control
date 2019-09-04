@@ -7,7 +7,6 @@ use App\Form;
 use App\Space;
 use App\Status;
 use App\Type;
-use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
@@ -46,6 +45,6 @@ class ReservationsController extends Controller
     }
 
     public function update($id) {
-        dd(request());
+        return request();
     }
 }
