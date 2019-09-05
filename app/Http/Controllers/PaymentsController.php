@@ -10,8 +10,8 @@ class PaymentsController extends Controller
 
         $reservations = Reservation::whereHas('form', function($q) use($typeId) {
             $q->where('type_id', $typeId);
-        })->whereYear('actual_paydate', '>' , date('2000'))
-            ->where('payment_cost', '!=', 0)
+        })->whereYear('actual_paydate', '>' , 2000)
+            ->where('payment_cost', '>', 0)
             ->get();
 
         return response()->json($reservations);
