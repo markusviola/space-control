@@ -65,9 +65,9 @@ class ReservationsController extends Controller
         }
 
         // Converting dates to epoch
-        $visitDate = strtotime(request()->visit_date.' +1 day');
-        $payDate = strtotime(request()->paydate.' +1 day');
-        $actualPayDate = strtotime(request()->actual_paydate.' +1 day');
+        $visitDate = strtotime('+1 hour', request()->visit_date);
+        $payDate = strtotime('+1 hour', request()->paydate);
+        $actualPayDate = strtotime('+1 hour', request()->actual_paydate);
 
         // Reservation field updates
         $reservation = Reservation::where('id', $id)->first();
