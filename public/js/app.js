@@ -49868,7 +49868,7 @@ var render = function() {
                       class:
                         "d-inline-block\n                            plus-" +
                         (message.from == _vm.user.id ? "anti-" : "") +
-                        "neutral\n                            rounded-lg py-2 px-2\n                            half-size"
+                        "neutral\n                            rounded-lg py-2 px-3\n                            half-size"
                     },
                     [
                       _c("div", { staticClass: "mb-1" }, [

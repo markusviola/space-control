@@ -4,14 +4,14 @@
             <div class="container py-3 panel-highlight" onclick="toMessenger({!! json_encode($form->id) !!})" >
                 <div class="row">
                     <div class="col-md-8 alt-anti-neutral">
-                        <h4>
+                        <h5>
                             @if ($form->is_approved)
                                 <strong class="text-admin">Approved ></strong>
                             @else
                                 <strong>Pending ></strong>
                             @endif
                            {{ $form->type->name }}
-                        </h4>
+                        </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
                         Sender | {{ $form->name }}

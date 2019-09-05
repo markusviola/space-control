@@ -25,7 +25,7 @@
                     <div class="col-md-8 alt-neutral">
                         <h5>
                             <strong class="text-secondary">{{ $form->reservation->status->name }} ></strong>
-                            {{ $form->type->name }}
+                            Reservation #{{ $form->reservation->id }}
                         </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">

@@ -44,7 +44,7 @@
                         <div
                             :class="`d-inline-block
                                 plus-${message.from == user.id ? 'anti-' : ''}neutral
-                                rounded-lg py-2 px-2
+                                rounded-lg py-2 px-3
                                 half-size`"
                         >
                             <div class="mb-1">
