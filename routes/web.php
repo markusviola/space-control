@@ -33,3 +33,5 @@ Route::resource('forms', 'FormsController');
 Route::get('/reservations', 'ReservationsController@index')->name('manager');
 
 Route::patch('/reservations/{id}/edit', 'ReservationsController@update');
+
+Route::get('/payments/type/{id}', 'PaymentsController@getPaymentRecords')->name('pay_records');

@@ -50960,7 +50960,7 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "reservation-item",
+          id: "reservation-item" + _vm.form.reservation.id,
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "scrollableForm",

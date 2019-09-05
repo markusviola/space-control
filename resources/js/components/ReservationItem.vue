@@ -2,7 +2,7 @@
     <div>
         <div
             class="modal fade"
-            id="reservation-item"
+            :id="`reservation-item${form.reservation.id}`"
             tabindex="-1"
             role="dialog"
             aria-labelledby="scrollableForm"
