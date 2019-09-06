@@ -24,11 +24,12 @@ class PaymentsController extends Controller
             ->join('forms as f', 'f.id', '=', 'reservations.form_id')
             ->join('bulk_spaces', 'bulk_spaces.form_id','f.id')
             ->select(
-                DB::raw('(distinct(reservations.id), payment_cost) as W'),
-                DB::raw('year(actual_paydate) year, month(actual_paydate) month'),
-                DB::raw('sum(payment_cost) as total')
+                'reservations.id',
+                'payment_cost',
+                'discounted_cost',
+                'actual_paydate',
+                'space_id'
             )
-            ->groupBy('year','month')
             ->get();
 
 
