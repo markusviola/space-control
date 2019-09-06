@@ -38,4 +38,24 @@ class Schedule extends Model
         return $time->format('H:i');
     }
 
+    public function getStartTimeAttribute($attribute){
+
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
+        $time = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
+        return [
+            'date' => $date->format('Y年 m月 d日'),
+            'time' => $time->format('H:i'),
+        ];
+    }
+
+    public function getEndTimeAttribute($attribute){
+
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
+        $time = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
+        return [
+            'date' => $date->format('Y年 m月 d日'),
+            'time' => $time->format('H:i'),
+        ];
+    }
+
 }
