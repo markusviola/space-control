@@ -536,6 +536,22 @@
 </template>
 
 <script>
+// CREATE OR REPLACE VIEW alpha as (select r.id, payment_cost, actual_paydate, paydate, space_id from reservations as r
+// inner join forms as f on f.id = r.form_id
+// inner join bulk_spaces as bs on f.id = bs.form_id
+// where f.type_id = 2 and year(r.actual_paydate) > 2000);
+
+// select
+// 	year(actual_paydate) year,
+//     month(actual_paydate) month,
+// 	(select sum(payment_cost) from (select distinct(id), payment_cost from alpha) as a) as total,
+//     (select count(space_id) from (select space_id from alpha where space_id = 1) as b) as space1,
+//     (select count(space_id) from (select space_id from alpha where space_id = 2) as b) as space2,
+//     (select count(space_id) from (select space_id from alpha where space_id = 3) as b) as space3,
+//     (select count(space_id) from (select space_id from alpha where space_id = 4) as b) as space4,
+//     (select count(space_id) from (select space_id from alpha where space_id = 5) as b) as space5
+// from alpha
+// group by year, month;
 export default {
     props: {
         form: {
@@ -626,13 +642,33 @@ export default {
             this.actual_paydate = this.form.reservation.actual_paydate ?
                 new Date(this.form.reservation.actual_paydate) : null;
 
-            console.log({
-                visitDate: this.visit_date,
-                payDate: this.paydate,
-                actualPayDate: this.actual_paydate,
-                schedules: this.form.schedules
-            })
-
+            this.initReservationDates();
+            this.initReservationSpaces();
+        },
+        formatToUTC(date) {
+            return new Date(Date.UTC(
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes()
+            ));
+        },
+        initReservationDates() {
+            this.dateIncrement = 0;
+            this.date_times = [];
+            if (this.form.schedules.length > 0) {
+                this.form.schedules.forEach(schedule => {
+                    this.date_times.push({
+                        id: ++this.dateIncrement,
+                        startDateTime: new Date(schedule.start_time['raw']),
+                        endDateTime: new Date(schedule.end_time['raw']),
+                    })
+                });
+            }
+        },
+        initReservationSpaces() {
+            this.check_spaces = [];
             if (this.type_id == 2) {
                 for (let i = 0; i < this.spaces.length; i+=1) {
                     let hasMatch = false;
@@ -653,27 +689,6 @@ export default {
                         });
                     }
                 }
-            }
-            this.initReservationDates();
-        },
-        formatToUTC(date) {
-            return new Date(Date.UTC(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate(),
-                date.getHours(),
-                date.getMinutes()
-            ));
-        },
-        initReservationDates() {
-            if (this.form.schedules.length > 0) {
-                this.form.schedules.forEach(schedule => {
-                    this.date_times.push({
-                        id: ++this.dateIncrement,
-                        startDateTime: new Date(schedule.start_time['raw']),
-                        endDateTime: new Date(schedule.end_time['raw']),
-                    })
-                });
             }
         },
         updateReservation() {
@@ -716,7 +731,6 @@ export default {
                 }
             }
             if(!existingKey) this.date_times.push(input);
-            console.log(this.date_times);
         },
         addClicked() {
             this.dateIncrement+=1;
@@ -732,3 +746,6 @@ export default {
     }
 }
 </script>
+
+
+

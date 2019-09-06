@@ -3285,6 +3285,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+// CREATE OR REPLACE VIEW alpha as (select r.id, payment_cost, actual_paydate, paydate, space_id from reservations as r
+// inner join forms as f on f.id = r.form_id
+// inner join bulk_spaces as bs on f.id = bs.form_id
+// where f.type_id = 2 and year(r.actual_paydate) > 2000);
+// select
+// 	year(actual_paydate) year,
+//     month(actual_paydate) month,
+// 	(select sum(payment_cost) from (select distinct(id), payment_cost from alpha) as a) as total,
+//     (select count(space_id) from (select space_id from alpha where space_id = 1) as b) as space1,
+//     (select count(space_id) from (select space_id from alpha where space_id = 2) as b) as space2,
+//     (select count(space_id) from (select space_id from alpha where space_id = 3) as b) as space3,
+//     (select count(space_id) from (select space_id from alpha where space_id = 4) as b) as space4,
+//     (select count(space_id) from (select space_id from alpha where space_id = 5) as b) as space5
+// from alpha
+// group by year, month;
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -3369,12 +3384,30 @@ __webpack_require__.r(__webpack_exports__);
       this.visit_date = this.form.reservation.visit_date ? new Date(this.form.reservation.visit_date) : null;
       this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
       this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
-      console.log({
-        visitDate: this.visit_date,
-        payDate: this.paydate,
-        actualPayDate: this.actual_paydate,
-        schedules: this.form.schedules
-      });
+      this.initReservationDates();
+      this.initReservationSpaces();
+    },
+    formatToUTC: function formatToUTC(date) {
+      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+    },
+    initReservationDates: function initReservationDates() {
+      var _this = this;
+
+      this.dateIncrement = 0;
+      this.date_times = [];
+
+      if (this.form.schedules.length > 0) {
+        this.form.schedules.forEach(function (schedule) {
+          _this.date_times.push({
+            id: ++_this.dateIncrement,
+            startDateTime: new Date(schedule.start_time['raw']),
+            endDateTime: new Date(schedule.end_time['raw'])
+          });
+        });
+      }
+    },
+    initReservationSpaces: function initReservationSpaces() {
+      this.check_spaces = [];
 
       if (this.type_id == 2) {
         for (var i = 0; i < this.spaces.length; i += 1) {
@@ -3398,24 +3431,6 @@ __webpack_require__.r(__webpack_exports__);
             });
           }
         }
-      }
-
-      this.initReservationDates();
-    },
-    formatToUTC: function formatToUTC(date) {
-      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
-    },
-    initReservationDates: function initReservationDates() {
-      var _this = this;
-
-      if (this.form.schedules.length > 0) {
-        this.form.schedules.forEach(function (schedule) {
-          _this.date_times.push({
-            id: ++_this.dateIncrement,
-            startDateTime: new Date(schedule.start_time['raw']),
-            endDateTime: new Date(schedule.end_time['raw'])
-          });
-        });
       }
     },
     updateReservation: function updateReservation() {
@@ -3459,7 +3474,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (!existingKey) this.date_times.push(input);
-      console.log(this.date_times);
     },
     addClicked: function addClicked() {
       this.dateIncrement += 1;
@@ -3668,13 +3682,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Date Picker mounted successfully.');
-
-    if (this.setDate) {
-      this.date = this.setDate.startDateTime;
-      this.chosenStartHour = this.setDate.startDateTime.getHours();
-      this.chosenEndHour = this.setDate.endDateTime.getHours();
-      this.chosenStartMin = this.setDate.startDateTime.getMinutes();
-      this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+    this.updateSetDate();
+  },
+  watch: {
+    setDate: {
+      handler: function handler(newDate, oldDate) {
+        this.updateSetDate();
+      }
     }
   },
   methods: {
@@ -3686,6 +3700,15 @@ __webpack_require__.r(__webpack_exports__);
     formatToUTC: function formatToUTC(date) {
       return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
     },
+    updateSetDate: function updateSetDate() {
+      if (this.setDate) {
+        this.date = this.setDate.startDateTime;
+        this.chosenStartHour = this.setDate.startDateTime.getHours();
+        this.chosenEndHour = this.setDate.endDateTime.getHours();
+        this.chosenStartMin = this.setDate.startDateTime.getMinutes();
+        this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+      }
+    },
     onDateTimeUpdated: function onDateTimeUpdated() {
       var startDateTime = new Date(this.date);
       var endDateTime = new Date(this.date);
@@ -3693,7 +3716,7 @@ __webpack_require__.r(__webpack_exports__);
       endDateTime.setHours(this.chosenEndHour, this.chosenEndMin); // Fixes Timezone problem when JSON parsing
 
       startDateTime = this.formatToUTC(startDateTime);
-      endDateTime = this.formatToUTC(startDateTime);
+      endDateTime = this.formatToUTC(endDateTime);
       this.$emit('onDateTimeChosen', {
         id: this.dateTimeId,
         startDateTime: startDateTime,

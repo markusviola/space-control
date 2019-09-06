@@ -96,12 +96,13 @@
         },
         mounted() {
             console.log('Date Picker mounted successfully.');
-            if (this.setDate) {
-                this.date = this.setDate.startDateTime;
-                this.chosenStartHour = this.setDate.startDateTime.getHours();
-                this.chosenEndHour = this.setDate.endDateTime.getHours();
-                this.chosenStartMin = this.setDate.startDateTime.getMinutes();
-                this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+            this.updateSetDate();
+        },
+        watch: {
+            setDate: {
+                handler(newDate, oldDate) {
+                    this.updateSetDate();
+                }
             }
         },
         methods: {
@@ -118,6 +119,15 @@
                     date.getMinutes()
                 ));
             },
+            updateSetDate(){
+                if (this.setDate) {
+                    this.date = this.setDate.startDateTime;
+                    this.chosenStartHour = this.setDate.startDateTime.getHours();
+                    this.chosenEndHour = this.setDate.endDateTime.getHours();
+                    this.chosenStartMin = this.setDate.startDateTime.getMinutes();
+                    this.chosenEndMin = this.setDate.endDateTime.getMinutes();
+                }
+            },
             onDateTimeUpdated() {
                 let startDateTime = new Date(this.date);
                 let endDateTime = new Date(this.date);
@@ -126,7 +136,7 @@
 
                 // Fixes Timezone problem when JSON parsing
                 startDateTime = this.formatToUTC(startDateTime);
-                endDateTime = this.formatToUTC(startDateTime);
+                endDateTime = this.formatToUTC(endDateTime);
 
                 this.$emit('onDateTimeChosen', {
                     id: this.dateTimeId,
