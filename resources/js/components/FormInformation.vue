@@ -218,8 +218,8 @@
                 let currDates = [];
 
                 newDates.forEach(date => {
-                    const startDate = new Date(date.start_time);
-                    const endDate = new Date(date.end_time);
+                    const startDate = new Date(date.start_time['raw']);
+                    const endDate = new Date(date.end_time['raw']);
 
                     currDates.push({
                         sDate: `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`,

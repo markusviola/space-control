@@ -2578,8 +2578,8 @@ __webpack_require__.r(__webpack_exports__);
     arrangeDates: function arrangeDates(newDates) {
       var currDates = [];
       newDates.forEach(function (date) {
-        var startDate = new Date(date.start_time);
-        var endDate = new Date(date.end_time);
+        var startDate = new Date(date.start_time['raw']);
+        var endDate = new Date(date.end_time['raw']);
         currDates.push({
           sDate: "".concat(startDate.getFullYear(), "-").concat(startDate.getMonth(), "-").concat(startDate.getDate()),
           sHour: "".concat((startDate.getHours() + '').length == 1 ? '0' : '').concat(startDate.getHours()),
@@ -3406,8 +3406,8 @@ __webpack_require__.r(__webpack_exports__);
         this.form.schedules.forEach(function (schedule) {
           _this.date_times.push({
             id: ++_this.dateIncrement,
-            startDateTime: new Date(schedule.start_time),
-            endDateTime: new Date(schedule.end_time)
+            startDateTime: new Date(schedule.start_time['raw']),
+            endDateTime: new Date(schedule.end_time['raw'])
           });
         });
       }

@@ -658,8 +658,8 @@ export default {
                 this.form.schedules.forEach(schedule => {
                     this.date_times.push({
                         id: ++this.dateIncrement,
-                        startDateTime: new Date(schedule.start_time),
-                        endDateTime: new Date(schedule.end_time),
+                        startDateTime: new Date(schedule.start_time['raw']),
+                        endDateTime: new Date(schedule.end_time['raw']),
                     })
                 });
             }

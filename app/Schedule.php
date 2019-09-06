@@ -43,6 +43,7 @@ class Schedule extends Model
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
         $time = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
         return [
+            'raw' => $attribute,
             'date' => $date->format('Y年 m月 d日'),
             'time' => $time->format('H:i'),
         ];
@@ -53,6 +54,7 @@ class Schedule extends Model
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
         $time = \DateTime::createFromFormat('Y-m-d H:i:s', $attribute);
         return [
+            'raw' => $attribute,
             'date' => $date->format('Y年 m月 d日'),
             'time' => $time->format('H:i'),
         ];
