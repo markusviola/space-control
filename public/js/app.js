@@ -3341,11 +3341,8 @@ __webpack_require__.r(__webpack_exports__);
       zero: false
     };
   },
-  created: function created() {// this.updateFormFields();
-  },
   watch: {
     form: {
-      // immediate: true,
       handler: function handler(newForm, oldForm) {
         this.updateFormFields();
       }
@@ -3372,6 +3369,12 @@ __webpack_require__.r(__webpack_exports__);
       this.visit_date = this.form.reservation.visit_date ? new Date(this.form.reservation.visit_date) : null;
       this.paydate = this.form.reservation.paydate ? new Date(this.form.reservation.paydate) : null;
       this.actual_paydate = this.form.reservation.actual_paydate ? new Date(this.form.reservation.actual_paydate) : null;
+      console.log({
+        visitDate: this.visit_date,
+        payDate: this.paydate,
+        actualPayDate: this.actual_paydate,
+        schedules: this.form.schedules
+      });
 
       if (this.type_id == 2) {
         for (var i = 0; i < this.spaces.length; i += 1) {
@@ -3399,6 +3402,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.initReservationDates();
     },
+    formatToUTC: function formatToUTC(date) {
+      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+    },
     initReservationDates: function initReservationDates() {
       var _this = this;
 
@@ -3419,7 +3425,6 @@ __webpack_require__.r(__webpack_exports__);
         discovery_id: this.discovery_id,
         is_independent: this.is_independent,
         corporate_name: this.corporate_name,
-        visit_date: this.visit_date,
         visit_place: this.visit_place,
         will_noise: this.will_noise,
         will_stay: this.will_stay,
@@ -3427,13 +3432,14 @@ __webpack_require__.r(__webpack_exports__);
         phone: this.phone,
         remarks: this.remarks,
         invoice: this.invoice,
-        paydate: this.paydate,
-        actual_paydate: this.actual_paydate,
         cancel_reason: this.cancel_reason,
+        paydate: this.formatToUTC(this.paydate),
+        visit_date: this.formatToUTC(this.visit_date),
+        actual_paydate: this.formatToUTC(this.actual_paydate),
         actual_hours: parseInt(this.actual_hours),
+        user_count: parseInt(this.user_count),
         payment_cost: parseFloat(this.payment_cost),
         discounted_cost: parseFloat(this.discounted_cost),
-        user_count: parseInt(this.user_count),
         check_spaces: JSON.stringify(this.check_spaces),
         date_times: JSON.stringify(this.date_times)
       }).then(function () {
@@ -3677,14 +3683,17 @@ __webpack_require__.r(__webpack_exports__);
         return start + idx;
       });
     },
+    formatToUTC: function formatToUTC(date) {
+      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+    },
     onDateTimeUpdated: function onDateTimeUpdated() {
       var startDateTime = new Date(this.date);
       var endDateTime = new Date(this.date);
       startDateTime.setHours(this.chosenStartHour, this.chosenStartMin);
       endDateTime.setHours(this.chosenEndHour, this.chosenEndMin); // Fixes Timezone problem when JSON parsing
 
-      startDateTime = new Date(Date.UTC(startDateTime.getFullYear(), startDateTime.getMonth(), startDateTime.getDate(), startDateTime.getHours(), startDateTime.getMinutes()));
-      endDateTime = new Date(Date.UTC(endDateTime.getFullYear(), endDateTime.getMonth(), endDateTime.getDate(), endDateTime.getHours(), endDateTime.getMinutes()));
+      startDateTime = this.formatToUTC(startDateTime);
+      endDateTime = this.formatToUTC(startDateTime);
       this.$emit('onDateTimeChosen', {
         id: this.dateTimeId,
         startDateTime: startDateTime,

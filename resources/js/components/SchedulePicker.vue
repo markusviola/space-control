@@ -109,6 +109,15 @@
                 return Array(end - start + 1)
                     .fill().map((_, idx) => start + idx)
             },
+            formatToUTC(date) {
+                 return new Date(Date.UTC(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    date.getDate(),
+                    date.getHours(),
+                    date.getMinutes()
+                ));
+            },
             onDateTimeUpdated() {
                 let startDateTime = new Date(this.date);
                 let endDateTime = new Date(this.date);
@@ -116,20 +125,8 @@
                 endDateTime.setHours(this.chosenEndHour, this.chosenEndMin);
 
                 // Fixes Timezone problem when JSON parsing
-                startDateTime = new Date(Date.UTC(
-                    startDateTime.getFullYear(),
-                    startDateTime.getMonth(),
-                    startDateTime.getDate(),
-                    startDateTime.getHours(),
-                    startDateTime.getMinutes()
-                ));
-                endDateTime = new Date(Date.UTC(
-                    endDateTime.getFullYear(),
-                    endDateTime.getMonth(),
-                    endDateTime.getDate(),
-                    endDateTime.getHours(),
-                    endDateTime.getMinutes()
-                ));
+                startDateTime = this.formatToUTC(startDateTime);
+                endDateTime = this.formatToUTC(startDateTime);
 
                 this.$emit('onDateTimeChosen', {
                     id: this.dateTimeId,

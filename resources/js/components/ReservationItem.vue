@@ -592,12 +592,8 @@ export default {
             zero: false,
         }
     },
-    created() {
-        // this.updateFormFields();
-    },
     watch: {
         form: {
-            // immediate: true,
             handler(newForm, oldForm) {
                 this.updateFormFields();
             }
@@ -630,6 +626,13 @@ export default {
             this.actual_paydate = this.form.reservation.actual_paydate ?
                 new Date(this.form.reservation.actual_paydate) : null;
 
+            console.log({
+                visitDate: this.visit_date,
+                payDate: this.paydate,
+                actualPayDate: this.actual_paydate,
+                schedules: this.form.schedules
+            })
+
             if (this.type_id == 2) {
                 for (let i = 0; i < this.spaces.length; i+=1) {
                     let hasMatch = false;
@@ -653,6 +656,15 @@ export default {
             }
             this.initReservationDates();
         },
+        formatToUTC(date) {
+            return new Date(Date.UTC(
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes()
+            ));
+        },
         initReservationDates() {
             if (this.form.schedules.length > 0) {
                 this.form.schedules.forEach(schedule => {
@@ -671,7 +683,6 @@ export default {
                 discovery_id: this.discovery_id,
                 is_independent: this.is_independent,
                 corporate_name: this.corporate_name,
-                visit_date: this.visit_date,
                 visit_place: this.visit_place,
                 will_noise: this.will_noise,
                 will_stay: this.will_stay,
@@ -679,13 +690,14 @@ export default {
                 phone: this.phone,
                 remarks: this.remarks,
                 invoice: this.invoice,
-                paydate: this.paydate,
-                actual_paydate: this.actual_paydate,
                 cancel_reason: this.cancel_reason,
+                paydate: this.formatToUTC(this.paydate),
+                visit_date: this.formatToUTC(this.visit_date),
+                actual_paydate: this.formatToUTC(this.actual_paydate),
                 actual_hours: parseInt(this.actual_hours),
+                user_count: parseInt(this.user_count),
                 payment_cost: parseFloat(this.payment_cost),
                 discounted_cost: parseFloat(this.discounted_cost),
-                user_count: parseInt(this.user_count),
                 check_spaces: JSON.stringify(this.check_spaces),
                 date_times: JSON.stringify(this.date_times),
             })
