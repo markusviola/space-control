@@ -32,6 +32,8 @@ Vue.use(VCalendar, {
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+Vue.component('reservation-list', require('./components/ReservationList.vue').default);
 Vue.component('reservation-item', require('./components/ReservationItem.vue').default);
 Vue.component('form-info', require('./components/FormInformation.vue').default);
 Vue.component('form-list', require('./components/FormList.vue').default);
