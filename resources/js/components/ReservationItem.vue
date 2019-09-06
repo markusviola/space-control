@@ -665,33 +665,33 @@ export default {
             }
         },
         updateReservation() {
-            // axios.patch(`/reservations/${this.form.reservation.id}/edit`, {
-            //     type_id: this.type_id,
-            //     status_id: this.status_id,
-            //     discovery_id: this.discovery_id,
-            //     is_independent: this.is_independent,
-            //     corporate_name: this.corporate_name,
-            //     visit_date: this.visit_date,
-            //     visit_place: this.visit_place,
-            //     will_noise: this.will_noise,
-            //     will_stay: this.will_stay,
-            //     email: this.email,
-            //     phone: this.phone,
-            //     remarks: this.remarks,
-            //     invoice: this.invoice,
-            //     paydate: this.paydate,
-            //     actual_paydate: this.actual_paydate,
-            //     cancel_reason: this.cancel_reason,
-            //     actual_hours: parseInt(this.actual_hours),
-            //     payment_cost: parseFloat(this.payment_cost),
-            //     discounted_cost: parseFloat(this.discounted_cost),
-            //     user_count: parseInt(this.user_count),
-            //     check_spaces: JSON.stringify(this.check_spaces),
-            //     date_times: JSON.stringify(this.date_times),
-            // })
-            // .then(() => {
-            //     location.reload();
-            // });
+            axios.patch(`/reservations/${this.form.reservation.id}/edit`, {
+                type_id: this.type_id,
+                status_id: this.status_id,
+                discovery_id: this.discovery_id,
+                is_independent: this.is_independent,
+                corporate_name: this.corporate_name,
+                visit_date: this.visit_date,
+                visit_place: this.visit_place,
+                will_noise: this.will_noise,
+                will_stay: this.will_stay,
+                email: this.email,
+                phone: this.phone,
+                remarks: this.remarks,
+                invoice: this.invoice,
+                paydate: this.paydate,
+                actual_paydate: this.actual_paydate,
+                cancel_reason: this.cancel_reason,
+                actual_hours: parseInt(this.actual_hours),
+                payment_cost: parseFloat(this.payment_cost),
+                discounted_cost: parseFloat(this.discounted_cost),
+                user_count: parseInt(this.user_count),
+                check_spaces: JSON.stringify(this.check_spaces),
+                date_times: JSON.stringify(this.date_times),
+            })
+            .then(() => {
+                location.reload();
+            });
         },
         changeDateTime(input) {
             let existingKey = false;
