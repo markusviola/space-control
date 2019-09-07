@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="alt-neutral">Payment Records</h5>
-                        <div class="text-muted">Check how your businses has been going.</div>
+                        <div class="text-muted">Check how your businses has been going!</div>
                     </div>
                     <payment-records :types="{{ $types }}"></payment-records>
                 </div>
