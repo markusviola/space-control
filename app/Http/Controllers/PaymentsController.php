@@ -11,29 +11,49 @@ class PaymentsController extends Controller
 {
     public function getPaymentRecords($typeId) {
 
-        $reservations = Reservation::whereHas('form',
-            function($q) use($typeId) {
-                $q->where('type_id', $typeId);
-            })
-            ->whereYear('actual_paydate', '>' , 2000)
-            ->where('payment_cost', '>', 0)
-            ->join('forms as f', 'f.id', '=', 'reservations.form_id')
-            ->join('bulk_spaces', 'bulk_spaces.form_id','f.id')
-            ->select(
-                'is_independent',
-                'reservations.id',
-                'payment_cost',
-                'discounted_cost',
-                'space_id',
-                DB::raw('month(actual_paydate) month'),
-                DB::raw('year(actual_paydate) year')
-            )
-            ->get();
+        if ($typeId != 2) {
+            $reservations = Reservation::whereHas('form',
+                function($q) use($typeId) {
+                    $q->where('type_id', $typeId);
+                })
+                ->whereYear('actual_paydate', '>' , 2000)
+                ->where('payment_cost', '>', 0)
+                ->join('forms as f', 'f.id', '=', 'reservations.form_id')
+                ->select(
+                    'is_independent',
+                    'reservations.id',
+                    'payment_cost',
+                    'discounted_cost',
+                    DB::raw('month(actual_paydate) month'),
+                    DB::raw('year(actual_paydate) year')
+                )
+                ->get();
+        } else {
+            $reservations = Reservation::whereHas('form',
+                function($q) use($typeId) {
+                    $q->where('type_id', $typeId);
+                })
+                ->whereYear('actual_paydate', '>' , 2000)
+                ->where('payment_cost', '>', 0)
+                ->join('forms as f', 'f.id', '=', 'reservations.form_id')
+                ->join('bulk_spaces', 'bulk_spaces.form_id','f.id')
+                ->select(
+                    'is_independent',
+                    'reservations.id',
+                    'payment_cost',
+                    'discounted_cost',
+                    'space_id',
+                    DB::raw('month(actual_paydate) month'),
+                    DB::raw('year(actual_paydate) year')
+                )
+                ->get();
+        }
 
         $uniqueIds = array();
         $uniqueMonthYears = array();
         $uniqueReservations = array();
         $uniquePayments = array();
+
         // Filters array with unique reservation IDs only.
         foreach($reservations as $item) {
             if(!in_array($item->id, $uniqueIds)) {
@@ -54,10 +74,11 @@ class PaymentsController extends Controller
                         // Combines payment with the same month and year.
                         $uniquePayments[$key]->total+= $final_pay;
                     } else {
-                        // Adds new month and year with payment
+                        // Push new month and year and adds new entry.
                         if (!in_array($monthYear, $uniqueMonthYears)) {
                             array_push($uniqueMonthYears, $monthYear);
                             $record = new stdClass();
+                            $record->is_independent = $item->is_independent;
                             $record->month = $item->month;
                             $record->year = $item->year;
                             $record->total = $final_pay;
@@ -66,7 +87,9 @@ class PaymentsController extends Controller
                     }
                 }
             } else {
+                // Adds new entry of payment record
                 $record = new stdClass();
+                $record->is_independent = $item->is_independent;
                 $record->month = $item->month;
                 $record->year = $item->year;
                 $record->total = $final_pay;
@@ -74,20 +97,24 @@ class PaymentsController extends Controller
             }
         }
 
-        foreach($uniquePayments as $key=>$value) {
-            $monthYear = $value->month.''.$value->year;
-            foreach($reservations as $reservation) {
-                if ($reservation->month.''.$reservation->year == $monthYear) {
-                    $spaceKey = 'space'.$reservation->space_id;
-                    if (property_exists($uniquePayments[$key], $spaceKey)) {
-                        $uniquePayments[$key]->$spaceKey++;
-                    } else {
-                        $uniquePayments[$key]->$spaceKey = 1;
+        if ($typeId == 2) {
+            // Adds new record properties with the count
+            // of spaces used based on month and year.
+            foreach($uniquePayments as $key=>$value) {
+                $monthYear = $value->month.''.$value->year;
+                foreach($reservations as $reservation) {
+                    if ($reservation->month.''.$reservation->year == $monthYear) {
+                        $spaceKey = 'space'.$reservation->space_id;
+                        if (property_exists($uniquePayments[$key], $spaceKey)) {
+                            $uniquePayments[$key]->$spaceKey++;
+                        } else {
+                            $uniquePayments[$key]->$spaceKey = 1;
+                        }
                     }
                 }
             }
         }
 
-        return $uniquePayments;
+        return response()->json($uniquePayments);
     }
 }
