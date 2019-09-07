@@ -646,13 +646,15 @@ export default {
             this.initReservationSpaces();
         },
         formatToUTC(date) {
-            return new Date(Date.UTC(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate(),
-                date.getHours(),
-                date.getMinutes()
-            ));
+            if (date) {
+                return new Date(Date.UTC(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    date.getDate(),
+                    date.getHours(),
+                    date.getMinutes()
+                ));
+            }
         },
         initReservationDates() {
             this.dateIncrement = 0;

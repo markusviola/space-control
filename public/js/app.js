@@ -3388,7 +3388,9 @@ __webpack_require__.r(__webpack_exports__);
       this.initReservationSpaces();
     },
     formatToUTC: function formatToUTC(date) {
-      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+      if (date) {
+        return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes()));
+      }
     },
     initReservationDates: function initReservationDates() {
       var _this = this;
