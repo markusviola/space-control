@@ -10,10 +10,10 @@
             </li>
         </ul>
         <div class="row mb-2 mt-3">
-            <div class="col-md-2 offset-md-7 text-right px-0 pt-2">
+            <div class="col-2 offset-7 text-right px-0 pt-2">
                 <strong class="text-muted">Filter</strong>
             </div>
-            <div class="col-md-3">
+            <div class="col-3">
                 <div class="form-group">
                     <select
                         v-model="chosen_filter"

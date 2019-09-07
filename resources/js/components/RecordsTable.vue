@@ -24,6 +24,20 @@
                 </tr>
             </tbody>
         </table>
+        <table v-else class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">使用日-年-月</th>
+                    <th scope="col">請求金額</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(record, index) in records" :key="index">
+                    <th scope="row">{{ `${record.year}-${record.month}月` }}</th>
+                    <td>{{ record.total }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 

@@ -2855,6 +2855,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     type_id: {
@@ -51256,7 +51270,7 @@ var render = function() {
     _c("div", { staticClass: "row mb-2 mt-3" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "col-3" }, [
         _c("div", { staticClass: "form-group" }, [
           _c(
             "select",
@@ -51342,11 +51356,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-md-2 offset-md-7 text-right px-0 pt-2" },
-      [_c("strong", { staticClass: "text-muted" }, [_vm._v("Filter")])]
-    )
+    return _c("div", { staticClass: "col-2 offset-7 text-right px-0 pt-2" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("Filter")])
+    ])
   }
 ]
 render._withStripped = true
@@ -51399,7 +51411,23 @@ var render = function() {
             0
           )
         ])
-      : _vm._e()
+      : _c("table", { staticClass: "table table-bordered" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.records, function(record, index) {
+              return _c("tr", { key: index }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(record.year + "-" + record.month + "月"))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.total))])
+              ])
+            }),
+            0
+          )
+        ])
   ])
 }
 var staticRenderFns = [
@@ -51422,6 +51450,18 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("屋上")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("昇降口")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("使用日-年-月")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("請求金額")])
       ])
     ])
   }
