@@ -2847,7 +2847,11 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    changeTable: function changeTable() {}
+    changeTable: function changeTable() {
+      axios.get("/payments/type/".concat(this.type_id, "/individual/").concat(this.filter)).then(function (response) {
+        console.log(response.data);
+      });
+    }
   },
   watch: {
     type_id: {
@@ -2857,7 +2861,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     filter: {
-      immediate: true,
       handler: function handler() {
         this.changeTable();
       }

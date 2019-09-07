@@ -23,7 +23,10 @@ export default {
     },
     methods: {
         changeTable() {
-
+             axios.get(`/payments/type/${this.type_id}/individual/${this.filter}`)
+            .then(response => {
+                console.log(response.data);
+            })
         }
     },
     watch: {
@@ -34,7 +37,6 @@ export default {
             }
         },
         filter: {
-            immediate: true,
             handler() {
                 this.changeTable();
             }
