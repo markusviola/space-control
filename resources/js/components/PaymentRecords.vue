@@ -16,29 +16,30 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <select
-                        v-on:change="onClientChosen"
-                        v-model="client"
+                        v-model="chosen_filter"
                         class="form-control"
                     >
                         <option
                             :value="filter_choices[0]"
-                            :selected="client == filter_choices[0]"
+                            :selected="chosen_filter == filter_choices[0]"
                         >All</option>
                         <option
                             :value="filter_choices[1]"
-                            :selected="client == filter_choices[1]"
+                            :selected="chosen_filter == filter_choices[1]"
                         >Individual</option>
                         <option
                             :value="filter_choices[2]"
-                            :selected="client == filter_choices[2]"
+                            :selected="chosen_filter == filter_choices[2]"
                         >Corporate</option>
                     </select>
                 </div>
             </div>
         </div>
         <div class="payment-wrapper">
-            <div class="text-center">
-            </div>
+            <records-table
+                :type_id="chosen_type"
+                :filter="chosen_filter"
+            ></records-table>
         </div>
     </div>
 </template>
@@ -53,21 +54,15 @@ export default {
     },
     data() {
         return {
-            client: 'default',
+            chosen_filter: 'default',
             chosen_type: 2,
             filter_choices: ['default', 'true', 'false']
         }
-    },
-    mounted() {
-
     },
     methods: {
         onTypeChosen(id) {
             this.chosen_type = id;
         },
-        onClientChosen() {
-            console.log(this.client);
-        }
     }
 }
 </script>
