@@ -3,14 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Reservation;
-use App\Space;
 use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class PaymentsController extends Controller
 {
-    public function getPaymentRecords($typeId) {
+    public function getPaymentRecords($typeId, $isIndependent) {
 
+        // Filters if requested data is by
+        // individual, corporate clients or both.
+        switch ($isIndependent) {
+            case "true":
+                $clientRange = [1];
+                break;
+            case "false":
+                $clientRange = [0];
+                break;
+            default:
+                $clientRange = [0,1];
+
+        }
         if ($typeId != 2) {
             $reservations = Reservation::whereHas('form',
                 function($q) use($typeId) {
@@ -18,9 +30,9 @@ class PaymentsController extends Controller
                 })
                 ->whereYear('actual_paydate', '>' , 2000)
                 ->where('payment_cost', '>', 0)
+                ->whereIn('is_independent', $clientRange)
                 ->join('forms as f', 'f.id', '=', 'reservations.form_id')
                 ->select(
-                    'is_independent',
                     'reservations.id',
                     'payment_cost',
                     'discounted_cost',
@@ -35,10 +47,10 @@ class PaymentsController extends Controller
                 })
                 ->whereYear('actual_paydate', '>' , 2000)
                 ->where('payment_cost', '>', 0)
+                ->whereIn('is_independent', $clientRange)
                 ->join('forms as f', 'f.id', '=', 'reservations.form_id')
                 ->join('bulk_spaces', 'bulk_spaces.form_id','f.id')
                 ->select(
-                    'is_independent',
                     'reservations.id',
                     'payment_cost',
                     'discounted_cost',
@@ -78,7 +90,6 @@ class PaymentsController extends Controller
                         if (!in_array($monthYear, $uniqueMonthYears)) {
                             array_push($uniqueMonthYears, $monthYear);
                             $record = new stdClass();
-                            $record->is_independent = $item->is_independent;
                             $record->month = $item->month;
                             $record->year = $item->year;
                             $record->total = $final_pay;
@@ -89,7 +100,6 @@ class PaymentsController extends Controller
             } else {
                 // Adds new entry of payment record
                 $record = new stdClass();
-                $record->is_independent = $item->is_independent;
                 $record->month = $item->month;
                 $record->year = $item->year;
                 $record->total = $final_pay;
