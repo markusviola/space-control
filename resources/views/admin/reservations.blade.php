@@ -25,4 +25,7 @@
         </div>
     @endif
 </div>
-<hr class="mt-0">
+<hr class="mt-0 mb-3">
+<div class="text-center font-weight-bold">
+    <a class="anti-neutral" href="{{ route('payment.records') }}">See Payment Transaction Records</a>
+</div>
