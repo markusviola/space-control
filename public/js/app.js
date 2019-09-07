@@ -3285,21 +3285,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// CREATE OR REPLACE VIEW alpha as (select r.id, payment_cost, actual_paydate, paydate, space_id from reservations as r
-// inner join forms as f on f.id = r.form_id
-// inner join bulk_spaces as bs on f.id = bs.form_id
-// where f.type_id = 2 and year(r.actual_paydate) > 2000);
-// select
-// 	year(actual_paydate) year,
-//     month(actual_paydate) month,
-// 	(select sum(payment_cost) from (select distinct(id), payment_cost from alpha) as a) as total,
-//     (select count(space_id) from (select space_id from alpha where space_id = 1) as b) as space1,
-//     (select count(space_id) from (select space_id from alpha where space_id = 2) as b) as space2,
-//     (select count(space_id) from (select space_id from alpha where space_id = 3) as b) as space3,
-//     (select count(space_id) from (select space_id from alpha where space_id = 4) as b) as space4,
-//     (select count(space_id) from (select space_id from alpha where space_id = 5) as b) as space5
-// from alpha
-// group by year, month;
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
