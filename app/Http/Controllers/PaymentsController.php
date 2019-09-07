@@ -8,6 +8,10 @@ use stdClass;
 
 class PaymentsController extends Controller
 {
+    public function index() {
+        return view('admin.payments');
+    }
+
     public function getPaymentRecords($typeId, $isIndependent) {
 
         // Filters if requested data is by
