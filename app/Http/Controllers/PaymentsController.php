@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Reservation;
+use App\Type;
 use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class PaymentsController extends Controller
 {
     public function index() {
-        return view('admin.payments');
+
+        $types = Type::all();
+
+        return view('admin.payments', compact('types'));
     }
 
     public function getPaymentRecords($typeId, $isIndependent) {

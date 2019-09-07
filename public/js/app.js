@@ -2757,7 +2757,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    types: {
+      type: Array,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      client: 'default',
+      chosen_type: 2,
+      filter_choices: ['default', 'true', 'false']
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    onTypeChosen: function onTypeChosen(id) {
+      this.chosen_type = id;
+    },
+    onClientChosen: function onClientChosen() {
+      console.log(this.client);
+    }
+  }
+});
 
 /***/ }),
 
@@ -51090,19 +51149,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "nav nav-tabs mt-2 text-secondary" },
+      _vm._l(_vm.types, function(type, index) {
+        return _c("li", { key: index, staticClass: "nav-item" }, [
+          _c(
+            "div",
+            {
+              class:
+                "nav-link clickable " +
+                (type.id == _vm.chosen_type ? "active" : ""),
+              on: {
+                click: function($event) {
+                  return _vm.onTypeChosen(type.id)
+                }
+              }
+            },
+            [_vm._v(_vm._s(type.name))]
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-2 mt-3" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.client,
+                  expression: "client"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.client = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.onClientChosen
+                ]
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  domProps: {
+                    value: _vm.filter_choices[0],
+                    selected: _vm.client == _vm.filter_choices[0]
+                  }
+                },
+                [_vm._v("All")]
+              ),
+              _vm._v(" "),
+              _c(
+                "option",
+                {
+                  domProps: {
+                    value: _vm.filter_choices[1],
+                    selected: _vm.client == _vm.filter_choices[1]
+                  }
+                },
+                [_vm._v("Individual")]
+              ),
+              _vm._v(" "),
+              _c(
+                "option",
+                {
+                  domProps: {
+                    value: _vm.filter_choices[2],
+                    selected: _vm.client == _vm.filter_choices[2]
+                  }
+                },
+                [_vm._v("Corporate")]
+              )
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _vm._v("\n        Let's start\n    ")
-      ])
+    return _c(
+      "div",
+      { staticClass: "col-md-2 offset-md-7 text-right px-0 pt-2" },
+      [_c("strong", { staticClass: "text-muted" }, [_vm._v("Filter")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "payment-wrapper" }, [
+      _c("div", { staticClass: "text-center" })
     ])
   }
 ]
