@@ -2832,6 +2832,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     type_id: {
@@ -2844,12 +2867,16 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      records: []
+    };
   },
   methods: {
     changeTable: function changeTable() {
+      var _this = this;
+
       axios.get("/payments/type/".concat(this.type_id, "/individual/").concat(this.filter)).then(function (response) {
-        console.log(response.data);
+        _this.records = response.data;
       });
     }
   },
@@ -51343,9 +51370,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    what\n")])
+  return _c("div", [
+    _vm.type_id == 2
+      ? _c("table", { staticClass: "table table-bordered" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.records, function(record, index) {
+              return _c("tr", { key: index }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(record.year + "-" + record.month + "月"))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.total))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.space1 || 0))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.space2 || 0))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.space3 || 0))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.space4 || 0))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(record.space5 || 0))])
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e()
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("使用日-年-月")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("請求金額")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("教室 A")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("教室 B")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("音楽室")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("屋上")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("昇降口")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
