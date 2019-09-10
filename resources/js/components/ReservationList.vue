@@ -5,7 +5,7 @@
             :form="selected_form"
             :types="types"
             :spaces="spaces"
-            :discoveries="spaces"
+            :discoveries="discoveries"
             :statuses="statuses"
         ></reservation-item>
         <div v-for="(approved_form, index) in approved_forms" :key="index">

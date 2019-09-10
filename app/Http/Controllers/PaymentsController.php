@@ -29,7 +29,6 @@ class PaymentsController extends Controller
                 break;
             default:
                 $clientRange = [0,1];
-
         }
         if ($typeId != 2) {
             $reservations = Reservation::whereHas('form',
