@@ -53058,7 +53058,7 @@ var render = function() {
           form: _vm.selected_form,
           types: _vm.types,
           spaces: _vm.spaces,
-          discoveries: _vm.spaces,
+          discoveries: _vm.discoveries,
           statuses: _vm.statuses
         }
       }),
