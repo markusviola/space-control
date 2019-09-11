@@ -11,7 +11,7 @@
                         <span class="text-muted">予約を手配し始めよう!</span>
                     </div>
                     <hr>
-                    <form class="jp-body" method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
