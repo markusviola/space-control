@@ -7,8 +7,8 @@
             <div class="card shadow neutral-round">
                 <div class="card-body">
                     <div class="text-center">
-                        <h5 class="alt-neutral">Payment Records</h5>
-                        <div class="text-muted">Check how your businses has been going!</div>
+                        <h4 class="alt-neutral">支払い記録</h4>
+                        <span class="text-dark">ビジネスがどうなっているのかを監視しよう！</span>
                     </div>
                     <payment-records :types="{{ $types }}"></payment-records>
                 </div>

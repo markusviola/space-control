@@ -17,7 +17,7 @@
                             <strong>{{ form.user_id ? 'ユーザー •' : 'ゲスト •' }}</strong>
                         </span>
                         {{
-                            form ? (user.is_admin ? ` ${form.name}` : `提出日 ${form.created_at}`) : 'チャットをするため、リストに選んでください!'
+                            form ? (user.is_admin ? ` ${form.name}` : `提出日 ${form.created_at}`) : 'チャットをするため、リストに選んでください'
                         }}
                     </div>
                     <div v-if="form">

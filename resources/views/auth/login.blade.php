@@ -7,7 +7,7 @@
             <div class="card shadow neutral-round">
                 <div class="card-body">
                     <div class="text-center">
-                        <h5 class="alt-neutral">ログイン</h5>
+                        <h4 class="alt-neutral">ログイン</h4>
                         <span class="text-muted">予約を手配し始めよう!</span>
                     </div>
                     <hr>

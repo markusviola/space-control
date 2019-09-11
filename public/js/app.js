@@ -50109,7 +50109,7 @@ var render = function() {
                       ? _vm.user.is_admin
                         ? " " + _vm.form.name
                         : "提出日 " + _vm.form.created_at
-                      : "チャットをするため、リストに選んでください!"
+                      : "チャットをするため、リストに選んでください"
                   ) +
                   "\n                "
               )
@@ -51324,7 +51324,7 @@ var render = function() {
                     selected: _vm.chosen_filter == _vm.filter_choices[0]
                   }
                 },
-                [_vm._v("All")]
+                [_vm._v("全て")]
               ),
               _vm._v(" "),
               _c(
@@ -51335,7 +51335,7 @@ var render = function() {
                     selected: _vm.chosen_filter == _vm.filter_choices[1]
                   }
                 },
-                [_vm._v("Individual")]
+                [_vm._v("個人")]
               ),
               _vm._v(" "),
               _c(
@@ -51346,7 +51346,7 @@ var render = function() {
                     selected: _vm.chosen_filter == _vm.filter_choices[2]
                   }
                 },
-                [_vm._v("Corporate")]
+                [_vm._v("法人")]
               )
             ]
           )
@@ -51372,7 +51372,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-2 offset-7 text-right px-0 pt-2" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Filter")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("フィルタ")])
     ])
   }
 ]

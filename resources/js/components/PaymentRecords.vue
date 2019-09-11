@@ -11,7 +11,7 @@
         </ul>
         <div class="row mb-2 mt-3">
             <div class="col-2 offset-7 text-right px-0 pt-2">
-                <strong class="text-muted">Filter</strong>
+                <strong class="text-muted">フィルタ</strong>
             </div>
             <div class="col-3">
                 <div class="form-group">
@@ -22,15 +22,15 @@
                         <option
                             :value="filter_choices[0]"
                             :selected="chosen_filter == filter_choices[0]"
-                        >All</option>
+                        >全て</option>
                         <option
                             :value="filter_choices[1]"
                             :selected="chosen_filter == filter_choices[1]"
-                        >Individual</option>
+                        >個人</option>
                         <option
                             :value="filter_choices[2]"
                             :selected="chosen_filter == filter_choices[2]"
-                        >Corporate</option>
+                        >法人</option>
                     </select>
                 </div>
             </div>
