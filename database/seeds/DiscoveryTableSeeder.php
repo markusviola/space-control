@@ -12,7 +12,12 @@ class DiscoveryTableSeeder extends Seeder
      */
     public function run()
     {
-        $discoveries = ['スペースマーケット', '東京ロケーションボックス', '奥多摩日本語学校HP'];
+        $discoveries = [
+            'スコワーキング',
+            'レンタル',
+            'アトリエ',
+            'その他'
+        ];
         foreach($discoveries as $discovery) {
             Discovery::create([
                 'name' => $discovery,
