@@ -16649,7 +16649,7 @@ a {
 .side-list {
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .long-text {
@@ -16663,12 +16663,12 @@ a {
 
 .formlist-column {
   height: 50vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .message-box {
   height: 50vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .clickable {
@@ -16677,7 +16677,7 @@ a {
 
 .payment-wrapper {
   width: auto;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
