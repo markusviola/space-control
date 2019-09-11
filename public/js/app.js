@@ -50081,7 +50081,8 @@ var render = function() {
                   _vm._s(
                     _vm.form
                       ? _vm.form.type.name
-                      : "Select a " + (_vm.user.is_admin ? "Request" : "Form")
+                      : (_vm.user.is_admin ? "要求" : "フォーム") +
+                          "を選択ください"
                   ) +
                   "\n                "
               )
@@ -50093,7 +50094,9 @@ var render = function() {
               _vm.form
                 ? _c("span", { staticClass: "text-muted" }, [
                     _c("strong", [
-                      _vm._v(_vm._s(_vm.form.user_id ? "User •" : "Guest •"))
+                      _vm._v(
+                        _vm._s(_vm.form.user_id ? "ユーザー •" : "ゲスト •")
+                      )
                     ])
                   ])
                 : _vm._e(),
@@ -50103,8 +50106,8 @@ var render = function() {
                     _vm.form
                       ? _vm.user.is_admin
                         ? " " + _vm.form.name
-                        : "Submitted on " + _vm.form.created_at
-                      : "Choose from the list to start chatting!"
+                        : "提出日 " + _vm.form.created_at
+                      : "チャットをするため、リストに選んでください!"
                   ) +
                   "\n                "
               )
@@ -50204,7 +50207,7 @@ var render = function() {
             ],
             staticClass: "w-100 form-control",
             attrs: {
-              placeholder: "Write your thoughts here...",
+              placeholder: "メッセージをここに書けますよ。",
               rows: "2",
               disabled: _vm.form && !_vm.form.user_id
             },
@@ -50243,7 +50246,7 @@ var staticRenderFns = [
         staticClass: "btn-trans anti-neutral",
         attrs: { "data-toggle": "modal", "data-target": "#form-info" }
       },
-      [_c("strong", [_vm._v("View Form")])]
+      [_c("strong", [_vm._v("フォームを見る")])]
     )
   }
 ]
@@ -50480,7 +50483,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(
-                        "\n                        Form Details\n                    "
+                        "\n                        フォーム詳細\n                    "
                       )
                     ])
                   ]
@@ -50491,7 +50494,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("h5", { staticClass: "text-dark mb-3" }, [
-                  _vm._v("Client Information")
+                  _vm._v("クライアント情報")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
@@ -50553,7 +50556,7 @@ var render = function() {
                 _c("hr"),
                 _vm._v(" "),
                 _c("h5", { staticClass: "text-dark mb-3" }, [
-                  _vm._v("Reservation")
+                  _vm._v("予約情報")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
@@ -50587,7 +50590,7 @@ var render = function() {
                       _vm._m(11),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-8" }, [
-                        _vm._v(_vm._s(_vm.form.will_stay ? "Yes" : "No"))
+                        _vm._v(_vm._s(_vm.form.will_stay ? "はい" : "いいえ"))
                       ])
                     ])
                   : _vm._e(),
@@ -50599,7 +50602,7 @@ var render = function() {
                         _c("hr"),
                         _vm._v(" "),
                         _c("h5", { staticClass: "text-dark mb-3" }, [
-                          _vm._v("Rooms")
+                          _vm._v("使用場所")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.spaces, function(space, i) {
@@ -50633,7 +50636,7 @@ var render = function() {
                 _c("hr"),
                 _vm._v(" "),
                 _c("h5", { staticClass: "text-dark mb-3" }, [
-                  _vm._v("Date & Time")
+                  _vm._v("使用日・時間")
                 ]),
                 _vm._v(" "),
                 _vm.form.will_stay && _vm.formDates.length > 0
@@ -50737,11 +50740,11 @@ var render = function() {
                           "data-target": "#confirmFormModal"
                         }
                       },
-                      [_c("strong", [_vm._v("Approve")])]
+                      [_vm._m(15)]
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(15)
+                _vm._m(16)
               ])
             ])
           ]
@@ -50770,11 +50773,11 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(16),
+              _vm._m(17),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
-                  "\n                Do you really intend to approve this reservation?\n            "
+                  "\n                この予約フォームを承認するつもりですか？\n            "
                 )
               ]),
               _vm._v(" "),
@@ -50786,10 +50789,10 @@ var render = function() {
                     attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.approveForm }
                   },
-                  [_c("strong", [_vm._v("YES")])]
+                  [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
-                _vm._m(17)
+                _vm._m(18)
               ])
             ])
           ]
@@ -50877,7 +50880,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Type")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("予約タイプ")])
     ])
   },
   function() {
@@ -50885,7 +50888,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("No. of People")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("人数")])
     ])
   },
   function() {
@@ -50893,7 +50896,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Reason")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用理由")])
     ])
   },
   function() {
@@ -50901,7 +50904,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Stay")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("泊まり")])
     ])
   },
   function() {
@@ -50917,7 +50920,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("IN")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("イン")])
     ])
   },
   function() {
@@ -50925,8 +50928,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("OUT")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("アウト")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("strong", [_vm._v("承認する")])])
   },
   function() {
     var _vm = this
@@ -50938,7 +50947,7 @@ var staticRenderFns = [
         staticClass: "btn-trans text-muted",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
-      [_c("strong", [_vm._v("Close")])]
+      [_c("h5", [_c("strong", [_vm._v("閉める")])])]
     )
   },
   function() {
@@ -50952,7 +50961,7 @@ var staticRenderFns = [
           staticClass: "modal-title text-admin",
           attrs: { id: "confirmFormModal" }
         },
-        [_c("strong", [_vm._v("Confirmation")])]
+        [_c("strong", [_vm._v("確認")])]
       ),
       _vm._v(" "),
       _c(
@@ -50979,7 +50988,7 @@ var staticRenderFns = [
         staticClass: "btn-trans text-admin",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
-      [_c("strong", [_vm._v("NO")])]
+      [_c("strong", [_vm._v("いいえ")])]
     )
   }
 ]

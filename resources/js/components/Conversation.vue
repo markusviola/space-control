@@ -5,7 +5,7 @@
                 <h5 class="alt-neutral">
                     <strong>
                         <i v-if="form && form.is_approved" class="text-primary fas fa-check fa-lg"></i>
-                        {{ form ? form.type.name : `Select a ${(user.is_admin ? 'Request' : 'Form')}` }}
+                        {{ form ? form.type.name : `${(user.is_admin ? '要求' : 'フォーム')}を選択ください` }}
                     </strong>
                 </h5>
                 <div class="d-flex justify-content-between">
@@ -14,10 +14,10 @@
                             v-if="form"
                             class="text-muted"
                         >
-                            <strong>{{ form.user_id ? 'User •' : 'Guest •' }}</strong>
+                            <strong>{{ form.user_id ? 'ユーザー •' : 'ゲスト •' }}</strong>
                         </span>
                         {{
-                            form ? (user.is_admin ? ` ${form.name}` : `Submitted on ${form.created_at}`) : 'Choose from the list to start chatting!'
+                            form ? (user.is_admin ? ` ${form.name}` : `提出日 ${form.created_at}`) : 'チャットをするため、リストに選んでください!'
                         }}
                     </div>
                     <div v-if="form">
@@ -28,7 +28,7 @@
                         @onFormApproval="formApproved"
                     ></form-info>
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">
-                            <strong>View Form</strong>
+                            <strong>フォームを見る</strong>
                         </button>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 <textarea
                     v-model="message"
                     class="w-100 form-control"
-                    placeholder="Write your thoughts here..."
+                    placeholder="メッセージをここに書けますよ。"
                     @keydown.enter="sendMessage"
                     rows="2"
                     :disabled="form && !form.user_id"

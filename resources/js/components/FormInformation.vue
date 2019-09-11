@@ -14,7 +14,7 @@
                         <h4 class="modal-title text-primary" id="scrollableForm">
                         <strong>
                             <i v-if="form.is_approved" class="text-primary fas fa-check fa-lg mr-1"></i>
-                            Form Details
+                            フォーム詳細
                         </strong>
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -22,7 +22,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="text-dark mb-3">Client Information</h5>
+                        <h5 class="text-dark mb-3">クライアント情報</h5>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">名前</strong>
@@ -66,34 +66,34 @@
                             <div class="col-md-8">{{ form.address }}</div>
                         </div>
                         <hr>
-                        <h5 class="text-dark mb-3">Reservation</h5>
+                        <h5 class="text-dark mb-3">予約情報</h5>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Type</strong>
+                                <strong class="text-muted">予約タイプ</strong>
                             </div>
                             <div class="col-md-8">{{ form.type.name }}</div>
                         </div>
                         <div v-if="form.type_id > 1" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">No. of People</strong>
+                                <strong class="text-muted">人数</strong>
                             </div>
                             <div class="col-md-8">{{ form.user_count }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Reason</strong>
+                                <strong class="text-muted">使用理由</strong>
                             </div>
                             <div class="col-md-8">{{ form.reason }}</div>
                         </div>
                         <div v-if="form.type_id == 1" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">Stay</strong>
+                                <strong class="text-muted">泊まり</strong>
                             </div>
-                            <div class="col-md-8">{{ form.will_stay ? 'Yes': 'No' }}</div>
+                            <div class="col-md-8">{{ form.will_stay ? 'はい': 'いいえ' }}</div>
                         </div>
                         <div v-if="form.type_id == 2">
                             <hr>
-                            <h5 class="text-dark mb-3">Rooms</h5>
+                            <h5 class="text-dark mb-3">使用場所</h5>
                             <div v-for="(space, i) in spaces" :key="i">
                                 <div v-for="(bulk_space, j) in form.bulk_spaces" :key="j">
                                     <div v-if="space.id == bulk_space.space_id" class="row mb-3">
@@ -106,11 +106,11 @@
                             </div>
                         </div>
                         <hr>
-                        <h5 class="text-dark mb-3">Date &amp; Time</h5>
+                        <h5 class="text-dark mb-3">使用日・時間</h5>
                         <div v-if="form.will_stay && formDates.length > 0">
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">IN</strong>
+                                    <strong class="text-muted">イン</strong>
                                 </div>
                                 <strong class="col-md-6 d-flex">
                                     <div class="mr-2">{{ formDates[0].sDate }} |</div>
@@ -119,7 +119,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">OUT</strong>
+                                    <strong class="text-muted">アウト</strong>
                                 </div>
                                 <strong class="col-md-6 d-flex">
                                     <div class="mr-2">{{ formDates[0].eDate }} |</div>
@@ -152,10 +152,10 @@
                             data-toggle="modal"
                             data-target="#confirmFormModal"
                         >
-                            <strong>Approve</strong>
+                            <h5><strong>承認する</strong></h5>
                         </button>
                         <button type="button" class="btn-trans text-muted" data-dismiss="modal">
-                            <strong>Close</strong>
+                            <h5><strong>閉める</strong></h5>
                         </button>
                     </div>
                 </div>
@@ -165,13 +165,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-admin" id="confirmFormModal"><strong>Confirmation</strong></h5>
+                    <h5 class="modal-title text-admin" id="confirmFormModal"><strong>確認</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-muted">
-                    Do you really intend to approve this reservation?
+                    この予約フォームを承認するつもりですか？
                 </div>
                     <div class="modal-footer">
                         <button
@@ -180,10 +180,10 @@
                             class="btn-trans text-admin"
                             data-dismiss="modal"
                         >
-                            <strong>YES</strong>
+                            <strong>はい</strong>
                         </button>
                         <button type="button" class="btn-trans text-admin" data-dismiss="modal">
-                            <strong>NO</strong>
+                            <strong>いいえ</strong>
                         </button>
                     </div>
                 </div>
