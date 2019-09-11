@@ -51006,13 +51006,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "text-center pt-3 pb-3" }, [
-      _c("h5", { staticClass: "alt-neutral" }, [
+      _c("h4", { staticClass: "alt-neutral" }, [
         _vm._v(
-          "\n            " +
-            _vm._s(
-              _vm.user.is_admin ? "Reservation Requests" : "Submission List"
-            ) +
-            "\n        "
+          "\n            予約" +
+            _vm._s(_vm.user.is_admin ? "要求" : "提出") +
+            "リスト\n        "
         )
       ]),
       _vm._v(" "),
@@ -51021,8 +51019,8 @@ var render = function() {
           "\n            " +
             _vm._s(
               _vm.user.is_admin
-                ? "Negotiate with your clients!"
-                : "Chat with the person-in-charge!"
+                ? "お客さんと交渉しよう！"
+                : "管理者に問い合わせよう！"
             ) +
             "\n        "
         )
@@ -51115,7 +51113,7 @@ var render = function() {
                                     _vm._v(
                                       "\n                                    " +
                                         _vm._s(
-                                          form.user_id ? "User" : "Guest "
+                                          form.user_id ? "ユーザー" : "ゲスト "
                                         ) +
                                         "\n                                "
                                     )
@@ -51208,9 +51206,9 @@ var render = function() {
       : _c("div", [
           _c("div", { staticClass: "text-muted text-center mt-4 mb-4" }, [
             _vm._v(
-              "\n            No reservation " +
-                _vm._s(_vm.user.is_admin ? "requests" : "submissions") +
-                " yet.\n        "
+              "\n             何も予約" +
+                _vm._s(_vm.user.is_admin ? "要求" : "フォーム") +
+                "は提出されていません。\n        "
             )
           ])
         ]),

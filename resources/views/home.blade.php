@@ -13,7 +13,7 @@
                         @if (Auth::check())
                             @if (Auth::user()->is_admin)
                                 <h4 class="alt-neutral">
-                                    予約 {{ $isReserveList ? '管理' : '要求' }}
+                                    予約 {{ $isReserveList ? '管理' : '要求リスト' }}
                                 </h4>
                                 <h5 class="text-muted">管理者モード</h5>
                             @else

@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="text-center pt-3 pb-3">
-            <h5 class="alt-neutral">
-                {{ user.is_admin ? 'Reservation Requests' : 'Submission List' }}
-            </h5>
+            <h4 class="alt-neutral">
+                予約{{ user.is_admin ? '要求' : '提出' }}リスト
+            </h4>
             <div class="text-muted">
-                {{ user.is_admin ? 'Negotiate with your clients!' : 'Chat with the person-in-charge!' }}
+                {{ user.is_admin ? 'お客さんと交渉しよう！' : '管理者に問い合わせよう！' }}
             </div>
         </div>
         <hr class="m-0 p-0">
@@ -38,7 +38,7 @@
                                     <span
                                         :class="`text-${form.user_id ? 'primary' : 'admin'}`"
                                     >
-                                        {{ form.user_id ? 'User' : 'Guest ' }}
+                                        {{ form.user_id ? 'ユーザー' : 'ゲスト ' }}
                                     </span> •
                                 </strong>{{ form.name }}
                             </div>
@@ -72,7 +72,7 @@
         </div>
         <div v-else>
             <div class="text-muted text-center mt-4 mb-4">
-                No reservation {{ user.is_admin ? 'requests' : 'submissions' }} yet.
+                 何も予約{{ user.is_admin ? '要求' : 'フォーム' }}は提出されていません。
             </div>
         </div>
         <hr class="mt-0">
