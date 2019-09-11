@@ -16,7 +16,7 @@
             >{{ year }}</option>
         </select>
         <div class="col-md-1 p-0 align-self-center">
-            <strong>{{ yearText }}</strong>
+            <strong class="text-muted font-weight-bold">{{ yearText }}</strong>
         </div>
 
         <select
@@ -31,7 +31,7 @@
             >{{ month }}</option>
         </select>
         <div class="col-md-1 p-0 align-self-center">
-            <strong>{{ monthText }}</strong>
+            <strong class="text-muted font-weight-bold">{{ monthText }}</strong>
         </div>
 
         <select
@@ -47,7 +47,7 @@
             >{{ day }}</option>
         </select>
         <div class="col-md-1 p-0 align-self-center">
-            <strong>{{ dayText }}</strong>
+            <strong class="text-muted font-weight-bold">{{ dayText }}</strong>
         </div>
 
     </div>

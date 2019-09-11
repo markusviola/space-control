@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
 
-            <span class="col-md-1  d-flex align-items-center justify-content-center">
-                <strong class="text-muted">IN</strong>
+            <span class="col-md-1 p-0  d-flex align-items-center justify-content-start">
+                <strong class="text-muted">イン</strong>
             </span>
 
             <div class="col-md-4 p-0 offset-md-1">
@@ -45,8 +45,8 @@
         </div>
         <div class="row">
 
-            <span class="col-md-1 d-flex align-items-center justify-content-center">
-                <strong class="text-muted">OUT</strong>
+            <span class="col-md-1 p-0 d-flex align-items-center justify-content-start">
+                <strong class="text-muted">アウト</strong>
             </span>
 
             <div class="col-md-4 p-0 offset-md-1">

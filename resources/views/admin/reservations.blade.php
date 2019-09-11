@@ -21,11 +21,11 @@
         ></reservation-list>
     @else
         <div class="text-muted text-center mt-4 mb-4">
-            No reservations yet.
+            何も予約要求は承認されていません。
         </div>
     @endif
 </div>
 <hr class="mt-0 mb-3">
 <div class="text-center font-weight-bold">
-    <a class="anti-neutral" href="{{ route('payment.records') }}">See Payment Transaction Records</a>
+    <a class="anti-neutral" href="{{ route('payment.records') }}"><h5>支払い記録を見る</h5></a>
 </div>

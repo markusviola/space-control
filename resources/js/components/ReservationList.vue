@@ -14,16 +14,16 @@
                     <div class="col-md-8 alt-neutral">
                         <h5>
                             <strong class="text-secondary">{{ approved_form.reservation.status.name }} ></strong>
-                            Reservation #{{ approved_form.reservation.id }}
+                            予約 #{{ approved_form.reservation.id }}
                         </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
-                        Client | {{ approved_form.name }}
+                        顧客名 {{ approved_form.name }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-muted">
-                        Initial Reservation Date: {{ approved_form.schedules[0].start_time['date'] }}
+                        初期使用日 {{ approved_form.schedules[0].start_time['date'] }}
                     </div>
                 </div>
             </div>

@@ -15,14 +15,14 @@
                                 <h4 class="alt-neutral">
                                     予約 {{ $isReserveList ? '管理' : '要求リスト' }}
                                 </h4>
-                                <h5 class="text-muted">管理者モード</h5>
+                                <h5 class="text-dark">管理者モード</h5>
                             @else
                                 <h4 class="alt-neutral">予約フォーム</h4>
-                                <h5 class="text-muted">ユーザーモード</h5>
+                                <h5 class="text-dark">ユーザーモード</h5>
                             @endif
                         @else
                             <h4 class="alt-neutral">予約フォーム</h4>
-                            <h5 class="text-muted">ゲストモード</h5>
+                            <h5 class="text-dark">ゲストモード</h5>
                         @endif
                     </div>
                     @if (Auth::check() && Auth::user()->is_admin)

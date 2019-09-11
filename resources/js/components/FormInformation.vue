@@ -22,7 +22,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h5 class="text-dark mb-3">クライアント情報</h5>
+                        <h5 class="text-dark mb-3">顧客情報</h5>
                         <div class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
                                 <strong class="text-muted">名前</strong>
@@ -75,7 +75,7 @@
                         </div>
                         <div v-if="form.type_id > 1" class="row mb-3">
                             <div class="col-md-4 text-md-right border-right">
-                                <strong class="text-muted">人数</strong>
+                                <strong class="text-muted">使用人数</strong>
                             </div>
                             <div class="col-md-8">{{ form.user_count }}</div>
                         </div>

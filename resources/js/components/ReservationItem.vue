@@ -14,7 +14,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title text-primary" id="scrollableForm">
                         <strong>
-                            Reservation Details
+                            取引詳細
                         </strong>
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -24,41 +24,41 @@
                     <div class="modal-body">
                         <ul class="nav nav-tabs mb-4">
                             <li class="nav-item">
-                                <div
+                                <h5
                                     @click="onArrangement = !onArrangement"
                                     :class="`nav-link anti-neutral clickable ${onArrangement ? 'active' : ''}`"
-                                >Arrangement</div>
+                                >予約情報</h5>
                             </li>
                             <li class="nav-item">
-                                <div
+                                <h5
                                     @click="onArrangement = !onArrangement"
                                     :class="`nav-link anti-neutral clickable ${!onArrangement ? 'active' : ''}`"
-                                >Client Information</div>
+                                >顧客情報</h5>
                             </li>
                         </ul>
                         <div v-if="onArrangement">
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Type</strong>
+                                    <strong class="text-muted">予約タイプ</strong>
                                 </div>
                                 <div class="col-md-8 font-weight-bold text-secondary">{{ form.type.name }}</div>
                             </div>
                             <div class="row mb-4">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Inquiry Date</strong>
+                                    <strong class="text-muted">問合せ日</strong>
                                 </div>
                                 <div class="col-md-8">{{ form.created_at }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Reason</strong>
+                                    <strong class="text-muted">使用理由</strong>
                                 </div>
                                 <div class="col-md-8">{{ form.reason }}</div>
                             </div>
                             <hr>
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Status</strong>
+                                    <strong class="text-muted">ステータス</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -78,7 +78,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Route</strong>
+                                    <strong class="text-muted">経路</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -98,7 +98,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Usage</strong>
+                                    <strong class="text-muted">利用区分</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check">
@@ -109,7 +109,7 @@
                                             :value="one"
                                         >
                                         <label class="form-check-label" for="individual">
-                                            Individual
+                                            個人
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -121,14 +121,14 @@
                                             :value="zero"
                                         >
                                         <label class="form-check-label" for="corporate">
-                                            Corporate
+                                            法人
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Corporate Name</strong>
+                                    <strong class="text-muted">法人名</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -140,7 +140,7 @@
                             </div>
                             <div v-if="type_id != 1" class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">No. of People</strong>
+                                    <strong class="text-muted">使用人数</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -152,7 +152,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Visit Date</strong>
+                                    <strong class="text-muted">見学日</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <v-date-picker
@@ -167,7 +167,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Visit Place</strong>
+                                    <strong class="text-muted">見学場所</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -179,7 +179,7 @@
                             </div>
                             <div v-if="type_id == 2" class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Rooms</strong>
+                                    <strong class="text-muted">予約場所</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="container">
@@ -205,7 +205,7 @@
                             </div>
                             <div v-if="type_id == 1" class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Stay Over?</strong>
+                                    <strong class="text-muted">泊まり</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check">
@@ -216,7 +216,7 @@
                                             :value="one"
                                         >
                                         <label class="form-check-label" for="willStay">
-                                            Yes
+                                            はい
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -228,14 +228,14 @@
                                             :value="zero"
                                         >
                                         <label class="form-check-label" for="wontStay">
-                                            No
+                                            いいえ
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-center">
-                                <strong class="text-muted">Schedules</strong>
+                                <strong class="text-muted">使用日・時間</strong>
                             </div>
                             <div v-if="will_stay">
                                 <div class="container mt-3 p-0 px-4">
@@ -277,7 +277,7 @@
                             <hr>
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Loud Activities?</strong>
+                                    <strong class="text-muted">音を出す</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check">
@@ -289,7 +289,7 @@
                                             :value="one"
                                         >
                                         <label class="form-check-label" for="yes">
-                                            Yes
+                                            はい
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -301,14 +301,14 @@
                                             :value="zero"
                                         >
                                         <label class="form-check-label" for="no">
-                                            No
+                                            いいえ
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Remarks</strong>
+                                    <strong class="text-muted">備考</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -320,7 +320,7 @@
                             </div>
                             <div v-if="status_id == 4" class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Cancellation Reason</strong>
+                                    <strong class="text-muted">キャンセル理由</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -332,7 +332,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Actual Hours</strong>
+                                    <strong class="text-muted">本予約利用時間数</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -344,7 +344,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Payment Cost</strong>
+                                    <strong class="text-muted">請求金額</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -357,7 +357,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Discounted Cost</strong>
+                                    <strong class="text-muted">値引き後</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <input
@@ -370,7 +370,7 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Invoiced?</strong>
+                                    <strong class="text-muted">請求書提示</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-check">
@@ -382,7 +382,7 @@
                                             :value="one"
                                         >
                                         <label class="form-check-label" for="has_invoice">
-                                            Yes
+                                            はい
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -394,14 +394,14 @@
                                             :value="zero"
                                         >
                                         <label class="form-check-label" for="no_invoice">
-                                            No
+                                            いいえ
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Paydate</strong>
+                                    <strong class="text-muted">支払い日時</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <v-date-picker
@@ -416,7 +416,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">Actual Paydate</strong>
+                                    <strong class="text-muted">支払日</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <v-date-picker
@@ -495,10 +495,10 @@
                             data-toggle="modal"
                             data-target="#updateFormModal"
                         >
-                            <strong>Update</strong>
+                            <h5><strong>更新する</strong></h5>
                         </button>
                         <button type="button" class="btn-trans text-muted" data-dismiss="modal">
-                            <strong>Close</strong>
+                            <h5><strong>閉める</strong></h5>
                         </button>
                     </div>
                 </div>
@@ -508,13 +508,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-admin" id="updateFormModal"><strong>Confirmation</strong></h5>
+                    <h5 class="modal-title text-admin" id="updateFormModal"><strong>確認</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-muted">
-                    Do you really intend to update this reservation?
+                    この予約情報を更新するつもりですか？
                 </div>
                     <div class="modal-footer">
                         <button
@@ -523,10 +523,10 @@
                             class="btn-trans text-admin"
                             data-dismiss="modal"
                         >
-                            <strong>YES</strong>
+                            <strong>はい</strong>
                         </button>
                         <button type="button" class="btn-trans text-admin" data-dismiss="modal">
-                            <strong>NO</strong>
+                            <strong>いいえ</strong>
                         </button>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
                         </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
-                        要求者 | {{ $form->name }}
+                        顧客名 {{ $form->name }}
                     </div>
                 </div>
                 <div class="row">

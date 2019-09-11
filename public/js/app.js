@@ -4019,6 +4019,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -50026,9 +50027,9 @@ var staticRenderFns = [
       "span",
       {
         staticClass:
-          "col-md-1  d-flex align-items-center justify-content-center"
+          "col-md-1 p-0  d-flex align-items-center justify-content-start"
       },
-      [_c("strong", { staticClass: "text-muted" }, [_vm._v("IN")])]
+      [_c("strong", { staticClass: "text-muted" }, [_vm._v("イン")])]
     )
   },
   function() {
@@ -50038,9 +50039,10 @@ var staticRenderFns = [
     return _c(
       "span",
       {
-        staticClass: "col-md-1 d-flex align-items-center justify-content-center"
+        staticClass:
+          "col-md-1 p-0 d-flex align-items-center justify-content-start"
       },
-      [_c("strong", { staticClass: "text-muted" }, [_vm._v("OUT")])]
+      [_c("strong", { staticClass: "text-muted" }, [_vm._v("アウト")])]
     )
   }
 ]
@@ -50324,7 +50326,9 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-1 p-0 align-self-center" }, [
-      _c("strong", [_vm._v(_vm._s(_vm.yearText))])
+      _c("strong", { staticClass: "text-muted font-weight-bold" }, [
+        _vm._v(_vm._s(_vm.yearText))
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -50369,7 +50373,9 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-1 p-0 align-self-center" }, [
-      _c("strong", [_vm._v(_vm._s(_vm.monthText))])
+      _c("strong", { staticClass: "text-muted font-weight-bold" }, [
+        _vm._v(_vm._s(_vm.monthText))
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -50420,7 +50426,9 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-1 p-0 align-self-center" }, [
-      _c("strong", [_vm._v(_vm._s(_vm.dayText))])
+      _c("strong", { staticClass: "text-muted font-weight-bold" }, [
+        _vm._v(_vm._s(_vm.dayText))
+      ])
     ])
   ])
 }
@@ -50494,7 +50502,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("h5", { staticClass: "text-dark mb-3" }, [
-                  _vm._v("クライアント情報")
+                  _vm._v("顧客情報")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
@@ -50888,7 +50896,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("人数")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用人数")])
     ])
   },
   function() {
@@ -51523,7 +51531,7 @@ var render = function() {
                     _c("ul", { staticClass: "nav nav-tabs mb-4" }, [
                       _c("li", { staticClass: "nav-item" }, [
                         _c(
-                          "div",
+                          "h5",
                           {
                             class:
                               "nav-link anti-neutral clickable " +
@@ -51534,13 +51542,13 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Arrangement")]
+                          [_vm._v("予約情報")]
                         )
                       ]),
                       _vm._v(" "),
                       _c("li", { staticClass: "nav-item" }, [
                         _c(
-                          "div",
+                          "h5",
                           {
                             class:
                               "nav-link anti-neutral clickable " +
@@ -51551,7 +51559,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Client Information")]
+                          [_vm._v("顧客情報")]
                         )
                       ])
                     ]),
@@ -51741,7 +51749,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        Individual\n                                    "
+                                      "\n                                        個人\n                                    "
                                     )
                                   ]
                                 )
@@ -51781,7 +51789,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        Corporate\n                                    "
+                                      "\n                                        法人\n                                    "
                                     )
                                   ]
                                 )
@@ -52058,7 +52066,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                        Yes\n                                    "
+                                          "\n                                        はい\n                                    "
                                         )
                                       ]
                                     )
@@ -52095,7 +52103,7 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                        No\n                                    "
+                                          "\n                                        いいえ\n                                    "
                                         )
                                       ]
                                     )
@@ -52218,7 +52226,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        Yes\n                                    "
+                                      "\n                                        はい\n                                    "
                                     )
                                   ]
                                 )
@@ -52255,7 +52263,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        No\n                                    "
+                                      "\n                                        いいえ\n                                    "
                                     )
                                   ]
                                 )
@@ -52440,7 +52448,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        Yes\n                                    "
+                                      "\n                                        はい\n                                    "
                                     )
                                   ]
                                 )
@@ -52477,7 +52485,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                        No\n                                    "
+                                      "\n                                        いいえ\n                                    "
                                     )
                                   ]
                                 )
@@ -52671,7 +52679,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
-                  "\n                Do you really intend to update this reservation?\n            "
+                  "\n                この予約情報を更新するつもりですか？\n            "
                 )
               ]),
               _vm._v(" "),
@@ -52683,7 +52691,7 @@ var render = function() {
                     attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.updateReservation }
                   },
-                  [_c("strong", [_vm._v("YES")])]
+                  [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
                 _vm._m(32)
@@ -52709,9 +52717,7 @@ var staticRenderFns = [
         },
         [
           _c("strong", [
-            _vm._v(
-              "\n                        Reservation Details\n                    "
-            )
+            _vm._v("\n                        取引詳細\n                    ")
           ])
         ]
       ),
@@ -52735,7 +52741,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Type")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("予約タイプ")])
     ])
   },
   function() {
@@ -52743,7 +52749,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Inquiry Date")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("問合せ日")])
     ])
   },
   function() {
@@ -52751,7 +52757,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Reason")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用理由")])
     ])
   },
   function() {
@@ -52759,7 +52765,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Status")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("ステータス")])
     ])
   },
   function() {
@@ -52767,7 +52773,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Route")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("経路")])
     ])
   },
   function() {
@@ -52775,7 +52781,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Usage")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("利用区分")])
     ])
   },
   function() {
@@ -52783,7 +52789,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Corporate Name")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("法人名")])
     ])
   },
   function() {
@@ -52791,7 +52797,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("No. of People")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用人数")])
     ])
   },
   function() {
@@ -52799,7 +52805,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Visit Date")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("見学日")])
     ])
   },
   function() {
@@ -52807,7 +52813,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Visit Place")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("見学場所")])
     ])
   },
   function() {
@@ -52815,7 +52821,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Rooms")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("予約場所")])
     ])
   },
   function() {
@@ -52823,7 +52829,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Stay Over?")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("泊まり")])
     ])
   },
   function() {
@@ -52831,7 +52837,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Schedules")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用日・時間")])
     ])
   },
   function() {
@@ -52839,7 +52845,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Loud Activities?")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("音を出す")])
     ])
   },
   function() {
@@ -52847,7 +52853,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Remarks")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("備考")])
     ])
   },
   function() {
@@ -52855,9 +52861,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [
-        _vm._v("Cancellation Reason")
-      ])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("キャンセル理由")])
     ])
   },
   function() {
@@ -52865,7 +52869,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Actual Hours")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("本予約利用時間数")])
     ])
   },
   function() {
@@ -52873,7 +52877,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Payment Cost")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("請求金額")])
     ])
   },
   function() {
@@ -52881,7 +52885,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Discounted Cost")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("値引き後")])
     ])
   },
   function() {
@@ -52889,7 +52893,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Invoiced?")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("請求書提示")])
     ])
   },
   function() {
@@ -52897,7 +52901,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Paydate")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("支払い日時")])
     ])
   },
   function() {
@@ -52905,7 +52909,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("Actual Paydate")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("支払日")])
     ])
   },
   function() {
@@ -52980,7 +52984,7 @@ var staticRenderFns = [
             "data-target": "#updateFormModal"
           }
         },
-        [_c("strong", [_vm._v("Update")])]
+        [_c("h5", [_c("strong", [_vm._v("更新する")])])]
       ),
       _vm._v(" "),
       _c(
@@ -52989,7 +52993,7 @@ var staticRenderFns = [
           staticClass: "btn-trans text-muted",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_c("strong", [_vm._v("Close")])]
+        [_c("h5", [_c("strong", [_vm._v("閉める")])])]
       )
     ])
   },
@@ -53004,7 +53008,7 @@ var staticRenderFns = [
           staticClass: "modal-title text-admin",
           attrs: { id: "updateFormModal" }
         },
-        [_c("strong", [_vm._v("Confirmation")])]
+        [_c("strong", [_vm._v("確認")])]
       ),
       _vm._v(" "),
       _c(
@@ -53031,7 +53035,7 @@ var staticRenderFns = [
         staticClass: "btn-trans text-admin",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
-      [_c("strong", [_vm._v("NO")])]
+      [_c("strong", [_vm._v("いいえ")])]
     )
   }
 ]
@@ -53096,7 +53100,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(
-                      "\n                        Reservation #" +
+                      "\n                        予約 #" +
                         _vm._s(approved_form.reservation.id) +
                         "\n                    "
                     )
@@ -53111,7 +53115,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                    Client | " +
+                      "\n                    顧客名 " +
                         _vm._s(approved_form.name) +
                         "\n                "
                     )
@@ -53122,7 +53126,7 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-12 text-muted" }, [
                   _vm._v(
-                    "\n                    Initial Reservation Date: " +
+                    "\n                    初期使用日 " +
                       _vm._s(approved_form.schedules[0].start_time["date"]) +
                       "\n                "
                   )
@@ -53385,7 +53389,14 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-9 form-group" }, [
-        _c("label", { attrs: { for: "type" } }, [_vm._v("予約タイプ")]),
+        _c(
+          "label",
+          {
+            staticClass: "text-muted font-weight-bold",
+            attrs: { for: "type" }
+          },
+          [_vm._v("予約タイプ")]
+        ),
         _vm._v(" "),
         _c(
           "select",
@@ -53429,7 +53440,14 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 form-group" }, [
-        _c("label", { attrs: { for: "userCount" } }, [_vm._v("人数")]),
+        _c(
+          "label",
+          {
+            staticClass: "text-muted font-weight-bold",
+            attrs: { for: "userCount" }
+          },
+          [_vm._v("使用人数")]
+        ),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -53546,7 +53564,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "label",
-            { staticClass: "form-check-label", attrs: { for: "willStay" } },
+            {
+              staticClass: "form-check-label text-muted font-weight-bold",
+              attrs: { for: "willStay" }
+            },
             [_vm._v("泊まりますか?")]
           )
         ])
@@ -53554,7 +53575,9 @@ var render = function() {
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
-    _c("span", [_vm._v("使用日付・時間")]),
+    _c("span", { staticClass: "text-muted font-weight-bold" }, [
+      _vm._v("使用日付・時間")
+    ]),
     _vm._v(" "),
     _c("input", {
       attrs: { type: "hidden", name: "dates" },
@@ -53625,7 +53648,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "reason" } }, [_vm._v("使用理由")]),
+      _c(
+        "label",
+        {
+          staticClass: "text-muted font-weight-bold",
+          attrs: { for: "reason" }
+        },
+        [_vm._v("使用理由")]
+      ),
       _vm._v(" "),
       _c("textarea", {
         staticClass: "form-control",
@@ -53644,7 +53674,7 @@ var staticRenderFns = [
           staticClass: "btn btn-anti-neutral text-white",
           attrs: { type: "submit" }
         },
-        [_vm._v("要求を提出する")]
+        [_c("h5", { staticClass: "m-0" }, [_vm._v("要求を提出する")])]
       )
     ])
   }
