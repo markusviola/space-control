@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-9 form-group">
-                <label for="type">Type of Reservation</label>
+                <label for="type">予約タイプ</label>
                 <select
                     class="form-control"
                     id="type"
@@ -18,7 +18,7 @@
                 </select>
             </div>
             <div class="col-md-3 form-group">
-                <label for="userCount">No. of People</label>
+                <label for="userCount">人数</label>
                 <input
                     name="user_count"
                     type="number"
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label for="reason">Reason for Using</label>
+            <label for="reason">使用理由</label>
             <textarea
                 name="reason"
                 class="form-control"
@@ -72,10 +72,10 @@
             <label
                 class="form-check-label"
                 for="willStay"
-            >Will you stay over?</label>
+            >泊まりますか?</label>
         </div>
         <hr>
-        <span>Date and Time:</span>
+        <span>使用日付・時間</span>
         <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
         <div v-if="willStay">
             <div class="mt-3 p-0">
@@ -110,7 +110,7 @@
         </div>
         <hr>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-anti-neutral text-white" type="submit">Submit Reservation</button>
+            <button class="btn btn-anti-neutral text-white" type="submit">要求を提出する</button>
         </div>
     </div>
 </template>

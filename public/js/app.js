@@ -53378,9 +53378,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-9 form-group" }, [
-        _c("label", { attrs: { for: "type" } }, [
-          _vm._v("Type of Reservation")
-        ]),
+        _c("label", { attrs: { for: "type" } }, [_vm._v("予約タイプ")]),
         _vm._v(" "),
         _c(
           "select",
@@ -53424,7 +53422,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-3 form-group" }, [
-        _c("label", { attrs: { for: "userCount" } }, [_vm._v("No. of People")]),
+        _c("label", { attrs: { for: "userCount" } }, [_vm._v("人数")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -53542,14 +53540,14 @@ var render = function() {
           _c(
             "label",
             { staticClass: "form-check-label", attrs: { for: "willStay" } },
-            [_vm._v("Will you stay over?")]
+            [_vm._v("泊まりますか?")]
           )
         ])
       : _vm._e(),
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
-    _c("span", [_vm._v("Date and Time:")]),
+    _c("span", [_vm._v("使用日付・時間")]),
     _vm._v(" "),
     _c("input", {
       attrs: { type: "hidden", name: "dates" },
@@ -53620,7 +53618,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "reason" } }, [_vm._v("Reason for Using")]),
+      _c("label", { attrs: { for: "reason" } }, [_vm._v("使用理由")]),
       _vm._v(" "),
       _c("textarea", {
         staticClass: "form-control",
@@ -53639,7 +53637,7 @@ var staticRenderFns = [
           staticClass: "btn btn-anti-neutral text-white",
           attrs: { type: "submit" }
         },
-        [_vm._v("Submit Reservation")]
+        [_vm._v("要求を提出する")]
       )
     ])
   }

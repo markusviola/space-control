@@ -1,25 +1,25 @@
 <div class="form-group">
-    <label for="name">Name</label>
+    <label for="name">名前</label>
     <input type="text" class="form-control" name="name" id="name" required>
 </div>
 
 <div class="form-group">
-    <label for="furigana">Furigana</label>
+    <label for="furigana">ふりがな</label>
     <input type="text" class="form-control" name="furigana" id="furigana" required>
 </div>
 
 <div class="form-group">
-    <label for="email">Email</label>
+    <label for="email">メールアドレス</label>
     <input type="email" class="form-control" name="email" id="email" required>
 </div>
 
 <div class="form-group">
-    <label for="phone">Phone No.</label>
+    <label for="phone">電話番号</label>
     <input type="text" class="form-control" name="phone" id="phone" required>
 </div>
 
 <div class="form-group">
-    <label for="gender">Gender</label>
+    <label for="gender">性別</label>
     <select id="gender" class="form-control" name="gender" id="gender">
         <option disabled>選択肢</option>
         @foreach ($user->genderOptions() as $optionKey => $optionValue)
@@ -29,12 +29,12 @@
 </div>
 
 <div class="form-group">
-    <label for="birthday">Birthday</label>
+    <label for="birthday">生年月日</label>
     <dd-date-picker id="birthday"></dd-date-picker>
 </div>
 
 <div class="form-group">
-    <label for="address">Address</label>
+    <label for="address">住所</label>
     <input type="text" class="form-control" name="address" id="address" required>
 </div>
 
