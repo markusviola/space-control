@@ -13,16 +13,16 @@
                         @if (Auth::check())
                             @if (Auth::user()->is_admin)
                                 <h5 class="alt-neutral">
-                                    Reservation {{ $isReserveList ? 'Manager' : 'Requests' }}
+                                    予約 {{ $isReserveList ? '管理' : '要求' }}
                                 </h5>
-                                <div class="text-muted">Administrator Mode</div>
+                                <div class="text-muted">管理者モード</div>
                             @else
-                                <h5 class="alt-neutral">Reservation Form</h5>
-                                <div class="text-muted">User Mode</div>
+                                <h5 class="alt-neutral">予約フォーム</h5>
+                                <div class="text-muted">ユーザーモード</div>
                             @endif
                         @else
-                            <h5 class="alt-neutral">Reservation Form</h5>
-                            <div class="text-muted">Guest Mode</div>
+                            <h5 class="alt-neutral">予約フォーム</h5>
+                            <div class="text-muted">ゲストモード</div>
                         @endif
                     </div>
                     @if (Auth::check() && Auth::user()->is_admin)
@@ -31,13 +31,13 @@
                                 <a
                                     class="nav-link {{ !$isReserveList ? 'active' : '' }}"
                                     href="{{ route('home') }}"
-                                >Requests</a>
+                                >要求</a>
                             </li>
                             <li class="nav-item">
                                 <a
                                     class="nav-link {{ $isReserveList ? 'active' : '' }}"
                                     href="{{ route('manager', ['type' => '1']) }}"
-                                >Reservations</a>
+                                >予約</a>
                             </li>
                         </ul>
                         @if ($isReserveList)

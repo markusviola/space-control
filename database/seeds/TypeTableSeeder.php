@@ -12,7 +12,7 @@ class TypeTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Coworking', 'Rental', 'Atelier', 'Others (企業研修・開発合宿等)'];
+        $types = ['コワーキング', 'レンタル', 'アトリエ', 'その他'];
         foreach($types as $type) {
             Type::create([
                 'name' => $type,
