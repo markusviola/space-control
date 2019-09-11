@@ -12,32 +12,32 @@
                     <div class="text-center">
                         @if (Auth::check())
                             @if (Auth::user()->is_admin)
-                                <h5 class="alt-neutral">
+                                <h4 class="alt-neutral">
                                     予約 {{ $isReserveList ? '管理' : '要求' }}
-                                </h5>
-                                <div class="text-muted">管理者モード</div>
+                                </h4>
+                                <h5 class="text-muted">管理者モード</h5>
                             @else
-                                <h5 class="alt-neutral">予約フォーム</h5>
-                                <div class="text-muted">ユーザーモード</div>
+                                <h4 class="alt-neutral">予約フォーム</h4>
+                                <h5 class="text-muted">ユーザーモード</h5>
                             @endif
                         @else
-                            <h5 class="alt-neutral">予約フォーム</h5>
-                            <div class="text-muted">ゲストモード</div>
+                            <h4 class="alt-neutral">予約フォーム</h4>
+                            <h5 class="text-muted">ゲストモード</h5>
                         @endif
                     </div>
                     @if (Auth::check() && Auth::user()->is_admin)
                         <ul class="nav nav-tabs mt-3">
                             <li class="nav-item">
-                                <a
+                                <h5><a
                                     class="nav-link {{ !$isReserveList ? 'active' : '' }}"
                                     href="{{ route('home') }}"
-                                >要求</a>
+                                >要求</a></h5>
                             </li>
                             <li class="nav-item">
-                                <a
+                                <h5><a
                                     class="nav-link {{ $isReserveList ? 'active' : '' }}"
                                     href="{{ route('manager', ['type' => '1']) }}"
-                                >予約</a>
+                                >予約</a></h5>
                             </li>
                         </ul>
                         @if ($isReserveList)
