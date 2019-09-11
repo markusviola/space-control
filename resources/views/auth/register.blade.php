@@ -10,12 +10,12 @@
                         @csrf
                         <div class="text-center">
                             @if ($userCount)
-                                <h4 class="alt-neutral">{{ __('Join Us!') }}</h4>
-                                <span class="text-muted">For a more convenient reservation experience!</span>
+                                <h4 class="alt-neutral">{{ __('今すぐ参加!') }}</h4>
+                                <span class="text-muted">より便利な予約体験へ</span>
                                 <input type="hidden" name="is_admin" value="0">
                             @else
-                                <h4 class="alt-neutral">{{ __('Administrator') }}</h4>
-                                <span class="text-muted">Negotiate with clients and manage reservations!</span>
+                                <h4 class="alt-neutral">{{ __('管理者') }}</h4>
+                                <span class="text-muted">お客さんと交渉して予約を管理する</span>
                                 <input type="hidden" name="is_admin" value="1">
                             @endif
                         </div>

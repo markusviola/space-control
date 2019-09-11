@@ -7,8 +7,8 @@
             <div class="card shadow neutral-round">
                 <div class="card-body">
                     <div class="text-center">
-                        <h5 class="alt-neutral">{{ __('Log In to Space Control') }}</h5>
-                        <span class="text-muted">Start arranging your reservations!</span>
+                        <h5 class="alt-neutral">{{ スペースコントロールにログイン }}</h5>
+                        <span class="text-muted">予約を手配し始めよう!</span>
                     </div>
                     <hr>
                     <form class="jp-body" method="POST" action="{{ route('login') }}">
@@ -48,7 +48,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="en-body form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('このアカウントを覚えている') }}
                                     </label>
                                 </div>
                             </div>
@@ -59,12 +59,6 @@
                                 <button type="submit" class="btn btn-anti-neutral text-white">
                                     {{ __('ログイン') }}
                                 </button>
-
-                                {{-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif --}}
                             </div>
                         </div>
                     </form>
