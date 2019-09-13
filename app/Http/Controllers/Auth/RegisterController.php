@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use DateTime;
 
 class RegisterController extends Controller
 {
@@ -43,10 +42,8 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $userCount = User::all()->count();
         $user = new User();
-        return view('auth.register',
-            compact('user', 'userCount'));
+        return view('auth.register', compact('user'));
     }
 
     /**

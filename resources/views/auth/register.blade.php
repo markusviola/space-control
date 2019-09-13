@@ -140,10 +140,10 @@
                                 <label for="usertype" class="col-md-4 col-form-label text-md-right">ユーザー</label>
 
                                 <div class="col-md-6">
-                                    <select id="usertype" class="form-control @error('usertype') is-invalid @enderror" name="usertype">
+                                    <select id="usertype" class="form-control @error('usertype') is-invalid @enderror" name="is_admin">
                                         <option disabled>選択肢</option>
-                                        <option value="customer" selected>顧客</option>
-                                        <option value="manager">管理者</option>
+                                        <option value="0" selected>顧客</option>
+                                        <option value="1">管理者</option>
                                     </select>
                                     <small class="form-text text-muted">テストの目的のため</small>
 
