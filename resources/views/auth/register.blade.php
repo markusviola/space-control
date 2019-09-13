@@ -9,15 +9,9 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="text-center">
-                            @if ($userCount)
-                                <h4 class="alt-neutral">アカウント作成</h4>
-                                <span class="text-muted">より便利な予約体験へ</span>
-                                <input type="hidden" name="is_admin" value="0">
-                            @else
-                                <h4 class="alt-neutral">管理者</h4>
-                                <span class="text-muted">お客さんと交渉して予約を管理する</span>
-                                <input type="hidden" name="is_admin" value="1">
-                            @endif
+                            <h4 class="alt-neutral">アカウント作成</h4>
+                            <span class="text-muted">より便利な予約体験へ</span>
+                            <input type="hidden" name="is_admin" value="0">
                         </div>
                         <hr>
 
