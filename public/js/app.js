@@ -4020,6 +4020,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
@@ -53659,7 +53660,13 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("textarea", {
         staticClass: "form-control",
-        attrs: { name: "reason", id: "reason", rows: "3", required: "" }
+        attrs: {
+          name: "reason",
+          id: "reason",
+          rows: "3",
+          spellcheck: "false",
+          required: ""
+        }
       })
     ])
   },

@@ -38,6 +38,7 @@
                 class="form-control"
                 id="reason"
                 rows="3"
+                spellcheck="false"
                 required
             ></textarea>
         </div>
