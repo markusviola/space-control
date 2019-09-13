@@ -145,6 +145,7 @@
                                         <option value="customer" selected>顧客</option>
                                         <option value="manager">管理者</option>
                                     </select>
+                                    <small class="form-text text-muted">テストの目的のため</small>
 
                                     @error('usertype')
                                         <span class="invalid-feedback" role="alert">
