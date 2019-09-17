@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
 
-            <span class="col-md-1 p-0  d-flex align-items-center justify-content-start">
+            <span class="col-md-2 p-0  d-flex align-items-center justify-content-start">
                 <strong class="text-muted">イン</strong>
             </span>
 
-            <div class="col-md-4 p-0 offset-md-1">
+            <div class="col-md-4 p-0">
                 <v-date-picker
                     locale="ja"
                     @input="onDateTimeUpdated"
@@ -45,11 +45,11 @@
         </div>
         <div class="row">
 
-            <span class="col-md-1 p-0 d-flex align-items-center justify-content-start">
+            <span class="col-md-2 p-0 d-flex align-items-center justify-content-start">
                 <strong class="text-muted">アウト</strong>
             </span>
 
-            <div class="col-md-4 p-0 offset-md-1">
+            <div class="col-md-4 p-0">
                 <v-date-picker
                     locale="ja"
                     @input="onDateTimeUpdated"

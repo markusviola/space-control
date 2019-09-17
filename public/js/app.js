@@ -50792,7 +50792,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-md-4 p-0 offset-md-1" },
+        { staticClass: "col-md-4 p-0" },
         [
           _c("v-date-picker", {
             attrs: {
@@ -50898,7 +50898,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-md-4 p-0 offset-md-1" },
+        { staticClass: "col-md-4 p-0" },
         [
           _c("v-date-picker", {
             attrs: {
@@ -51009,7 +51009,7 @@ var staticRenderFns = [
       "span",
       {
         staticClass:
-          "col-md-1 p-0  d-flex align-items-center justify-content-start"
+          "col-md-2 p-0  d-flex align-items-center justify-content-start"
       },
       [_c("strong", { staticClass: "text-muted" }, [_vm._v("イン")])]
     )
@@ -51022,7 +51022,7 @@ var staticRenderFns = [
       "span",
       {
         staticClass:
-          "col-md-1 p-0 d-flex align-items-center justify-content-start"
+          "col-md-2 p-0 d-flex align-items-center justify-content-start"
       },
       [_c("strong", { staticClass: "text-muted" }, [_vm._v("アウト")])]
     )
