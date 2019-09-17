@@ -33,6 +33,7 @@ Vue.use(VCalendar, {
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+Vue.component('auto-postal-code', require('./components/AutoPostalCode.vue').default);
 Vue.component('records-table', require('./components/RecordsTable.vue').default);
 Vue.component('payment-records', require('./components/PaymentRecords.vue').default);
 Vue.component('reservation-list', require('./components/ReservationList.vue').default);
