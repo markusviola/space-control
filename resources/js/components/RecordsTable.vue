@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(record, index) in records" :key="index">
+                <tr v-for="(record, index) in sortRecords" :key="index">
                     <th scope="row">{{ `${record.year}-${record.month}月` }}</th>
                     <td>{{ record.total }}</td>
                     <td>{{ record.space1 || 0 }}</td>
@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(record, index) in records.slice().reverse()" :key="index">
+                <tr v-for="(record, index) in sortRecords" :key="index">
                     <th scope="row">{{ `${record.year}-${record.month}月` }}</th>
                     <td>{{ record.total }}</td>
                 </tr>
@@ -64,6 +64,13 @@ export default {
             .then(response => {
                 this.records = response.data;
             })
+        }
+    },
+    computed: {
+        sortRecords() {
+            return this.records.sort((a, b) => {
+                return `${a.year}${a.month}` > `${b.year}${b.month}`;
+            });
         }
     },
     watch: {
