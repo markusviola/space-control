@@ -237,9 +237,9 @@
                 axios.patch(`/forms/${this.form.id}/approve`)
                 .then(response => {
                     if (response.data) {
-                        notifyUser("Reservation approved! ");
+                        notifyUser("予約は承認されました！");
                         this.$emit('onFormApproval', response.data);
-                    } else notifyUser("Something went wrong.");
+                    } else notifyUser("エラーがあります。");
                 })
             }
         },

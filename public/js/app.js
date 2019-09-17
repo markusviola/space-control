@@ -2664,10 +2664,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.patch("/forms/".concat(this.form.id, "/approve")).then(function (response) {
         if (response.data) {
-          notifyUser("Reservation approved! ");
+          notifyUser("予約は承認されました！");
 
           _this.$emit('onFormApproval', response.data);
-        } else notifyUser("Something went wrong.");
+        } else notifyUser("エラーがあります。");
       });
     }
   },
