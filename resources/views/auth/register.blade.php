@@ -120,21 +120,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="form-group row">
-                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('住所') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autofocus>
-
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                            <auto-postal-code></auto-postal-code>
                             <hr>
                             <div class="form-group row">
                                 <label for="usertype" class="col-md-4 col-form-label text-md-right">ユーザー</label>
