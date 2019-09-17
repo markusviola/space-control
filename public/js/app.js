@@ -2969,6 +2969,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  computed: {
+    sortRecords: function sortRecords() {
+      return this.records.sort(function (a, b) {
+        return "".concat(b.year).concat(b.month) - "".concat(a.year).concat(a.month);
+      });
+    }
+  },
   watch: {
     type_id: {
       immediate: true,
@@ -52399,7 +52406,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.records, function(record, index) {
+            _vm._l(_vm.sortRecords, function(record, index) {
               return _c("tr", { key: index }, [
                 _c("th", { attrs: { scope: "row" } }, [
                   _vm._v(_vm._s(record.year + "-" + record.month + "月"))
@@ -52426,7 +52433,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.records.slice().reverse(), function(record, index) {
+            _vm._l(_vm.sortRecords, function(record, index) {
               return _c("tr", { key: index }, [
                 _c("th", { attrs: { scope: "row" } }, [
                   _vm._v(_vm._s(record.year + "-" + record.month + "月"))
