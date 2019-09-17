@@ -2862,6 +2862,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     types: {
@@ -52338,7 +52345,20 @@ var render = function() {
         })
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("hr", { staticClass: "mt-0 mb-3" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center font-weight-bold" }, [
+      _c(
+        "a",
+        {
+          staticClass: "anti-neutral",
+          attrs: { href: "/reservations?type=" + _vm.chosen_type }
+        },
+        [_c("h5", { staticClass: "m-0" }, [_vm._v("予約管理に戻る")])]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
