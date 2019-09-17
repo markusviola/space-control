@@ -3617,6 +3617,7 @@ __webpack_require__.r(__webpack_exports__);
         check_spaces: JSON.stringify(this.check_spaces),
         date_times: JSON.stringify(this.date_times)
       }).then(function () {
+        window.location.href = "#updated-form";
         location.reload();
       });
     },
@@ -66826,7 +66827,7 @@ initNotifications = function initNotifications() {
       break;
 
     case "#unauth-access":
-      notifyUser("Please log in to your account!");
+      notifyUser("アカウントにログインしてください！");
       break;
 
     case "#admin-only":
@@ -66846,7 +66847,11 @@ initNotifications = function initNotifications() {
       break;
 
     case "#created-form":
-      notifyUser("Reservation request submitted!");
+      notifyUser("予約要求は提出されました！");
+      break;
+
+    case "#updated-form":
+      notifyUser("予約取引は更新されました！");
       break;
 
     case "#temp-unhandled":
