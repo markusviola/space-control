@@ -401,7 +401,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">支払い日時</strong>
+                                    <strong class="text-muted">支払日時</strong>
                                 </div>
                                 <div class="col-md-8">
                                     <v-date-picker

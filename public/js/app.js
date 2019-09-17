@@ -53876,7 +53876,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("支払い日時")])
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("支払日時")])
     ])
   },
   function() {
