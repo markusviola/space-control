@@ -703,6 +703,7 @@ export default {
                 date_times: JSON.stringify(this.date_times),
             })
             .then(() => {
+                window.location.href="#updated-form";
                 location.reload();
             });
         },

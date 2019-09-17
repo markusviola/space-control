@@ -4,7 +4,7 @@ initNotifications = () => {
                 notifyUser("This account cannot be accessed!");
             break;
         case "#unauth-access":
-                notifyUser("Please log in to your account!");
+                notifyUser("アカウントにログインしてください！");
             break;
         case "#admin-only":
                 notifyUser("You need administrative privileges!");
@@ -19,7 +19,10 @@ initNotifications = () => {
                 notifyUser("This feature is for non-admin users only!");
             break;
         case "#created-form":
-                notifyUser("Reservation request submitted!");
+                notifyUser("予約要求は提出されました！");
+            break;
+        case "#updated-form":
+                notifyUser("予約取引は更新されました！");
             break;
         case "#temp-unhandled":
                 notifyUser("Something went wrong.");
