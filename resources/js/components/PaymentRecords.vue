@@ -41,6 +41,13 @@
                 :filter="chosen_filter"
             ></records-table>
         </div>
+        <hr class="mt-0 mb-3">
+        <div class="text-center font-weight-bold">
+            <a
+                class="anti-neutral"
+                :href="`/reservations?type=${chosen_type}`"
+            ><h5 class="m-0">予約管理に戻る</h5></a>
+        </div>
     </div>
 </template>
 

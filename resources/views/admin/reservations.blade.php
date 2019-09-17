@@ -27,5 +27,7 @@
 </div>
 <hr class="mt-0 mb-3">
 <div class="text-center font-weight-bold">
-    <a class="anti-neutral" href="{{ route('payment.records') }}"><h5>支払い記録を見る</h5></a>
+    <a class="anti-neutral" href="{{ route('payment.records') }}">
+        <h5 class="m-0">支払い記録を見る</h5>
+    </a>
 </div>
