@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(record, index) in records" :key="index">
+                <tr v-for="(record, index) in records.slice().reverse()" :key="index">
                     <th scope="row">{{ `${record.year}-${record.month}月` }}</th>
                     <td>{{ record.total }}</td>
                 </tr>
