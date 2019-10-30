@@ -29,7 +29,6 @@
                             :src="render_image"
                         />
                         <div>
-
                         </div>
                         <button
                             @click="onImageRemoved"
@@ -51,6 +50,7 @@
                     <div class="form-group">
                         <label for="title">投稿タイトル</label>
                         <input
+                            v-model="title"
                             type="text"
                             class="form-control"
                             id="title"
@@ -60,6 +60,7 @@
                     <div class="form-group">
                         <label for="address">場所住所</label>
                         <input
+                            v-model="address"
                             type="text"
                             class="form-control"
                             id="address"
@@ -69,6 +70,7 @@
                     <div class="form-group">
                         <label for="business_hours">営業時間</label>
                         <textarea
+                            v-model="business_hours"
                             class="form-control"
                             id="business_hours"
                             rows="4"
@@ -93,6 +95,7 @@
                     <div class="form-group">
                         <label for="notes">ノート</label>
                         <textarea
+                            v-model="notes"
                             class="form-control"
                             id="notes"
                             rows="3"
@@ -105,6 +108,7 @@
                         @click="onCreatePostClicked"
                         type="button"
                         class="btn-trans text-secondary"
+                        data-dismiss="modal"
                     >
                         <h5><strong>作成する</strong></h5>
                     </button>
@@ -126,14 +130,22 @@ export default {
     },
     data() {
         return {
-            per_hour: 1.25,
             render_image: '',
             post_image: null,
+            title: null,
+            address: null,
+            business_hours: null,
+            per_hour: 0,
+            notes: null,
         }
     },
     methods: {
         onCreatePostClicked() {
-
+            if (!this.title) {
+                notifyUser("タイトルは必要なフィールドです！");
+            } else {
+                alert('成功だ！');
+            }
         },
         onImageChanged(e) {
             const files = e.target.files || e.dataTransfer.files;

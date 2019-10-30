@@ -4296,6 +4296,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4305,13 +4309,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      per_hour: 1.25,
       render_image: '',
-      post_image: null
+      post_image: null,
+      title: null,
+      address: null,
+      business_hours: null,
+      per_hour: 0,
+      notes: null
     };
   },
   methods: {
-    onCreatePostClicked: function onCreatePostClicked() {},
+    onCreatePostClicked: function onCreatePostClicked() {
+      if (!this.title) {
+        notifyUser("タイトルは必要なフィールドです！");
+      } else {
+        alert('成功だ！');
+      }
+    },
     onImageChanged: function onImageChanged(e) {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
@@ -54968,11 +54982,102 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "title" } }, [
+                    _vm._v("投稿タイトル")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.title,
+                        expression: "title"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "title",
+                      placeholder: "好きなタイトルを入力してください"
+                    },
+                    domProps: { value: _vm.title },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.title = $event.target.value
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "address" } }, [
+                    _vm._v("場所住所")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.address,
+                        expression: "address"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "address",
+                      placeholder: "場所の住所を入力してください"
+                    },
+                    domProps: { value: _vm.address },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.address = $event.target.value
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(5),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "business_hours" } }, [
+                    _vm._v("営業時間")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.business_hours,
+                        expression: "business_hours"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "business_hours",
+                      rows: "4",
+                      placeholder:
+                        "フォマットの書くルールが特にないので、自由に書いてください"
+                    },
+                    domProps: { value: _vm.business_hours },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.business_hours = $event.target.value
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "per_hour" } }, [
@@ -54980,7 +55085,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group" }, [
-                    _vm._m(6),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -55006,7 +55111,35 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(7)
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "notes" } }, [_vm._v("ノート")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.notes,
+                        expression: "notes"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "notes",
+                      rows: "3",
+                      placeholder: "他のお客のための重要な詳細を書いてください"
+                    },
+                    domProps: { value: _vm.notes },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.notes = $event.target.value
+                      }
+                    }
+                  })
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -55014,10 +55147,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn-trans text-secondary",
-                    attrs: { type: "button" },
+                    attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.onCreatePostClicked }
                   },
-                  [_vm._m(8)]
+                  [_vm._m(4)]
                 )
               ])
             ])
@@ -55095,79 +55228,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "title" } }, [_vm._v("投稿タイトル")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "title",
-          placeholder: "好きなタイトルを入力してください"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "address" } }, [_vm._v("場所住所")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "address",
-          placeholder: "場所の住所を入力してください"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "business_hours" } }, [_vm._v("営業時間")]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          id: "business_hours",
-          rows: "4",
-          placeholder:
-            "フォマットの書くルールが特にないので、自由に書いてください"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("span", { staticClass: "input-group-text", attrs: { id: "yen" } }, [
         _vm._v("円")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "notes" } }, [_vm._v("ノート")]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          id: "notes",
-          rows: "3",
-          placeholder: "他のお客のための重要な詳細を書いてください"
-        }
-      })
     ])
   },
   function() {
