@@ -37,3 +37,5 @@ Route::patch('/reservations/{id}/edit', 'ReservationsController@update');
 Route::get('/payments/type/{id}/individual/{choice}', 'PaymentsController@getPaymentRecords');
 
 Route::get('/payments', 'PaymentsController@index')->name('payment.records');
+
+Route::resource('forms', 'PostsController');
