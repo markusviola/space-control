@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Space extends Model
+class Post extends Model
 {
     protected $guarded = [];
 
-    public function bulkSpaces()
+    public function user()
     {
-        return $this->hasMany(BulkSpace::class);
+        return $this->belongsTo(User::class);
     }
 }
