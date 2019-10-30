@@ -3,10 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Type;
-use App\Schedule;
-use App\BulkSpace;
+
 
 class Form extends Model
 {
