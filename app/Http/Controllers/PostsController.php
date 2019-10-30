@@ -14,7 +14,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('admin.posts');
+        if (auth()->check()) {
+            $user = auth()->user();
+            return view('admin.posts', compact('user'));
+        } else abort(404);
     }
 
     /**
