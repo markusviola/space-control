@@ -38,4 +38,4 @@ Route::get('/payments/type/{id}/individual/{choice}', 'PaymentsController@getPay
 
 Route::get('/payments', 'PaymentsController@index')->name('payment.records');
 
-Route::resource('forms', 'PostsController');
+Route::resource('posts', 'PostsController');
