@@ -24,6 +24,7 @@ class PostsController extends Controller
     {
         $posts = Post::with([])
             ->where('user_id', auth()->id())
+            ->latest()
             ->get();
         return $posts;
     }
@@ -50,15 +51,17 @@ class PostsController extends Controller
         $newPost = new Post();
         $newPost->title = $data['title'];
         $newPost->user_id = auth()->id();
-        $newPost->address = $data['address'];
-        $newPost->business_hours = $data['business_hours'];
-        $newPost->per_hour = $data['per_hour'];
-        $newPost->notes = $data['notes'];
-        $newPost->post_image = $data['post_image']
-            ->store('uploads', 'public');
+        if (isset($data['address'])) $newPost->address = $data['address'];
+        if (isset($data['business_hours'])) $newPost->business_hours = $data['business_hours'];
+        if (isset($data['per_hour'])) $newPost->per_hour = $data['per_hour'];
+        if (isset($data['notes'])) $newPost->notes = $data['notes'];
+        if (isset($data['post_image'])) {
+            $newPost->post_image = $data['post_image']
+                ->store('uploads', 'public');
+        }
         $newPost->save();
 
-        return $newPost;
+        return $data;
     }
 
     /**
@@ -109,11 +112,11 @@ class PostsController extends Controller
     private function validateRequest() {
         return request()->validate([
             'title' => 'required|max:100',
-            'post_image' => 'nullable|file|image|max:5000',
-            'address' => 'nullable|string',
-            'business_hours' => 'nullable|string',
-            'per_hour' => 'nullable|numeric',
-            'notes' => 'nullable|string|alpha_num'
+            'post_image' => 'file|image|max:5000',
+            'address' => 'string',
+            'business_hours' => 'string',
+            'per_hour' => 'numeric',
+            'notes' => 'string|alpha_num'
         ]);
     }
 }

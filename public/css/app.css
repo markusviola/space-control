@@ -16675,6 +16675,10 @@ a {
   cursor: pointer;
 }
 
+.filler {
+  background: gray;
+}
+
 .payment-wrapper {
   width: auto;
   overflow-x: auto;

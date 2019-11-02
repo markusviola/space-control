@@ -4315,40 +4315,31 @@ __webpack_require__.r(__webpack_exports__);
       address: null,
       business_hours: null,
       per_hour: 0,
-      notes: null,
-      posts: []
+      notes: null
     };
   },
-  mounted: function mounted() {
-    this.getPosts();
-  },
   methods: {
-    getPosts: function getPosts() {
-      axios.get('posts/list').then(function (response) {
-        console.log(response.data);
-      })["catch"](function (err) {
-        var res = err.response;
-        notifyUser('Something went wrong.');
-        console.log(res);
-      });
-    },
     onCreatePostClicked: function onCreatePostClicked() {
+      var _this = this;
+
       if (!this.title) {
         notifyUser("タイトルは必要なフィールドです！");
       } else {
         var formData = new FormData();
         formData.append('title', this.title);
-        formData.append('post_image', this.post_image);
-        formData.append('address', this.address);
-        formData.append('business_hours', this.business_hours);
-        formData.append('per_hour', this.per_hour);
-        formData.append('notes', this.notes);
+        if (this.post_image) formData.append('post_image', this.post_image);
+        if (this.address) formData.append('address', this.address);
+        if (this.business_hours) formData.append('business_hours', this.business_hours);
+        if (this.per_hour) formData.append('per_hour', this.per_hour);
+        if (this.notes) formData.append('notes', this.notes);
         axios.post('posts', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }).then(function (response) {
           console.log(response.data);
+
+          _this.$emit('onPostCreated', response.data);
         })["catch"](function (err) {
           var res = err.response;
 
@@ -4366,13 +4357,13 @@ __webpack_require__.r(__webpack_exports__);
       this.createImage(files[0]);
     },
     createImage: function createImage(file) {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
       this.post_image = file;
 
       reader.onload = function (e) {
-        _this.render_image = e.target.result;
+        _this2.render_image = e.target.result;
       };
 
       reader.readAsDataURL(file);
@@ -4402,6 +4393,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4410,7 +4420,29 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      posts: []
+    };
+  },
+  mounted: function mounted() {
+    this.getPosts();
+  },
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+
+      axios.get('posts/list').then(function (response) {
+        _this.posts = response.data;
+      })["catch"](function (err) {
+        var res = err.response;
+        notifyUser('Something went wrong.');
+        console.log(res);
+      });
+    },
+    addNewPost: function addNewPost(newPost) {
+      this.posts.unshift(newPost);
+      console.log(this.posts);
+    }
   }
 });
 
@@ -55300,11 +55332,58 @@ var render = function() {
     "div",
     { staticClass: "mt-3" },
     [
-      _c("space-post-create", { attrs: { user: _vm.user } }),
+      _c("space-post-create", {
+        attrs: { user: _vm.user },
+        on: { onPostCreated: _vm.addNewPost }
+      }),
       _vm._v(" "),
-      _c("hr")
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function(post) {
+        return _c("div", { key: post.id }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-4 d-flex justify-content-center bg-dark"
+                },
+                [
+                  post.post_image
+                    ? _c("div", [
+                        _c("img", {
+                          staticClass: "mw-100",
+                          staticStyle: { height: "7rem" },
+                          attrs: { src: "storage/" + post.post_image }
+                        })
+                      ])
+                    : _c(
+                        "div",
+                        {
+                          staticClass:
+                            "w-100 text-white font-weight-bold d-flex align-items-center justify-content-center",
+                          staticStyle: { height: "7rem" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        No Image Set\n                    "
+                          )
+                        ]
+                      )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-8 font-weight-bold" }, [
+                _vm._v(_vm._s(post.title))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ])
+      })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

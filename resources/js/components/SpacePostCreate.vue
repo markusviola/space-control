@@ -137,40 +137,26 @@ export default {
             business_hours: null,
             per_hour: 0,
             notes: null,
-            posts: [],
         }
     },
-    mounted() {
-        this.getPosts();
-    },
     methods: {
-        getPosts() {
-            axios.get('posts/list')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                const res = err.response;
-                notifyUser('Something went wrong.');
-                console.log(res);
-            })
-        },
         onCreatePostClicked() {
             if (!this.title) {
                 notifyUser("タイトルは必要なフィールドです！");
             } else {
                 let formData = new FormData();
                 formData.append('title', this.title);
-                formData.append('post_image', this.post_image);
-                formData.append('address', this.address);
-                formData.append('business_hours', this.business_hours);
-                formData.append('per_hour', this.per_hour);
-                formData.append('notes', this.notes);
+                if (this.post_image) formData.append('post_image', this.post_image);
+                if (this.address) formData.append('address', this.address);
+                if (this.business_hours) formData.append('business_hours', this.business_hours);
+                if (this.per_hour) formData.append('per_hour', this.per_hour);
+                if (this.notes) formData.append('notes', this.notes);
                 axios.post('posts', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
                     console.log(response.data);
+                    this.$emit('onPostCreated', response.data);
                 })
                 .catch(err => {
                     const res = err.response;
