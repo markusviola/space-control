@@ -144,6 +144,17 @@ export default {
         this.getPosts();
     },
     methods: {
+        getPosts() {
+            axios.get('posts/list')
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(err => {
+                const res = err.response;
+                notifyUser('Something went wrong.');
+                console.log(res);
+            })
+        },
         onCreatePostClicked() {
             if (!this.title) {
                 notifyUser("タイトルは必要なフィールドです！");

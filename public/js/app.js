@@ -4323,6 +4323,15 @@ __webpack_require__.r(__webpack_exports__);
     this.getPosts();
   },
   methods: {
+    getPosts: function getPosts() {
+      axios.get('posts/list').then(function (response) {
+        console.log(response.data);
+      })["catch"](function (err) {
+        var res = err.response;
+        notifyUser('Something went wrong.');
+        console.log(res);
+      });
+    },
     onCreatePostClicked: function onCreatePostClicked() {
       if (!this.title) {
         notifyUser("タイトルは必要なフィールドです！");

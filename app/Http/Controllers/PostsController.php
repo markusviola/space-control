@@ -20,6 +20,14 @@ class PostsController extends Controller
         } else abort(404);
     }
 
+    public function getPosts()
+    {
+        $posts = Post::with([])
+            ->where('user_id', auth()->id())
+            ->get();
+        return $posts;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +49,7 @@ class PostsController extends Controller
         $data = $this->validateRequest();
         $newPost = new Post();
         $newPost->title = $data['title'];
-        $newPost->user_id = auth()->user()->id;
+        $newPost->user_id = auth()->id();
         $newPost->address = $data['address'];
         $newPost->business_hours = $data['business_hours'];
         $newPost->per_hour = $data['per_hour'];
