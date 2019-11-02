@@ -36,9 +36,21 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $data = $this->validateRequest();
+        $newPost = new Post();
+        $newPost->title = $data['title'];
+        $newPost->user_id = auth()->user()->id;
+        $newPost->address = $data['address'];
+        $newPost->business_hours = $data['business_hours'];
+        $newPost->per_hour = $data['per_hour'];
+        $newPost->notes = $data['notes'];
+        $newPost->post_image = $data['post_image']
+            ->store('uploads', 'public');
+        $newPost->save();
+
+        return $newPost;
     }
 
     /**
@@ -84,5 +96,16 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    private function validateRequest() {
+        return request()->validate([
+            'title' => 'required|max:100',
+            'post_image' => 'nullable|file|image|max:5000',
+            'address' => 'nullable|string',
+            'business_hours' => 'nullable|string',
+            'per_hour' => 'nullable|numeric',
+            'notes' => 'nullable|string|alpha_num'
+        ]);
     }
 }

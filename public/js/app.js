@@ -4310,20 +4310,45 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       render_image: '',
-      post_image: null,
       title: null,
+      post_image: null,
       address: null,
       business_hours: null,
       per_hour: 0,
-      notes: null
+      notes: null,
+      posts: []
     };
+  },
+  mounted: function mounted() {
+    this.getPosts();
   },
   methods: {
     onCreatePostClicked: function onCreatePostClicked() {
       if (!this.title) {
         notifyUser("タイトルは必要なフィールドです！");
       } else {
-        alert('成功だ！');
+        var formData = new FormData();
+        formData.append('title', this.title);
+        formData.append('post_image', this.post_image);
+        formData.append('address', this.address);
+        formData.append('business_hours', this.business_hours);
+        formData.append('per_hour', this.per_hour);
+        formData.append('notes', this.notes);
+        axios.post('posts', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response.data);
+        })["catch"](function (err) {
+          var res = err.response;
+
+          if (res.status == 422) {
+            notifyUser('Please re-check your fields!');
+          } else notifyUser('Something went wrong.');
+
+          console.log(res);
+        });
       }
     },
     onImageChanged: function onImageChanged(e) {
