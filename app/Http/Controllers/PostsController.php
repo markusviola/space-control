@@ -20,6 +20,15 @@ class PostsController extends Controller
         } else abort(404);
     }
 
+    public function getPosts()
+    {
+        $posts = Post::with([])
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+        return $posts;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,9 +45,23 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $data = $this->validateRequest();
+        $newPost = new Post();
+        $newPost->title = $data['title'];
+        $newPost->user_id = auth()->id();
+        if (isset($data['address'])) $newPost->address = $data['address'];
+        if (isset($data['business_hours'])) $newPost->business_hours = $data['business_hours'];
+        if (isset($data['per_hour'])) $newPost->per_hour = $data['per_hour'];
+        if (isset($data['notes'])) $newPost->notes = $data['notes'];
+        if (isset($data['post_image'])) {
+            $newPost->post_image = $data['post_image']
+                ->store('uploads', 'public');
+        }
+        $newPost->save();
+
+        return $data;
     }
 
     /**
@@ -84,5 +107,16 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    private function validateRequest() {
+        return request()->validate([
+            'title' => 'required|max:100',
+            'post_image' => 'file|image|max:5000',
+            'address' => 'string',
+            'business_hours' => 'string',
+            'per_hour' => 'numeric',
+            'notes' => 'string|alpha_num'
+        ]);
     }
 }
