@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('post_image')->nullable();
             $table->text('business_hours')->nullable();
             $table->string('address')->nullable();
-            $table->integer('per_hour')->nullable();
+            $table->integer('per_hour')->default(0);
             $table->longText('notes')->nullable();
             $table->timestamps();
         });

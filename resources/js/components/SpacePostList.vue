@@ -13,15 +13,30 @@
                             <img class="mw-100" style="height: 7rem;" :src="`storage/${post.post_image}`">
                         </div>
                         <div class="w-100 text-white font-weight-bold d-flex align-items-center justify-content-center" style="height: 7rem;" v-else>
-                            No Image Set
+                            写真なし
                         </div>
                     </div>
-                    <div class="col-md-8  d-flex align-items-center">
-                        <div>
-                            <strong>Title:</strong> {{ post.title }}
+                    <div class="col-md-8 pr-0 d-flex align-items-center">
+                        <div class="w-100">
+                            <div class="row mb-2">
+                                <div class="col-md-3 text-md-right border-right">
+                                    <strong class="text-muted">タイトル</strong>
+                                </div>
+                                <div class="col-md-9">{{ post.title }}</div>
+                            </div>
                             <hr class="mt-0">
-                            <p class="mb-0"><strong>Address:</strong> {{ post.address }}</p>
-                            <p><strong>Per Hour:</strong> {{ post.per_hour }}</p>
+                             <div class="row">
+                                <div class="col-md-3 text-md-right border-right">
+                                    <strong class="text-muted">住所:</strong>
+                                </div>
+                                <div class="col-md-9">{{ post.address }}</div>
+                            </div>
+                             <div class="row">
+                                <div class="col-md-3 text-md-right border-right">
+                                    <strong class="text-muted">時間金額:</strong>
+                                </div>
+                                <div class="col-md-9">{{ post.per_hour }} 円</div>
+                            </div>
                         </div>
                     </div>
                 </div>

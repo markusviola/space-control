@@ -4419,6 +4419,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -55373,7 +55388,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                        No Image Set\n                    "
+                            "\n                        写真なし\n                    "
                           )
                         ]
                       )
@@ -55382,23 +55397,33 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-md-8  d-flex align-items-center" },
+                { staticClass: "col-md-8 pr-0 d-flex align-items-center" },
                 [
-                  _c("div", [
-                    _c("strong", [_vm._v("Title:")]),
-                    _vm._v(
-                      " " + _vm._s(post.title) + "\n                        "
-                    ),
-                    _c("hr", { staticClass: "mt-0" }),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "mb-0" }, [
-                      _c("strong", [_vm._v("Address:")]),
-                      _vm._v(" " + _vm._s(post.address))
+                  _c("div", { staticClass: "w-100" }, [
+                    _c("div", { staticClass: "row mb-2" }, [
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _vm._v(_vm._s(post.title))
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("p", [
-                      _c("strong", [_vm._v("Per Hour:")]),
-                      _vm._v(" " + _vm._s(post.per_hour))
+                    _c("hr", { staticClass: "mt-0" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _vm._v(_vm._s(post.address))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _vm._v(_vm._s(post.per_hour) + " 円")
+                      ])
                     ])
                   ])
                 ]
@@ -55413,7 +55438,32 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("タイトル")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("住所:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("時間金額:")])
+    ])
+  }
+]
 render._withStripped = true
 
 
