@@ -2,12 +2,15 @@
     <div class="mt-3">
         <space-post-create
             :user="user"
+            :post="post"
+            :existing="existing"
             @onPostCreated="addNewPost"
+            @onInitCreate="createPostMode"
         ></space-post-create>
-        <hr>
+        <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
             <div class="container">
-                <div class="row">
+                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)">
                     <div class="col-md-4 d-flex justify-content-center bg-dark" >
                         <div v-if="post.post_image">
                             <img class="mw-100" style="height: 7rem;" :src="`storage/${post.post_image}`">
@@ -41,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr class="my-0">
         </div>
     </div>
 </template>
@@ -57,6 +60,7 @@ export default {
     data() {
         return {
             posts: [],
+            post: null,
         }
     },
     mounted() {
@@ -77,7 +81,10 @@ export default {
         addNewPost(newPost) {
             this.posts.unshift(newPost);
             console.log(this.posts);
-        }
+        },
+        onPostSelected(post) {
+            this.post = post;
+        },
     }
 }
 </script>
