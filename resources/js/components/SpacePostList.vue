@@ -16,7 +16,14 @@
                             No Image Set
                         </div>
                     </div>
-                    <div class="col-md-8 font-weight-bold">{{ post.title }}</div>
+                    <div class="col-md-8  d-flex align-items-center">
+                        <div>
+                            <strong>Title:</strong> {{ post.title }}
+                            <hr class="mt-0">
+                            <p class="mb-0"><strong>Address:</strong> {{ post.address }}</p>
+                            <p><strong>Per Hour:</strong> {{ post.per_hour }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>

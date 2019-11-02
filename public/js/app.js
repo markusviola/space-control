@@ -4412,6 +4412,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -55373,9 +55380,29 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-8 font-weight-bold" }, [
-                _vm._v(_vm._s(post.title))
-              ])
+              _c(
+                "div",
+                { staticClass: "col-md-8  d-flex align-items-center" },
+                [
+                  _c("div", [
+                    _c("strong", [_vm._v("Title:")]),
+                    _vm._v(
+                      " " + _vm._s(post.title) + "\n                        "
+                    ),
+                    _c("hr", { staticClass: "mt-0" }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "mb-0" }, [
+                      _c("strong", [_vm._v("Address:")]),
+                      _vm._v(" " + _vm._s(post.address))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("strong", [_vm._v("Per Hour:")]),
+                      _vm._v(" " + _vm._s(post.per_hour))
+                    ])
+                  ])
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
