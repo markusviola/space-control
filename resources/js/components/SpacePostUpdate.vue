@@ -62,7 +62,7 @@
                         <label for="business_hours">営業時間</label>
                         <textarea
                             v-model="business_hours"
-                            class="form-control"
+                            class="form-control preserve-breaks"
                             id="business_hours"
                             rows="4"
                             placeholder="フォマットの書くルールが特にないので、自由に書いてください"
@@ -116,12 +116,12 @@ export default {
     props: {
         post: {
             type: Object,
-            required: true,
+            default: null,
         },
     },
     data() {
         return {
-            render_image: '',
+            render_image: null,
             title: null,
             post_image: null,
             address: null,
@@ -145,6 +145,11 @@ export default {
             this.business_hours = newForm.business_hours;
             this.per_hour = newForm.per_hour || 0;
             this.notes = newForm.notes;
+            this.render_image = null;
+
+            if (newForm.post_image) {
+                this.render_image = `storage/${newForm.post_image}`;
+            }
         },
         onUpdatePostClicked() {
             if (!this.title) {

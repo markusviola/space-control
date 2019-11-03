@@ -2,7 +2,6 @@
     <div class="mt-3">
         <space-post-create
             :user="user"
-            :existing="existing"
             @onPostCreated="addNewPost"
         ></space-post-create>
         <space-post-update
@@ -40,7 +39,7 @@
                                 <div class="col-md-3 text-md-right border-right">
                                     <strong class="text-muted">時間金額:</strong>
                                 </div>
-                                <div class="col-md-9">{{ post.per_hour }} 円</div>
+                                <div class="col-md-9">{{ post.per_hour || 0 }} 円</div>
                             </div>
                         </div>
                     </div>

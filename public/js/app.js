@@ -4448,7 +4448,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4620,12 +4619,12 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     post: {
       type: Object,
-      required: true
+      "default": null
     }
   },
   data: function data() {
     return {
-      render_image: '',
+      render_image: null,
       title: null,
       post_image: null,
       address: null,
@@ -4649,6 +4648,11 @@ __webpack_require__.r(__webpack_exports__);
       this.business_hours = newForm.business_hours;
       this.per_hour = newForm.per_hour || 0;
       this.notes = newForm.notes;
+      this.render_image = null;
+
+      if (newForm.post_image) {
+        this.render_image = "storage/".concat(newForm.post_image);
+      }
     },
     onUpdatePostClicked: function onUpdatePostClicked() {
       if (!this.title) {
@@ -55381,7 +55385,7 @@ var render = function() {
                         expression: "business_hours"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "form-control preserve-breaks",
                     attrs: {
                       id: "business_hours",
                       rows: "4",
@@ -55588,7 +55592,7 @@ var render = function() {
     { staticClass: "mt-3" },
     [
       _c("space-post-create", {
-        attrs: { user: _vm.user, existing: _vm.existing },
+        attrs: { user: _vm.user },
         on: { onPostCreated: _vm.addNewPost }
       }),
       _vm._v(" "),
@@ -55675,7 +55679,7 @@ var render = function() {
                         _vm._m(2, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-9" }, [
-                          _vm._v(_vm._s(post.per_hour) + " 円")
+                          _vm._v(_vm._s(post.per_hour || 0) + " 円")
                         ])
                       ])
                     ])
@@ -55876,7 +55880,7 @@ var render = function() {
                         expression: "business_hours"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "form-control preserve-breaks",
                     attrs: {
                       id: "business_hours",
                       rows: "4",

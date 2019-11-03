@@ -71,7 +71,7 @@
                         <label for="business_hours">営業時間</label>
                         <textarea
                             v-model="business_hours"
-                            class="form-control"
+                            class="form-control preserve-breaks"
                             id="business_hours"
                             rows="4"
                             placeholder="フォマットの書くルールが特にないので、自由に書いてください"

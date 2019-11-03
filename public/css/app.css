@@ -16685,3 +16685,7 @@ a {
   white-space: nowrap;
 }
 
+.preserve-breaks {
+  white-space: pre-line !important;
+}
+

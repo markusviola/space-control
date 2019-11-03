@@ -61,7 +61,7 @@ class PostsController extends Controller
         }
         $newPost->save();
 
-        return $data;
+        return $newPost;
     }
 
     /**
