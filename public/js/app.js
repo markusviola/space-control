@@ -4447,6 +4447,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -4457,7 +4459,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: [],
-      post: null
+      selected_post: null
     };
   },
   mounted: function mounted() {
@@ -4479,8 +4481,13 @@ __webpack_require__.r(__webpack_exports__);
       this.posts.unshift(newPost);
       console.log(this.posts);
     },
+    updatePost: function updatePost(updatedPost) {
+      this.posts[posts.findIndex(function (post) {
+        return post.id === updatedPost.id;
+      })] = updatedPost;
+    },
     onPostSelected: function onPostSelected(post) {
-      this.post = post;
+      this.selected_post = post;
     }
   }
 });
@@ -55372,8 +55379,13 @@ var render = function() {
     { staticClass: "mt-3" },
     [
       _c("space-post-create", {
-        attrs: { user: _vm.user, post: _vm.post, existing: _vm.existing },
-        on: { onPostCreated: _vm.addNewPost, onInitCreate: _vm.createPostMode }
+        attrs: { user: _vm.user, existing: _vm.existing },
+        on: { onPostCreated: _vm.addNewPost }
+      }),
+      _vm._v(" "),
+      _c("space-post-update", {
+        attrs: { post: _vm.selected_post },
+        on: { onPostUPdated: _vm.updatePost }
       }),
       _vm._v(" "),
       _c("hr", { staticClass: "mb-0" }),
@@ -55385,6 +55397,10 @@ var render = function() {
               "div",
               {
                 staticClass: "row px-2 py-3 panel-highlight",
+                attrs: {
+                  "data-toggle": "modal",
+                  "data-target": "#reservation-item"
+                },
                 on: {
                   click: function($event) {
                     return _vm.onPostSelected(post)
