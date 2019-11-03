@@ -1,19 +1,10 @@
 <template>
     <div>
-        <div
-            data-toggle="modal"
-            data-target="#createPostModal"
-            class="anti-neutral clickable d-flex justify-content-end mr-2">
-            <i
-                class="fas fa-plus fa-lg d-flex align-items-center"
-            ></i>
-            <span class="font-weight-bold ml-2">Post a Space</span>
-        </div>
-        <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalTitle" aria-hidden="true">
+        <div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="updatePostModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-primary" id="createPostModalTitle">
+                    <h4 class="modal-title text-primary" id="updatePostModalTitle">
                         <strong>
                             場所情報
                         </strong>
@@ -71,7 +62,7 @@
                         <label for="business_hours">営業時間</label>
                         <textarea
                             v-model="business_hours"
-                            class="form-control"
+                            class="form-control preserve-breaks"
                             id="business_hours"
                             rows="4"
                             placeholder="フォマットの書くルールが特にないので、自由に書いてください"
@@ -105,12 +96,12 @@
                 </div>
                 <div class="modal-footer">
                     <button
-                        @click="onCreatePostClicked"
+                        @click="onUpdatePostClicked"
                         type="button"
                         class="btn-trans text-secondary"
                         data-dismiss="modal"
                     >
-                        <h5><strong>作成する</strong></h5>
+                        <h5><strong>更新する</strong></h5>
                     </button>
                 </div>
                 </div>
@@ -123,14 +114,16 @@
 <script>
 export default {
     props: {
-        user: {
+        post: {
             type: Object,
-            required: true,
+            default: null,
         },
     },
     data() {
         return {
-            render_image: '',
+            render_image: null,
+            id: null,
+            user_id: null,
             title: null,
             post_image: null,
             address: null,
@@ -139,33 +132,48 @@ export default {
             notes: null,
         }
     },
+    watch: {
+        post: {
+            handler(newForm, oldForm) {
+                this.updatePostFields(newForm);
+            }
+        }
+    },
     methods: {
-        resetFields() {
-            this.title = null;
+        updatePostFields(newForm) {
+            this.id = newForm.id,
+            this.user_id = newForm.user_id;
+            this.title = newForm.title;
             this.post_image = null;
-            this.address = null;
-            this.business_hours = null;
-            this.per_hour = 0;
-            this.notes = null;
+            this.address = newForm.address;
+            this.business_hours = newForm.business_hours;
+            this.per_hour = newForm.per_hour || 0;
+            this.notes = newForm.notes;
+            this.render_image = null;
+
+            if (newForm.post_image) {
+                this.render_image = `storage/${newForm.post_image}`;
+            }
         },
-        onCreatePostClicked() {
+        onUpdatePostClicked() {
             if (!this.title) {
                 notifyUser("タイトルは必要なフィールドです！");
             } else {
                 let formData = new FormData();
+                formData.append('_method', 'put');
                 formData.append('title', this.title);
                 if (this.post_image) formData.append('post_image', this.post_image);
                 if (this.address) formData.append('address', this.address);
                 if (this.business_hours) formData.append('business_hours', this.business_hours);
                 if (this.per_hour) formData.append('per_hour', this.per_hour);
                 if (this.notes) formData.append('notes', this.notes);
-                axios.post('posts', formData, {
+
+                axios.post(`posts/${this.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
                     console.log(response.data);
-                    this.resetFields();
-                    this.$emit('onPostCreated', response.data);
+                    this.$emit('onPostUpdated', response.data);
                 })
                 .catch(err => {
                     const res = err.response;

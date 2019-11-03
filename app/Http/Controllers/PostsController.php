@@ -61,7 +61,7 @@ class PostsController extends Controller
         }
         $newPost->save();
 
-        return $data;
+        return $newPost;
     }
 
     /**
@@ -93,9 +93,21 @@ class PostsController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Post $post)
     {
-        //
+        $data = $this->validateRequest();
+        $post->title = $data['title'];
+        if (isset($data['address'])) $post->address = $data['address'];
+        if (isset($data['business_hours'])) $post->business_hours = $data['business_hours'];
+        if (isset($data['per_hour'])) $post->per_hour = $data['per_hour'];
+        if (isset($data['notes'])) $post->notes = $data['notes'];
+        if (isset($data['post_image'])) {
+            $post->post_image = $data['post_image']
+                ->store('uploads', 'public');
+        }
+        $post->save();
+
+        return $post;
     }
 
     /**

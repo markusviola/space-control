@@ -2,15 +2,16 @@
     <div class="mt-3">
         <space-post-create
             :user="user"
-            :post="post"
-            :existing="existing"
             @onPostCreated="addNewPost"
-            @onInitCreate="createPostMode"
         ></space-post-create>
+        <space-post-update
+            :post="selected_post"
+            @onPostUpdated="updatePost"
+        ></space-post-update>
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
             <div class="container">
-                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)">
+                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)" data-toggle="modal" data-target="#updatePostModal">
                     <div class="col-md-4 d-flex justify-content-center bg-dark" >
                         <div v-if="post.post_image">
                             <img class="mw-100" style="height: 7rem;" :src="`storage/${post.post_image}`">
@@ -38,7 +39,7 @@
                                 <div class="col-md-3 text-md-right border-right">
                                     <strong class="text-muted">時間金額:</strong>
                                 </div>
-                                <div class="col-md-9">{{ post.per_hour }} 円</div>
+                                <div class="col-md-9">{{ post.per_hour || 0 }} 円</div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@ export default {
     data() {
         return {
             posts: [],
-            post: null,
+            selected_post: null,
         }
     },
     mounted() {
@@ -82,8 +83,16 @@ export default {
             this.posts.unshift(newPost);
             console.log(this.posts);
         },
+        updatePost(updatedPost) {
+            this.posts[
+                this.posts.findIndex(
+                    post => post.id === updatedPost.id
+                )
+            ] = updatedPost;
+            this.selected_post = updatedPost;
+        },
         onPostSelected(post) {
-            this.post = post;
+            this.selected_post = post;
         },
     }
 }

@@ -47,6 +47,7 @@ Vue.component('chats', require('./components/Chats.vue').default);
 Vue.component('space-form', require('./components/SpaceForm.vue').default);
 Vue.component('space-post-list', require('./components/SpacePostList.vue').default);
 Vue.component('space-post-create', require('./components/SpacePostCreate.vue').default);
+Vue.component('space-post-update', require('./components/SpacePostUpdate.vue').default);
 Vue.component('dd-date-picker', require('./components/DropdownDatePicker.vue').default);
 
 /**
