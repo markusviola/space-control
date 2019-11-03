@@ -122,6 +122,8 @@ export default {
     data() {
         return {
             render_image: null,
+            id: null,
+            user_id: null,
             title: null,
             post_image: null,
             address: null,
@@ -139,6 +141,8 @@ export default {
     },
     methods: {
         updatePostFields(newForm) {
+            this.id = newForm.id,
+            this.user_id = newForm.user_id;
             this.title = newForm.title;
             this.post_image = null;
             this.address = newForm.address;
@@ -155,28 +159,29 @@ export default {
             if (!this.title) {
                 notifyUser("タイトルは必要なフィールドです！");
             } else {
-                // let formData = new FormData();
-                // formData.append('title', this.title);
-                // if (this.post_image) formData.append('post_image', this.post_image);
-                // if (this.address) formData.append('address', this.address);
-                // if (this.business_hours) formData.append('business_hours', this.business_hours);
-                // if (this.per_hour) formData.append('per_hour', this.per_hour);
-                // if (this.notes) formData.append('notes', this.notes);
-                // axios.post('posts', formData, {
-                //     headers: { 'Content-Type': 'multipart/form-data' }
-                // })
-                // .then(response => {
-                //     console.log(response.data);
-                //     this.resetFields();
-                //     this.$emit('onPostCreated', response.data);
-                // })
-                // .catch(err => {
-                //     const res = err.response;
-                //     if (res.status == 422) {
-                //         notifyUser('Please re-check your fields!');
-                //     } else notifyUser('Something went wrong.');
-                //     console.log(res);
-                // })
+                let formData = new FormData();
+                formData.append('_method', 'put');
+                formData.append('title', this.title);
+                if (this.post_image) formData.append('post_image', this.post_image);
+                if (this.address) formData.append('address', this.address);
+                if (this.business_hours) formData.append('business_hours', this.business_hours);
+                if (this.per_hour) formData.append('per_hour', this.per_hour);
+                if (this.notes) formData.append('notes', this.notes);
+
+                axios.post(`posts/${this.id}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                })
+                .then(response => {
+                    console.log(response.data);
+                    this.$emit('onPostUpdated', response.data);
+                })
+                .catch(err => {
+                    const res = err.response;
+                    if (res.status == 422) {
+                        notifyUser('Please re-check your fields!');
+                    } else notifyUser('Something went wrong.');
+                    console.log(res);
+                })
             }
         },
         onImageChanged(e) {

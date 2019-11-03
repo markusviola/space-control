@@ -6,7 +6,7 @@
         ></space-post-create>
         <space-post-update
             :post="selected_post"
-            @onPostUPdated="updatePost"
+            @onPostUpdated="updatePost"
         ></space-post-update>
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
@@ -85,10 +85,11 @@ export default {
         },
         updatePost(updatedPost) {
             this.posts[
-                posts.findIndex(
+                this.posts.findIndex(
                     post => post.id === updatedPost.id
                 )
             ] = updatedPost;
+            this.selected_post = updatedPost;
         },
         onPostSelected(post) {
             this.selected_post = post;

@@ -4481,9 +4481,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.posts);
     },
     updatePost: function updatePost(updatedPost) {
-      this.posts[posts.findIndex(function (post) {
+      this.posts[this.posts.findIndex(function (post) {
         return post.id === updatedPost.id;
       })] = updatedPost;
+      this.selected_post = updatedPost;
     },
     onPostSelected: function onPostSelected(post) {
       this.selected_post = post;
@@ -4625,6 +4626,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       render_image: null,
+      id: null,
+      user_id: null,
       title: null,
       post_image: null,
       address: null,
@@ -4642,6 +4645,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updatePostFields: function updatePostFields(newForm) {
+      this.id = newForm.id, this.user_id = newForm.user_id;
       this.title = newForm.title;
       this.post_image = null;
       this.address = newForm.address;
@@ -4655,30 +4659,36 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     onUpdatePostClicked: function onUpdatePostClicked() {
+      var _this = this;
+
       if (!this.title) {
         notifyUser("タイトルは必要なフィールドです！");
-      } else {// let formData = new FormData();
-        // formData.append('title', this.title);
-        // if (this.post_image) formData.append('post_image', this.post_image);
-        // if (this.address) formData.append('address', this.address);
-        // if (this.business_hours) formData.append('business_hours', this.business_hours);
-        // if (this.per_hour) formData.append('per_hour', this.per_hour);
-        // if (this.notes) formData.append('notes', this.notes);
-        // axios.post('posts', formData, {
-        //     headers: { 'Content-Type': 'multipart/form-data' }
-        // })
-        // .then(response => {
-        //     console.log(response.data);
-        //     this.resetFields();
-        //     this.$emit('onPostCreated', response.data);
-        // })
-        // .catch(err => {
-        //     const res = err.response;
-        //     if (res.status == 422) {
-        //         notifyUser('Please re-check your fields!');
-        //     } else notifyUser('Something went wrong.');
-        //     console.log(res);
-        // })
+      } else {
+        var formData = new FormData();
+        formData.append('_method', 'put');
+        formData.append('title', this.title);
+        if (this.post_image) formData.append('post_image', this.post_image);
+        if (this.address) formData.append('address', this.address);
+        if (this.business_hours) formData.append('business_hours', this.business_hours);
+        if (this.per_hour) formData.append('per_hour', this.per_hour);
+        if (this.notes) formData.append('notes', this.notes);
+        axios.post("posts/".concat(this.id), formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response.data);
+
+          _this.$emit('onPostUpdated', response.data);
+        })["catch"](function (err) {
+          var res = err.response;
+
+          if (res.status == 422) {
+            notifyUser('Please re-check your fields!');
+          } else notifyUser('Something went wrong.');
+
+          console.log(res);
+        });
       }
     },
     onImageChanged: function onImageChanged(e) {
@@ -4687,13 +4697,13 @@ __webpack_require__.r(__webpack_exports__);
       this.createImage(files[0]);
     },
     createImage: function createImage(file) {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
       this.post_image = file;
 
       reader.onload = function (e) {
-        _this.render_image = e.target.result;
+        _this2.render_image = e.target.result;
       };
 
       reader.readAsDataURL(file);
@@ -55598,7 +55608,7 @@ var render = function() {
       _vm._v(" "),
       _c("space-post-update", {
         attrs: { post: _vm.selected_post },
-        on: { onPostUPdated: _vm.updatePost }
+        on: { onPostUpdated: _vm.updatePost }
       }),
       _vm._v(" "),
       _c("hr", { staticClass: "mb-0" }),
