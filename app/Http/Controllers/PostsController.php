@@ -95,6 +95,8 @@ class PostsController extends Controller
      */
     public function update(Post $post)
     {
+        if ($post->user_id != auth()->id()) abort(401);
+
         $data = $this->validateRequest();
         $post->title = $data['title'];
         if (isset($data['address'])) $post->address = $data['address'];
@@ -118,7 +120,9 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if ($post->user_id != auth()->id()) abort(401);
+        $post->delete($post);
+        return;
     }
 
     private function validateRequest() {

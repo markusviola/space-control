@@ -4349,6 +4349,8 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.resetFields();
 
+          notifyUser('Space successfully created!');
+
           _this.$emit('onPostCreated', response.data);
         })["catch"](function (err) {
           var res = err.response;
@@ -4387,6 +4389,76 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      type: Object,
+      "default": null
+    }
+  },
+  methods: {
+    onDeletePostClicked: function onDeletePostClicked() {
+      var _this = this;
+
+      axios["delete"]("posts/".concat(this.post.id)).then(function () {
+        notifyUser('Space deleted successfully!');
+
+        _this.$emit('onPostDeleted', _this.post.id);
+      })["catch"](function (err) {
+        var res = err.response;
+
+        if (res.status == 422) {
+          notifyUser('Please re-check your fields!');
+        } else notifyUser('Something went wrong.');
+
+        console.log(res);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostList.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpacePostList.vue?vue&type=script&lang=js& ***!
@@ -4396,6 +4468,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4486,6 +4559,12 @@ __webpack_require__.r(__webpack_exports__);
       })] = updatedPost;
       this.selected_post = updatedPost;
     },
+    deletePost: function deletePost(id) {
+      var postIndex = [this.posts.findIndex(function (post) {
+        return post.id === id;
+      })];
+      this.posts.splice(postIndex, 1);
+    },
     onPostSelected: function onPostSelected(post) {
       this.selected_post = post;
     }
@@ -4503,6 +4582,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4678,6 +4772,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (response) {
           console.log(response.data);
+          notifyUser('Space successfully updated!');
 
           _this.$emit('onPostUpdated', response.data);
         })["catch"](function (err) {
@@ -4690,6 +4785,9 @@ __webpack_require__.r(__webpack_exports__);
           console.log(res);
         });
       }
+    },
+    onPostDeleted: function onPostDeleted(id) {
+      this.$emit('onPostDeleted', id);
     },
     onImageChanged: function onImageChanged(e) {
       var files = e.target.files || e.dataTransfer.files;
@@ -55582,6 +55680,118 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "confirmDeletePostModal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "confirmDeletePostModalTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body text-muted" }, [
+              _vm._v(
+                "\n            このスペースを削除するつもりですか？\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn-trans text-admin",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: { click: _vm.onDeletePostClicked }
+                },
+                [_c("strong", [_vm._v("はい")])]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-admin",
+          attrs: { id: "confirmDeletePostModal" }
+        },
+        [_c("strong", [_vm._v("確認")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn-trans text-admin",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("strong", [_vm._v("いいえ")])]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostList.vue?vue&type=template&id=dbbed3ae&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpacePostList.vue?vue&type=template&id=dbbed3ae& ***!
@@ -55608,7 +55818,7 @@ var render = function() {
       _vm._v(" "),
       _c("space-post-update", {
         attrs: { post: _vm.selected_post },
-        on: { onPostUpdated: _vm.updatePost }
+        on: { onPostUpdated: _vm.updatePost, onPostDeleted: _vm.deletePost }
       }),
       _vm._v(" "),
       _c("hr", { staticClass: "mb-0" }),
@@ -55753,242 +55963,256 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "updatePostModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "updatePostModalTitle",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-scrollable",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm.render_image
-                  ? _c("div", { staticClass: "form-group" }, [
-                      _c("img", {
-                        staticClass: "w-100",
-                        attrs: { src: _vm.render_image }
-                      }),
-                      _vm._v(" "),
-                      _c("div"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn-trans text-admin w-100 mt-3",
-                          on: { click: _vm.onImageRemoved }
-                        },
-                        [_vm._m(1)]
-                      ),
-                      _vm._v(" "),
-                      _c("hr")
-                    ])
-                  : _vm._e(),
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "updatePostModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "updatePostModalTitle",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-scrollable",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "post_image" } }, [
-                    _vm._v("場所写真")
+                _c("div", { staticClass: "modal-body" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm.render_image
+                    ? _c("div", { staticClass: "form-group" }, [
+                        _c("img", {
+                          staticClass: "w-100",
+                          attrs: { src: _vm.render_image }
+                        }),
+                        _vm._v(" "),
+                        _c("div"),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn-trans text-admin w-100 mt-3",
+                            on: { click: _vm.onImageRemoved }
+                          },
+                          [_vm._m(2)]
+                        ),
+                        _vm._v(" "),
+                        _c("hr")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "post_image" } }, [
+                      _vm._v("場所写真")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control-file",
+                      attrs: { type: "file", id: "post_image" },
+                      on: { change: _vm.onImageChanged }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control-file",
-                    attrs: { type: "file", id: "post_image" },
-                    on: { change: _vm.onImageChanged }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "title" } }, [
-                    _vm._v("投稿タイトル")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.title,
-                        expression: "title"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "title",
-                      placeholder: "好きなタイトルを入力してください"
-                    },
-                    domProps: { value: _vm.title },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.title = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "address" } }, [
-                    _vm._v("場所住所")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.address,
-                        expression: "address"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "address",
-                      placeholder: "場所の住所を入力してください"
-                    },
-                    domProps: { value: _vm.address },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.address = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "business_hours" } }, [
-                    _vm._v("営業時間")
-                  ]),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.business_hours,
-                        expression: "business_hours"
-                      }
-                    ],
-                    staticClass: "form-control preserve-breaks",
-                    attrs: {
-                      id: "business_hours",
-                      rows: "4",
-                      placeholder:
-                        "フォマットの書くルールが特にないので、自由に書いてください"
-                    },
-                    domProps: { value: _vm.business_hours },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.business_hours = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "per_hour" } }, [
-                    _vm._v("使用時間あたり")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group" }, [
-                    _vm._m(2),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "title" } }, [
+                      _vm._v("投稿タイトル")
+                    ]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.per_hour,
-                          expression: "per_hour"
+                          value: _vm.title,
+                          expression: "title"
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "number", step: "0.01", id: "per_hour" },
-                      domProps: { value: _vm.per_hour },
+                      attrs: {
+                        type: "text",
+                        id: "title",
+                        placeholder: "好きなタイトルを入力してください"
+                      },
+                      domProps: { value: _vm.title },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.per_hour = $event.target.value
+                          _vm.title = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "address" } }, [
+                      _vm._v("場所住所")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.address,
+                          expression: "address"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "address",
+                        placeholder: "場所の住所を入力してください"
+                      },
+                      domProps: { value: _vm.address },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.address = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "business_hours" } }, [
+                      _vm._v("営業時間")
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.business_hours,
+                          expression: "business_hours"
+                        }
+                      ],
+                      staticClass: "form-control preserve-breaks",
+                      attrs: {
+                        id: "business_hours",
+                        rows: "4",
+                        placeholder:
+                          "フォマットの書くルールが特にないので、自由に書いてください"
+                      },
+                      domProps: { value: _vm.business_hours },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.business_hours = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "per_hour" } }, [
+                      _vm._v("使用時間あたり")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.per_hour,
+                            expression: "per_hour"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "number", step: "0.01", id: "per_hour" },
+                        domProps: { value: _vm.per_hour },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.per_hour = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "notes" } }, [
+                      _vm._v("ノート")
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.notes,
+                          expression: "notes"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "notes",
+                        rows: "3",
+                        placeholder:
+                          "他のお客のための重要な詳細を書いてください"
+                      },
+                      domProps: { value: _vm.notes },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.notes = $event.target.value
                         }
                       }
                     })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "notes" } }, [_vm._v("ノート")]),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.notes,
-                        expression: "notes"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "notes",
-                      rows: "3",
-                      placeholder: "他のお客のための重要な詳細を書いてください"
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn-trans text-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: { click: _vm.onUpdatePostClicked }
                     },
-                    domProps: { value: _vm.notes },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.notes = $event.target.value
-                      }
-                    }
-                  })
+                    [_vm._m(4)]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn-trans text-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" },
-                    on: { click: _vm.onUpdatePostClicked }
-                  },
-                  [_vm._m(3)]
-                )
               ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("space-post-delete", {
+        attrs: { post: _vm.post },
+        on: { onPostDeleted: _vm.onPostDeleted }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -56022,6 +56246,34 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "bg-light rounded-lg py-2 mb-4 panel-highlight btn-trans",
+        attrs: {
+          "data-dismiss": "modal",
+          "data-toggle": "modal",
+          "data-target": "#confirmDeletePostModal"
+        }
+      },
+      [
+        _c("div", { staticClass: "d-flex justify-content-center" }, [
+          _c("i", {
+            staticClass:
+              "text-admin fas fa-trash-alt fa-lg d-flex align-items-center"
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-admin font-weight-bold ml-2" }, [
+            _vm._v("Delete Space?")
+          ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -68252,6 +68504,7 @@ Vue.component('space-form', __webpack_require__(/*! ./components/SpaceForm.vue *
 Vue.component('space-post-list', __webpack_require__(/*! ./components/SpacePostList.vue */ "./resources/js/components/SpacePostList.vue")["default"]);
 Vue.component('space-post-create', __webpack_require__(/*! ./components/SpacePostCreate.vue */ "./resources/js/components/SpacePostCreate.vue")["default"]);
 Vue.component('space-post-update', __webpack_require__(/*! ./components/SpacePostUpdate.vue */ "./resources/js/components/SpacePostUpdate.vue")["default"]);
+Vue.component('space-post-delete', __webpack_require__(/*! ./components/SpacePostDelete.vue */ "./resources/js/components/SpacePostDelete.vue")["default"]);
 Vue.component('dd-date-picker', __webpack_require__(/*! ./components/DropdownDatePicker.vue */ "./resources/js/components/DropdownDatePicker.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -69300,6 +69553,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostCreate_vue_vue_type_template_id_072376c7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostCreate_vue_vue_type_template_id_072376c7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SpacePostDelete.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/SpacePostDelete.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpacePostDelete.vue?vue&type=template&id=1eb46bf6& */ "./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6&");
+/* harmony import */ var _SpacePostDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpacePostDelete.vue?vue&type=script&lang=js& */ "./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SpacePostDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SpacePostDelete.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SpacePostDelete.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostDelete.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostDelete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SpacePostDelete.vue?vue&type=template&id=1eb46bf6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpacePostDelete.vue?vue&type=template&id=1eb46bf6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostDelete_vue_vue_type_template_id_1eb46bf6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

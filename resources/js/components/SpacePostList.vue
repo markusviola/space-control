@@ -7,6 +7,7 @@
         <space-post-update
             :post="selected_post"
             @onPostUpdated="updatePost"
+            @onPostDeleted="deletePost"
         ></space-post-update>
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
@@ -90,6 +91,14 @@ export default {
                 )
             ] = updatedPost;
             this.selected_post = updatedPost;
+        },
+        deletePost(id) {
+            const postIndex = [
+                this.posts.findIndex(
+                    post => post.id === id
+                )
+            ];
+            this.posts.splice(postIndex, 1);
         },
         onPostSelected(post) {
             this.selected_post = post;
