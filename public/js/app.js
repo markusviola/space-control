@@ -4437,7 +4437,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onDeletePostClicked: function onDeletePostClicked() {}
+    onDeletePostClicked: function onDeletePostClicked() {
+      var _this = this;
+
+      axios["delete"]("posts/".concat(this.post.id)).then(function () {
+        notifyUser('Space deleted successfully!');
+
+        _this.$emit('onPostDeleted', _this.post.id);
+      })["catch"](function (err) {
+        var res = err.response;
+
+        if (res.status == 422) {
+          notifyUser('Please re-check your fields!');
+        } else notifyUser('Something went wrong.');
+
+        console.log(res);
+      });
+    }
   }
 });
 
@@ -4452,6 +4468,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4541,6 +4558,12 @@ __webpack_require__.r(__webpack_exports__);
         return post.id === updatedPost.id;
       })] = updatedPost;
       this.selected_post = updatedPost;
+    },
+    deletePost: function deletePost(id) {
+      var postIndex = [this.posts.findIndex(function (post) {
+        return post.id === id;
+      })];
+      this.posts.splice(postIndex, 1);
     },
     onPostSelected: function onPostSelected(post) {
       this.selected_post = post;
@@ -55795,7 +55818,7 @@ var render = function() {
       _vm._v(" "),
       _c("space-post-update", {
         attrs: { post: _vm.selected_post },
-        on: { onPostUpdated: _vm.updatePost }
+        on: { onPostUpdated: _vm.updatePost, onPostDeleted: _vm.deletePost }
       }),
       _vm._v(" "),
       _c("hr", { staticClass: "mb-0" }),

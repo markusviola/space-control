@@ -39,6 +39,18 @@ export default {
     },
     methods: {
         onDeletePostClicked() {
+            axios.delete(`posts/${this.post.id}`)
+            .then(() => {
+                notifyUser('Space deleted successfully!');
+                this.$emit('onPostDeleted', this.post.id);
+            })
+            .catch(err => {
+                const res = err.response;
+                if (res.status == 422) {
+                    notifyUser('Please re-check your fields!');
+                } else notifyUser('Something went wrong.');
+                console.log(res);
+            })
         }
     }
 }
