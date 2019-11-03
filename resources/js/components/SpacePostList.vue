@@ -12,7 +12,7 @@
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
             <div class="container">
-                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)" data-toggle="modal" data-target="#reservation-item">
+                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)" data-toggle="modal" data-target="#updatePostModal">
                     <div class="col-md-4 d-flex justify-content-center bg-dark" >
                         <div v-if="post.post_image">
                             <img class="mw-100" style="height: 7rem;" :src="`storage/${post.post_image}`">
