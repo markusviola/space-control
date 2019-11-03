@@ -14,6 +14,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div
+                        class="bg-light rounded-lg py-2 mb-4 panel-highlight btn-trans"
+                        data-dismiss="modal"
+                        data-toggle="modal"
+                        data-target="#confirmDeletePostModal"
+                    >
+                        <div class="d-flex justify-content-center">
+                            <i class="text-admin fas fa-trash-alt fa-lg d-flex align-items-center"></i>
+                            <span class="text-admin font-weight-bold ml-2">Delete Space?</span>
+                        </div>
+                    </div>
                     <div v-if="render_image" class="form-group">
                         <img
                             class="w-100"
@@ -107,6 +118,10 @@
                 </div>
             </div>
         </div>
+        <space-post-delete
+            :post="post"
+            @onPostDeleted="onPostDeleted"
+        ></space-post-delete>
     </div>
 
 </template>
@@ -173,6 +188,7 @@ export default {
                 })
                 .then(response => {
                     console.log(response.data);
+                    notifyUser('Space successfully updated!');
                     this.$emit('onPostUpdated', response.data);
                 })
                 .catch(err => {
@@ -183,6 +199,9 @@ export default {
                     console.log(res);
                 })
             }
+        },
+        onPostDeleted(id) {
+            this.$emit('onPostDeleted', id);
         },
         onImageChanged(e) {
             const files = e.target.files || e.dataTransfer.files;

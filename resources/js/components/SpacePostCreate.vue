@@ -165,6 +165,7 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.resetFields();
+                    notifyUser('Space successfully created!');
                     this.$emit('onPostCreated', response.data);
                 })
                 .catch(err => {
