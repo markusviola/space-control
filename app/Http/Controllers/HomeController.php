@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Form;
+use App\Post;
 use App\Space;
 use App\Type;
 use App\User;
@@ -28,6 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $posts = Post::with([])
+            ->latest()
+            ->paginate(10);
+
+        return view('spacelist', compact('posts'));
+    }
+
+    public function formIndex() {
         $user = new User();
         $types = Type::all();
         $spaces = Space::all();
