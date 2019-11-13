@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $posts = Post::with([])
             ->latest()
-            ->paginate(10);
+            ->get();
 
         return view('spacelist', compact('posts'));
     }
