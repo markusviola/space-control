@@ -34,7 +34,7 @@
                                 <div class="col-md-3 text-md-right border-right">
                                     <strong class="text-muted">住所:</strong>
                                 </div>
-                                <div class="col-md-9">{{ post.address }}</div>
+                                <div class="col-md-9">{{ post.address || 'なし' }}</div>
                             </div>
                              <div class="row">
                                 <div class="col-md-3 text-md-right border-right">

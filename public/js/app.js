@@ -4970,24 +4970,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     post: {
-      handler: function handler(newForm, oldForm) {
-        this.updatePostFields(newForm);
+      handler: function handler(newPost, oldForm) {
+        this.updatePostFields(newPost);
       }
     }
   },
   methods: {
-    updatePostFields: function updatePostFields(newForm) {
-      this.id = newForm.id, this.user_id = newForm.user_id;
-      this.title = newForm.title;
+    updatePostFields: function updatePostFields(newPost) {
+      this.id = newPost.id, this.user_id = newPost.user_id;
+      this.title = newPost.title;
       this.post_image = null;
-      this.address = newForm.address;
-      this.business_hours = newForm.business_hours;
-      this.per_hour = newForm.per_hour || 0;
-      this.notes = newForm.notes;
+      this.address = newPost.address;
+      this.business_hours = newPost.business_hours;
+      this.per_hour = newPost.per_hour || 0;
+      this.notes = newPost.notes;
       this.render_image = null;
 
-      if (newForm.post_image) {
-        this.render_image = "storage/".concat(newForm.post_image);
+      if (newPost.post_image) {
+        this.render_image = "storage/".concat(newPost.post_image);
       }
     },
     onUpdatePostClicked: function onUpdatePostClicked() {
@@ -55633,7 +55633,7 @@ var render = function() {
                         _vm._m(1, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-9" }, [
-                          _vm._v(_vm._s(post.address))
+                          _vm._v(_vm._s(post.address || "なし"))
                         ])
                       ]),
                       _vm._v(" "),
@@ -56242,7 +56242,7 @@ var render = function() {
                         _vm._m(1, true),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-9" }, [
-                          _vm._v(_vm._s(post.address))
+                          _vm._v(_vm._s(post.address || "なし"))
                         ])
                       ]),
                       _vm._v(" "),

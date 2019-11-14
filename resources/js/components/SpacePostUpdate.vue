@@ -149,25 +149,25 @@ export default {
     },
     watch: {
         post: {
-            handler(newForm, oldForm) {
-                this.updatePostFields(newForm);
+            handler(newPost, oldForm) {
+                this.updatePostFields(newPost);
             }
         }
     },
     methods: {
-        updatePostFields(newForm) {
-            this.id = newForm.id,
-            this.user_id = newForm.user_id;
-            this.title = newForm.title;
+        updatePostFields(newPost) {
+            this.id = newPost.id,
+            this.user_id = newPost.user_id;
+            this.title = newPost.title;
             this.post_image = null;
-            this.address = newForm.address;
-            this.business_hours = newForm.business_hours;
-            this.per_hour = newForm.per_hour || 0;
-            this.notes = newForm.notes;
+            this.address = newPost.address;
+            this.business_hours = newPost.business_hours;
+            this.per_hour = newPost.per_hour || 0;
+            this.notes = newPost.notes;
             this.render_image = null;
 
-            if (newForm.post_image) {
-                this.render_image = `storage/${newForm.post_image}`;
+            if (newPost.post_image) {
+                this.render_image = `storage/${newPost.post_image}`;
             }
         },
         onUpdatePostClicked() {
