@@ -38,6 +38,7 @@ Vue.component('records-table', require('./components/RecordsTable.vue').default)
 Vue.component('payment-records', require('./components/PaymentRecords.vue').default);
 Vue.component('reservation-list', require('./components/ReservationList.vue').default);
 Vue.component('reservation-item', require('./components/ReservationItem.vue').default);
+Vue.component('form-guest', require('./components/FormGuest.vue').default);
 Vue.component('form-info', require('./components/FormInformation.vue').default);
 Vue.component('form-list', require('./components/FormList.vue').default);
 Vue.component('conversation', require('./components/Conversation.vue').default);

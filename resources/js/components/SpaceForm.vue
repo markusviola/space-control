@@ -86,7 +86,7 @@
                 ></check-in-out>
             </div>
         </div>
-        <div v-else>
+        <div class="mb-5" v-else>
             <div v-for="i in dateIncrement" v-bind:key="i">
                 <div class="container">
                     <div class="row mt-3">
@@ -110,10 +110,10 @@
                 </div>
             </div>
         </div>
-        <hr>
+        <!-- <hr>
         <div class="d-flex justify-content-center">
             <button class="btn btn-anti-neutral text-white" type="submit"><h5 class="m-0">要求を提出する</h5></button>
-        </div>
+        </div> -->
     </div>
 </template>
 

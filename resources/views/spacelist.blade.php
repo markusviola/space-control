@@ -10,7 +10,12 @@
                         <h4 class="alt-neutral">予約スペースリスト</h4>
                         <span class="text-dark">空き場所を探して予約しよう！</span>
                     </div>
-                    <space-list :posts="{{ $posts }}"></space-list>
+                    <space-list
+                        :posts="{{ $posts }}"
+                        :types="{{ $types }}"
+                        :spaces="{{ $spaces }}"
+                        :user="{{ auth()->user() ?? 0 }}"
+                    ></space-list>
                 </div>
             </div>
         </div>

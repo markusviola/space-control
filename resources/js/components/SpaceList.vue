@@ -2,6 +2,9 @@
     <div class="mt-3">
         <space-item
             :post="selected_post"
+            :types="types"
+            :spaces="spaces"
+            :user="user"
         ></space-item>
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
@@ -51,6 +54,18 @@ export default {
         posts: {
             type: Array,
             default: null,
+        },
+        types: {
+            type: Array,
+            required: true,
+        },
+        spaces: {
+            type: Array,
+            required: true,
+        },
+        user: {
+            type: [Object, Number],
+            default: 0,
         }
     },
     data() {

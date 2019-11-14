@@ -74,7 +74,15 @@
                             </div>
                         </div>
                         <div class="mt-2" v-else>
-                            HERE
+                            <form class="pt-4" action="/forms" method="POST">
+                                <input type="hidden" name="_token" :value="csrf">
+                                <input v-if="user" type="hidden" name="user_id" :value="user.user_id">
+                                <form-guest v-else></form-guest>
+                                <space-form
+                                    :types="types"
+                                    :spaces="spaces"
+                                ></space-form>
+                            </form>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -134,11 +142,24 @@ export default {
         post: {
             type: Object,
             default: null,
+        },
+        types: {
+            type: Array,
+            required: true,
+        },
+        spaces: {
+            type: Array,
+            required: true,
+        },
+        user: {
+            type: [Object, Number],
+            default: 0,
         }
     },
     data() {
         return {
             onSpaceDetails: true,
+            csrf: document.head.querySelector('meta[name="csrf-token"]').content,
         }
     },
     mounted() {

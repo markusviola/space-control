@@ -29,11 +29,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $types = Type::all();
+        $spaces = Space::all();
         $posts = Post::with([])
             ->latest()
             ->get();
 
-        return view('spacelist', compact('posts'));
+        return view('spacelist',
+            compact('posts', 'types', 'spaces'));
     }
 
     public function formIndex() {
