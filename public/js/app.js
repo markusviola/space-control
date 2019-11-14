@@ -4316,6 +4316,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: {
@@ -4344,7 +4354,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     submitForm: function submitForm() {
-      console.log("submitted!");
+      document.getElementById("space-form-submit").submit();
     }
   }
 });
@@ -55813,128 +55823,226 @@ var render = function() {
                 _c("div", { staticClass: "modal-content" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("ul", { staticClass: "nav nav-tabs mb-4" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "h5",
-                          {
-                            class:
-                              "nav-link anti-neutral clickable " +
-                              (_vm.onSpaceDetails ? "active" : ""),
-                            on: {
-                              click: function($event) {
-                                _vm.onSpaceDetails = !_vm.onSpaceDetails
-                              }
-                            }
-                          },
-                          [_vm._v("スペース情報")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "h5",
-                          {
-                            class:
-                              "nav-link anti-neutral clickable " +
-                              (!_vm.onSpaceDetails ? "active" : ""),
-                            on: {
-                              click: function($event) {
-                                _vm.onSpaceDetails = !_vm.onSpaceDetails
-                              }
-                            }
-                          },
-                          [_vm._v("予約フォーム")]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm.onSpaceDetails
-                      ? _c("div", [
-                          _c("img", {
-                            staticClass: "w-100",
-                            attrs: { src: "storage/" + _vm.post.post_image }
-                          }),
-                          _vm._v(" "),
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row mb-4" }, [
-                            _vm._m(1),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _vm._v(_vm._s(_vm.post.title))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row mb-4" }, [
-                            _vm._m(2),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _vm._v(_vm._s(_vm.post.address || "なし"))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row mb-4" }, [
-                            _vm._m(3),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "col-md-8 preserve-breaks" },
-                              [
-                                _vm._v(
-                                  _vm._s(_vm.post.business_hours || "なし")
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row mb-4" }, [
-                            _vm._m(4),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _vm._v(_vm._s(_vm.post.per_hour || 0) + " 円")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row mb-4" }, [
-                            _vm._m(5),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "col-md-8 preserve-breaks" },
-                              [_vm._v(_vm._s(_vm.post.notes || "なし"))]
-                            )
-                          ])
-                        ])
-                      : _c("div", { staticClass: "mt-2" }, [
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    [
+                      _c("ul", { staticClass: "nav nav-tabs mb-4" }, [
+                        _c("li", { staticClass: "nav-item" }, [
                           _c(
-                            "form",
+                            "h5",
                             {
-                              staticClass: "pt-4",
-                              attrs: { action: "/forms", method: "POST" }
+                              class:
+                                "nav-link anti-neutral clickable " +
+                                (_vm.onSpaceDetails ? "active" : ""),
+                              on: {
+                                click: function($event) {
+                                  _vm.onSpaceDetails = !_vm.onSpaceDetails
+                                }
+                              }
                             },
-                            [
-                              _c("input", {
-                                attrs: { type: "hidden", name: "_token" },
-                                domProps: { value: _vm.csrf }
-                              }),
-                              _vm._v(" "),
-                              _vm.user
-                                ? _c("input", {
-                                    attrs: { type: "hidden", name: "user_id" },
-                                    domProps: { value: _vm.user.user_id }
-                                  })
-                                : _c("form-guest"),
-                              _vm._v(" "),
-                              _c("space-form", {
-                                attrs: { types: _vm.types, spaces: _vm.spaces }
-                              })
-                            ],
-                            1
+                            [_vm._v("スペース情報")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "h5",
+                            {
+                              class:
+                                "nav-link anti-neutral clickable " +
+                                (!_vm.onSpaceDetails ? "active" : ""),
+                              on: {
+                                click: function($event) {
+                                  _vm.onSpaceDetails = !_vm.onSpaceDetails
+                                }
+                              }
+                            },
+                            [_vm._v("予約フォーム")]
                           )
                         ])
-                  ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("keep-alive", [
+                        _vm.onSpaceDetails
+                          ? _c("div", [
+                              _c("img", {
+                                staticClass: "w-100",
+                                attrs: { src: "storage/" + _vm.post.post_image }
+                              }),
+                              _vm._v(" "),
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-md-4 text-md-right border-right"
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "text-muted" },
+                                      [_vm._v("場所住所")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-8" }, [
+                                  _vm._v(_vm._s(_vm.post.title))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-md-4 text-md-right border-right"
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "text-muted" },
+                                      [_vm._v("場所住所")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-8" }, [
+                                  _vm._v(_vm._s(_vm.post.address || "なし"))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-md-4 text-md-right border-right"
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "text-muted" },
+                                      [_vm._v("営業時間")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-8 preserve-breaks" },
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.post.business_hours || "なし")
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-md-4 text-md-right border-right"
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "text-muted" },
+                                      [_vm._v("使用料金 | 1時間")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-8" }, [
+                                  _vm._v(_vm._s(_vm.post.per_hour || 0) + " 円")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-md-4 text-md-right border-right"
+                                  },
+                                  [
+                                    _c(
+                                      "strong",
+                                      { staticClass: "text-muted" },
+                                      [_vm._v("ノート")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-8 preserve-breaks" },
+                                  [_vm._v(_vm._s(_vm.post.notes || "なし"))]
+                                )
+                              ])
+                            ])
+                          : _c("div", { staticClass: "mt-2" }, [
+                              _c("div", { staticClass: "text-right mr-2" }, [
+                                _vm.user
+                                  ? _c(
+                                      "h5",
+                                      { staticClass: "text-dark my-0" },
+                                      [_vm._v("ユーザーモード")]
+                                    )
+                                  : _c(
+                                      "h5",
+                                      { staticClass: "text-dark my-0" },
+                                      [_vm._v("ゲストモード")]
+                                    )
+                              ]),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "mt-2" }),
+                              _vm._v(" "),
+                              _c(
+                                "form",
+                                {
+                                  staticClass: "pt-2",
+                                  attrs: {
+                                    id: "space-form-submit",
+                                    action: "/forms",
+                                    method: "POST"
+                                  }
+                                },
+                                [
+                                  _c("input", {
+                                    attrs: { type: "hidden", name: "_token" },
+                                    domProps: { value: _vm.csrf }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.user
+                                    ? _c("input", {
+                                        attrs: {
+                                          type: "hidden",
+                                          name: "user_id"
+                                        },
+                                        domProps: { value: _vm.user.id }
+                                      })
+                                    : _c("form-guest"),
+                                  _vm._v(" "),
+                                  _c("space-form", {
+                                    attrs: {
+                                      types: _vm.types,
+                                      spaces: _vm.spaces
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
                     !_vm.onSpaceDetails
@@ -55949,11 +56057,11 @@ var render = function() {
                               "data-target": "#submitFormModal"
                             }
                           },
-                          [_vm._m(6)]
+                          [_vm._m(1)]
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm._m(7)
+                    _vm._m(2)
                   ])
                 ])
               ]
@@ -55983,7 +56091,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(8),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
@@ -56002,7 +56110,7 @@ var render = function() {
                   [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
-                _vm._m(9)
+                _vm._m(4)
               ])
             ])
           ]
@@ -56044,46 +56152,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("場所住所")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("場所住所")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("営業時間")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用料金 | 1時間")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("ノート")])
     ])
   },
   function() {
