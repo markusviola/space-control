@@ -58,7 +58,7 @@
                                 <div class="col-md-4 text-md-right border-right">
                                     <strong class="text-muted">営業時間</strong>
                                 </div>
-                                <div class="col-md-8">{{ post.business_hours || 'なし' }}</div>
+                                <div class="col-md-8 preserve-breaks">{{ post.business_hours || 'なし' }}</div>
                             </div>
                             <div class="row mb-4">
                                 <div class="col-md-4 text-md-right border-right">
@@ -70,7 +70,7 @@
                                 <div class="col-md-4 text-md-right border-right">
                                     <strong class="text-muted">ノート</strong>
                                 </div>
-                                <div class="col-md-8">{{ post.notes || 'なし' }}</div>
+                                <div class="col-md-8 preserve-breaks">{{ post.notes || 'なし' }}</div>
                             </div>
                         </div>
                         <div class="mt-2" v-else>

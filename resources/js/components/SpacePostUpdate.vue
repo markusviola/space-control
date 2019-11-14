@@ -98,7 +98,7 @@
                         <label for="notes">ノート</label>
                         <textarea
                             v-model="notes"
-                            class="form-control"
+                            class="form-control preserve-breaks"
                             id="notes"
                             rows="3"
                             placeholder="他のお客のための重要な詳細を書いてください"

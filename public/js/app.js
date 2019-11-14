@@ -55292,9 +55292,15 @@ var render = function() {
                           _c("div", { staticClass: "row mb-4" }, [
                             _vm._m(3),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _vm._v(_vm._s(_vm.post.business_hours || "なし"))
-                            ])
+                            _c(
+                              "div",
+                              { staticClass: "col-md-8 preserve-breaks" },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.post.business_hours || "なし")
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-4" }, [
@@ -55308,9 +55314,11 @@ var render = function() {
                           _c("div", { staticClass: "row mb-4" }, [
                             _vm._m(5),
                             _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _vm._v(_vm._s(_vm.post.notes || "なし"))
-                            ])
+                            _c(
+                              "div",
+                              { staticClass: "col-md-8 preserve-breaks" },
+                              [_vm._v(_vm._s(_vm.post.notes || "なし"))]
+                            )
                           ])
                         ])
                       : _c("div", { staticClass: "mt-2" }, [
@@ -55899,7 +55907,7 @@ var render = function() {
                         expression: "notes"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "form-control preserve-breaks",
                     attrs: {
                       id: "notes",
                       rows: "3",
@@ -56512,7 +56520,7 @@ var render = function() {
                           expression: "notes"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "form-control preserve-breaks",
                       attrs: {
                         id: "notes",
                         rows: "3",
