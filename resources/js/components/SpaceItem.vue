@@ -37,64 +37,13 @@
                             </li>
                         </ul>
                         <keep-alive>
-                            <div v-if="onSpaceDetails">
-                                <div v-if="post.post_image">
-                                    <img
-                                        class="w-100"
-                                        :src="`storage/${post.post_image}`"
-                                    />
-                                    <hr>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">場所のタイトル</strong>
-                                    </div>
-                                    <div class="col-md-8">{{ post.title }}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">場所住所</strong>
-                                    </div>
-                                    <div class="col-md-8">{{ post.address || 'なし' }}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">営業時間</strong>
-                                    </div>
-                                    <div class="col-md-8 preserve-breaks">{{ post.business_hours || 'なし' }}</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">使用料金 | 1時間</strong>
-                                    </div>
-                                    <div class="col-md-8">{{ post.per_hour || 0 }} 円</div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">ノート</strong>
-                                    </div>
-                                    <div class="col-md-8 preserve-breaks">{{ post.notes || 'なし' }}</div>
-                                </div>
-                            </div>
-                            <div class="mt-2" v-else>
-
-                                <div class="text-right mr-2">
-                                    <h5 v-if="user" class="text-dark my-0">ユーザーモード</h5>
-                                    <h5 v-else class="text-dark my-0">ゲストモード</h5>
-                                </div>
-                                <hr class="mt-2">
-                                <form id="space-form-submit" class="pt-2" action="/forms" method="POST">
-                                    <input type="hidden" name="_token" :value="csrf">
-                                    <input v-if="user" type="hidden" name="user_id" :value="user.id">
-                                    <form-guest v-else></form-guest>
-
-                                        <space-form
-                                            :types="types"
-                                            :spaces="spaces"
-                                        ></space-form>
-
-                                </form>
-                            </div>
+                            <space-view v-if="onSpaceDetails" :post="post"></space-view>
+                            <reservation-form
+                                v-else
+                                :user="user"
+                                :types="types"
+                                :spaces="spaces"
+                            ></reservation-form>
                         </keep-alive>
                     </div>
                     <div class="modal-footer">
@@ -171,7 +120,6 @@ export default {
     data() {
         return {
             onSpaceDetails: true,
-            csrf: document.head.querySelector('meta[name="csrf-token"]').content,
         }
     },
     mounted() {

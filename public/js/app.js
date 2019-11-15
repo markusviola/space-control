@@ -2993,6 +2993,58 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReservationForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    types: {
+      type: Array,
+      required: true
+    },
+    spaces: {
+      type: Array,
+      required: true
+    },
+    user: {
+      type: [Object, Number],
+      "default": 0
+    }
+  },
+  data: function data() {
+    return {
+      csrf: document.head.querySelector('meta[name="csrf-token"]').content
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationItem.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReservationItem.vue?vue&type=script&lang=js& ***!
@@ -4277,57 +4329,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: {
@@ -4349,8 +4350,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      onSpaceDetails: true,
-      csrf: document.head.querySelector('meta[name="csrf-token"]').content
+      onSpaceDetails: true
     };
   },
   mounted: function mounted() {},
@@ -5095,6 +5095,68 @@ __webpack_require__.r(__webpack_exports__);
     onImageRemoved: function onImageRemoved(e) {
       this.render_image = '';
       this.post_image = null;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpaceView.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpaceView.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      type: Object,
+      "default": null
     }
   }
 });
@@ -53209,6 +53271,64 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "mt-2" }, [
+    _c("div", { staticClass: "text-right mr-2" }, [
+      _vm.user
+        ? _c("h5", { staticClass: "text-dark my-0" }, [
+            _vm._v("ユーザーモード")
+          ])
+        : _c("h5", { staticClass: "text-dark my-0" }, [_vm._v("ゲストモード")])
+    ]),
+    _vm._v(" "),
+    _c("hr", { staticClass: "mt-2" }),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "pt-2",
+        attrs: { id: "space-form-submit", action: "/forms", method: "POST" }
+      },
+      [
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
+        }),
+        _vm._v(" "),
+        _vm.user
+          ? _c("input", {
+              attrs: { type: "hidden", name: "user_id" },
+              domProps: { value: _vm.user.id }
+            })
+          : _c("form-guest"),
+        _vm._v(" "),
+        _c("space-form", { attrs: { types: _vm.types, spaces: _vm.spaces } })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationItem.vue?vue&type=template&id=06e8e1e4&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReservationItem.vue?vue&type=template&id=06e8e1e4& ***!
@@ -55475,189 +55595,21 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("keep-alive", [
-                        _vm.onSpaceDetails
-                          ? _c("div", [
-                              _vm.post.post_image
-                                ? _c("div", [
-                                    _c("img", {
-                                      staticClass: "w-100",
-                                      attrs: {
-                                        src: "storage/" + _vm.post.post_image
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("hr")
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-4" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-4 text-md-right border-right"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-muted" },
-                                      [_vm._v("場所のタイトル")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-md-8" }, [
-                                  _vm._v(_vm._s(_vm.post.title))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-4" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-4 text-md-right border-right"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-muted" },
-                                      [_vm._v("場所住所")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-md-8" }, [
-                                  _vm._v(_vm._s(_vm.post.address || "なし"))
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-4" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-4 text-md-right border-right"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-muted" },
-                                      [_vm._v("営業時間")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-8 preserve-breaks" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(_vm.post.business_hours || "なし")
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-4" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-4 text-md-right border-right"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-muted" },
-                                      [_vm._v("使用料金 | 1時間")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-md-8" }, [
-                                  _vm._v(_vm._s(_vm.post.per_hour || 0) + " 円")
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-4" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "col-md-4 text-md-right border-right"
-                                  },
-                                  [
-                                    _c(
-                                      "strong",
-                                      { staticClass: "text-muted" },
-                                      [_vm._v("ノート")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-md-8 preserve-breaks" },
-                                  [_vm._v(_vm._s(_vm.post.notes || "なし"))]
-                                )
-                              ])
-                            ])
-                          : _c("div", { staticClass: "mt-2" }, [
-                              _c("div", { staticClass: "text-right mr-2" }, [
-                                _vm.user
-                                  ? _c(
-                                      "h5",
-                                      { staticClass: "text-dark my-0" },
-                                      [_vm._v("ユーザーモード")]
-                                    )
-                                  : _c(
-                                      "h5",
-                                      { staticClass: "text-dark my-0" },
-                                      [_vm._v("ゲストモード")]
-                                    )
-                              ]),
-                              _vm._v(" "),
-                              _c("hr", { staticClass: "mt-2" }),
-                              _vm._v(" "),
-                              _c(
-                                "form",
-                                {
-                                  staticClass: "pt-2",
-                                  attrs: {
-                                    id: "space-form-submit",
-                                    action: "/forms",
-                                    method: "POST"
-                                  }
-                                },
-                                [
-                                  _c("input", {
-                                    attrs: { type: "hidden", name: "_token" },
-                                    domProps: { value: _vm.csrf }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.user
-                                    ? _c("input", {
-                                        attrs: {
-                                          type: "hidden",
-                                          name: "user_id"
-                                        },
-                                        domProps: { value: _vm.user.id }
-                                      })
-                                    : _c("form-guest"),
-                                  _vm._v(" "),
-                                  _c("space-form", {
-                                    attrs: {
-                                      types: _vm.types,
-                                      spaces: _vm.spaces
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                      ])
+                      _c(
+                        "keep-alive",
+                        [
+                          _vm.onSpaceDetails
+                            ? _c("space-view", { attrs: { post: _vm.post } })
+                            : _c("reservation-form", {
+                                attrs: {
+                                  user: _vm.user,
+                                  types: _vm.types,
+                                  spaces: _vm.spaces
+                                }
+                              })
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -56954,6 +56906,120 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", [_c("strong", [_vm._v("更新する")])])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.post.post_image
+      ? _c("div", [
+          _c("img", {
+            staticClass: "w-100",
+            attrs: { src: "storage/" + _vm.post.post_image }
+          }),
+          _vm._v(" "),
+          _c("hr")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [_vm._v(_vm._s(_vm.post.title))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-4" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _vm._v(_vm._s(_vm.post.address || "なし"))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-4" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8 preserve-breaks" }, [
+        _vm._v(_vm._s(_vm.post.business_hours || "なし"))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-4" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
+        _vm._v(_vm._s(_vm.post.per_hour || 0) + " 円")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-4" }, [
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8 preserve-breaks" }, [
+        _vm._v(_vm._s(_vm.post.notes || "なし"))
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("場所のタイトル")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("場所住所")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("営業時間")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用料金 | 1時間")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+      _c("strong", { staticClass: "text-muted" }, [_vm._v("ノート")])
+    ])
   }
 ]
 render._withStripped = true
@@ -69144,6 +69210,7 @@ Vue.use(v_calendar__WEBPACK_IMPORTED_MODULE_0___default.a, {
 Vue.component('auto-postal-code', __webpack_require__(/*! ./components/AutoPostalCode.vue */ "./resources/js/components/AutoPostalCode.vue")["default"]);
 Vue.component('records-table', __webpack_require__(/*! ./components/RecordsTable.vue */ "./resources/js/components/RecordsTable.vue")["default"]);
 Vue.component('payment-records', __webpack_require__(/*! ./components/PaymentRecords.vue */ "./resources/js/components/PaymentRecords.vue")["default"]);
+Vue.component('reservation-form', __webpack_require__(/*! ./components/ReservationForm.vue */ "./resources/js/components/ReservationForm.vue")["default"]);
 Vue.component('reservation-list', __webpack_require__(/*! ./components/ReservationList.vue */ "./resources/js/components/ReservationList.vue")["default"]);
 Vue.component('reservation-item', __webpack_require__(/*! ./components/ReservationItem.vue */ "./resources/js/components/ReservationItem.vue")["default"]);
 Vue.component('form-guest', __webpack_require__(/*! ./components/FormGuest.vue */ "./resources/js/components/FormGuest.vue")["default"]);
@@ -69153,6 +69220,7 @@ Vue.component('conversation', __webpack_require__(/*! ./components/Conversation.
 Vue.component('schedule-picker', __webpack_require__(/*! ./components/SchedulePicker.vue */ "./resources/js/components/SchedulePicker.vue")["default"]);
 Vue.component('check-in-out', __webpack_require__(/*! ./components/CheckInOut.vue */ "./resources/js/components/CheckInOut.vue")["default"]);
 Vue.component('chats', __webpack_require__(/*! ./components/Chats.vue */ "./resources/js/components/Chats.vue")["default"]);
+Vue.component('space-view', __webpack_require__(/*! ./components/SpaceView.vue */ "./resources/js/components/SpaceView.vue")["default"]);
 Vue.component('space-form', __webpack_require__(/*! ./components/SpaceForm.vue */ "./resources/js/components/SpaceForm.vue")["default"]);
 Vue.component('space-item', __webpack_require__(/*! ./components/SpaceItem.vue */ "./resources/js/components/SpaceItem.vue")["default"]);
 Vue.component('space-list', __webpack_require__(/*! ./components/SpaceList.vue */ "./resources/js/components/SpaceList.vue")["default"]);
@@ -69921,6 +69989,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ReservationForm.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ReservationForm.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservationForm.vue?vue&type=template&id=461599d6& */ "./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6&");
+/* harmony import */ var _ReservationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReservationForm.vue?vue&type=script&lang=js& */ "./resources/js/components/ReservationForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReservationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReservationForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReservationForm.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/ReservationForm.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReservationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReservationForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReservationForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReservationForm.vue?vue&type=template&id=461599d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReservationForm.vue?vue&type=template&id=461599d6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReservationForm_vue_vue_type_template_id_461599d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ReservationItem.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/ReservationItem.vue ***!
@@ -70606,6 +70743,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostUpdate_vue_vue_type_template_id_b8393fd8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpacePostUpdate_vue_vue_type_template_id_b8393fd8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SpaceView.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/SpaceView.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SpaceView.vue?vue&type=template&id=5d7ef970& */ "./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970&");
+/* harmony import */ var _SpaceView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpaceView.vue?vue&type=script&lang=js& */ "./resources/js/components/SpaceView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SpaceView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SpaceView.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SpaceView.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/SpaceView.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SpaceView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpaceView.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SpaceView.vue?vue&type=template&id=5d7ef970& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SpaceView.vue?vue&type=template&id=5d7ef970&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SpaceView_vue_vue_type_template_id_5d7ef970___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
