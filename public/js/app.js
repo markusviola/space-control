@@ -4107,66 +4107,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['types', 'spaces'],
   data: function data() {
     return {
       dateIncrement: 1,
       dateTimes: [],
-      isCoworking: true,
-      isRental: false,
       chosenNumOfPeople: 1,
-      chosenType: 1,
-      willStay: false,
       currentDate: null,
       currentTime: null
     };
@@ -4175,26 +4122,6 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Space Form mounted successfully.');
   },
   methods: {
-    onTypeChanged: function onTypeChanged() {
-      this.chosenType;
-
-      switch (this.chosenType) {
-        case 1:
-          this.chosenNumOfPeople = 1;
-          this.isCoworking = true;
-          this.isRental = false;
-          break;
-
-        case 2:
-          this.isRental = true;
-          this.isCoworking = false;
-          break;
-
-        default:
-          this.isCoworking = false;
-          this.isRental = false;
-      }
-    },
     changeDateTime: function changeDateTime(input) {
       var existingKey = false;
 
@@ -55229,191 +55156,45 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-9 form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "text-muted font-weight-bold",
-            attrs: { for: "type" }
-          },
-          [_vm._v("予約タイプ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.chosenType,
-                expression: "chosenType"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "type", name: "type_id" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.chosenType = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.onTypeChanged
-              ]
-            }
-          },
-          _vm._l(_vm.types, function(type, index) {
-            return _c("option", { key: index, domProps: { value: type.id } }, [
-              _vm._v(_vm._s(type.name))
-            ])
-          }),
-          0
-        )
-      ]),
+    _c("div", { staticClass: "form-group" }, [
+      _c(
+        "label",
+        {
+          staticClass: "text-muted font-weight-bold",
+          attrs: { for: "userCount" }
+        },
+        [_vm._v("使用人数")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 form-group" }, [
-        _c(
-          "label",
+      _c("input", {
+        directives: [
           {
-            staticClass: "text-muted font-weight-bold",
-            attrs: { for: "userCount" }
-          },
-          [_vm._v("使用人数")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.chosenNumOfPeople,
-              expression: "chosenNumOfPeople"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            name: "user_count",
-            type: "number",
-            id: "userCount",
-            disabled: _vm.isCoworking,
-            required: ""
-          },
-          domProps: { value: _vm.chosenNumOfPeople },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.chosenNumOfPeople = $event.target.value
-            }
+            name: "model",
+            rawName: "v-model",
+            value: _vm.chosenNumOfPeople,
+            expression: "chosenNumOfPeople"
           }
-        })
-      ])
+        ],
+        staticClass: "form-control",
+        attrs: {
+          name: "user_count",
+          type: "number",
+          id: "userCount",
+          required: ""
+        },
+        domProps: { value: _vm.chosenNumOfPeople },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.chosenNumOfPeople = $event.target.value
+          }
+        }
+      })
     ]),
     _vm._v(" "),
     _vm._m(0),
-    _vm._v(" "),
-    _vm.isRental
-      ? _c("div", [
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.spaces, function(space, index) {
-              return _c("div", { key: index, staticClass: "col-md-auto" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-flex justify-content-between form-group form-check"
-                  },
-                  [
-                    _c("input", {
-                      staticClass: "form-check-input",
-                      attrs: {
-                        name: "space_" + space.id,
-                        type: "checkbox",
-                        id: "space" + space.id
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "space" + space.id }
-                      },
-                      [_vm._v(_vm._s(space.name))]
-                    )
-                  ]
-                )
-              ])
-            }),
-            0
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.isCoworking
-      ? _c("div", { staticClass: "form-group form-check" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.willStay,
-                expression: "willStay"
-              }
-            ],
-            staticClass: "form-check-input",
-            attrs: { name: "will_stay", type: "checkbox", id: "willStay" },
-            domProps: {
-              checked: Array.isArray(_vm.willStay)
-                ? _vm._i(_vm.willStay, null) > -1
-                : _vm.willStay
-            },
-            on: {
-              change: function($event) {
-                var $$a = _vm.willStay,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (_vm.willStay = $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      (_vm.willStay = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
-                  }
-                } else {
-                  _vm.willStay = $$c
-                }
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "form-check-label text-muted font-weight-bold",
-              attrs: { for: "willStay" }
-            },
-            [_vm._v("泊まりますか?")]
-          )
-        ])
-      : _vm._e(),
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
@@ -55448,7 +55229,7 @@ var render = function() {
                 _c("div", { staticClass: "row mt-3" }, [
                   _c(
                     "div",
-                    { staticClass: "col-md-10 p-0" },
+                    { staticClass: "col-md-12 p-0" },
                     [
                       _c("schedule-picker", {
                         attrs: { dateTimeId: i },
@@ -55459,19 +55240,27 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   i == _vm.dateIncrement
-                    ? _c("i", {
-                        staticClass:
-                          "col-md-1 p-0 fas fa-plus fa-lg edit d-flex align-items-center justify-content-center",
-                        on: { click: _vm.addClicked }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  i == _vm.dateIncrement && i != 1
-                    ? _c("i", {
-                        staticClass:
-                          "col-md-1 p-0 fas fa-minus-circle fa-lg delete d-flex align-items-center justify-content-center",
-                        on: { click: _vm.removeClicked }
-                      })
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-12 p-0 d-flex justify-content-end px-1"
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fas fa-plus fa-lg edit mt-3",
+                            on: { click: _vm.addClicked }
+                          }),
+                          _vm._v(" "),
+                          i != 1
+                            ? _c("i", {
+                                staticClass:
+                                  "fas fa-minus-circle fa-lg delete pl-3 mt-3",
+                                on: { click: _vm.removeClicked }
+                              })
+                            : _vm._e()
+                        ]
+                      )
                     : _vm._e()
                 ])
               ])
