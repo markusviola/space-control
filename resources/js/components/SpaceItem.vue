@@ -38,14 +38,16 @@
                         </ul>
                         <keep-alive>
                             <div v-if="onSpaceDetails">
-                                <img
-                                    class="w-100"
-                                    :src="`storage/${post.post_image}`"
-                                />
-                                <hr>
+                                <div v-if="post.post_image">
+                                    <img
+                                        class="w-100"
+                                        :src="`storage/${post.post_image}`"
+                                    />
+                                    <hr>
+                                </div>
                                 <div class="row mb-4">
                                     <div class="col-md-4 text-md-right border-right">
-                                        <strong class="text-muted">場所住所</strong>
+                                        <strong class="text-muted">場所のタイトル</strong>
                                     </div>
                                     <div class="col-md-8">{{ post.title }}</div>
                                 </div>
