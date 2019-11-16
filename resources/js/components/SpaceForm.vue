@@ -63,12 +63,6 @@
 
 <script>
     export default {
-        props: {
-            post: {
-                type: Object,
-                default: null,
-            }
-        },
         data() {
             return {
                 dateIncrement: 1,

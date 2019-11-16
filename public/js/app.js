@@ -3019,17 +3019,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    types: {
-      type: Array,
-      required: true
-    },
-    spaces: {
-      type: Array,
-      required: true
+    post: {
+      type: Object,
+      "default": null
     },
     user: {
       type: [Object, Number],
@@ -4100,15 +4094,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['types', 'spaces'],
   data: function data() {
     return {
       dateIncrement: 1,
@@ -4255,20 +4241,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     post: {
       type: Object,
       "default": null
-    },
-    types: {
-      type: Array,
-      required: true
-    },
-    spaces: {
-      type: Array,
-      required: true
     },
     user: {
       type: [Object, Number],
@@ -4280,7 +4257,6 @@ __webpack_require__.r(__webpack_exports__);
       onSpaceDetails: true
     };
   },
-  mounted: function mounted() {},
   methods: {
     submitForm: function submitForm() {
       document.getElementById("space-form-submit").submit();
@@ -4347,21 +4323,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     posts: {
       type: Array,
       "default": null
-    },
-    types: {
-      type: Array,
-      required: true
-    },
-    spaces: {
-      type: Array,
-      required: true
     },
     user: {
       type: [Object, Number],
@@ -53236,6 +53202,11 @@ var render = function() {
           domProps: { value: _vm.csrf }
         }),
         _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden", name: "user_id" },
+          domProps: { value: _vm.post.id }
+        }),
+        _vm._v(" "),
         _vm.user
           ? _c("input", {
               attrs: { type: "hidden", name: "user_id" },
@@ -53243,7 +53214,7 @@ var render = function() {
             })
           : _c("form-guest"),
         _vm._v(" "),
-        _c("space-form", { attrs: { types: _vm.types, spaces: _vm.spaces } })
+        _c("space-form")
       ],
       1
     )
@@ -55207,67 +55178,54 @@ var render = function() {
       domProps: { value: JSON.stringify(_vm.dateTimes) }
     }),
     _vm._v(" "),
-    _vm.willStay
-      ? _c("div", [
-          _c(
-            "div",
-            { staticClass: "mt-3 p-0" },
-            [
-              _c("check-in-out", {
-                on: { onCheckInOutChosen: _vm.changeDateTime }
-              })
-            ],
-            1
-          )
-        ])
-      : _c(
-          "div",
-          { staticClass: "mb-5" },
-          _vm._l(_vm.dateIncrement, function(i) {
-            return _c("div", { key: i }, [
-              _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "row mt-3" }, [
-                  _c(
+    _c(
+      "div",
+      { staticClass: "mb-4" },
+      _vm._l(_vm.dateIncrement, function(i) {
+        return _c("div", { key: i }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row mt-3" }, [
+              _c(
+                "div",
+                { staticClass: "col-md-12 p-0" },
+                [
+                  _c("schedule-picker", {
+                    attrs: { dateTimeId: i },
+                    on: { onDateTimeChosen: _vm.changeDateTime }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              i == _vm.dateIncrement
+                ? _c(
                     "div",
-                    { staticClass: "col-md-12 p-0" },
+                    {
+                      staticClass:
+                        "col-md-12 p-0 d-flex justify-content-end px-1"
+                    },
                     [
-                      _c("schedule-picker", {
-                        attrs: { dateTimeId: i },
-                        on: { onDateTimeChosen: _vm.changeDateTime }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  i == _vm.dateIncrement
-                    ? _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col-md-12 p-0 d-flex justify-content-end px-1"
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fas fa-plus fa-lg edit mt-3",
-                            on: { click: _vm.addClicked }
-                          }),
-                          _vm._v(" "),
-                          i != 1
-                            ? _c("i", {
-                                staticClass:
-                                  "fas fa-minus-circle fa-lg delete pl-3 mt-3",
-                                on: { click: _vm.removeClicked }
-                              })
-                            : _vm._e()
-                        ]
-                      )
-                    : _vm._e()
-                ])
-              ])
+                      _c("i", {
+                        staticClass: "fas fa-plus fa-lg edit mt-3",
+                        on: { click: _vm.addClicked }
+                      }),
+                      _vm._v(" "),
+                      i != 1
+                        ? _c("i", {
+                            staticClass:
+                              "fas fa-minus-circle fa-lg delete pl-3 mt-3",
+                            on: { click: _vm.removeClicked }
+                          })
+                        : _vm._e()
+                    ]
+                  )
+                : _vm._e()
             ])
-          }),
-          0
-        )
+          ])
+        ])
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = [
@@ -55390,11 +55348,7 @@ var render = function() {
                           _vm.onSpaceDetails
                             ? _c("space-view", { attrs: { post: _vm.post } })
                             : _c("reservation-form", {
-                                attrs: {
-                                  user: _vm.user,
-                                  types: _vm.types,
-                                  spaces: _vm.spaces
-                                }
+                                attrs: { user: _vm.user, post: _vm.post }
                               })
                         ],
                         1
@@ -55599,14 +55553,7 @@ var render = function() {
     "div",
     { staticClass: "mt-3" },
     [
-      _c("space-item", {
-        attrs: {
-          post: _vm.selected_post,
-          types: _vm.types,
-          spaces: _vm.spaces,
-          user: _vm.user
-        }
-      }),
+      _c("space-item", { attrs: { post: _vm.selected_post, user: _vm.user } }),
       _vm._v(" "),
       _c("hr", { staticClass: "mb-0" }),
       _vm._v(" "),

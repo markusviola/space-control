@@ -7,11 +7,10 @@
         <hr class="mt-2">
         <form id="space-form-submit" class="pt-2" action="/forms" method="POST">
             <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="user_id" :value="post.id">
             <input v-if="user" type="hidden" name="user_id" :value="user.id">
             <form-guest v-else></form-guest>
-            <space-form
-                :post="post"
-            ></space-form>
+            <space-form></space-form>
         </form>
     </div>
 </template>
