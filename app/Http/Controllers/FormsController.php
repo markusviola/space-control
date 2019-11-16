@@ -94,6 +94,7 @@ class FormsController extends Controller
             $form->phone = request()->phone;
         }
 
+        $form->post_id = request()->post_id;
         $form->reason = request()->reason;
         $form->user_count = request()->user_count ?? 1;
         $form->save();
