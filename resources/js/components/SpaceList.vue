@@ -1,18 +1,13 @@
 <template>
     <div class="mt-3">
-        <space-post-create
-            :user="user"
-            @onPostCreated="addNewPost"
-        ></space-post-create>
-        <space-post-update
+        <space-item
             :post="selected_post"
-            @onPostUpdated="updatePost"
-            @onPostDeleted="deletePost"
-        ></space-post-update>
+            :user="user"
+        ></space-item>
         <hr class="mb-0">
         <div v-for="post in posts" :key="post.id">
             <div class="container">
-                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)" data-toggle="modal" data-target="#updatePostModal">
+                <div class="row px-2 py-3 panel-highlight" @click="onPostSelected(post)" data-toggle="modal" data-target="#space-item">
                     <div class="col-md-4 d-flex justify-content-center bg-dark" >
                         <div v-if="post.post_image">
                             <img class="mw-100" style="height: 7rem;" :src="`storage/${post.post_image}`">
@@ -54,52 +49,21 @@
 <script>
 export default {
     props: {
-        user: {
-            type: Object,
-            required: true,
+        posts: {
+            type: Array,
+            default: null,
         },
+        user: {
+            type: [Object, Number],
+            default: 0,
+        }
     },
     data() {
         return {
-            posts: [],
             selected_post: null,
         }
     },
-    mounted() {
-        this.getPosts();
-    },
     methods: {
-        getPosts() {
-            axios.get('posts/list')
-            .then(response => {
-                this.posts = response.data;
-            })
-            .catch(err => {
-                const res = err.response;
-                notifyUser('Something went wrong.');
-                console.log(res);
-            })
-        },
-        addNewPost(newPost) {
-            this.posts.unshift(newPost);
-            console.log(this.posts);
-        },
-        updatePost(updatedPost) {
-            this.posts[
-                this.posts.findIndex(
-                    post => post.id === updatedPost.id
-                )
-            ] = updatedPost;
-            this.selected_post = updatedPost;
-        },
-        deletePost(id) {
-            const postIndex = [
-                this.posts.findIndex(
-                    post => post.id === id
-                )
-            ];
-            this.posts.splice(postIndex, 1);
-        },
         onPostSelected(post) {
             this.selected_post = post;
         },

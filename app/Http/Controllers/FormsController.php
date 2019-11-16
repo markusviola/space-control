@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Form;
 use App\Reservation;
 use App\Schedule;
-use App\Space;
 use App\User;
-use App\BulkSpace;
 
 class FormsController extends Controller
 {
@@ -38,7 +36,6 @@ class FormsController extends Controller
 
         $form = Form::whereId($id)->first();
         $form->triggerIsApproved()->save();
-        $form->load(['type', 'bulkSpaces']);
         if ($form) {
             Reservation::create([
                 'form_id' => $id
@@ -97,29 +94,12 @@ class FormsController extends Controller
             $form->phone = request()->phone;
         }
 
-        $form->will_stay = false;
-        if (request()->will_stay) {
-            $form->will_stay = true;
-        }
-
+        $form->post_id = request()->post_id;
         $form->reason = request()->reason;
         $form->user_count = request()->user_count ?? 1;
-        $form->type_id = request()->type_id;
         $form->save();
 
         $formId = $form->id;
-
-        if (request()->type_id == 2) {
-            $spaces = Space::all();
-            foreach($spaces as $space) {
-                if ($request['space_'.$space->id]) {
-                    BulkSpace::create([
-                        'space_id' => $space->id,
-                        'form_id' => $formId
-                    ]);
-                }
-            }
-        }
 
         for ($i = 0; $i < sizeof($startDates); $i++) {
             Schedule::create([
