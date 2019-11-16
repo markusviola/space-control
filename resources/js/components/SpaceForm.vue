@@ -26,14 +26,7 @@
         <hr>
         <span class="text-muted font-weight-bold">使用日付・時間</span>
         <input type="hidden" name="dates" :value="JSON.stringify(dateTimes)">
-        <div v-if="willStay">
-            <div class="mt-3 p-0">
-                <check-in-out
-                    @onCheckInOutChosen="changeDateTime"
-                ></check-in-out>
-            </div>
-        </div>
-        <div class="mb-4" v-else>
+        <div class="mb-4">
             <div v-for="i in dateIncrement" v-bind:key="i">
                 <div class="container">
                     <div class="row mt-3">
@@ -70,7 +63,12 @@
 
 <script>
     export default {
-        props: ['types', 'spaces'],
+        props: {
+            post: {
+                type: Object,
+                default: null,
+            }
+        },
         data() {
             return {
                 dateIncrement: 1,

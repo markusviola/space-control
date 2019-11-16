@@ -10,8 +10,7 @@
             <input v-if="user" type="hidden" name="user_id" :value="user.id">
             <form-guest v-else></form-guest>
             <space-form
-                :types="types"
-                :spaces="spaces"
+                :post="post"
             ></space-form>
         </form>
     </div>
@@ -20,13 +19,9 @@
 <script>
 export default {
     props: {
-        types: {
-            type: Array,
-            required: true,
-        },
-        spaces: {
-            type: Array,
-            required: true,
+        post: {
+            type: Object,
+            default: null,
         },
         user: {
             type: [Object, Number],

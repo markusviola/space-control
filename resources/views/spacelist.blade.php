@@ -12,8 +12,6 @@
                     </div>
                     <space-list
                         :posts="{{ $posts }}"
-                        :types="{{ $types }}"
-                        :spaces="{{ $spaces }}"
                         :user="{{ auth()->user() ?? 0 }}"
                     ></space-list>
                 </div>

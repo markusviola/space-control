@@ -41,8 +41,7 @@
                             <reservation-form
                                 v-else
                                 :user="user"
-                                :types="types"
-                                :spaces="spaces"
+                                :post="post"
                             ></reservation-form>
                         </keep-alive>
                     </div>
@@ -104,14 +103,6 @@ export default {
             type: Object,
             default: null,
         },
-        types: {
-            type: Array,
-            required: true,
-        },
-        spaces: {
-            type: Array,
-            required: true,
-        },
         user: {
             type: [Object, Number],
             default: 0,
@@ -121,8 +112,6 @@ export default {
         return {
             onSpaceDetails: true,
         }
-    },
-    mounted() {
     },
     methods: {
         submitForm() {
