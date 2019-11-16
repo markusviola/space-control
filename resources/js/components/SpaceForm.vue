@@ -33,7 +33,7 @@
                 ></check-in-out>
             </div>
         </div>
-        <div class="mb-5" v-else>
+        <div class="mb-4" v-else>
             <div v-for="i in dateIncrement" v-bind:key="i">
                 <div class="container">
                     <div class="row mt-3">
