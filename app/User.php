@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(Form::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Form::class);
+    }
+
     public function genderOptions() {
 
         return [
