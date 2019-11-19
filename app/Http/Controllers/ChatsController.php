@@ -19,17 +19,20 @@ class ChatsController extends Controller
     public function index($id)
     {
         if (!auth()->user()->is_admin) {
-            $chosenForm = Form::with(['type', 'bulkSpaces'])
+            $chosenForm = Form::with(['post'])
                 ->where('id', $id)
                 ->where('user_id', auth()->user()->id)
                 ->first();
-        } else $chosenForm = Form::with(['type', 'bulkSpaces'])
+
+        } else $chosenForm = Form::with(['post'])
+                ->whereHas('post', function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
                 ->where('id', $id)
                 ->first();
 
-        $spaces = Space::all();
-
-        return view('chats', compact('chosenForm', 'spaces'));
+        if (!$chosenForm) abort(401);
+        return view('chats', compact('chosenForm'));
     }
 
     // Forms

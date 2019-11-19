@@ -53203,7 +53203,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("input", {
-          attrs: { type: "hidden", name: "user_id" },
+          attrs: { type: "hidden", name: "post_id" },
           domProps: { value: _vm.post.id }
         }),
         _vm._v(" "),
