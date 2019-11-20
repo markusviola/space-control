@@ -68,24 +68,7 @@ class ChatsController extends Controller
     // Messages
     public function fetchMessages($id)
     {
-        $form = Form::with(['post'])
-            ->where('id', $id);
-
-        // Verifies if the message fetching
-        // has relation with accessing user.
-        if (!auth()->user()->is_admin) {
-            $form = $form
-                ->where('user_id', auth()->id())
-                ->get();
-        } else {
-            $form = $form
-                ->whereHas('post',  function($query) {
-                    $query->where('user_id', '=', auth()->id());
-                })
-                ->get();
-        }
-
-        if ($form) {
+        if ($this->hasFormRelation($id)) {
             // mark all messages with the selected contact as read
             Message::where('to', $id)
             ->where('from', '!=', auth()->id())
@@ -100,17 +83,40 @@ class ChatsController extends Controller
     // Message Send
     public function sendMessage(Request $request)
     {
-        $newMessage = Message::create([
-            'from' => auth()->id(),
-            'to' => $request->to,
-            'message' => $request->message
-        ]);
-        $newMessage->load(['fromUser','toForm']);
+        if ($this->hasFormRelation($request->to)) {
+            $newMessage = Message::create([
+                'from' => auth()->id(),
+                'to' => $request->to,
+                'message' => $request->message
+            ]);
+            $newMessage->load(['fromUser','toForm']);
 
-        broadcast(new MessageSent(
-            $newMessage
-        ))->toOthers();
+            broadcast(new MessageSent(
+                $newMessage
+            ))->toOthers();
+
+        } else $newMessage = null;
 
         return response()->json($newMessage);
+    }
+
+    // Verifies if the message fetching
+    // has relation with accessing user.
+    public function hasFormRelation($form_id): bool {
+        $form = Form::with(['post'])
+            ->where('id', $form_id);
+        if (!auth()->user()->is_admin) {
+            $form = $form
+                ->where('user_id', auth()->id())
+                ->get();
+        } else {
+            $form = $form
+                ->whereHas('post',  function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
+                ->get();
+        }
+
+        return $form != null;
     }
 }
