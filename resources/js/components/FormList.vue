@@ -21,7 +21,7 @@
                                 <h6>
                                     <strong>
                                         <i v-if="form.is_approved" class="text-primary fas fa-check-circle fa-lg"></i>
-                                        {{ form.type.name }}
+                                        {{ form.post.title }}
                                     </strong>
                                 </h6>
                                 <h6 v-if="form.unread_count">
@@ -51,7 +51,7 @@
                                 <h6>
                                     <strong>
                                         <i v-if="form.is_approved" class="text-primary fas fa-check-circle fa-lg"></i>
-                                        {{ form.type.name }}
+                                        {{ form.post.title }}
                                     </strong>
                                 </h6>
                                 <h6 v-if="form.unread_count">

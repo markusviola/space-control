@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\Events\MessageSent;
 use App\Form;
-use App\Space;
 
 class ChatsController extends Controller
 {
@@ -19,28 +18,32 @@ class ChatsController extends Controller
     public function index($id)
     {
         if (!auth()->user()->is_admin) {
-            $chosenForm = Form::with(['type', 'bulkSpaces'])
+            $chosenForm = Form::with(['post'])
                 ->where('id', $id)
                 ->where('user_id', auth()->user()->id)
                 ->first();
-        } else $chosenForm = Form::with(['type', 'bulkSpaces'])
+        } else $chosenForm = Form::with(['post'])
+                ->whereHas('post', function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
                 ->where('id', $id)
                 ->first();
 
-        $spaces = Space::all();
-
-        return view('chats', compact('chosenForm', 'spaces'));
+        return view('chats', compact('chosenForm'));
     }
 
     // Forms
     public function fetchForms() {
         if (!auth()->user()->is_admin) {
-            $forms = Form::with(['type', 'bulkSpaces'])
+            $forms = Form::with(['post'])
                 ->where('user_id', auth()->id())
                 ->latest()
                 ->get();
         } else {
-            $forms = Form::with(['type', 'bulkSpaces'])
+            $forms = Form::with(['post'])
+                ->whereHas('post', function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
                 ->latest()
                 ->get();
         }
@@ -65,32 +68,55 @@ class ChatsController extends Controller
     // Messages
     public function fetchMessages($id)
     {
-        // mark all messages with the selected contact as read
-        Message::where('to', $id)
+        if ($this->hasFormRelation($id)) {
+            // mark all messages with the selected contact as read
+            Message::where('to', $id)
             ->where('from', '!=', auth()->id())
             ->update(['read' => true]);
 
-        $messages = Message::with(['fromUser','toForm'])
-            ->where('to', $id)->get();
-
-
+            $messages = Message::with(['fromUser','toForm'])
+                ->where('to', $id)->get();
+        } else $messages = [];
         return response()->json($messages);
     }
 
     // Message Send
     public function sendMessage(Request $request)
     {
-        $newMessage = Message::create([
-            'from' => auth()->id(),
-            'to' => $request->to,
-            'message' => $request->message
-        ]);
-        $newMessage->load(['fromUser','toForm']);
+        if ($this->hasFormRelation($request->to)) {
+            $newMessage = Message::create([
+                'from' => auth()->id(),
+                'to' => $request->to,
+                'message' => $request->message
+            ]);
+            $newMessage->load(['fromUser','toForm']);
 
-        broadcast(new MessageSent(
-            $newMessage
-        ))->toOthers();
+            broadcast(new MessageSent(
+                $newMessage
+            ))->toOthers();
+
+        } else $newMessage = null;
 
         return response()->json($newMessage);
+    }
+
+    // Verifies if the message fetching
+    // has relation with accessing user.
+    public function hasFormRelation($form_id): bool {
+        $form = Form::with(['post'])
+            ->where('id', $form_id);
+        if (!auth()->user()->is_admin) {
+            $form = $form
+                ->where('user_id', auth()->id())
+                ->get();
+        } else {
+            $form = $form
+                ->whereHas('post',  function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
+                ->get();
+        }
+
+        return $form != null;
     }
 }
