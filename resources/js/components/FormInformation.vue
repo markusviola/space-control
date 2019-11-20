@@ -203,10 +203,6 @@
                 type: Object,
                 required: true,
             },
-            spaces: {
-                type: Array,
-                default: null,
-            }
         },
         data() {
             return {

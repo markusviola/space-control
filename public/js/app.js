@@ -1925,7 +1925,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -1934,10 +1933,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     choice: {
       type: [Object, Number],
-      required: true
-    },
-    spaces: {
-      type: Array,
       required: true
     }
   },
@@ -1959,14 +1954,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/chats/forms').then(function (response) {
         _this.forms = response.data;
 
-        if (_this.choice && !_this.changedForm) {
+        if (!_this.changedForm) {
           _this.forms.forEach(function (form) {
             Echo["private"]("chat.".concat(form.id)).listen('MessageSent', function (event) {
               _this.handleMessage(event.message);
             });
           });
 
-          _this.fetchMessages(_this.choice);
+          if (_this.choice) _this.fetchMessages(_this.choice);
         } else {
           _this.selectedForm = Object.assign({}, _this.changedForm);
           _this.changedForm = null;
@@ -2256,7 +2251,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: {
@@ -2270,10 +2264,6 @@ __webpack_require__.r(__webpack_exports__);
     messages: {
       type: Array,
       "default": []
-    },
-    spaces: {
-      type: Array,
-      "default": null
     }
   },
   data: function data() {
@@ -2281,6 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
       message: ''
     };
   },
+  mounted: function mounted() {},
   methods: {
     sendMessage: function sendMessage(event) {
       var _this = this;
@@ -2295,9 +2286,11 @@ __webpack_require__.r(__webpack_exports__);
         to: this.form.id,
         message: this.message
       }).then(function (response) {
-        _this.$emit('newMessage', response.data);
+        if (response.data) {
+          _this.$emit('newMessage', response.data);
 
-        _this.message = '';
+          _this.message = '';
+        } else notifyUser('このチャットにアクセスが出来ません！');
       });
     },
     formApproved: function formApproved($updatedForm) {
@@ -2631,10 +2624,6 @@ __webpack_require__.r(__webpack_exports__);
     user: {
       type: Object,
       required: true
-    },
-    spaces: {
-      type: Array,
-      "default": null
     }
   },
   data: function data() {
@@ -51253,7 +51242,6 @@ var render = function() {
               attrs: {
                 user: _vm.user,
                 form: _vm.selectedForm,
-                spaces: _vm.spaces,
                 messages: _vm.messages
               },
               on: {
@@ -51568,7 +51556,7 @@ var render = function() {
                 "\n                    " +
                   _vm._s(
                     _vm.form
-                      ? _vm.form.type.name
+                      ? _vm.form.post.title
                       : (_vm.user.is_admin ? "要求" : "フォーム") +
                           "を選択ください"
                   ) +
@@ -51601,24 +51589,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.form
-              ? _c(
-                  "div",
-                  [
-                    _c("form-info", {
-                      attrs: {
-                        form: _vm.form,
-                        user: _vm.user,
-                        spaces: _vm.spaces
-                      },
-                      on: { onFormApproval: _vm.formApproved }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(0)
-                  ],
-                  1
-                )
-              : _vm._e()
+            _vm.form ? _c("div", [_vm._m(0)]) : _vm._e()
           ])
         ]),
         _vm._v(" "),
@@ -52744,7 +52715,7 @@ var render = function() {
                                     : _vm._e(),
                                   _vm._v(
                                     "\n                                    " +
-                                      _vm._s(form.type.name) +
+                                      _vm._s(form.post.title) +
                                       "\n                                "
                                   )
                                 ])
@@ -52837,7 +52808,7 @@ var render = function() {
                                       : _vm._e(),
                                     _vm._v(
                                       "\n                                    " +
-                                        _vm._s(form.type.name) +
+                                        _vm._s(form.post.title) +
                                         "\n                                "
                                     )
                                   ])
@@ -69038,8 +69009,8 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "8cdee6e092f7493bcfab",
+  cluster: "ap3",
   forceTLS: true
 }); // window.Echo = new Echo({
 //     broadcaster: 'pusher',

@@ -5,7 +5,7 @@
                 <h5 class="alt-neutral">
                     <strong>
                         <i v-if="form && form.is_approved" class="text-primary fas fa-check fa-lg"></i>
-                        {{ form ? form.type.name : `${(user.is_admin ? '要求' : 'フォーム')}を選択ください` }}
+                        {{ form ? form.post.title : `${(user.is_admin ? '要求' : 'フォーム')}を選択ください` }}
                     </strong>
                 </h5>
                 <div class="d-flex justify-content-between">
@@ -21,12 +21,11 @@
                         }}
                     </div>
                     <div v-if="form">
-                    <form-info
-                        :form="form"
-                        :user="user"
-                        :spaces="spaces"
-                        @onFormApproval="formApproved"
-                    ></form-info>
+                        <!-- <form-info
+                            :form="form"
+                            :user="user"
+                            @onFormApproval="formApproved"
+                        ></form-info> -->
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">
                             <strong>フォームを見る</strong>
                         </button>
@@ -89,15 +88,13 @@ export default {
             type: Array,
             default: [],
         },
-        spaces: {
-            type: Array,
-            default: null,
-        }
     },
     data() {
         return {
             message: '',
         }
+    },
+    mounted() {
     },
     methods: {
         sendMessage(event) {
@@ -110,8 +107,10 @@ export default {
                 message: this.message
             })
             .then(response => {
-                this.$emit('newMessage', response.data);
-                this.message = '';
+                if (response.data) {
+                    this.$emit('newMessage', response.data);
+                    this.message = '';
+                } else notifyUser('このチャットにアクセスが出来ません！')
             });
         },
         formApproved($updatedForm) {

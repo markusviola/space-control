@@ -8,7 +8,6 @@
                 <conversation
                     :user="user"
                     :form="selectedForm"
-                    :spaces="spaces"
                     :messages="messages"
                     @newMessage="pushNewMessage"
                     @onFormApproved="changeFormStatus"
@@ -29,10 +28,6 @@
                 type: [Object, Number],
                 required: true,
             },
-            spaces: {
-                type: Array,
-                required: true,
-            }
         },
         data() {
             return {
@@ -50,14 +45,14 @@
                 axios.get('/chats/forms')
                 .then(response => {
                     this.forms = response.data;
-                    if (this.choice && !this.changedForm) {
+                    if (!this.changedForm) {
                         this.forms.forEach(form => {
                             Echo.private(`chat.${form.id}`)
-                            .listen('MessageSent', event => {
-                                this.handleMessage(event.message);
-                            });
+                                .listen('MessageSent', event => {
+                                    this.handleMessage(event.message);
+                                });
                         });
-                        this.fetchMessages(this.choice);
+                        if (this.choice) this.fetchMessages(this.choice);
                     } else {
                         this.selectedForm = Object.assign({}, this.changedForm);
                         this.changedForm = null;
