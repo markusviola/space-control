@@ -68,15 +68,32 @@ class ChatsController extends Controller
     // Messages
     public function fetchMessages($id)
     {
-        // mark all messages with the selected contact as read
-        Message::where('to', $id)
+        $form = Form::with(['post'])
+            ->where('id', $id);
+
+        // Verifies if the message fetching
+        // has relation with accessing user.
+        if (!auth()->user()->is_admin) {
+            $form = $form
+                ->where('user_id', auth()->id())
+                ->get();
+        } else {
+            $form = $form
+                ->whereHas('post',  function($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
+                ->get();
+        }
+
+        if ($form) {
+            // mark all messages with the selected contact as read
+            Message::where('to', $id)
             ->where('from', '!=', auth()->id())
             ->update(['read' => true]);
 
-        $messages = Message::with(['fromUser','toForm'])
-            ->where('to', $id)->get();
-
-
+            $messages = Message::with(['fromUser','toForm'])
+                ->where('to', $id)->get();
+        } else $messages = [];
         return response()->json($messages);
     }
 
