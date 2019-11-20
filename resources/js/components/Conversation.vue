@@ -21,11 +21,11 @@
                         }}
                     </div>
                     <div v-if="form">
-                        <!-- <form-info
+                        <form-info
                             :form="form"
                             :user="user"
                             @onFormApproval="formApproved"
-                        ></form-info> -->
+                        ></form-info>
                         <button class="btn-trans anti-neutral" data-toggle="modal" data-target="#form-info">
                             <strong>フォームを見る</strong>
                         </button>

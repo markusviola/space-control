@@ -2583,38 +2583,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -2635,15 +2603,15 @@ __webpack_require__.r(__webpack_exports__);
     arrangeDates: function arrangeDates(newDates) {
       var currDates = [];
       newDates.forEach(function (date) {
-        var startDate = new Date(date.start_time['raw']);
-        var endDate = new Date(date.end_time['raw']);
+        var startDate = new Date(date.start_time["raw"]);
+        var endDate = new Date(date.end_time["raw"]);
         currDates.push({
           sDate: "".concat(startDate.getFullYear(), "-").concat(startDate.getMonth(), "-").concat(startDate.getDate()),
-          sHour: "".concat((startDate.getHours() + '').length == 1 ? '0' : '').concat(startDate.getHours()),
-          sMinute: "".concat((startDate.getMinutes() + '').length == 1 ? '0' : '').concat(startDate.getMinutes()),
+          sHour: "".concat((startDate.getHours() + "").length == 1 ? "0" : "").concat(startDate.getHours()),
+          sMinute: "".concat((startDate.getMinutes() + "").length == 1 ? "0" : "").concat(startDate.getMinutes()),
           eDate: "".concat(endDate.getFullYear(), "-").concat(endDate.getMonth(), "-").concat(endDate.getDate()),
-          eHour: "".concat((endDate.getHours() + '').length == 1 ? '0' : '').concat(endDate.getHours()),
-          eMinute: "".concat((endDate.getMinutes() + '').length == 1 ? '0' : '').concat(endDate.getMinutes())
+          eHour: "".concat((endDate.getHours() + "").length == 1 ? "0" : "").concat(endDate.getHours()),
+          eMinute: "".concat((endDate.getMinutes() + "").length == 1 ? "0" : "").concat(endDate.getMinutes())
         });
       });
       this.formDates = currDates;
@@ -2655,7 +2623,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data) {
           notifyUser("予約は承認されました！");
 
-          _this.$emit('onFormApproval', response.data);
+          _this.$emit("onFormApproval", response.data);
         } else notifyUser("エラーがあります。");
       });
     }
@@ -51589,7 +51557,20 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.form ? _c("div", [_vm._m(0)]) : _vm._e()
+            _vm.form
+              ? _c(
+                  "div",
+                  [
+                    _c("form-info", {
+                      attrs: { form: _vm.form, user: _vm.user },
+                      on: { onFormApproval: _vm.formApproved }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ],
+                  1
+                )
+              : _vm._e()
           ])
         ]),
         _vm._v(" "),
@@ -52125,9 +52106,7 @@ var render = function() {
                             staticClass: "text-primary fas fa-check fa-lg mr-1"
                           })
                         : _vm._e(),
-                      _vm._v(
-                        "\n                        フォーム詳細\n                    "
-                      )
+                      _vm._v("\n              フォーム詳細\n            ")
                     ])
                   ]
                 ),
@@ -52202,17 +52181,9 @@ var render = function() {
                   _vm._v("予約情報")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(8),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8" }, [
-                    _vm._v(_vm._s(_vm.form.type.name))
-                  ])
-                ]),
-                _vm._v(" "),
                 _vm.form.type_id > 1
                   ? _c("div", { staticClass: "row mb-3" }, [
-                      _vm._m(9),
+                      _vm._m(8),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-8" }, [
                         _vm._v(_vm._s(_vm.form.user_count))
@@ -52221,153 +52192,65 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(10),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-8" }, [
                     _vm._v(_vm._s(_vm.form.reason))
                   ])
                 ]),
                 _vm._v(" "),
-                _vm.form.type_id == 1
-                  ? _c("div", { staticClass: "row mb-3" }, [
-                      _vm._m(11),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _vm._v(_vm._s(_vm.form.will_stay ? "はい" : "いいえ"))
-                      ])
-                    ])
-                  : _vm._e(),
+                _vm._m(10),
                 _vm._v(" "),
-                _vm.form.type_id == 2
-                  ? _c(
-                      "div",
-                      [
-                        _c("hr"),
+                _c(
+                  "div",
+                  { staticClass: "pb-3" },
+                  _vm._l(_vm.formDates, function(currDate, index) {
+                    return _c("div", { key: index }, [
+                      _c("div", { staticClass: "row mb-3" }, [
+                        _c(
+                          "strong",
+                          {
+                            staticClass:
+                              "col-md-4 text-md-right border-right text-muted"
+                          },
+                          [_vm._v(_vm._s(index + 1))]
+                        ),
                         _vm._v(" "),
-                        _c("h5", { staticClass: "text-dark mb-3" }, [
-                          _vm._v("使用場所")
-                        ]),
+                        _c(
+                          "strong",
+                          {
+                            staticClass:
+                              "col-md-3 text-center border-right px-0"
+                          },
+                          [
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(currDate.sDate) +
+                                "\n                  "
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._l(_vm.spaces, function(space, i) {
-                          return _c(
-                            "div",
-                            { key: i },
-                            _vm._l(_vm.form.bulk_spaces, function(
-                              bulk_space,
-                              j
-                            ) {
-                              return _c("div", { key: j }, [
-                                space.id == bulk_space.space_id
-                                  ? _c("div", { staticClass: "row mb-3" }, [
-                                      _vm._m(12, true),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "col-md-8" }, [
-                                        _vm._v(_vm._s(space.name))
-                                      ])
-                                    ])
-                                  : _vm._e()
-                              ])
-                            }),
-                            0
+                        _c("strong", { staticClass: "col-auto pr-0" }, [
+                          _vm._v(
+                            "\n                      " +
+                              _vm._s(
+                                currDate.sHour +
+                                  ":" +
+                                  currDate.sMinute +
+                                  " ~ " +
+                                  currDate.eHour +
+                                  ":" +
+                                  currDate.eMinute
+                              ) +
+                              "\n                  "
                           )
-                        })
-                      ],
-                      2
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("h5", { staticClass: "text-dark mb-3" }, [
-                  _vm._v("使用日・時間")
-                ]),
-                _vm._v(" "),
-                _vm.form.will_stay && _vm.formDates.length > 0
-                  ? _c("div", [
-                      _c("div", { staticClass: "row mb-3" }, [
-                        _vm._m(13),
-                        _vm._v(" "),
-                        _c("strong", { staticClass: "col-md-6 d-flex" }, [
-                          _c("div", { staticClass: "mr-2" }, [
-                            _vm._v(_vm._s(_vm.formDates[0].sDate) + " |")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", [
-                            _vm._v(
-                              _vm._s(
-                                _vm.formDates[0].sHour +
-                                  ":" +
-                                  _vm.formDates[0].sMinute
-                              )
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row mb-3" }, [
-                        _vm._m(14),
-                        _vm._v(" "),
-                        _c("strong", { staticClass: "col-md-6 d-flex" }, [
-                          _c("div", { staticClass: "mr-2" }, [
-                            _vm._v(_vm._s(_vm.formDates[0].eDate) + " |")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", [
-                            _vm._v(
-                              _vm._s(
-                                _vm.formDates[0].eHour +
-                                  ":" +
-                                  _vm.formDates[0].eMinute
-                              )
-                            )
-                          ])
                         ])
                       ])
                     ])
-                  : _c(
-                      "div",
-                      _vm._l(_vm.formDates, function(currDate, index) {
-                        return _c("div", { key: index }, [
-                          _c("div", { staticClass: "row mb-3" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "col-md-4 text-md-right border-right"
-                              },
-                              [
-                                _c("strong", { staticClass: "text-muted" }, [
-                                  _vm._v(_vm._s(index + 1))
-                                ])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("strong", { staticClass: "col-md-8 d-flex" }, [
-                              _c("div", { staticClass: "mr-2" }, [
-                                _vm._v(_vm._s(currDate.sDate))
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mr-2" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    currDate.sHour + ":" + currDate.sMinute
-                                  )
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", [
-                                _vm._v(
-                                  _vm._s(
-                                    currDate.eHour + ":" + currDate.eMinute
-                                  )
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
-                      }),
-                      0
-                    )
+                  }),
+                  0
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -52383,11 +52266,11 @@ var render = function() {
                           "data-target": "#confirmFormModal"
                         }
                       },
-                      [_vm._m(15)]
+                      [_vm._m(11)]
                     )
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(16)
+                _vm._m(12)
               ])
             ])
           ]
@@ -52416,12 +52299,10 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(17),
+              _vm._m(13),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
-                _vm._v(
-                  "\n                この予約フォームを承認するつもりですか？\n            "
-                )
+                _vm._v("この予約フォームを承認するつもりですか？")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -52435,7 +52316,7 @@ var render = function() {
                   [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
-                _vm._m(18)
+                _vm._m(14)
               ])
             ])
           ]
@@ -52523,14 +52404,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("予約タイプ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("使用人数")])
     ])
   },
@@ -52539,39 +52412,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("使用理由")])
+      _c("strong", { staticClass: "text-primary" }, [_vm._v("使用理由")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("泊まり")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("i", { staticClass: "text-secondary fas fa-check fa-sm" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("イン")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("アウト")])
+    return _c("div", { staticClass: "row mb-3" }, [
+      _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
+        _c("strong", { staticClass: "text-primary" }, [_vm._v("使用日・時間")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" })
     ])
   },
   function() {
