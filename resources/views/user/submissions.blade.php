@@ -10,14 +10,17 @@
                         <h4 class="alt-neutral">提出フォームリスト</h4>
                         <span class="text-dark">管理者に問い合わせよう！</span>
                     </div>
+                    <hr class="mb-0">
                     <div class="formlist-column">
                         @if (sizeof($forms) > 0)
                             @foreach ($forms as $form)
                                 <div class="container py-3 panel-highlight" onclick="toMessenger({!! json_encode($form->id) !!})" >
-                                    <div class="row">
-                                        <h6>
-                                            <strong>{{ $form->post->title }}</strong>
-                                        </h6>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-secondary font-weight-bold mb-0">
+                                                {{ $form->post->title }}
+                                            </h6>
+                                        </div>
                                         <div class="text-muted">
                                             提出日 {{ $form->created_at }}
                                         </div>

@@ -66,7 +66,7 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
-                                        href=""
+                                        href="{{ route('forms.index') }}"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
                                         title="提出リスト"

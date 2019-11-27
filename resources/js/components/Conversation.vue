@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card-body p-0 pt-3" style="height: 100%;">
+        <div class="card-body p-0 pt-3 pb-2" style="height: 100%;">
             <div class="text-left">
                 <h5 class="alt-neutral">
                     <strong>
@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="text-muted">
                         <span
-                            v-if="form"
+                            v-if="form && user.is_admin"
                             class="text-muted"
                         >
                             <strong>{{ form.user_id ? 'ユーザー •' : 'ゲスト •' }}</strong>
