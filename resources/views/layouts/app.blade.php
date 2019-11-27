@@ -31,16 +31,16 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="/">ホーム</i></a>
+                            <a class="nav-link"
+                                href="/"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="ホーム"
+                            ><i class="fas fa-home fa-lg"></i></a>
                         </li>
                         @guest
                             <li class="nav-item">
@@ -52,14 +52,38 @@
                                 </li>
                             @endif
                         @else
+                            @if (Auth::user()->is_admin)
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href=""
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="予約管理"
+                                    ><i class="fas fa-tasks fa-lg"></i></a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href=""
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="提出リスト"
+                                    ><i class="fas fa-list fa-lg"></i></a>
+                                </li>
+                            @endif
                             <li class="nav-item">
                                 <a
                                     class="nav-link"
                                     href="{{ route('messenger', 0) }}"
-                                >チャット</a>
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="交渉チャット"
+                                ><i class="fas fa-comments fa-lg"></i></a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -69,7 +93,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         ログアウト
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
