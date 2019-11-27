@@ -27,7 +27,7 @@
                             @endforeach
                         @else
                             <div class="text-muted text-center mt-4 mb-4">
-                                何も予約要求は提出されていません。
+                                何も予約フォームは提出されていません。
                             </div>
                         @endif
                     </div>

@@ -19,7 +19,13 @@ class FormsController extends Controller
      */
     public function index()
     {
-        //
+        $forms = Form::with(['post'])
+            ->where('user_id', '=', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('user.submissions',
+            compact('forms'));
     }
 
     /**
