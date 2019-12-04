@@ -56,7 +56,7 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
-                                        href=""
+                                        href="{{ route('forms.index') }}"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
                                         title="予約管理"
