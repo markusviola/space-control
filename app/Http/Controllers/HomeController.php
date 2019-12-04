@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Form;
 use App\Post;
-use App\Space;
-use App\Type;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
