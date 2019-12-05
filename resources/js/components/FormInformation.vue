@@ -104,7 +104,7 @@
             <button
               v-if="user.is_admin && !form.is_approved"
               type="button"
-              class="btn-trans text-admin"
+              class="btn-trans text-secondary"
               data-dismiss="modal"
               data-toggle="modal"
               data-target="#confirmFormModal"
@@ -145,12 +145,12 @@
             <button
               @click="approveForm"
               type="button"
-              class="btn-trans text-admin"
+              class="btn-trans text-secondary"
               data-dismiss="modal"
             >
               <strong>はい</strong>
             </button>
-            <button type="button" class="btn-trans text-admin" data-dismiss="modal">
+            <button type="button" class="btn-trans text-dark" data-dismiss="modal">
               <strong>いいえ</strong>
             </button>
           </div>

@@ -15,7 +15,7 @@
                             <h5>
                                 <a
                                     class="nav-link {{ !$isReserveList ? 'active' : '' }}"
-                                    href="{{ route('home') }}"
+                                    href="{{ route('forms.index') }}"
                                 >要求リスト
                                 </a>
                             </h5>

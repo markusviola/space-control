@@ -52261,7 +52261,7 @@ var render = function() {
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn-trans text-admin",
+                        staticClass: "btn-trans text-secondary",
                         attrs: {
                           type: "button",
                           "data-dismiss": "modal",
@@ -52312,7 +52312,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn-trans text-admin",
+                    staticClass: "btn-trans text-secondary",
                     attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.approveForm }
                   },
@@ -52484,7 +52484,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn-trans text-admin",
+        staticClass: "btn-trans text-dark",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
       [_c("strong", [_vm._v("いいえ")])]
