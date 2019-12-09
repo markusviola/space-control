@@ -38,8 +38,6 @@ class ReservationsController extends Controller
         $startDates = array();
         $endDates = array();
         $chosenDates = json_decode(request()->date_times, true);
-        $chosenSpaces = json_decode(request()->check_spaces, true);
-        $typeId = request()->type_id;
 
         // Parses dates to PHP and stores it to arrays
         foreach($chosenDates as $date) {
@@ -58,7 +56,6 @@ class ReservationsController extends Controller
         $reservation = Reservation::where('id', $id)->first();
 
         $reservation->status_id = request()->status_id;
-        $reservation->discovery_id = request()->discovery_id;
         $reservation->is_independent = request()->is_independent;
         $reservation->corporate_name = request()->corporate_name;
         $reservation->visit_place = request()->visit_place;
@@ -82,25 +79,10 @@ class ReservationsController extends Controller
         $form = Form::where('id', $reservation->form->id)->first();
         $formId = $form->id;
 
-        $form->will_stay = request()->will_stay;
         $form->email = request()->email;
         $form->phone = request()->phone;
         $form->user_count = request()->user_count ?? 1;
-
         $form->save();
-
-        // For room rentals, updates room reservations
-        if ($typeId == 2) {
-            BulkSpace::where('form_id', $formId)->delete();
-            foreach($chosenSpaces as $space) {
-                if ($space['is_selected']) {
-                    BulkSpace::create([
-                        'space_id' => $space['id'],
-                        'form_id' => $formId
-                    ]);
-                }
-            }
-        }
 
         // Updating reservation schedules
         Schedule::where('form_id', $formId)->delete();
@@ -110,7 +92,6 @@ class ReservationsController extends Controller
                 'start_time' => $startDates[$i],
                 'end_time' => $endDates[$i],
             ]);
-            if (request()->will_stay) break;
         }
 
         return;
