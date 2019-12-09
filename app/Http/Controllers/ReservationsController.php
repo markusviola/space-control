@@ -2,35 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Discovery;
 use App\Form;
 use App\Reservation;
 use App\Status;
-use App\Type;
-use App\BulkSpace;
 use App\Schedule;
-use App\Space;
 
 class ReservationsController extends Controller
 {
     public function index() {
 
         $isReserveList = true;
-        $typeId = (int) request()->query('type');
-        $types = Type::all();
-        $spaces = Space::all();
-        $discoveries = Discovery::all();
         $statuses = Status::all();
 
         $approvedForms = Form::with([
-                'type',
                 'schedules',
-                'bulkSpaces',
                 'reservation',
                 'reservation.status',
-                'reservation.discovery',
             ])
-            ->where('type_id', $typeId)
             ->where('is_approved', 1)
             ->latest()
             ->get();
@@ -38,11 +26,7 @@ class ReservationsController extends Controller
         return view('home',
             compact(
                 'isReserveList',
-                'types',
-                'spaces',
-                'discoveries',
                 'statuses',
-                'typeId',
                 'approvedForms'
             )
         );
