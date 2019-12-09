@@ -1,9 +1,9 @@
 <template>
     <div>
-        <!-- <reservation-item
+        <reservation-item
             :form="selected_form"
             :statuses="statuses"
-        ></reservation-item> -->
+        ></reservation-item>
         <div v-for="(approved_form, index) in approved_forms" :key="index">
             <div class="container py-3 panel-highlight" @click="onFormSelected(approved_form)" data-toggle="modal" data-target="#reservation-item">
                 <div class="row">
