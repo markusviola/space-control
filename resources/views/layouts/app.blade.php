@@ -56,6 +56,15 @@
                                 <li class="nav-item">
                                     <a
                                         class="nav-link"
+                                        href="{{ route('posts.index') }}"
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="スペース登録"
+                                    ><i class="fas fa-map-marked-alt fa-lg"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
                                         href="{{ route('forms.index') }}"
                                         data-toggle="tooltip"
                                         data-placement="bottom"
