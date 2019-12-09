@@ -23,7 +23,7 @@ class ReservationsController extends Controller
             ->latest()
             ->get();
 
-        return view('home',
+        return view('admin.spacecontrol',
             compact(
                 'isReserveList',
                 'statuses',

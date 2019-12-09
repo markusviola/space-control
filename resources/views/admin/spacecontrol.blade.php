@@ -24,14 +24,14 @@
                             <h5>
                                 <a
                                     class="nav-link {{ $isReserveList ? 'active' : '' }}"
-                                    href="#"
+                                    href="{{ route('manager') }}"
                                 >承認リスト
                                 </a>
                             </h5>
                         </li>
                     </ul>
                     @if ($isReserveList)
-                        {{-- @include('admin.reservations') --}}
+                        @include('admin.reservations')
                     @else
                         @include('admin.requests')
                     @endif
