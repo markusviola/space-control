@@ -1,29 +1,25 @@
 <template>
     <div>
-        <reservation-item
-            :type_id="type_id"
+        <!-- <reservation-item
             :form="selected_form"
-            :types="types"
-            :spaces="spaces"
-            :discoveries="discoveries"
             :statuses="statuses"
-        ></reservation-item>
+        ></reservation-item> -->
         <div v-for="(approved_form, index) in approved_forms" :key="index">
             <div class="container py-3 panel-highlight" @click="onFormSelected(approved_form)" data-toggle="modal" data-target="#reservation-item">
                 <div class="row">
                     <div class="col-md-8 alt-neutral">
                         <h5>
-                            <strong class="text-secondary">{{ approved_form.reservation.status.name }} ></strong>
-                            予約 #{{ approved_form.reservation.id }}
+                            #{{ approved_form.reservation.id }} > <span class="text-muted">{{ approved_form.post.title }}</span>
                         </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
-                        顧客名 {{ approved_form.name }}
+                        予約者名・{{ approved_form.name }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 text-muted">
-                        初期使用日 {{ approved_form.schedules[0].start_time['date'] }}
+                    <h5 class="font-weight-bold col-md-6 text-secondary mb-0">{{ approved_form.reservation.status.name }}</h5>
+                    <div class="col-md-6 text-muted text-right">
+                        初期使用日・{{ approved_form.schedules[0].start_time['date'] }}
                     </div>
                 </div>
             </div>
@@ -39,26 +35,10 @@ export default {
             type: Array,
             required: true,
         },
-        types: {
-            type: Array,
-            required: true,
-        },
-        spaces: {
-            type: Array,
-            required: true,
-        },
-        discoveries: {
-            type: Array,
-            required: true,
-        },
         statuses: {
             type: Array,
             required: true,
         },
-        type_id: {
-            type: Number,
-            required: true,
-        }
     },
     data() {
         return {

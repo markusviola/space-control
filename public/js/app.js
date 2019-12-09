@@ -3776,34 +3776,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     approved_forms: {
       type: Array,
       required: true
     },
-    types: {
-      type: Array,
-      required: true
-    },
-    spaces: {
-      type: Array,
-      required: true
-    },
-    discoveries: {
-      type: Array,
-      required: true
-    },
     statuses: {
       type: Array,
-      required: true
-    },
-    type_id: {
-      type: Number,
       required: true
     }
   },
@@ -54629,84 +54609,76 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [
-      _c("reservation-item", {
-        attrs: {
-          type_id: _vm.type_id,
-          form: _vm.selected_form,
-          types: _vm.types,
-          spaces: _vm.spaces,
-          discoveries: _vm.discoveries,
-          statuses: _vm.statuses
-        }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.approved_forms, function(approved_form, index) {
-        return _c("div", { key: index }, [
-          _c(
-            "div",
-            {
-              staticClass: "container py-3 panel-highlight",
-              attrs: {
-                "data-toggle": "modal",
-                "data-target": "#reservation-item"
-              },
-              on: {
-                click: function($event) {
-                  return _vm.onFormSelected(approved_form)
-                }
-              }
+    _vm._l(_vm.approved_forms, function(approved_form, index) {
+      return _c("div", { key: index }, [
+        _c(
+          "div",
+          {
+            staticClass: "container py-3 panel-highlight",
+            attrs: {
+              "data-toggle": "modal",
+              "data-target": "#reservation-item"
             },
-            [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8 alt-neutral" }, [
-                  _c("h5", [
-                    _c("strong", { staticClass: "text-secondary" }, [
-                      _vm._v(
-                        _vm._s(approved_form.reservation.status.name) + " >"
-                      )
-                    ]),
-                    _vm._v(
-                      "\n                        予約 #" +
-                        _vm._s(approved_form.reservation.id) +
-                        "\n                    "
-                    )
+            on: {
+              click: function($event) {
+                return _vm.onFormSelected(approved_form)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8 alt-neutral" }, [
+                _c("h5", [
+                  _vm._v(
+                    "\n                        #" +
+                      _vm._s(approved_form.reservation.id) +
+                      " > "
+                  ),
+                  _c("span", { staticClass: "text-muted" }, [
+                    _vm._v(_vm._s(approved_form.post.title))
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "col-md-4 d-flex justify-content-end text-muted"
-                  },
-                  [
-                    _vm._v(
-                      "\n                    顧客名 " +
-                        _vm._s(approved_form.name) +
-                        "\n                "
-                    )
-                  ]
-                )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12 text-muted" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-4 d-flex justify-content-end text-muted"
+                },
+                [
                   _vm._v(
-                    "\n                    初期使用日 " +
-                      _vm._s(approved_form.schedules[0].start_time["date"]) +
+                    "\n                    予約者名・" +
+                      _vm._s(approved_form.name) +
                       "\n                "
                   )
-                ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "h5",
+                {
+                  staticClass: "font-weight-bold col-md-6 text-secondary mb-0"
+                },
+                [_vm._v(_vm._s(approved_form.reservation.status.name))]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 text-muted text-right" }, [
+                _vm._v(
+                  "\n                    初期使用日・" +
+                    _vm._s(approved_form.schedules[0].start_time["date"]) +
+                    "\n                "
+                )
               ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("hr", { staticClass: "m-0 p-0" })
-        ])
-      })
-    ],
-    2
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("hr", { staticClass: "m-0 p-0" })
+      ])
+    }),
+    0
   )
 }
 var staticRenderFns = []

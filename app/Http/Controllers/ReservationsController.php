@@ -15,6 +15,7 @@ class ReservationsController extends Controller
         $statuses = Status::all();
 
         $approvedForms = Form::with([
+                'post',
                 'schedules',
                 'reservation',
                 'reservation.status',
