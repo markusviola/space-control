@@ -3,28 +3,28 @@
         @foreach ($forms as $form)
             <div class="container py-3 panel-highlight" onclick="toMessenger({!! json_encode($form->id) !!})" >
                 <div class="row">
-                    <div class="col-md-8 alt-anti-neutral">
+                    <div class="col-md-8 text-muted">
                         <h5>
                             @if ($form->is_approved)
-                                <strong class="text-admin">承認 ></strong>
+                                <strong class="text-primary">承認 ></strong>
                             @else
-                                <strong>未決 ></strong>
+                                <strong class="text-admin">未決 ></strong>
                             @endif
-                           {{ $form->type->name }}
+                           {{ $form->post->title }}
                         </h5>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end text-muted">
-                        顧客名 {{ $form->name }}
+                        予約者名 {{ $form->name }}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 ">
                         @if ($form->user_id == 0)
-                           <div class="text-danger">
+                           <div class="text-secondary">
                                <strong>ゲスト</strong>
                             </div>
                         @else
-                            <div class="text-primary">
+                            <div class="text-secondary">
                                 <strong>ユーザー</strong>
                             </div>
                         @endif

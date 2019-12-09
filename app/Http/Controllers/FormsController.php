@@ -19,7 +19,27 @@ class FormsController extends Controller
      */
     public function index()
     {
-        //
+        if (auth()->check() && auth()->user()->is_admin) {
+            $isReserveList = false;
+
+            $forms = Form::with('post')
+                ->whereHas('post', function ($query) {
+                    $query->where('user_id', '=', auth()->id());
+                })
+                ->latest()
+                ->get();
+
+            return view('admin.spacecontrol',
+                compact('forms', 'isReserveList'));
+        } else {
+            $forms = Form::with(['post'])
+                ->where('user_id', '=', auth()->id())
+                ->latest()
+                ->get();
+
+            return view('user.submissions',
+                compact('forms'));
+        }
     }
 
     /**
@@ -110,7 +130,7 @@ class FormsController extends Controller
             if (request()->will_stay) break;
         }
 
-        return redirect()->route('home', '#created-form');
+        return redirect()->route('forms.index', '#created-form');
     }
 
     /**

@@ -51512,7 +51512,10 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "card-body p-0 pt-3", staticStyle: { height: "100%" } },
+      {
+        staticClass: "card-body p-0 pt-3 pb-2",
+        staticStyle: { height: "100%" }
+      },
       [
         _c("div", { staticClass: "text-left" }, [
           _c("h5", { staticClass: "alt-neutral" }, [
@@ -51535,7 +51538,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "d-flex justify-content-between" }, [
             _c("div", { staticClass: "text-muted" }, [
-              _vm.form
+              _vm.form && _vm.user.is_admin
                 ? _c("span", { staticClass: "text-muted" }, [
                     _c("strong", [
                       _vm._v(
@@ -52258,7 +52261,7 @@ var render = function() {
                   ? _c(
                       "button",
                       {
-                        staticClass: "btn-trans text-admin",
+                        staticClass: "btn-trans text-secondary",
                         attrs: {
                           type: "button",
                           "data-dismiss": "modal",
@@ -52309,7 +52312,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn-trans text-admin",
+                    staticClass: "btn-trans text-secondary",
                     attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.approveForm }
                   },
@@ -52481,7 +52484,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn-trans text-admin",
+        staticClass: "btn-trans text-dark",
         attrs: { type: "button", "data-dismiss": "modal" }
       },
       [_c("strong", [_vm._v("いいえ")])]
