@@ -33,16 +33,10 @@
                                 <h5
                                     @click="onArrangement = !onArrangement"
                                     :class="`nav-link anti-neutral clickable ${!onArrangement ? 'active' : ''}`"
-                                >顧客情報</h5>
+                                >予約者情報</h5>
                             </li>
                         </ul>
                         <div v-if="onArrangement">
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">予約タイプ</strong>
-                                </div>
-                                <div class="col-md-8 font-weight-bold text-secondary">{{ form.type.name }}</div>
-                            </div>
                             <div class="row mb-4">
                                 <div class="col-md-4 text-md-right border-right">
                                     <strong class="text-muted">問合せ日</strong>
@@ -72,26 +66,6 @@
                                                 :value="status.id"
                                                 :selected="status.id == form.reservation.status.id"
                                             >{{ status.name }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">経路</strong>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <select
-                                            v-model="discovery_id"
-                                            class="form-control"
-                                        >
-                                            <option
-                                                v-for="(discovery, index) in discoveries"
-                                                :key="index"
-                                                :value="discovery.id"
-                                                :selected="discovery.id == discovery_id"
-                                            >{{ discovery.name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -138,7 +112,7 @@
                                     >
                                 </div>
                             </div>
-                            <div v-if="type_id != 1" class="row mb-3">
+                            <div class="row mb-3">
                                 <div class="col-md-4 text-md-right border-right">
                                     <strong class="text-muted">使用人数</strong>
                                 </div>
@@ -177,99 +151,33 @@
                                     >
                                 </div>
                             </div>
-                            <div v-if="type_id == 2" class="row mb-3">
-                                <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">予約場所</strong>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div
-                                                v-for="(space, index) in spaces"
-                                                :key="index"
-                                                class="form-check col-6"
-                                            >
-                                                <input
-                                                    v-model="check_spaces[index].is_selected"
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    :id="space.name"
-                                                >
-                                                <label class="form-check-label" :for="space.name">
-                                                    {{ space.name }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-if="type_id == 1" class="row mb-2">
-                                <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">泊まり</strong>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-check">
-                                        <input
-                                            v-model="will_stay"
-                                            class="form-check-input"
-                                            type="radio" id="willStay"
-                                            :value="one"
-                                        >
-                                        <label class="form-check-label" for="willStay">
-                                            はい
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            v-model="will_stay"
-                                            class="form-check-input"
-                                            type="radio"
-                                            id="wontStay"
-                                            :value="zero"
-                                        >
-                                        <label class="form-check-label" for="wontStay">
-                                            いいえ
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                             <hr>
                             <div class="text-center">
                                 <strong class="text-muted">使用日・時間</strong>
                             </div>
-                            <div v-if="will_stay">
-                                <div class="container mt-3 p-0 px-4">
-                                    <check-in-out
-                                        :setDate="date_times[0]"
-                                        @onCheckInOutChosen="changeDateTime"
-                                    ></check-in-out>
-                                </div>
-                            </div>
-                            <div v-else>
-                                <div v-for="i in dateIncrement" v-bind:key="i">
-                                    <div class="container">
-                                        <div class="row mt-3">
-                                            <div class="col-md-12 p-0">
-                                                <schedule-picker
-                                                    @onDateTimeChosen="changeDateTime"
-                                                    :dateTimeId="i"
-                                                    :setDate="date_times[i-1]"
-                                                ></schedule-picker>
-                                            </div>
-                                            <div
-                                                v-if="i == dateIncrement"
-                                                class="col-md-12 p-0 d-flex justify-content-end px-1"
-                                            >
-                                                <i
-                                                    v-on:click="addClicked"
-                                                    class="fas fa-plus fa-lg edit mt-3"
-                                                ></i>
-                                                <i
-                                                    v-if="i != 1"
-                                                    v-on:click="removeClicked"
-                                                    class="fas fa-minus-circle fa-lg delete pl-3 mt-3"
-                                                ></i>
-                                            </div>
+                            <div v-for="i in dateIncrement" v-bind:key="i">
+                                <div class="container">
+                                    <div class="row mt-3">
+                                        <div class="col-md-12 p-0">
+                                            <schedule-picker
+                                                @onDateTimeChosen="changeDateTime"
+                                                :dateTimeId="i"
+                                                :setDate="date_times[i-1]"
+                                            ></schedule-picker>
+                                        </div>
+                                        <div
+                                            v-if="i == dateIncrement"
+                                            class="col-md-12 p-0 d-flex justify-content-end px-1"
+                                        >
+                                            <i
+                                                v-on:click="addClicked"
+                                                class="fas fa-plus fa-lg edit mt-3"
+                                            ></i>
+                                            <i
+                                                v-if="i != 1"
+                                                v-on:click="removeClicked"
+                                                class="fas fa-minus-circle fa-lg delete pl-3 mt-3"
+                                            ></i>
                                         </div>
                                     </div>
                                 </div>
@@ -520,12 +428,12 @@
                         <button
                             @click="updateReservation"
                             type="button"
-                            class="btn-trans text-admin"
+                            class="btn-trans text-secondary"
                             data-dismiss="modal"
                         >
                             <strong>はい</strong>
                         </button>
-                        <button type="button" class="btn-trans text-admin" data-dismiss="modal">
+                        <button type="button" class="btn-trans text-muted" data-dismiss="modal">
                             <strong>いいえ</strong>
                         </button>
                     </div>
@@ -542,39 +450,21 @@ export default {
             type: Object,
             default: null,
         },
-        types: {
-            type: Array,
-            required: true,
-        },
-        spaces: {
-            type: Array,
-            required: true,
-        },
-        discoveries: {
-            type: Array,
-            required: true,
-        },
         statuses: {
             type: Array,
             required: true,
         },
-        type_id: {
-            type: Number,
-            required: true,
-        }
     },
     data() {
         return {
             onArrangement: true,
             dateIncrement: 0,
             status_id: null,
-            discovery_id: null,
             is_independent: null,
             corporate_name: null,
             visit_date: null,
             visit_place: null,
             will_noise: null,
-            will_stay: null,
             remarks: null,
             cancel_reason: null,
             actual_hours: null,
@@ -583,7 +473,6 @@ export default {
             invoice: null,
             paydate: null,
             actual_paydate: null,
-            check_spaces: [],
             date_times: [],
             email: null,
             phone: null,
@@ -602,7 +491,6 @@ export default {
     methods: {
         updateFormFields() {
             this.status_id = this.form.reservation.status.id;
-            this.discovery_id = this.form.reservation.discovery.id;
             this.corporate_name = this.form.reservation.corporate_name;
             this.visit_place = this.form.reservation.visit_place;
             this.remarks = this.form.reservation.remarks;
@@ -616,7 +504,6 @@ export default {
 
             this.invoice = this.form.reservation.invoice ? true : false;
             this.will_noise = this.form.reservation.will_noise ? true : false;
-            this.will_stay = this.form.will_stay ? true : false;
             this.is_independent = this.form.reservation.is_independent ? true : false;
 
             this.visit_date = this.form.reservation.visit_date ?
@@ -627,7 +514,6 @@ export default {
                 new Date(this.form.reservation.actual_paydate) : null;
 
             this.initReservationDates();
-            this.initReservationSpaces();
         },
         formatToUTC(date) {
             if (date) {
@@ -653,40 +539,13 @@ export default {
                 });
             }
         },
-        initReservationSpaces() {
-            this.check_spaces = [];
-            if (this.type_id == 2) {
-                for (let i = 0; i < this.spaces.length; i+=1) {
-                    let hasMatch = false;
-                    for (let j = 0; j < this.form.bulk_spaces.length; j+=1) {
-                        if (this.form.bulk_spaces[j].space_id == this.spaces[i].id) {
-                            hasMatch = !hasMatch;
-                            this.check_spaces.push({
-                                id: this.spaces[i].id,
-                                is_selected: hasMatch
-                            });
-                            break;
-                        }
-                    }
-                    if (!hasMatch) {
-                        this.check_spaces.push({
-                            id: this.spaces[i].id,
-                            is_selected: false,
-                        });
-                    }
-                }
-            }
-        },
         updateReservation() {
             axios.patch(`/reservations/${this.form.reservation.id}/edit`, {
-                type_id: this.type_id,
                 status_id: this.status_id,
-                discovery_id: this.discovery_id,
                 is_independent: this.is_independent,
                 corporate_name: this.corporate_name,
                 visit_place: this.visit_place,
                 will_noise: this.will_noise,
-                will_stay: this.will_stay,
                 email: this.email,
                 phone: this.phone,
                 remarks: this.remarks,
@@ -699,7 +558,6 @@ export default {
                 user_count: parseInt(this.user_count),
                 payment_cost: parseFloat(this.payment_cost),
                 discounted_cost: parseFloat(this.discounted_cost),
-                check_spaces: JSON.stringify(this.check_spaces),
                 date_times: JSON.stringify(this.date_times),
             })
             .then(() => {

@@ -17,7 +17,6 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('form_id');
             $table->unsignedInteger('status_id')->default(1);
-            $table->unsignedInteger('discovery_id')->default(1);
             $table->boolean('is_independent')->default(true);
             $table->string('corporate_name')->nullable();
             $table->datetime('visit_date')->nullable();

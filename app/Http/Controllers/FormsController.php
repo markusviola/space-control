@@ -127,7 +127,6 @@ class FormsController extends Controller
                 'start_time' => $startDates[$i],
                 'end_time' => $endDates[$i],
             ]);
-            if (request()->will_stay) break;
         }
 
         return redirect()->route('forms.index', '#created-form');
