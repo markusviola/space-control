@@ -11,9 +11,7 @@ class PaymentsController extends Controller
 {
     public function index() {
 
-        $types = Type::all();
-
-        return view('admin.payments', compact('types'));
+        return view('admin.payments');
     }
 
     public function getPaymentRecords($typeId, $isIndependent) {
