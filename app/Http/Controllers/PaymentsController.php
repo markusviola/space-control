@@ -29,7 +29,7 @@ class PaymentsController extends Controller
         }
 
         $reservations = Reservation::with(
-                ['forms' => function($q1) {
+                ['form' => function($q1) {
                     $q1->whereHas('post', function($q2) {
                         $q2->where('user_id', auth()->id());
                     });
