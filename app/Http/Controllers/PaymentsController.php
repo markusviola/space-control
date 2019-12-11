@@ -13,7 +13,7 @@ class PaymentsController extends Controller
         return view('admin.payments');
     }
 
-    public function getPaymentRecords($typeId, $isIndependent) {
+    public function getPaymentRecords($isIndependent) {
 
         // Filters if requested data is by
         // individual, corporate clients or both.

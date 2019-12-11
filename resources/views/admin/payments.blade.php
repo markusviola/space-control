@@ -10,7 +10,7 @@
                         <h4 class="alt-neutral">支払記録</h4>
                         <span class="text-dark">ビジネスがどうなっているのかを監視しよう！</span>
                     </div>
-                    <payment-records :types="{{ $types }}"></payment-records>
+                    <payment-records></payment-records>
                 </div>
             </div>
         </div>
