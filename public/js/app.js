@@ -3408,18 +3408,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     form: {
@@ -53109,37 +53097,9 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(8),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-md-8" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.visit_place,
-                                      expression: "visit_place"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text" },
-                                  domProps: { value: _vm.visit_place },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.visit_place = $event.target.value
-                                    }
-                                  }
-                                })
-                              ])
-                            ]),
-                            _vm._v(" "),
                             _c("hr"),
                             _vm._v(" "),
-                            _vm._m(9),
+                            _vm._m(8),
                             _vm._v(" "),
                             _vm._l(_vm.dateIncrement, function(i) {
                               return _c("div", { key: i }, [
@@ -53196,7 +53156,7 @@ var render = function() {
                             _c("hr"),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-2" }, [
-                              _vm._m(10),
+                              _vm._m(9),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("div", { staticClass: "form-check" }, [
@@ -53276,7 +53236,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(11),
+                              _vm._m(10),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53305,7 +53265,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.status_id == 4
                               ? _c("div", { staticClass: "row mb-3" }, [
-                                  _vm._m(12),
+                                  _vm._m(11),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-md-8" }, [
                                     _c("input", {
@@ -53335,7 +53295,7 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(13),
+                              _vm._m(12),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53363,7 +53323,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(14),
+                              _vm._m(13),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53391,7 +53351,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(15),
+                              _vm._m(14),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53419,7 +53379,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-2" }, [
-                              _vm._m(16),
+                              _vm._m(15),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("div", { staticClass: "form-check" }, [
@@ -53499,7 +53459,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(17),
+                              _vm._m(16),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -53526,7 +53486,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(18),
+                              _vm._m(17),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -53556,7 +53516,7 @@ var render = function() {
                         )
                       : _c("div", { staticClass: "mt-2" }, [
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(19),
+                            _vm._m(18),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.name))
@@ -53564,7 +53524,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(20),
+                            _vm._m(19),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.furigana))
@@ -53572,7 +53532,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(21),
+                            _vm._m(20),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.gender ? "女" : "男"))
@@ -53580,7 +53540,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(22),
+                            _vm._m(21),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.birthday))
@@ -53588,7 +53548,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(23),
+                            _vm._m(22),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.address))
@@ -53596,7 +53556,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(24),
+                            _vm._m(23),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _c("input", {
@@ -53624,7 +53584,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(25),
+                            _vm._m(24),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _c("input", {
@@ -53653,7 +53613,7 @@ var render = function() {
                         ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(26)
+                  _vm._m(25)
                 ])
               ]
             )
@@ -53682,7 +53642,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
@@ -53701,7 +53661,7 @@ var render = function() {
                   [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
-                _vm._m(28)
+                _vm._m(27)
               ])
             ])
           ]
@@ -53797,14 +53757,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("見学日")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("見学場所")])
     ])
   },
   function() {
