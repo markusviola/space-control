@@ -139,18 +139,6 @@
                                     </v-date-picker>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4 text-md-right border-right">
-                                    <strong class="text-muted">見学場所</strong>
-                                </div>
-                                <div class="col-md-8">
-                                    <input
-                                        v-model="visit_place"
-                                        type="text"
-                                        class="form-control"
-                                    >
-                                </div>
-                            </div>
                             <hr>
                             <div class="text-center">
                                 <strong class="text-muted">使用日・時間</strong>

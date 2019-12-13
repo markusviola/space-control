@@ -2817,33 +2817,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    types: {
-      type: Array,
-      required: true
-    }
-  },
   data: function data() {
     return {
       chosen_filter: 'default',
-      chosen_type: 2,
       filter_choices: ['default', 'true', 'false']
     };
-  },
-  methods: {
-    onTypeChosen: function onTypeChosen(id) {
-      this.chosen_type = id;
-    }
   }
 });
 
@@ -2903,10 +2882,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    type_id: {
-      type: Number,
-      required: true
-    },
     filter: {
       type: String,
       required: true
@@ -2921,7 +2896,7 @@ __webpack_require__.r(__webpack_exports__);
     changeTable: function changeTable() {
       var _this = this;
 
-      axios.get("/payments/type/".concat(this.type_id, "/individual/").concat(this.filter)).then(function (response) {
+      axios.get("/payments/individual/".concat(this.filter)).then(function (response) {
         _this.records = response.data;
       });
     }
@@ -2934,13 +2909,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    type_id: {
-      immediate: true,
-      handler: function handler() {
-        this.changeTable();
-      }
-    },
     filter: {
+      immediate: true,
       handler: function handler() {
         this.changeTable();
       }
@@ -3005,18 +2975,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -52584,30 +52542,6 @@ var render = function() {
   return _c("div", [
     _c("hr"),
     _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "nav nav-tabs mt-2 text-secondary" },
-      _vm._l(_vm.types, function(type, index) {
-        return _c("li", { key: index, staticClass: "nav-item" }, [
-          _c(
-            "div",
-            {
-              class:
-                "nav-link clickable " +
-                (type.id == _vm.chosen_type ? "active" : ""),
-              on: {
-                click: function($event) {
-                  return _vm.onTypeChosen(type.id)
-                }
-              }
-            },
-            [_vm._v(_vm._s(type.name))]
-          )
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
     _c("div", { staticClass: "row mb-2 mt-3" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -52683,11 +52617,7 @@ var render = function() {
     _c(
       "div",
       { staticClass: "payment-wrapper" },
-      [
-        _c("records-table", {
-          attrs: { type_id: _vm.chosen_type, filter: _vm.chosen_filter }
-        })
-      ],
+      [_c("records-table", { attrs: { filter: _vm.chosen_filter } })],
       1
     ),
     _vm._v(" "),
@@ -52696,10 +52626,7 @@ var render = function() {
     _c("div", { staticClass: "text-center font-weight-bold" }, [
       _c(
         "a",
-        {
-          staticClass: "anti-neutral",
-          attrs: { href: "/reservations?type=" + _vm.chosen_type }
-        },
+        { staticClass: "anti-neutral", attrs: { href: "/reservations" } },
         [_c("h5", { staticClass: "m-0" }, [_vm._v("予約管理に戻る")])]
       )
     ])
@@ -52737,76 +52664,26 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.type_id == 2
-      ? _c("table", { staticClass: "table table-bordered" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.sortRecords, function(record, index) {
-              return _c("tr", { key: index }, [
-                _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(record.year + "-" + record.month + "月"))
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.total))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.space1 || 0))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.space2 || 0))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.space3 || 0))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.space4 || 0))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.space5 || 0))])
-              ])
-            }),
-            0
-          )
-        ])
-      : _c("table", { staticClass: "table table-bordered" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.sortRecords, function(record, index) {
-              return _c("tr", { key: index }, [
-                _c("th", { attrs: { scope: "row" } }, [
-                  _vm._v(_vm._s(record.year + "-" + record.month + "月"))
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(record.total))])
-              ])
-            }),
-            0
-          )
-        ])
+    _c("table", { staticClass: "table table-bordered" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.sortRecords, function(record, index) {
+          return _c("tr", { key: index }, [
+            _c("th", { attrs: { scope: "row" } }, [
+              _vm._v(_vm._s(record.year + "-" + record.month + "月"))
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(record.total))])
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-light" }, [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("使用日-年-月")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("請求金額")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("教室 A")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("教室 B")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("音楽室")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("屋上")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("昇降口")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53220,37 +53097,9 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(8),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-md-8" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.visit_place,
-                                      expression: "visit_place"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text" },
-                                  domProps: { value: _vm.visit_place },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.visit_place = $event.target.value
-                                    }
-                                  }
-                                })
-                              ])
-                            ]),
-                            _vm._v(" "),
                             _c("hr"),
                             _vm._v(" "),
-                            _vm._m(9),
+                            _vm._m(8),
                             _vm._v(" "),
                             _vm._l(_vm.dateIncrement, function(i) {
                               return _c("div", { key: i }, [
@@ -53307,7 +53156,7 @@ var render = function() {
                             _c("hr"),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-2" }, [
-                              _vm._m(10),
+                              _vm._m(9),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("div", { staticClass: "form-check" }, [
@@ -53387,7 +53236,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(11),
+                              _vm._m(10),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53416,7 +53265,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.status_id == 4
                               ? _c("div", { staticClass: "row mb-3" }, [
-                                  _vm._m(12),
+                                  _vm._m(11),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-md-8" }, [
                                     _c("input", {
@@ -53446,7 +53295,7 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(13),
+                              _vm._m(12),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53474,7 +53323,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(14),
+                              _vm._m(13),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53502,7 +53351,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(15),
+                              _vm._m(14),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("input", {
@@ -53530,7 +53379,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-2" }, [
-                              _vm._m(16),
+                              _vm._m(15),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-md-8" }, [
                                 _c("div", { staticClass: "form-check" }, [
@@ -53610,7 +53459,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(17),
+                              _vm._m(16),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -53637,7 +53486,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "row mb-3" }, [
-                              _vm._m(18),
+                              _vm._m(17),
                               _vm._v(" "),
                               _c(
                                 "div",
@@ -53667,7 +53516,7 @@ var render = function() {
                         )
                       : _c("div", { staticClass: "mt-2" }, [
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(19),
+                            _vm._m(18),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.name))
@@ -53675,7 +53524,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(20),
+                            _vm._m(19),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.furigana))
@@ -53683,7 +53532,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(21),
+                            _vm._m(20),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.gender ? "女" : "男"))
@@ -53691,7 +53540,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(22),
+                            _vm._m(21),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.birthday))
@@ -53699,7 +53548,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(23),
+                            _vm._m(22),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _vm._v(_vm._s(_vm.form.address))
@@ -53707,7 +53556,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(24),
+                            _vm._m(23),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _c("input", {
@@ -53735,7 +53584,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row mb-3" }, [
-                            _vm._m(25),
+                            _vm._m(24),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
                               _c("input", {
@@ -53764,7 +53613,7 @@ var render = function() {
                         ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(26)
+                  _vm._m(25)
                 ])
               ]
             )
@@ -53793,7 +53642,7 @@ var render = function() {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(27),
+              _vm._m(26),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body text-muted" }, [
                 _vm._v(
@@ -53812,7 +53661,7 @@ var render = function() {
                   [_c("strong", [_vm._v("はい")])]
                 ),
                 _vm._v(" "),
-                _vm._m(28)
+                _vm._m(27)
               ])
             ])
           ]
@@ -53908,14 +53757,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
       _c("strong", { staticClass: "text-muted" }, [_vm._v("見学日")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 text-md-right border-right" }, [
-      _c("strong", { staticClass: "text-muted" }, [_vm._v("見学場所")])
     ])
   },
   function() {

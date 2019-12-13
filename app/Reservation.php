@@ -18,9 +18,4 @@ class Reservation extends Model
     {
         return $this->belongsTo(Status::class);
     }
-
-    public function discovery()
-    {
-        return $this->belongsTo(Discovery::class);
-    }
 }

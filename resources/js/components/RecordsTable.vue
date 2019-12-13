@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table v-if="type_id == 2" class="table table-bordered">
+        <!-- <table v-if="type_id == 2" class="table table-bordered">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">使用日-年-月</th>
@@ -23,8 +23,8 @@
                     <td>{{ record.space5 || 0 }}</td>
                 </tr>
             </tbody>
-        </table>
-        <table v-else class="table table-bordered">
+        </table> -->
+        <table class="table table-bordered">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">使用日-年-月</th>
@@ -44,10 +44,6 @@
 <script>
 export default {
     props: {
-        type_id: {
-            type: Number,
-            required: true,
-        },
         filter: {
             type: String,
             required: true,
@@ -60,7 +56,7 @@ export default {
     },
     methods: {
         changeTable() {
-             axios.get(`/payments/type/${this.type_id}/individual/${this.filter}`)
+             axios.get(`/payments/individual/${this.filter}`)
             .then(response => {
                 this.records = response.data;
             })
@@ -74,13 +70,8 @@ export default {
         }
     },
     watch: {
-        type_id: {
-            immediate: true,
-            handler() {
-                this.changeTable();
-            }
-        },
         filter: {
+            immediate: true,
             handler() {
                 this.changeTable();
             }
